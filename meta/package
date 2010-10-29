@@ -1,0 +1,8 @@
+name: assay
+date: 2010-10-30
+version: 1.0.0
+
+requires:
+  - syckle (build)
+  - qed (test)
+

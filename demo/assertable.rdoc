@@ -1,0 +1,126 @@
+= Assertable
+
+  require 'assay'
+
+  extend Assay::Assertable
+
+== EqualityFailure
+
+  assert_equal(1,1)
+
+  expect Assay::EqualityFailure do
+    assert_equal(1,2)
+  end
+
+== TrueFailure
+
+  assert_true(true)
+
+  expect Assay::TrueFailure do
+    assert_true(false)
+  end
+
+== FalseFailure
+
+  assert_false(false)
+
+  expect Assay::FalseFailure do
+    assert_false(true)
+  end
+
+== NilFailure
+
+  assert_nil(nil)
+
+  expect Assay::NilFailure do
+    assert_nil(true)
+  end
+
+== DeltaFailure
+
+  assert_in_delta(1, 1.5, 2)
+
+  expect Assay::DeltaFailure do
+    assert_in_delta(1, 2.5, 1)
+  end
+
+== MatchFailure
+
+  assert_match(/a/, "abc")
+
+  expect Assay::MatchFailure do
+    assert_match(/x/, "abc")
+  end
+
+== SameFailure
+
+  assert_same(1, 1)
+
+  expect Assay::SameFailure do
+    assert_same(1, 1.0)
+  end
+
+== IdentityFailure
+
+  assert_identical(:a, :a)
+
+  expect Assay::IdentityFailure do
+    assert_identical("a", "a")
+  end
+
+== InstanceFailure
+
+  assert_instance_of(1, Fixnum)
+
+  expect Assay::InstanceFailure do
+    assert_instance_of(1, String)
+  end
+
+== KindFailure
+
+  assert_kind_of(1, Integer)
+
+  expect Assay::KindFailure do
+    assert_kind_of(1, String)
+  end
+
+== ReturnFailure
+
+  assert_returns(1){ 1 }
+
+  expect Assay::ReturnFailure do
+    assert_returns(1){ 2 }
+  end
+
+== RaiseFailure
+
+  assert_raises(ArgumentError){ raise ArgumentError }
+
+  expect Assay::RaiseFailure do
+    assert_raises(ArgumentError){ raise TypeError }
+  end
+
+== ResponseFailure
+
+  assert_responds_to("string", :upcase)
+
+  expect Assay::ResponseFailure do
+    assert_responds_to("string", :not_a_method)
+  end
+
+== ExecutionFailure
+
+  assert_executes{ nil }
+
+  expect Assay::ExecutionFailure do
+    assert_executes{ raise }
+  end
+
+== ThrowFailure
+
+  assert_throws(:foo){ throw :foo }
+
+  expect Assay::ThrowFailure do
+    assert_throws(:foo){ throw :bar }
+  end
+

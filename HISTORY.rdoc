@@ -1,0 +1,10 @@
+= HISTORY
+
+== 1.0.0 / 2010-10-29
+
+This is the initial release of Asserere.
+
+* 1 Major Enhancment
+
+    * Happy Birthday!
+
