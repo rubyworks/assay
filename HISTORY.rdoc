@@ -1,8 +1,8 @@
 = HISTORY
 
-== 1.0.0 / 2010-10-29
+== 1.0.0 / 2010-11-14
 
-This is the initial release of Asserere.
+This is the initial release of Assay.
 
 * 1 Major Enhancment
 
