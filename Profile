@@ -1,9 +1,15 @@
 ---
+name: assay
+version: 0.0.1
+
+requires:
+  - syckle (build)
+  - qed (test)
+
 title     : Assay
 summary   : Class-based Assertions Framework
 license   : Apache 2.0
 suite     : rubyworks
-created   : 2009-08-21
 
 authors:
   - Thomas Sawyer
@@ -18,6 +24,6 @@ resources:
   docs: http://rubydoc.info/gems/assay
   code: http://github.com/rubyworks/assay
 
-copyright:
-  Copyright (c) 2007 Thomas Sawyer
+created   : 2009-08-21
+copyright : Copyright (c) 2007 Thomas Sawyer
 

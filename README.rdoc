@@ -1,6 +1,7 @@
-= Assertions
+= Assay
 
-* http://.rubyforge.org
+* http://rubyworks.github.com/assay
+* http://github.com/rubyworks/assay
 
 
 == DESCRIPTION
