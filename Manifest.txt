@@ -1,4 +1,5 @@
-#!mast bin demo qed lib test [A-Z]*
+#!mast -x Syckfile .ruby bin demo qed lib test [A-Z]*
+.ruby
 qed/assertable.rdoc
 qed/failures.rdoc
 qed/matchers.rdoc
@@ -22,8 +23,6 @@ lib/assay/throw_failure.rb
 lib/assay/true_failure.rb
 lib/assay.rb
 HISTORY.rdoc
+Profile
 LICENSE.txt
 README.rdoc
-Package.yml
-Syckfile
-Profile.yml

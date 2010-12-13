@@ -5,7 +5,6 @@ resources:
   code: http://github.com/rubyworks/assay
   docs: http://rubydoc.info/gems/assay
   home: http://rubydoc.info/gems/assay
-pom_verison: 1.0.0
 requires: 
 - group: 
   - build
@@ -15,6 +14,35 @@ requires:
   - test
   name: qed
   version: 0+
+pom_verison: 1.0.0
+manifest: 
+- .ruby
+- qed/assertable.rdoc
+- qed/failures.rdoc
+- qed/matchers.rdoc
+- lib/assay/compare_failure.rb
+- lib/assay/delta_failure.rb
+- lib/assay/empty_failure.rb
+- lib/assay/equality_failure.rb
+- lib/assay/execution_failure.rb
+- lib/assay/failure.rb
+- lib/assay/false_failure.rb
+- lib/assay/identity_failure.rb
+- lib/assay/instance_failure.rb
+- lib/assay/kind_failure.rb
+- lib/assay/match_failure.rb
+- lib/assay/nil_failure.rb
+- lib/assay/raise_failure.rb
+- lib/assay/response_failure.rb
+- lib/assay/return_failure.rb
+- lib/assay/same_failure.rb
+- lib/assay/throw_failure.rb
+- lib/assay/true_failure.rb
+- lib/assay.rb
+- HISTORY.rdoc
+- Profile
+- LICENSE.txt
+- README.rdoc
 suite: rubyworks
 version: 0.0.1
 licenses: 
