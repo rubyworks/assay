@@ -1,0 +1,10 @@
+= Lookup
+
+Assay can be used to look up failure classes by associated opearators.
+
+  require 'assay'
+
+  Assay.lookup(:==)     #=> ::Assay::EqualityFailure
+
+  Assay.lookup(:empty?) #=> ::Assay::EmptyFailure
+
