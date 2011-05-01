@@ -17,9 +17,9 @@ module Assay
       "Expected procedure to raise an exception"
     end
 
-    def self.check(&proc)
+    def self.check(proc=nil, &block)
       begin
-        proc.call
+        (proc || block).call
         true
       rescue Exception
         false
@@ -64,6 +64,21 @@ module Assay
 
   module Matchers
     # TODO: Reasonable matcher for ExectuionFailure ?
+    #
+    #
+    #   proc.assert is_executed(*args)
+    #
+    def is_executed(*args)
+      ExecutionFailure.to_matcher(*args)
+    end
+
+    #
+    #
+    #   proc.should be_executed(*args)
+    #
+    def be_extecuted(*args)
+      ExecutionFailure.to_matcher(*args)
+    end
   end
 
 end

@@ -63,7 +63,7 @@ module Assay
     #
     #   object.assert is_a_match_for(regexp)
     #
-    def is_responsive_to(regexp)
+    def is_match_for(regexp)
       MatchFailure.to_matcher(regexp)
     end
 
@@ -71,7 +71,7 @@ module Assay
     #
     #   object.should be_a_match_for(regexp)
     #
-    def be_matching(regexp)
+    def be_match_for(regexp)
       MatchFailure.to_matcher(regexp)
     end
   end

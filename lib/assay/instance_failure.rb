@@ -58,15 +58,15 @@ module Assay
     #
     #   object.assert is_an_instance_of(class)
     #
-    def is_an_instance_of(cls)
-      InstanceFailure.to_matcher(regexp)
+    def is_instance_of(cls)
+      InstanceFailure.to_matcher(cls)
     end
 
     #
     #
     #   object.should be_an_instance_of(class)
     #
-    def be_an_instance_of(cls)
+    def be_instance_of(cls)
       InstanceFailure.to_matcher(cls)
     end
   end

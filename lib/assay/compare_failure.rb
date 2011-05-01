@@ -28,7 +28,6 @@ module Assay
 
   module Assertable
 
-
   end
 
 
@@ -51,3 +50,4 @@ module Assay
   end
 
 end
+

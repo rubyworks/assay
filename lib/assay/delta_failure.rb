@@ -20,9 +20,9 @@ module Assay
     def self.check(exp, act, delta)
       case delta
       when Numeric
-       (exp.to_f - act.to_f).abs <= delta.to_f
+        (exp.to_f - act.to_f).abs <= delta.to_f
       else
-       exp - act <= delta
+        exp - act <= delta
       end
     end
 
@@ -30,7 +30,7 @@ module Assay
 
 
   module Assertable
-    # Passes if expected_float and actual_float are equal within delta tolerance.
+    # Passes if expected and actual are equal within delta tolerance.
     #
     #   assert_in_delta 0.05, (50000.0 / 10**6), 0.00001
     #
@@ -39,7 +39,7 @@ module Assay
       DeltaFailure.assert(exp, act, delta, opts)
     end
 
-    # Passes if expected_float and actual_float are equal not within delta tolerance.
+    # Passes if expected and actual are equal not within delta tolerance.
     #
     #   assert_not_in_delta 0.05, (50000.0 / 10**6), 0.00001
     #
@@ -55,7 +55,7 @@ module Assay
     #
     #   value1.should be_within(delta, value2)
     #
-    def be_within(delata, act)
+    def is_within(delta, act)
       DeltaFailure.to_matcher(act, delta)
     end
 
@@ -63,7 +63,7 @@ module Assay
     #
     #   value1.assert is_within(delta, value2)
     #
-    def is_within(delata, act)
+    def be_within(delta, act)
       DeltaFailure.to_matcher(act, delta)
     end
   end

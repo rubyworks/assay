@@ -1,0 +1,126 @@
+= Matchers
+
+  require 'assay'
+
+  include Assay::Matchers
+
+== EqualityFailure
+
+  1.assert is_equal_to(1)
+
+  expect Assay::EqualityFailure do
+    1.assert is_equal_to(2)
+  end
+
+== TrueFailure
+
+  true.assert is_true
+
+  expect Assay::TrueFailure do
+    false.assert is_true
+  end
+
+== FalseFailure
+
+  false.assert is_false
+
+  expect Assay::FalseFailure do
+    true.assert is_false
+  end
+
+== NilFailure
+
+  nil.assert is_nil
+
+  expect Assay::NilFailure do
+    true.assert is_nil
+  end
+
+== DeltaFailure
+
+  1.assert is_within(1.5, 2)
+
+  expect Assay::DeltaFailure do
+    1.assert is_within(0.5, 2)
+  end
+
+== MatchFailure
+
+  "abc".assert is_match_for(/a/)
+
+  expect Assay::MatchFailure do
+    "abc".assert is_match_for(/x/)
+  end
+
+== SameFailure
+
+  1.assert is_same_as(1)
+
+  expect Assay::SameFailure do
+    1.assert is_same_as(1.0)
+  end
+
+== IdentityFailure
+
+  :a.assert is_identical_to(:a)
+
+  expect Assay::IdentityFailure do
+    "a".assert is_identical_to("a")
+  end
+
+== InstanceFailure
+
+  1.assert is_instance_of(Fixnum)
+
+  expect Assay::InstanceFailure do
+    1.assert is_instance_of(String)
+  end
+
+== KindFailure
+
+  1.assert is_kind_of(Integer)
+
+  expect Assay::KindFailure do
+    1.assert is_kind_of(String)
+  end
+
+== ReturnFailure
+
+  1.assert is_returned{ 1 }
+
+  expect Assay::ReturnFailure do
+    1.assert is_returned{ 2 }
+  end
+
+== RaiseFailure
+
+  ArgumentError.assert is_raised{ raise ArgumentError }
+
+  expect Assay::RaiseFailure do
+    ArgumentError.assert is_raised{ raise TypeError }
+  end
+
+== ResponseFailure
+
+  "string".assert is_responsive_to(:upcase)
+
+  expect Assay::ResponseFailure do
+    "string".assert is_responsive_to(:not_a_method)
+  end
+
+== ExecutionFailure
+
+  lambda{ :ok }.assert is_executed
+
+  expect Assay::ExecutionFailure do
+    lambda{ raise }.assert is_executed
+  end
+
+== ThrowFailure
+
+  :foo.assert is_thrown{ throw :foo }
+
+  expect Assay::ThrowFailure do
+    :foo.assert is_thrown{ throw :bar }
+  end
+

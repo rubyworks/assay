@@ -32,7 +32,7 @@ module Assay
 
     #
     def self.check(*args, &blk)
-      raise
+      raise NotImplementedError
     end
 
     #
@@ -41,13 +41,13 @@ module Assay
     end
 
     #
-    def self.fail_message
-      raise
+    def self.fail_message(*)
+      raise NotImplementedError
     end
 
     #
-    def self.fail_message!
-      "NOT #{fail_message}"
+    def self.fail_message!(*args)
+      "NOT " + fail_message(*args)
     end
 
     # Returns a Matcher for the failure class.
@@ -55,6 +55,13 @@ module Assay
       Matcher.new(self, *args, &blk)
     end
 
+    # Failure is, of course, always a type of assertion.
+    #
+    # This allows Assay's classes to work in any test framework
+    # supporting this interface, such as QED.
+    def assertion?
+      true
+    end
   end
 
   #
@@ -71,13 +78,21 @@ module Assay
     end
 
     def fail_message
-      @failure_class.fail_message(@target, @args, &@blk)
+      @failure_class.fail_message(@target, *@args, &@blk)
     end
 
     def negative_fail_message
-      @failure_class.fail_message!(@target, @args, &@blk)
+      @failure_class.fail_message!(@target, *@args, &@blk)
+    end
+
+    def failure_class
+      @failure_class
+    end
+
+    def fail(backtrace=nil)
+      msg = fail_message
+      super failure_class.new(msg, backtrace||caller)
     end
   end
 
 end
-

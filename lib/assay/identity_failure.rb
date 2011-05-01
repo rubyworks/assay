@@ -58,8 +58,8 @@ module Assay
     #
     #   object1.assert is_identical_to(object2)
     #
-    def is_identical_to(cls)
-      IdentityFailure.to_matcher(regexp)
+    def is_identical_to(obj)
+      IdentityFailure.to_matcher(obj)
     end
 
     #

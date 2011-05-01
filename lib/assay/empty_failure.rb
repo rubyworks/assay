@@ -1,32 +1,31 @@
 require 'assay/failure'
-require 'assay/compare_failure'
 
 module Assay
 
-  class TrueFailure < CompareFailure
+  class EmptyFailure < Failure
 
     def self.assertion_name
-      :true
+      :empty
     end
 
     def self.assertion_operator
-      :true?
+      :empty?
     end
 
     def self.fail_message(exp)
-      "Expected #{exp.inspect} to be true"
+      "Expected #{exp.inspect} to be empty"
     end
 
     def self.fail_message!(exp)
-      "Expected #{exp.inspect} to NOT be true"
+      "Expected #{exp.inspect} to NOT be empty"
     end
 
     def self.check(exp)
-      TrueClass === exp
+      exp.empty?
     end
 
     def self.check!(exp)
-      ! TrueClass === exp
+      ! exp.empty?
     end
 
   end
@@ -35,37 +34,39 @@ module Assay
   module Assertable
     # Passed if object is +true+.
     #
-    def assert_true(exp, opts={})
+    def assert_empty(exp, opts={})
       opts[:backtrace] ||= caller
-      TrueFailure.assert(exp, opts)
+      EmptyFailure.assert(exp, opts)
     end
 
     # Passed if object is not +true+.
     #
     #   assert_not_true(false)
     #
-    def assert_not_true(exp, opts={})
+    def refute_empty(exp, opts={})
       opts[:backtrace] ||= caller
-      TrueFailure.assert!(exp, opts)
+      EmptyFailure.assert!(exp, opts)
     end
+
+    alias_method :assert_not_empty, :refute_empty
   end
 
 
   module Matchers
-    # True?
+    # Empty?
     #
-    #   value.assert is_true
+    #   object.assert is_true
     #
-    def is_true
-      TrueFailure.to_matcher
+    def is_empty
+      EmptyFailure.to_matcher
     end
 
-    # True?
+    # Empty?
     #
-    #   value.should be_true
+    #   object.should be_empty
     #
-    def be_true
-      TrueFailure.to_matcher
+    def be_empty
+      EmptyFailure.to_matcher
     end
   end
 

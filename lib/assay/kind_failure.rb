@@ -59,7 +59,7 @@ module Assay
     #
     #   object.assert is_a_kind_of(class)
     #
-    def is_a_kind_of?(cls)
+    def is_kind_of(cls)
       KindFailure.to_matcher(cls) 
     end
 
@@ -67,7 +67,7 @@ module Assay
     #
     #   object.should be_a_kind_of(class)
     #
-    def be_a_kind_of?(cls)
+    def be_kind_of(cls)
       KindFailure.to_matcher(cls)
     end
   end

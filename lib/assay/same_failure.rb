@@ -62,7 +62,7 @@ module Assay
     #
     #   object1.assert is_the_same_as(object2)
     #
-    def is_the_same_as(obj)
+    def is_same_as(obj)
       SameFailure.to_matcher(obj)
     end
 
@@ -70,7 +70,7 @@ module Assay
     #
     #   object1.should be_the_same_as(object2)
     #
-    def be_the_same_as(obj)
+    def be_same_as(obj)
       SameFailure.to_matcher(obj)
     end
   end
