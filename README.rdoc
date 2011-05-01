@@ -1,42 +1,53 @@
 = Assay
 
-* http://rubyworks.github.com/assay
-* http://github.com/rubyworks/assay
-
-
 == DESCRIPTION
 
-The Assetions project defines Assertions in the same way that Ruby
-defines Exceptions. An asserition then simple becomes an extension
-to an Exception class. For assertions required that no exception
-currently exists, and new exception is created.
+The Assay project defines assertions in the same way that Ruby
+defines exceptions. An asserition then is nothing more that
+an extended Exception class. Assay defines additonal exception
+classes for common testing assertions, such a equality.
+
+Assy provides both traditional assertion methods and RSpec compatiable
+matchers built from these assertion-exception classes.
+
+Assay alse works with Assertive Expressive[http://rubyworks.github.com/ae].
+In fact Assay was created as an exploratory project for a possible future
+version of AE that would integrate tightly with Assay.
 
 
-== FEATURES/ISSUES
+== FEATURES
 
 * Mirrors the Ruby Exception system.
+* Assertions get their own specialized error messages.
+
+
+= RESOURCES
+
+* home: http://rubyworks.github.com/assay
+* code: http://github.com/rubyworks/assay
+* mail: http://groups.google.com/group/rubyworks-mailinglist
 
 
 == SYNOPSIS
 
-TODO!
+See QED documentation.
 
 
-== HOW TO INSTALL
+== INSTALLATION
 
 To install with RubyGems simply open a console and type:
 
-  gem install assertions
+  $ gem install assay
 
 Site installation with the tarball can be done with Ruby Setup
-(gem install setup). See http://proutils.github.com/setup.
+(gem install setup). See http://rubyworks.github.com/setup.
 
 
-== LICENSE
+== COPYRIGHTS
 
 Copyright (c) 2009 Thomas Sawyer
 
-This program is ditributed unser the terms of the Ruby license.
+This program is ditributed under the terms of the Apache 2.0 license.
 
-See LICENSE file for details.
+See NOTICE.rdoc and APACHE2.txt file for details.
 
