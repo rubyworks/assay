@@ -5,28 +5,66 @@ module Assay
   #
   class EqualityFailure < CompareFailure
 
+    #
     def self.assertion_name
       :equal
     end
 
+    #
     def self.assertion_operator
       :==
     end
 
+=begin
+    #
     def self.fail_message(exp, act)
-      "Expected #{act.inspect} == #{exp.inspect}"
+      iexp = exp.inspect
+      iact = act.inspect
+      if iexp.size > SIZE_LIMIT or iact.size > SIZE_LIMIT
+        diff = ANSI::Diff.new(iact, iexp)
+        "x1 == x2\n1) #{diff.diff1}\n2) #{diff.diff2}"
+      else
+        "#{iact} == #{iexp}"
+      end
     end
 
+    #
     def self.fail_message!(exp, act)
-      "Expected #{act.inspect} != #{exp.inspect}"
+      iexp = exp.inspect
+      iact = act.inspct
+      if iexp.size > SIZE_LIMIT or iact.size > SIZE_LIMIT
+        diff = ANSI::Diff.new(iact, iexp)
+        "x1 != x2\n1) #{diff.diff1}\n2) #{diff.diff2}"
+      else
+        "#{iact} != #{iexp}"
+      end
     end
+=end
 
+    # Check assertion.
     def self.check(exp, act)
       exp == act
     end
 
+    # Check negated assertion.
     def self.check!(exp, act)
       exp != act
+    end
+
+    #
+    def to_s
+      return super unless @_arguments.size == 2
+
+      oper = @_negated ? "!=" : "=="
+      iexp = @_arguments[0].inspect
+      iact = @_arguments[1].inspect
+
+      if iexp.size > SIZE_LIMIT or iact.size > SIZE_LIMIT
+        diff = ANSI::Diff.new(iact, iexp)
+        "x1 #{oper} x2\n1) #{diff.diff1}\n2) #{diff.diff2}"
+      else
+        "#{iact} #{oper} #{iexp}"
+      end
     end
 
   end

@@ -8,19 +8,26 @@ module Assay
       :like
     end
 
-    def self.fail_message(exp, act)
-      "Expected #{act.inspect} to be like #{exp.inspect}"
-    end
-
-    def self.fail_message!(exp, act)
-      "Expected #{act.inspect} NOT to be like #{exp.inspect}"
-    end
-
+    # Check assertion.
     def self.check(exp, act)
       exp.equals?(act) ||
       exp.eq?(act)     ||
       exp.==(act)      ||
       exp.===(act)
+    end
+
+    #
+    def to_s
+      return super unless @_arguments.size == 2
+
+      iexp = @_arguments[0].inspect
+      iact = @_arguments[1].inspect
+
+      if @_negated
+        "Expected #{iact} to NOT be like #{iexp}"
+      else
+        "Expected #{iact} to be like #{iexp}"
+      end
     end
 
   end

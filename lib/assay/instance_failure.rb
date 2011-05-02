@@ -12,22 +12,29 @@ module Assay
       :instance_of?
     end
 
-    def self.fail_message(exp, act)
-      "Expected #{act.inspect} to be an instance of #{exp.inspect}"
-    end
-
-    def self.fail_message!(exp, act)
-      "Expected #{act.inspect} to not be an instance of #{exp.inspect}"
-    end
-
+    # Check assertion.
     def self.check(exp, act)
       exp.instance_of?(act)
     end
 
+    # Check negated assertion.
     def self.check!(exp, act)
       ! exp.instance_of?(act)
     end
 
+    #
+    def to_s
+      return super unless @_arguments.size == 2
+
+      exp = @_arguments[0].inspect
+      act = @_arguments[1].inspect
+
+      if @_negated
+        "Expected #{act} to NOT be an instance of #{exp}"  
+        else
+        "Expected #{act} to be an instance of #{exp}"
+      end
+    end
   end
 
 

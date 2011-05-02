@@ -12,20 +12,26 @@ module Assay
       :empty?
     end
 
-    def self.fail_message(exp)
-      "Expected #{exp.inspect} to be empty"
-    end
-
-    def self.fail_message!(exp)
-      "Expected #{exp.inspect} to NOT be empty"
-    end
-
+    # Check assertion.
     def self.check(exp)
       exp.empty?
     end
 
+    # Check negated assertion.
     def self.check!(exp)
       ! exp.empty?
+    end
+
+    def to_s
+      return super unless @_arguments.size == 1
+
+      exp = @_arguments.first.inspect
+
+      if @_negated
+        "Expected #{exp} to NOT be empty"  
+      else
+        "Expected #{exp} to be empty"
+      end
     end
 
   end

@@ -4,9 +4,10 @@ module Assay
 
   #NoArgument = Object.new
 
-  # TODO: What's up with N/A? Use Facets' NA object.
+  # TODO: What's up with N/A? Use Facets' NA object?
   class ReturnFailure < Failure
 
+    #
     def self.assert(exp, opts={}, &blk) #:yeild:
       msg = fail_message(exp)
       res = yield
@@ -19,6 +20,7 @@ module Assay
       fail new(opts[:message]||msg, opts[:backtrace]||caller) unless chk
     end
 
+    #
     def self.assert!(exp, opts={}, &blk) # :yield:
       msg = fail_message!(exp)
       res = yield
@@ -31,28 +33,34 @@ module Assay
       fail new(opts[:message]||msg, opts[:backtrace]||caller) unless chk
     end
 
-    def self.fail_message(exp)
-      if :"N/A" == exp
-        "Expected block to return a value"
-      else
-        "Expected block to return #{exp}"
-      end
-    end
-
-    def self.fail_message!(exp)
-      if :"N/A" == exp
-        "Expected block not to return a value"
-      else
-        "Expected block not to return #{exp}"
-      end
-    end
-
+    # Check assertion.
     def self.check(exp) #:yield:
       case exp
       when :"N/A"
         yield ? true : false
       else
         exp == yield
+      end
+    end
+
+    #
+    def to_s
+      return super unless @_arguments.size == 2
+
+      exp = @_arguments[0].inspect
+
+      if @_negated
+        if :"N/A" == exp
+          "Expected block NOT to return a value"
+        else
+          "Expected block NOT to return #{exp}"
+        end
+      else
+        if :"N/A" == exp
+          "Expected block to return a value"
+        else
+          "Expected block to return #{exp}"
+        end
       end
     end
 

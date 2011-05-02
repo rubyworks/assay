@@ -12,20 +12,27 @@ module Assay
       :false?
     end
 
-    def self.fail_message(exp)
-      "Expected #{exp.inspect} to be fales"
-    end
-
-    def self.fail_message!(exp)
-      "Expected #{exp.inspect} to NOT be false"
-    end
-
+    # Check assertion.
     def self.check(exp)
       FalseClass === exp
     end
 
+    # Check negated assertion.
     def self.check!(exp)
       ! FalseClass === exp
+    end
+
+    #
+    def to_s
+      return super unless @_arguments.size == 1
+
+      exp = @_arguments[0].inspect
+
+      if @_negated
+        "Expected #{exp} to NOT be false"
+      else
+        "Expected #{exp} to be false"
+      end
     end
 
   end

@@ -13,20 +13,28 @@ module Assay
       :eql?
     end
 
-    def self.fail_message(exp, act)
-      "Expected #{act.inspect} to be the same as #{exp.inspect}"
-    end
-
-    def self.fail_message!(exp, act)
-      "Expected #{act.inspect} to NOT be the same as #{exp.inspect}"
-    end
-
+    # Check assertion.
     def self.check(exp, act)
       exp.eql?(act)
     end
 
+    # Check negated assertion.
     def self.check!(exp, act)
       !exp.eql?(act)
+    end
+
+    #
+    def to_s
+      return super unless @_arguments.size == 2
+
+      exp = @_arguments[0].inspect
+      act = @_arguments[1].inspect
+
+      if @_negated
+        "Expected #{act} to NOT be the same as #{exp}"
+      else
+        "Expected #{act} to be the same as #{exp}"
+      end
     end
 
   end

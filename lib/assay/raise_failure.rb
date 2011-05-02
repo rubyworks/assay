@@ -36,18 +36,8 @@ module Assay
       fail new(msg, call||caller) unless test
     end
 
-    def self.fail_message(exp, err=nil)
-      if err
-        "Expected #{exp} to be raised, but got #{err.class}"
-      else
-        "Expected #{exp} to be raised"
-      end
-    end
-
-    def self.fail_message!(exp)
-      "Expected #{exp} NOT to be raised"
-    end
-
+    # Check assertion.
+    #
     # Note: This is not used by the #assert method.
     def self.check(*exp)
       begin
@@ -58,6 +48,8 @@ module Assay
       end
     end
 
+    # Check negated assertion.
+    #
     # Note: This is not used by the #assert! method.
     def self.check!(*exp)
       begin
@@ -65,6 +57,20 @@ module Assay
         true
       rescue Exception => e
         !exp.any?{ |x| x === e }
+      end
+    end
+
+    # TODO: how to add `but got class` instead.
+    def to_s
+      return super unless @_arguments.size == 1
+
+      exp = @_arguments[0].inspect
+      #err = @_arguments[1].inspect
+
+      if @_negated
+        "Expected #{exp} NOT to be raised"
+      else
+        "Expected #{exp} to be raised" #, but was #{err} instead."
       end
     end
 

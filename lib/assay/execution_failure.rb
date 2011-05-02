@@ -9,14 +9,7 @@ module Assay
       :execution
     end
 
-    def self.fail_message(&proc)
-      "Expected procedure to execute successfully"
-    end
-
-    def self.fail_message!(&proc)
-      "Expected procedure to raise an exception"
-    end
-
+    # Check assertion.
     def self.check(proc=nil, &block)
       begin
         (proc || block).call
@@ -26,14 +19,25 @@ module Assay
       end
     end
 
-    def self.check!(&proc)
+    # Check negated assertion.
+    def self.check!(proc=nil, &block)
       begin
-        proc.call
+        (proc || block).call
         false
       rescue Exception
         true
       end
     end
+
+    #
+    def to_s
+      if @_negated
+        "Expected procedure to raise an exception"
+      else
+        "Expected procedure to execute successfully"
+      end
+    end
+
   end
 
 

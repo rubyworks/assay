@@ -13,18 +13,12 @@ module Assay
       :=~
     end
 
-    def self.fail_message(exp, act)
-      "Expected #{act.inspect} =~ #{exp.inspect}"
-    end
-
-    def self.fail_message!(exp, act)
-      "Expected #{act.inspect} !~ #{exp.inspect}"
-    end
-
+    # Check assertion.
     def self.check(exp, act)
       exp =~ act
     end
 
+    # Check negated assertion.
     def self.check!(exp, act)
       exp !~ act
     end
@@ -32,6 +26,20 @@ module Assay
     #
     def self.assertable_method
       :assert_match
+    end
+
+    #
+    def to_s
+      return super unless @_arguments.size == 2
+
+      exp = @_arguments[0].inspect
+      act = @_arguments[1].inspect
+
+      if @_negated
+        "Expected #{act} !~ #{exp}"
+      else
+        "Expected #{act} =~ #{exp}"
+      end
     end
 
   end

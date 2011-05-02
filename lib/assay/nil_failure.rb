@@ -13,20 +13,27 @@ module Assay
       :nil?
     end
 
-    def self.fail_message(exp)
-      "Expected #{exp.inspect} to be nil"
-    end
-
-    def self.fail_message!(exp)
-      "Expected #{exp.inspect} to NOT be nil"
-    end
-
+    # Check assertion.
     def self.check(exp)
       exp.nil?
     end
 
+    # Check negated assertion.
     def self.check!(exp)
       ! exp.nil?
+    end
+
+    #
+    def to_s
+      return super unless @_arguments.size == 1
+
+      exp = @_arguments[0].inspect
+
+      if @_negated
+        "Expected #{exp} to NOT be nil"
+      else
+        "Expected #{exp} to be nil"
+      end
     end
 
   end

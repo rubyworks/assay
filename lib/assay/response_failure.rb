@@ -16,18 +16,25 @@ module Assay
       :respond_to?
     end
 
-    def self.fail_message(reciever, method)
-      "Expected #{reciever} (#{reciever.class}) to respond to ##{method}"
-    end
-
-    def self.fail_message!(reciever, method)
-      "Expected #{reciever} (#{reciever.class}) to not respond to ##{method}"
-    end
-
+    # Check assertion.
     def self.check(reciever, method)
       #flip = (Symbol === obj) && ! (Symbol === meth) # HACK for specs
       #obj, meth = meth, obj if flip
       reciever.respond_to?(method)
+    end
+
+    #
+    def to_s
+      return super unless @_arguments.size == 2
+
+      receiver = @_arguments[0].inspect
+      method   = @_arguments[1].inspect
+
+      if @_negated
+        "Expected #{reciever} (#{reciever.class}) to NOT respond to ##{method}"
+      else
+        "Expected #{reciever} (#{reciever.class}) to respond to ##{method}"
+      end
     end
 
   end

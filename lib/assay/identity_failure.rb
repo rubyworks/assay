@@ -12,20 +12,36 @@ module Assay
       :equal?
     end
 
-    def self.fail_message(exp, act)
-      "Expected #{act.inspect} to be identical to #{exp.inspect}"
-    end
+    #def self.fail_message(exp, act)
+    #  "Expected #{act.inspect} to be identical to #{exp.inspect}"
+    #end
 
-    def self.fail_message!(exp, act)
-      "Expected #{act.inspect} not to be identical to #{exp.inspect}"
-    end
+    #def self.fail_message!(exp, act)
+    #  "Expected #{act.inspect} not to be identical to #{exp.inspect}"
+    #end
 
+    # Check assertion.
     def self.check(exp, act)
       exp.object_id == act.object_id
     end
 
+    # Check negated assertion.
     def self.check!(exp, act)
       exp.object_id != act.object_id
+    end
+
+    #
+    def to_s
+      return super unless @_arguments.size == 2
+
+      iexp = @_arguments[0].inspect
+      iact = @_arguments[1].inspect
+
+      if @_negated
+        "Expected #{iact} not to be identical to #{iexp}"
+      else
+        "Expected #{iact} to be identical to #{iexp}"
+      end
     end
 
   end

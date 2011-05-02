@@ -13,14 +13,6 @@ module Assay
       :not_thrown
     end
 
-    def self.fail_message(sym)
-      "Expected #{sym} to have been thrown"
-    end
-
-    def self.fail_message!(sym)
-      "Expected #{sym} NOT to have been thrown"
-    end
-
     # Passes if the block throws expected_symbol
     #
     #   assert_throws :done do
@@ -64,6 +56,19 @@ module Assay
         end
       end
       pass
+    end
+
+    #
+    def to_s
+      return super unless @_arguments.size == 1
+
+      sym = @_arguments[0].inspect
+
+      if @_negated
+        "Expected #{sym} to have been thrown"
+      else
+        "Expected #{sym} NOT to have been thrown"
+      end
     end
 
   end

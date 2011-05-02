@@ -5,24 +5,33 @@ module Assay
   # TODO: Support Range
   class DeltaFailure < CompareFailure
 
+    #
     def self.assertion_name
       :in_delta
     end
 
-    def self.fail_message(exp, act, delta)
-      "Expected #{exp} to be within #{delta} of #{act}"
-    end
-
-    def self.fail_message!(exp, act, delta)
-      "Expected #{exp} to NOT be within #{delta} of #{act}"
-    end
-
+    # Check assertion.
     def self.check(exp, act, delta)
       case delta
       when Numeric
         (exp.to_f - act.to_f).abs <= delta.to_f
       else
         exp - act <= delta
+      end
+    end
+
+    #
+    def to_s
+      return super unless @_arguments.size == 3
+
+      exp   = @_arguments[0].inspect
+      act   = @_arguments[1].inspect
+      delta = @_arguments[2].inspect
+
+      if @_negated
+        "Expected #{exp} to NOT be within #{delta} of #{act}"
+      else
+        "Expected #{exp} to be within #{delta} of #{act}"
       end
     end
 

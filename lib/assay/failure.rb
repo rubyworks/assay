@@ -1,12 +1,21 @@
+require 'ansi/diff'
+
 module Assay
 
   #
   class Failure < Exception #< Assertion
 
+    # When displaying errors, use this as a rule of thumb
+    # for determining when the inspected object will be too
+    # big for a single line message.
+    SIZE_LIMIT = 13
+
     #
-    def initialize(message, backtrace=nil)
+    def initialize(message, options={})
       super(message)
-      set_backtrace(backtrace) if backtrace
+      set_backtrace  options[:backtrace] if options[:backtrace]
+      set_arguments *options[:arguments] if options[:arguments]
+      set_negated    options[:negated]   if options[:negated]
     end
 
     #
@@ -40,15 +49,15 @@ module Assay
       ! check(*args, &blk)
     end
 
-    #
-    def self.fail_message(*)
-      raise NotImplementedError
-    end
+    ##
+    #def self.fail_message(*)
+    #  raise NotImplementedError
+    #end
 
     #
-    def self.fail_message!(*args)
-      "NOT " + fail_message(*args)
-    end
+    #def self.fail_message!(*args)
+    #  "NOT " + fail_message(*args)
+    #end
 
     # Returns a Matcher for the failure class.
     def self.to_matcher(*args, &blk)
@@ -62,6 +71,27 @@ module Assay
     def assertion?
       true
     end
+
+    # Set whether this failure was the inverse of it's normal meaning.
+    # FOr example, `!=` rather than `==`.
+    def set_negated(negated)
+      @_negated = !!negated
+    end
+
+    # Set arguments used to make assertion.
+    def set_arguments(*arguments)
+      @_arguments = arguments
+    end
+
+    #
+    def to_s
+      if @_negated
+        "NOT " + super()
+      else
+        super()
+      end
+    end
+
   end
 
   #

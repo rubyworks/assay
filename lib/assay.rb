@@ -1,5 +1,5 @@
 module Assay
-  VERSION="1.0.0"
+  #VERSION="1.0.0"
 
   # Returns a Hash table of failure classes indexed by
   # asserton operator.
@@ -25,7 +25,7 @@ module Assay
   def self.meta
     @spec ||= (
       require 'yaml'
-      YAML.load(File.new(File.dirname(__FILE__) + '/ansi.yml'))
+      YAML.load(File.new(File.dirname(__FILE__) + '/assay.yml'))
     )
   end
 
