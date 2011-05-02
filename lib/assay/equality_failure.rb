@@ -15,32 +15,6 @@ module Assay
       :==
     end
 
-=begin
-    #
-    def self.fail_message(exp, act)
-      iexp = exp.inspect
-      iact = act.inspect
-      if iexp.size > SIZE_LIMIT or iact.size > SIZE_LIMIT
-        diff = ANSI::Diff.new(iact, iexp)
-        "x1 == x2\n1) #{diff.diff1}\n2) #{diff.diff2}"
-      else
-        "#{iact} == #{iexp}"
-      end
-    end
-
-    #
-    def self.fail_message!(exp, act)
-      iexp = exp.inspect
-      iact = act.inspct
-      if iexp.size > SIZE_LIMIT or iact.size > SIZE_LIMIT
-        diff = ANSI::Diff.new(iact, iexp)
-        "x1 != x2\n1) #{diff.diff1}\n2) #{diff.diff2}"
-      else
-        "#{iact} != #{iexp}"
-      end
-    end
-=end
-
     # Check assertion.
     def self.check(exp, act)
       exp == act
