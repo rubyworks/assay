@@ -11,8 +11,11 @@ module Assay
     SIZE_LIMIT = 13
 
     #
-    def initialize(message, options={})
+    def initialize(message=nil, options={})
       super(message)
+
+      @_arguments = []
+
       set_backtrace  options[:backtrace] if options[:backtrace]
       set_arguments *options[:arguments] if options[:arguments]
       set_negated    options[:negated]   if options[:negated]
@@ -27,16 +30,26 @@ module Assay
     def self.assert(*args, &blk)
       opts = Hash === args.last ? args.pop : {}
       chk  = check(*args, &blk)
-      msg  = fail_message(*args, &blk)
-      fail new(opts[:message]||msg, opts[:backtrace]||caller) unless chk
+      #msg  = fail_message(*args, &blk)
+      if !chk
+        msg = opts[:message]
+        btr = opts[:backtrace] || caller
+        err = new(msg, :backtrace=>btr, :arguments=>args)
+        fail err
+      end
     end
 
     #
     def self.assert!(*args, &blk)
       opts = Hash === args.last ? args.pop : {}
       chk  = check!(*args, &blk)
-      msg  = fail_message!(*args, &blk)
-      fail new(opts[:message]||msg, opts[:backtrace]||caller) unless chk
+      #msg  = fail_message!(*args, &blk)
+      if !chk
+        msg = opts[:message]
+        btr = opts[:backtrace] || caller
+        err = new(msg, :backtrace=>btr, :arguments=>args)
+        fail err
+      end
     end
 
     #
@@ -96,10 +109,10 @@ module Assay
 
   #
   class Matcher
-    def initialize(failure, *args, &blk)
-      @failure_class = failure
-      @args = args
-      @blk  = blk
+    def initialize(failure_class, *args, &blk)
+      @failure_class = failure_class
+      @args          = args
+      @blk           = blk
     end
 
     def matches?(target)
@@ -107,21 +120,32 @@ module Assay
       @failure_class.check(target, *@args, &@blk)
     end
 
-    def fail_message
-      @failure_class.fail_message(@target, *@args, &@blk)
-    end
+    #def fail_message
+    #  @failure_class.fail_message(@target, *@args, &@blk)
+    #end
 
-    def negative_fail_message
-      @failure_class.fail_message!(@target, *@args, &@blk)
-    end
+    #def negative_fail_message
+    #  @failure_class.fail_message!(@target, *@args, &@blk)
+    #end
 
+    #
     def failure_class
       @failure_class
     end
 
+    # Returns Exception class.
+    def failure(backtrace=nil)
+      failure_class.new(
+        nil,
+        :backtrace=>backtrace || caller,
+        :arguments=>[@target, *@args]
+      )
+    end
+
+    #
     def fail(backtrace=nil)
-      msg = fail_message
-      super failure_class.new(msg, backtrace||caller)
+      #msg = fail_message
+      super failure(backtrace || caller)
     end
   end
 

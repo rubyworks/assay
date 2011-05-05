@@ -27,7 +27,7 @@ module Assay
     def to_s
       return super unless @_arguments.size == 2
 
-      receiver = @_arguments[0].inspect
+      reciever = @_arguments[0].inspect
       method   = @_arguments[1].inspect
 
       if @_negated

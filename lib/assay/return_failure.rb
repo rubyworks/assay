@@ -9,28 +9,40 @@ module Assay
 
     #
     def self.assert(exp, opts={}, &blk) #:yeild:
-      msg = fail_message(exp)
+      #msg = fail_message(exp)
       res = yield
       if :"N/A" == exp
         chk = (res ? true : false)
+        args = [exp]
       else
         chk = (exp == res)
-        msg = msg + ", but was #{res}"
+        #msg = msg + ", but was #{res}"
+        args = [exp, res]
       end
-      fail new(opts[:message]||msg, opts[:backtrace]||caller) unless chk
+      if !chk
+        msg = opts[:message]
+        bkt = opts[:backtrace] || caller
+        fail new(msg, :backtrace=>bkt, :arguments=>args)
+      end
     end
 
     #
     def self.assert!(exp, opts={}, &blk) # :yield:
-      msg = fail_message!(exp)
+      #msg = fail_message!(exp)
       res = yield
       if :"N/A" == exp
         chk = (res ? false : true)
+        args = [exp]
       else
         chk = (exp != res)
-        msg = msg + ", but was #{res}"
+        #msg = msg + ", but was #{res}"
+        args = [exp, res]
       end
-      fail new(opts[:message]||msg, opts[:backtrace]||caller) unless chk
+      if !chk
+        msg = opts[:message]
+        bkt = opts[:backtrace] || caller
+        fail new(msg, :backtrace=>bkt, :arguments=>args)
+      end
     end
 
     # Check assertion.

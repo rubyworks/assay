@@ -13,27 +13,39 @@ module Assay
       :not_raised
     end
 
+    #
     def self.assert(exp, msg=nil, call=nil) #:yeild:
       begin
         yield
-        msg = msg || fail_message(exp)
+        #msg = msg || fail_message(exp)
         test = false
+        args = [exp]
       rescue Exception => err
-        msg = msg || fail_message(exp, err)
+        #msg = msg || fail_message(exp, err)
         test = (exp === err)
+        args = [exp, err]
       end
-      fail new(msg, call||caller) unless test
+      if !test
+        err = new(msg, :backtrace=>(call || caller), :arguments=>args)
+        fail err
+      end
     end
 
+    #
     def self.assert!(exp, msg=nil, call=nil) #:yield:
       begin
         yield
         test = true
+        args = [exp]
       rescue Exception => err
-        msg = msg || fail_message!(exp, err)
+        #msg = msg || fail_message!(exp, err)
         test = (exp === err)
+        args = [exp, err]
       end
-      fail new(msg, call||caller) unless test
+      if !test
+        err = new(msg, :backtrace=>(call || caller), :arguments=>args)
+        fail err
+      end
     end
 
     # Check assertion.
