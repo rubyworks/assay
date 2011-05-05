@@ -1,0 +1,26 @@
+= HISTORY
+
+== 0.2.0 | 2011-05-05
+
+This release of Assay is in good working order and can now be used
+by other frameworks such as A.E. The only caveats at this point
+are the Matcher API, which is still a bit unstable as the names of
+some of its methods may yet change, and the error messages
+for the vairous Failure classes still need improvement.
+
+Changes:
+
+* Add adapters for minitest and testunit.
+* Add colorized comparison to EqualityFailure (via ANSI gem).
+* Use standard exception messages (#to_s) instead of class methods.
+
+
+== 0.1.0 | 2010-11-14
+
+This is the initial working version of Assay.
+But it is far from ready for widespread usage.
+
+Changes:
+
+* Happy Birthday!
+

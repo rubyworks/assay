@@ -1,8 +1,11 @@
-#!mast -x Syckfile .ruby bin demo qed lib test [A-Z]*
+#!mast .ruby bin demo qed lib test [A-Z][A-Z]*
 .ruby
 qed/assertable.rdoc
 qed/failures.rdoc
+qed/lookup.rdoc
 qed/matchers.rdoc
+lib/assay/adapters/minitest.rb
+lib/assay/adapters/testunit.rb
 lib/assay/compare_failure.rb
 lib/assay/delta_failure.rb
 lib/assay/empty_failure.rb
@@ -22,7 +25,8 @@ lib/assay/same_failure.rb
 lib/assay/throw_failure.rb
 lib/assay/true_failure.rb
 lib/assay.rb
+lib/assay.yml
 HISTORY.rdoc
-Profile
-LICENSE.txt
+APACHE2.txt
 README.rdoc
+NOTICE.rdoc

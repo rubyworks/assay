@@ -1,13 +1,13 @@
 --- !ruby/object:Gem::Specification 
 name: assay
 version: !ruby/object:Gem::Version 
-  hash: 29
+  hash: 23
   prerelease: false
   segments: 
   - 0
+  - 2
   - 0
-  - 1
-  version: 0.0.1
+  version: 0.2.0
 platform: ruby
 authors: 
 - Thomas Sawyer
@@ -15,25 +15,27 @@ autorequire:
 bindir: bin
 cert_chain: []
 
-date: 2010-12-12 00:00:00 -05:00
+date: 2011-05-05 00:00:00 -04:00
 default_executable: 
 dependencies: 
 - !ruby/object:Gem::Dependency 
-  name: syckle
+  name: ansi
   prerelease: false
   requirement: &id001 !ruby/object:Gem::Requirement 
     none: false
     requirements: 
     - - ">="
       - !ruby/object:Gem::Version 
-        hash: 3
+        hash: 21
         segments: 
-        - 0
-        version: "0"
-  type: :development
+        - 1
+        - 2
+        - 5
+        version: 1.2.5
+  type: :runtime
   version_requirements: *id001
 - !ruby/object:Gem::Dependency 
-  name: qed
+  name: redline
   prerelease: false
   requirement: &id002 !ruby/object:Gem::Requirement 
     none: false
@@ -46,6 +48,20 @@ dependencies:
         version: "0"
   type: :development
   version_requirements: *id002
+- !ruby/object:Gem::Dependency 
+  name: qed
+  prerelease: false
+  requirement: &id003 !ruby/object:Gem::Requirement 
+    none: false
+    requirements: 
+    - - ">="
+      - !ruby/object:Gem::Version 
+        hash: 3
+        segments: 
+        - 0
+        version: "0"
+  type: :development
+  version_requirements: *id003
 description: The Assay project defines Assertions in the same way that Ruby defines Exceptions. An asserition then simply becomes an extension to an Exception class.
 email: ""
 executables: []
@@ -55,9 +71,13 @@ extensions: []
 extra_rdoc_files: 
 - README.rdoc
 files: 
+- .ruby
 - qed/assertable.rdoc
 - qed/failures.rdoc
+- qed/lookup.rdoc
 - qed/matchers.rdoc
+- lib/assay/adapters/minitest.rb
+- lib/assay/adapters/testunit.rb
 - lib/assay/compare_failure.rb
 - lib/assay/delta_failure.rb
 - lib/assay/empty_failure.rb
@@ -77,10 +97,11 @@ files:
 - lib/assay/throw_failure.rb
 - lib/assay/true_failure.rb
 - lib/assay.rb
+- lib/assay.yml
 - HISTORY.rdoc
-- LICENSE.txt
+- APACHE2.txt
 - README.rdoc
-- Syckfile
+- NOTICE.rdoc
 has_rdoc: true
 homepage: http://rubydoc.info/gems/assay
 licenses: 

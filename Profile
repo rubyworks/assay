@@ -1,9 +1,9 @@
 ---
 name: assay
-version: 0.0.1
 
 requires:
-  - syckle (build)
+  - ansi >=1.2.5
+  - redline (build)
   - qed (test)
 
 title     : Assay

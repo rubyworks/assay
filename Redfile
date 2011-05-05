@@ -26,7 +26,7 @@ stats:
 
 rdoc:
   service  : RDoc
-  template : redfish
+  format   : redfish
   include  : ~
   exclude  : ~
   main     : ~
@@ -34,8 +34,8 @@ rdoc:
   output   : site/docs/api
   active   : false
 
-ridoc:
-  service: RIDoc
+ri:
+  service: RI
   include: ~
   exclude: ~
   output : ri
