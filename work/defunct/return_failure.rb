@@ -4,6 +4,14 @@ module Assay
 
   #NoArgument = Object.new
 
+  # DEPRECATE: This class has little value. Instead of doing
+  #
+  #   assert_returns(4){ v }
+  #
+  # Simply test equality on the returned value.
+  #
+  #   assert_equal(4, v)
+  #
   # TODO: What's up with N/A? Use Facets' NA object?
   class ReturnFailure < Failure
 
@@ -27,7 +35,7 @@ module Assay
     end
 
     #
-    def self.assert!(exp, opts={}, &blk) # :yield:
+    def self.refute(exp, opts={}, &blk) # :yield:
       #msg = fail_message!(exp)
       res = yield
       if :"N/A" == exp
@@ -57,9 +65,9 @@ module Assay
 
     #
     def to_s
-      return super unless @_arguments.size == 2
+      return super unless @arguments.size == 2
 
-      exp = @_arguments[0].inspect
+      exp = @arguments[0].inspect
 
       if @_negated
         if :"N/A" == exp
@@ -83,7 +91,7 @@ module Assay
 
     # Passes if the block yields a specified value (Compares with #==).
     #
-    # assert_returns "Did not return something" do
+    # assert_returns "something wanted" do
     #   do_the_thing
     # end
     #
@@ -94,15 +102,16 @@ module Assay
 
     # Passes if the block does not yield a specific value.
     #
-    # assert_does_not_return "Returned something unwanted" do
+    # refute_returns "something unwanted" do
     #   do_the_thing
     # end
     #
-    def assert_does_not_return(exp=:"N/A", opts={}, &blk) # :yield:
+    def refute_returns(exp=:"N/A", opts={}, &blk) # :yield:
       opts[:backtrace] ||= caller
-      ReturnFailure.assert!(exp, opts, &blk)
+      ReturnFailure.refute(exp, opts, &blk)
     end
 
+    alias_method :assert_does_not_return, :refute_returns
   end
 
 
