@@ -19,11 +19,11 @@ module Assay
     #     throw :done
     #   end
     #
-    def self.check(sym, &blk)
+    def self.pass?(sym, &block)
       pass = true
       catch(sym) do
         begin
-          yield
+          block.call
         rescue ArgumentError => err     # 1.9 exception
           #msg += ", not #{err.message.split(/ /).last}"
           pass = false
@@ -42,11 +42,11 @@ module Assay
     #   end
     #
     # FIXME: Is this correct?
-    def self.check!(sym, &blk)
+    def self.fail?(sym, &block)
       pass = false
       catch(sym) do
         begin
-          yield
+          block.call
         rescue ArgumentError => err     # 1.9 exception
           #msg += ", not #{err.message.split(/ /).last}"
           pass = true
@@ -60,9 +60,9 @@ module Assay
 
     #
     def to_s
-      return super unless @_arguments.size == 1
+      return super unless @arguments.size == 1
 
-      sym = @_arguments[0].inspect
+      sym = @arguments[0].inspect
 
       if @_negated
         "Expected #{sym} to have been thrown"
@@ -94,7 +94,7 @@ module Assay
     #
     def refute_throws(sym, opts={}, &blk)
       opts[:backtrace] ||= caller
-      ThrowFailure.assert!(sym, opts, &blk)
+      ThrowFailure.refute(sym, opts, &blk)
     end
 
     alias_method :assert_not_thrown, :refute_throws

@@ -84,14 +84,6 @@
     1.assert is_kind_of(String)
   end
 
-== ReturnFailure
-
-  1.assert is_returned{ 1 }
-
-  expect Assay::ReturnFailure do
-    1.assert is_returned{ 2 }
-  end
-
 == RaiseFailure
 
   ArgumentError.assert is_raised{ raise ArgumentError }

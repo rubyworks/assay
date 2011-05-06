@@ -13,21 +13,16 @@ module Assay
     end
 
     # Check assertion.
-    def self.check(exp, act)
+    def self.pass?(exp, act)
       exp.instance_of?(act)
-    end
-
-    # Check negated assertion.
-    def self.check!(exp, act)
-      ! exp.instance_of?(act)
     end
 
     #
     def to_s
-      return super unless @_arguments.size == 2
+      return super unless @arguments.size == 2
 
-      exp = @_arguments[0].inspect
-      act = @_arguments[1].inspect
+      exp = @arguments[0].inspect
+      act = @arguments[1].inspect
 
       if @_negated
         "Expected #{act} to NOT be an instance of #{exp}"  
@@ -54,8 +49,9 @@ module Assay
     #
     def refute_instance_of(cls, obj, opts={})
       opts[:backtrace] ||= caller
-      InstanceFailure.assert!(cls, obj, opts)
+      InstanceFailure.refute(cls, obj, opts)
     end
+
     alias_method :assert_not_instance_of, :refute_instance_of
   end
 
@@ -63,7 +59,7 @@ module Assay
   module Matchers
     #
     #
-    #   object.assert is_an_instance_of(class)
+    #   object.assert is_instance_of(class)
     #
     def is_instance_of(cls)
       InstanceFailure.to_matcher(cls)
@@ -71,7 +67,7 @@ module Assay
 
     #
     #
-    #   object.should be_an_instance_of(class)
+    #   object.should be_instance_of(class)
     #
     def be_instance_of(cls)
       InstanceFailure.to_matcher(cls)

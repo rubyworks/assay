@@ -51,7 +51,7 @@ module Assay
     # Check assertion.
     #
     # Note: This is not used by the #assert method.
-    def self.check(*exp)
+    def self.pass?(*exp)
       begin
         yield
         false
@@ -63,7 +63,7 @@ module Assay
     # Check negated assertion.
     #
     # Note: This is not used by the #assert! method.
-    def self.check!(*exp)
+    def self.fail?(*exp)
       begin
         yield
         true
@@ -74,9 +74,9 @@ module Assay
 
     # TODO: how to add `but got class` instead.
     def to_s
-      return super unless @_arguments.size == 1
+      return super unless @arguments.size == 1
 
-      exp = @_arguments[0].inspect
+      exp = @arguments[0].inspect
       #err = @_arguments[1].inspect
 
       if @_negated
@@ -107,7 +107,7 @@ module Assay
     #   end
     #
     def assert_not_raised(exp, msg=nil, call=nil, &blk) #:yeild:
-      RaiseFailure.assert!(exp, msg, call, &blk)
+      RaiseFailure.refute(exp, msg, call, &blk)
     end
   end
 

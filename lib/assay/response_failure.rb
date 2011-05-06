@@ -17,7 +17,7 @@ module Assay
     end
 
     # Check assertion.
-    def self.check(reciever, method)
+    def self.pass?(reciever, method)
       #flip = (Symbol === obj) && ! (Symbol === meth) # HACK for specs
       #obj, meth = meth, obj if flip
       reciever.respond_to?(method)
@@ -25,10 +25,10 @@ module Assay
 
     #
     def to_s
-      return super unless @_arguments.size == 2
+      return super unless @arguments.size == 2
 
-      reciever = @_arguments[0].inspect
-      method   = @_arguments[1].inspect
+      reciever = @arguments[0].inspect
+      method   = @arguments[1].inspect
 
       if @_negated
         "Expected #{reciever} (#{reciever.class}) to NOT respond to ##{method}"
@@ -57,10 +57,10 @@ module Assay
     #
     def assert_not_respond_to(reciever, method, opts={})
       opts[:backtrace] ||= caller
-      ResponseFailure.assert!(reciever, method, opts)
+      ResponseFailure.refute(reciever, method, opts)
     end
-    alias_method :assert_not_responds_to, :assert_not_respond_to
 
+    alias_method :assert_not_responds_to, :assert_not_respond_to
   end
 
 

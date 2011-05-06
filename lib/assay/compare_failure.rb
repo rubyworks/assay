@@ -8,20 +8,20 @@ module Assay
       :like
     end
 
-    # Check assertion.
-    def self.check(exp, act)
-      exp.equals?(act) ||
-      exp.eq?(act)     ||
-      exp.==(act)      ||
+    # Test assertion.
+    def self.pass?(exp, act)
+      exp.equal?(act) ||
+      exp.eq?(act)    ||
+      exp.==(act)     ||
       exp.===(act)
     end
 
     #
     def to_s
-      return super unless @_arguments.size == 2
+      return super unless @arguments.size == 2
 
-      iexp = @_arguments[0].inspect
-      iact = @_arguments[1].inspect
+      iexp = @arguments[0].inspect
+      iact = @arguments[1].inspect
 
       if @_negated
         "Expected #{iact} to NOT be like #{iexp}"

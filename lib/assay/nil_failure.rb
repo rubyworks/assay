@@ -14,20 +14,15 @@ module Assay
     end
 
     # Check assertion.
-    def self.check(exp)
+    def self.pass?(exp)
       exp.nil?
-    end
-
-    # Check negated assertion.
-    def self.check!(exp)
-      ! exp.nil?
     end
 
     #
     def to_s
-      return super unless @_arguments.size == 1
+      return super unless @arguments.size == 1
 
-      exp = @_arguments[0].inspect
+      exp = @arguments[0].inspect
 
       if @_negated
         "Expected #{exp} to NOT be nil"
@@ -53,7 +48,7 @@ module Assay
     #
     def assert_not_nil(exp, opts={})
       opts[:backtrace] ||= caller
-      NilFailure.assert!(exp, opts)
+      NilFailure.refute(exp, opts)
     end
   end
 

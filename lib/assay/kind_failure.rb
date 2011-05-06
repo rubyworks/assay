@@ -15,21 +15,16 @@ module Assay
     end
 
     # Check assertion.
-    def self.check(exp, act)
+    def self.pass?(exp, act)
       exp.kind_of? act
-    end
-
-    # Check negated assertion.
-    def self.check!(exp, act)
-      ! exp.kind_of? act
     end
 
     #
     def to_s
-      return super unless @_arguments.size == 2
+      return super unless @arguments.size == 2
 
-      exp = @_arguments[0].inspect
-      act = @_arguments[1].inspect
+      exp = @arguments[0].inspect
+      act = @arguments[1].inspect
 
       if @_negated
         "Expected #{act} to be kind of #{exp}"
@@ -55,7 +50,7 @@ module Assay
     #   assert_not_kind_of(Object, 'foo')
     #
     def refute_kind_of(cls, obj, opts={})
-      KindFailure.assert!(cls, obj, opts)
+      KindFailure.refute(cls, obj, opts)
     end
     alias_method :assert_not_kind_of, :refute_kind_of
   end

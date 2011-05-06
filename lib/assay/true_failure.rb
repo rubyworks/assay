@@ -14,20 +14,15 @@ module Assay
     end
 
     # Check assertion.
-    def self.check(exp)
+    def self.pass?(exp)
       TrueClass === exp
-    end
-
-    # Check negated assertion.
-    def self.check!(exp)
-      ! TrueClass === exp
     end
 
     #
     def to_s
-      return super unless @_arguments.size == 1
+      return super unless @arguments.size == 1
 
-      exp = @_arguments[0].inspect
+      exp = @arguments[0].inspect
 
       if @_negated
         "Expected #{exp} to NOT be true"
@@ -53,7 +48,7 @@ module Assay
     #
     def assert_not_true(exp, opts={})
       opts[:backtrace] ||= caller
-      TrueFailure.assert!(exp, opts)
+      TrueFailure.refute(exp, opts)
     end
   end
 

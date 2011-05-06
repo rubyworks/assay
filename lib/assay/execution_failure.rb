@@ -10,9 +10,9 @@ module Assay
     end
 
     # Check assertion.
-    def self.check(proc=nil, &block)
+    def self.pass?(&block)
       begin
-        (proc || block).call
+        block.call
         true
       rescue Exception
         false
@@ -20,9 +20,9 @@ module Assay
     end
 
     # Check negated assertion.
-    def self.check!(proc=nil, &block)
+    def self.fail?(&block)
       begin
-        (proc || block).call
+        block.call
         false
       rescue Exception
         true
@@ -48,7 +48,7 @@ module Assay
     #   do_the_thing
     # end
     #
-    def assert_executes(opts={}, &blk) # :yield:
+    def assert_executes(opts={}, &blk)
       opts[:backtrace] ||= caller
       ExecutionFailure.assert(opts, &blk)
     end
@@ -59,9 +59,9 @@ module Assay
     #   do_the_thing
     # end
     #
-    def assert_not_executes(opts={}, &blk) # :yield:
+    def assert_not_executes(opts={}, &blk)
       opts[:backtrace] ||= caller
-      ExecutionFailure.assert!(opts, &blk)
+      ExecutionFailure.refute(opts, &blk)
     end
   end
 

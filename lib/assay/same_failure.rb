@@ -14,21 +14,16 @@ module Assay
     end
 
     # Check assertion.
-    def self.check(exp, act)
+    def self.pass?(exp, act)
       exp.eql?(act)
-    end
-
-    # Check negated assertion.
-    def self.check!(exp, act)
-      !exp.eql?(act)
     end
 
     #
     def to_s
-      return super unless @_arguments.size == 2
+      return super unless @arguments.size == 2
 
-      exp = @_arguments[0].inspect
-      act = @_arguments[1].inspect
+      exp = @arguments[0].inspect
+      act = @arguments[1].inspect
 
       if @_negated
         "Expected #{act} to NOT be the same as #{exp}"
@@ -60,8 +55,10 @@ module Assay
     #
     def refute_same(exp, act, opts={})
       opts[:backtrace] ||= caller
-      SameFailure.assert!(exp, act, opts)
+      SameFailure.refute(exp, act, opts)
     end
+
+    alias_method :assert_not_same, :refute_same
   end
 
 

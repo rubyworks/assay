@@ -14,12 +14,12 @@ module Assay
     end
 
     # Check assertion.
-    def self.check(exp, act)
+    def self.pass?(exp, act)
       exp =~ act
     end
 
     # Check negated assertion.
-    def self.check!(exp, act)
+    def self.fail?(exp, act)
       exp !~ act
     end
 
@@ -30,10 +30,10 @@ module Assay
 
     #
     def to_s
-      return super unless @_arguments.size == 2
+      return super unless @arguments.size == 2
 
-      exp = @_arguments[0].inspect
-      act = @_arguments[1].inspect
+      exp = @arguments[0].inspect
+      act = @arguments[1].inspect
 
       if @_negated
         "Expected #{act} !~ #{exp}"
@@ -61,7 +61,7 @@ module Assay
     #
     def refute_match(exp, act, opts={})
       opts[:backtrace] ||= caller
-      MatchFailure.assert!(exp, act, opts)
+      MatchFailure.refute(exp, act, opts)
     end
   end
 

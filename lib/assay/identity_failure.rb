@@ -21,21 +21,16 @@ module Assay
     #end
 
     # Check assertion.
-    def self.check(exp, act)
+    def self.pass?(exp, act)
       exp.object_id == act.object_id
-    end
-
-    # Check negated assertion.
-    def self.check!(exp, act)
-      exp.object_id != act.object_id
     end
 
     #
     def to_s
-      return super unless @_arguments.size == 2
+      return super unless @arguments.size == 2
 
-      iexp = @_arguments[0].inspect
-      iact = @_arguments[1].inspect
+      iexp = @arguments[0].inspect
+      iact = @arguments[1].inspect
 
       if @_negated
         "Expected #{iact} not to be identical to #{iexp}"
@@ -64,7 +59,7 @@ module Assay
     #
     def assert_not_identical(exp, act, opts={})
       opts[:backtrace] ||= caller
-      IdentityFailure.assert!(exp, act, opts)
+      IdentityFailure.refute(exp, act, opts)
     end
   end
 

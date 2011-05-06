@@ -10,15 +10,12 @@ module Assay
     # big for a single line message.
     SIZE_LIMIT = 13
 
-    #
-    def initialize(message=nil, options={})
-      super(message)
-
-      @_arguments = []
-
-      set_backtrace  options[:backtrace] if options[:backtrace]
-      set_arguments *options[:arguments] if options[:arguments]
-      set_negated    options[:negated]   if options[:negated]
+    # Returns a Matcher for the failure class.
+    def self.to_matcher(*args, &blk)
+      Matcher.new(self, *args, &blk)
+      #matcher = new
+      #matcher.set_arguments(args, &blk)
+      #matcher
     end
 
     #
@@ -29,37 +26,56 @@ module Assay
     #
     def self.assert(*args, &blk)
       opts = Hash === args.last ? args.pop : {}
-      chk  = check(*args, &blk)
+
+      backtrace = opts[:backtrace] || caller
+      message   = opts[:message]
+
+      err = new(message, *args, &blk)
+      err.set_backtrace(backtrace)
+      err.assert
+
+      #chk  = check(*args, &blk)
       #msg  = fail_message(*args, &blk)
-      if !chk
-        msg = opts[:message]
-        btr = opts[:backtrace] || caller
-        err = new(msg, :backtrace=>btr, :arguments=>args)
-        fail err
-      end
+      #if !chk
+      #  msg = opts[:message]
+      #  btr = opts[:backtrace] || caller
+      #  err = new(msg, *args)
+      #  err.set_backtrace(btr)
+      #  fail err
+      #end
     end
 
     #
-    def self.assert!(*args, &blk)
+    def self.refute(*args, &blk)
       opts = Hash === args.last ? args.pop : {}
-      chk  = check!(*args, &blk)
-      #msg  = fail_message!(*args, &blk)
-      if !chk
-        msg = opts[:message]
-        btr = opts[:backtrace] || caller
-        err = new(msg, :backtrace=>btr, :arguments=>args)
-        fail err
-      end
+
+      backtrace = opts[:backtrace] || caller
+      message   = opts[:message]
+
+      err = new(message, *args, &blk)
+      err.set_backtrace(backtrace)
+      err.set_negative(true)
+      err.assert
+
+      #opts = Hash === args.last ? args.pop : {}
+      #chk  = check!(*args, &blk)
+      ##msg  = fail_message!(*args, &blk)
+      #if !chk
+      #  msg = opts[:message]
+      #  btr = opts[:backtrace] || caller
+      #  err = new(msg, :backtrace=>btr, :arguments=>args)
+      #  fail err
+      #end
     end
 
     #
-    def self.check(*args, &blk)
+    def self.pass?(*args, &blk)
       raise NotImplementedError
     end
 
     #
-    def self.check!(*args, &blk)
-      ! check(*args, &blk)
+    def self.fail?(*args, &blk)
+      ! pass?(*args, &blk)
     end
 
     ##
@@ -72,80 +88,122 @@ module Assay
     #  "NOT " + fail_message(*args)
     #end
 
-    # Returns a Matcher for the failure class.
-    def self.to_matcher(*args, &blk)
-      Matcher.new(self, *args, &blk)
+    #
+    def initialize(message=nil, *arguments, &block)
+      message ? super(message % arguments) : super()
+
+      @arguments = arguments
+      @block     = block
+
+      #set_arguments options[:arguments] if options[:arguments]
+      #set_negative  options[:negated]   if options[:negated]
+      #set_backtrace options[:backtrace] if options[:backtrace]
     end
 
-    # Failure is, of course, always a type of assertion.
+    # Failure is always a type of assertion.
     #
-    # This allows Assay's classes to work in any test framework
-    # supporting this interface, such as QED.
+    # This method allows Assay's classes to work in any test framework
+    # that supports this interface.
     def assertion?
       true
     end
 
+    #
+    def valid?
+      self.class.pass?(*@arguments, &@block)
+    end
+
+    #
+    def invalid?
+      not valid?
+    end
+
+    #
+    def assert
+      raise self unless valid?
+    end
+
+    #
+    def refute
+      raise self unless invalid?
+    end
+
+    #
+    def negative?
+      @negative
+    end
+
     # Set whether this failure was the inverse of it's normal meaning.
-    # FOr example, `!=` rather than `==`.
-    def set_negated(negated)
-      @_negated = !!negated
+    # For example, `!=` rather than `==`.
+    def set_negative(negative)
+      @negative = !!negative
     end
 
     # Set arguments used to make assertion.
-    def set_arguments(*arguments)
-      @_arguments = arguments
+    def set_arguments(arguments)
+      @arguments = arguments
+      #@block    = block
     end
 
     #
     def to_s
-      if @_negated
+      if @negative
         "NOT " + super()
       else
         super()
       end
     end
 
+    #
+    #def matches?(target)
+    #  #@target = target
+    #  self.class.check(target, *@_arguments, &@_block)
+    #end
+
   end
 
   #
   class Matcher
-    def initialize(failure_class, *args, &blk)
-      @failure_class = failure_class
-      @args          = args
-      @blk           = blk
+    def initialize(fail_class, *arguments, &block)
+      @fail_class = fail_class
+      @arguments  = arguments
+      @block      = block
     end
-
-    def matches?(target)
-      @target = target
-      @failure_class.check(target, *@args, &@blk)
-    end
-
-    #def fail_message
-    #  @failure_class.fail_message(@target, *@args, &@blk)
-    #end
-
-    #def negative_fail_message
-    #  @failure_class.fail_message!(@target, *@args, &@blk)
-    #end
 
     #
-    def failure_class
-      @failure_class
+    def fail_class
+      @fail_class
+    end
+
+    #
+    def matches?(target)
+      @exception = nil
+      @target    = target
+
+      @fail_class.pass?(target, *@arguments, &@block)
     end
 
     # Returns Exception class.
-    def failure(backtrace=nil)
-      failure_class.new(
-        nil,
-        :backtrace=>backtrace || caller,
-        :arguments=>[@target, *@args]
-      )
+    def exception
+      @exception ||= fail_class.new(nil, @target, *@arguments, &@block)     
+      #  :negated   => options[:negated],
+      #  :backtrace => options[:backtrace] || caller,
+    end
+
+    # This is just for RSpec matcher compatability.
+    def fail_message
+      exception.to_s
+    end
+
+    # This is just for RSpec matcher compatability.
+    def negative_fail_message
+      #exception.set_negative(true)
+      exception.to_s
     end
 
     #
     def fail(backtrace=nil)
-      #msg = fail_message
-      super failure(backtrace || caller)
+      super exception #(backtrace || caller)
     end
   end
 

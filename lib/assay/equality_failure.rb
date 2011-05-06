@@ -16,22 +16,22 @@ module Assay
     end
 
     # Check assertion.
-    def self.check(exp, act)
+    def self.pass?(exp, act)
       exp == act
     end
 
     # Check negated assertion.
-    def self.check!(exp, act)
+    def self.fail?(exp, act)
       exp != act
     end
 
     #
     def to_s
-      return super unless @_arguments.size == 2
+      return super unless @arguments.size == 2
 
       oper = @_negated ? "!=" : "=="
-      iexp = @_arguments[0].inspect
-      iact = @_arguments[1].inspect
+      iexp = @arguments[0].inspect
+      iact = @arguments[1].inspect
 
       if iexp.size > SIZE_LIMIT or iact.size > SIZE_LIMIT
         diff = ANSI::Diff.new(iact, iexp)
@@ -55,7 +55,11 @@ module Assay
     #
     def assert_equal(exp, act, opts={})
       opts[:backtrace] ||= caller
+      #message   = opts[:message]
       EqualityFailure.assert(exp, act, opts)
+      #err = EqualityFailure.new(message, exp, act)
+      #err.set_backtrace(backtrace)
+      #err.assert(opts)
     end
 
     # Passes if expected != actual
@@ -64,7 +68,7 @@ module Assay
     #
     def assert_not_equal(exp, act, opts)
        opts[:backtrace] ||= caller
-       EqualityFailure.assert!(exp, act, opts)
+       EqualityFailure.refute(exp, act, opts)
     end
   end
 
@@ -73,7 +77,7 @@ module Assay
     # Passes if +expected+ == +actual+.
     #
     #   'MY STRING'.assert is_equal_to('my string'.upcase)
-    #   'MY STRING'.assert_not is_equal_to('another string')
+    #   'MY STRING'.refute is_equal_to('another string')
     #
     def is_equal_to(exp, opts={})
       EqualityFailure.to_matcher(exp)

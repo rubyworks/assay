@@ -11,7 +11,7 @@ module Assay
     end
 
     # Check assertion.
-    def self.check(exp, act, delta)
+    def self.pass?(exp, act, delta)
       case delta
       when Numeric
         (exp.to_f - act.to_f).abs <= delta.to_f
@@ -22,11 +22,11 @@ module Assay
 
     #
     def to_s
-      return super unless @_arguments.size == 3
+      return super unless @arguments.size == 3
 
-      exp   = @_arguments[0].inspect
-      act   = @_arguments[1].inspect
-      delta = @_arguments[2].inspect
+      exp   = @arguments[0].inspect
+      act   = @arguments[1].inspect
+      delta = @arguments[2].inspect
 
       if @_negated
         "Expected #{exp} to NOT be within #{delta} of #{act}"
@@ -54,7 +54,7 @@ module Assay
     #
     def self.not_in_delta(exp, act, delta, opts)
       opts[:backtrace] ||= caller
-      DeltaFailure.assert!(exp, act, delta, opts)
+      DeltaFailure.refute(exp, act, delta, opts)
     end
   end
 

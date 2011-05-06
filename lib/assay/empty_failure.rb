@@ -13,19 +13,15 @@ module Assay
     end
 
     # Check assertion.
-    def self.check(exp)
+    def self.pass?(exp)
       exp.empty?
     end
 
-    # Check negated assertion.
-    def self.check!(exp)
-      ! exp.empty?
-    end
-
+    #
     def to_s
-      return super unless @_arguments.size == 1
+      return super unless @arguments.size == 1
 
-      exp = @_arguments.first.inspect
+      exp = @arguments.first.inspect
 
       if @_negated
         "Expected #{exp} to NOT be empty"  
@@ -51,7 +47,7 @@ module Assay
     #
     def refute_empty(exp, opts={})
       opts[:backtrace] ||= caller
-      EmptyFailure.assert!(exp, opts)
+      EmptyFailure.refute(exp, opts)
     end
 
     alias_method :assert_not_empty, :refute_empty
