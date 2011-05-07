@@ -1,9 +1,9 @@
-require 'assay/failure'
+require 'assay/assertion'
 
 module Assay
 
   #
-  class ThrowFailure < Failure
+  class ThrowFailure < Assertion
 
     def self.assertion_name
       :throws
@@ -74,7 +74,7 @@ module Assay
   end
 
 
-  module Assertable
+  module Assertives
     # Passes if the block throws expected_symbol
     #
     #   assert_throws :done do

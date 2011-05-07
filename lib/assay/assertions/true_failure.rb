@@ -1,8 +1,13 @@
-require 'assay/failure'
-require 'assay/compare_failure'
+require 'assay/assertions/compare_failure'
 
 module Assay
 
+  # Comparison assertion for TrueClass.
+  #
+  #   TrueFailure.pass?(true) #=> true
+  #   TrueFailure.fail?(true) #=> false
+  #   TrueFailure.pass?(1)    #=> false
+  #
   class TrueFailure < CompareFailure
 
     def self.assertion_name
@@ -34,7 +39,7 @@ module Assay
   end
 
 
-  module Assertable
+  module Assertives
     # Passed if object is +true+.
     #
     def assert_true(exp, opts={})

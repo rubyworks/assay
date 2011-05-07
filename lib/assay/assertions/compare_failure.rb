@@ -1,8 +1,8 @@
-require 'assay/failure'
+require 'assay/assertion'
 
 module Assay
 
-  class CompareFailure < Failure
+  class CompareFailure < Assertion
 
     def self.assertion_name
       :like
@@ -33,7 +33,7 @@ module Assay
   end
 
 
-  module Assertable
+  module Assertives
 
   end
 

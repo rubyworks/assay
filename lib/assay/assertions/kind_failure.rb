@@ -1,8 +1,11 @@
-require 'assay/failure'
-require 'assay/compare_failure'
+require 'assay/assertions/compare_failure'
 
 module Assay
 
+  # Comparison assertion for #kind_of?
+  #
+  #   KindFailure.pass?(1, Integer)  #=> true
+  #   KindFailure.fail?(1, String)   #=> true
   #
   class KindFailure < CompareFailure
 
@@ -35,7 +38,7 @@ module Assay
   end
 
 
-  module Assertable
+  module Assertives
     # Passes if object .kind_of? klass
     #
     #   assert_kind_of(Object, 'foo')

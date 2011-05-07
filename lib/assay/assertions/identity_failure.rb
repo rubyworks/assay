@@ -1,4 +1,4 @@
-require 'assay/compare_failure'
+require 'assay/assertions/compare_failure'
 
 module Assay
 
@@ -42,7 +42,7 @@ module Assay
   end
 
 
-  module Assertable
+  module Assertives
     # Passes if +actual+ .equal? +expected+ (i.e. they are the same instance).
     #
     #   o = Object.new

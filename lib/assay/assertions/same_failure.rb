@@ -1,8 +1,8 @@
-require 'assay/failure'
-require 'assay/compare_failure'
+require 'assay/assertions/compare_failure'
 
 module Assay
 
+  # Comparison assertion for the #eql? method.
   class SameFailure < CompareFailure
 
     def self.assertion_name
@@ -35,7 +35,7 @@ module Assay
   end
 
 
-  module Assertable
+  module Assertives
     # Passes if +expected+ .eq? +actual+.
     #
     # Note that the ordering of arguments is important,

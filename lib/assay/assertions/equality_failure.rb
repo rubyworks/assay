@@ -1,4 +1,4 @@
-require 'assay/compare_failure'
+require 'assay/assertions/compare_failure'
 
 module Assay
 
@@ -35,7 +35,7 @@ module Assay
 
       if iexp.size > SIZE_LIMIT or iact.size > SIZE_LIMIT
         diff = ANSI::Diff.new(iact, iexp)
-        "x1 #{oper} x2\n1) #{diff.diff1}\n2) #{diff.diff2}"
+        "a #{oper} b\na) #{diff.diff1}\nb) #{diff.diff2}"
       else
         "#{iact} #{oper} #{iexp}"
       end
@@ -44,7 +44,7 @@ module Assay
   end
 
 
-  module Assertable
+  module Assertives
     # Passes if expected == +actual.
     #
     # Note that the ordering of arguments is important,

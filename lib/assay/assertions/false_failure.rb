@@ -1,4 +1,4 @@
-require 'assay/compare_failure'
+require 'assay/assertions/compare_failure'
 
 module Assay
 
@@ -33,7 +33,7 @@ module Assay
   end
 
 
-  module Assertable
+  module Assertives
     # Passed if object is +false+.
     #
     def assert_false(exp, opts={})

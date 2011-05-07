@@ -1,4 +1,4 @@
-require 'assay/compare_failure'
+require 'assay/assertions/compare_failure'
 
 module Assay
 
@@ -38,7 +38,7 @@ module Assay
   end
 
 
-  module Assertable
+  module Assertives
     # Passes if expected and actual are equal within delta tolerance.
     #
     #   assert_in_delta 0.05, (50000.0 / 10**6), 0.00001

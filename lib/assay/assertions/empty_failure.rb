@@ -1,8 +1,8 @@
-require 'assay/failure'
+require 'assay/assertion'
 
 module Assay
 
-  class EmptyFailure < Failure
+  class EmptyFailure < Assertion
 
     def self.assertion_name
       :empty
@@ -33,7 +33,7 @@ module Assay
   end
 
 
-  module Assertable
+  module Assertives
     # Passed if object is +true+.
     #
     def assert_empty(exp, opts={})

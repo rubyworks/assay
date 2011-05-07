@@ -1,7 +1,8 @@
-require 'assay/execution_failure'
+require 'assay/assertions/execution_failure'
 
 module Assay
 
+  #
   class ResponseFailure < ExecutionFailure
 
     def self.assertion_name
@@ -40,7 +41,7 @@ module Assay
   end
 
 
-  module Assertable
+  module Assertives
     # Passes if +object+ respond_to? +methods+.
     #
     #   assert_respond_to 'bugbear', :slice

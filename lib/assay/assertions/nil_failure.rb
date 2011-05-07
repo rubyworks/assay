@@ -1,5 +1,4 @@
-require 'assay/failure'
-require 'assay/compare_failure'
+require 'assay/assertions/compare_failure'
 
 module Assay
 
@@ -34,7 +33,7 @@ module Assay
   end
 
 
-  module Assertable
+  module Assertives
     # Passed if object is +nil+.
     #
     def assert_nil(exp, opts={})

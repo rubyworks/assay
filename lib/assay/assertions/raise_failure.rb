@@ -1,4 +1,4 @@
-require 'assay/execution_failure'
+require 'assay/assertions/execution_failure'
 
 module Assay
 
@@ -89,7 +89,7 @@ module Assay
   end
 
 
-  module Assertable
+  module Assertives
     # Passes if the block raises a given exceptions.
     #
     #   assert_raises RuntimeError do

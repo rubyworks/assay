@@ -1,9 +1,9 @@
-require 'assay/failure'
+require 'assay/assertion'
 
 module Assay
 
   #
-  class ExecutionFailure < Failure
+  class ExecutionFailure < Assertion
     #
     def self.assertion_name
       :execution
@@ -41,7 +41,7 @@ module Assay
   end
 
 
-  module Assertable
+  module Assertives
     # Passes if the block yields successfully.
     #
     # assert_executes "Couldn't do the thing" do
