@@ -375,6 +375,7 @@ of the other block-executing assertion classes.</p>
 <pre>
 <span class="ruby-comment"># File lib/assay/assertions/execution_failure.rb, line 36</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">to_s</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-ivar">@mesg</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@mesg</span>
   <span class="ruby-keyword">if</span> <span class="ruby-ivar">@_negated</span>
     <span class="ruby-string">&quot;Expected procedure to raise an exception&quot;</span>
   <span class="ruby-keyword">else</span>

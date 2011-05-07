@@ -441,7 +441,7 @@
         <div class="method-heading">
         
           <span class="method-name">not_in_delta</span><span
-            class="method-args">(exp, act, delta, opts)</span>
+            class="method-args">(exp, act, delta, msg=nil)</span>
           <span class="method-click-advice">click to toggle source</span>
         
         </div>
@@ -458,9 +458,9 @@
             id="not_in_delta-source">
 <pre>
 <span class="ruby-comment"># File lib/assay/assertions/delta_failure.rb, line 55</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">not_in_delta</span>(<span class="ruby-identifier">exp</span>, <span class="ruby-identifier">act</span>, <span class="ruby-identifier">delta</span>, <span class="ruby-identifier">opts</span>)
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">not_in_delta</span>(<span class="ruby-identifier">exp</span>, <span class="ruby-identifier">act</span>, <span class="ruby-identifier">delta</span>, <span class="ruby-identifier">msg</span>=<span class="ruby-keyword">nil</span>)
   <span class="ruby-identifier">opts</span>[<span class="ruby-value">:backtrace</span>] <span class="ruby-operator">||=</span> <span class="ruby-identifier">caller</span>
-  <span class="ruby-constant">DeltaFailure</span>.<span class="ruby-identifier">refute</span>(<span class="ruby-identifier">exp</span>, <span class="ruby-identifier">act</span>, <span class="ruby-identifier">delta</span>, <span class="ruby-identifier">opts</span>)
+  <span class="ruby-constant">DeltaFailure</span>.<span class="ruby-identifier">refute</span>(<span class="ruby-identifier">exp</span>, <span class="ruby-identifier">act</span>, <span class="ruby-identifier">delta</span>, <span class="ruby-value">:message=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">msg</span>, <span class="ruby-value">:backtrace=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">caller</span>)
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -482,7 +482,7 @@
         <div class="method-heading">
         
           <span class="method-name">assert_empty</span><span
-            class="method-args">(exp, opts={})</span>
+            class="method-args">(exp, msg=nil)</span>
           <span class="method-click-advice">click to toggle source</span>
         
         </div>
@@ -496,10 +496,9 @@
           <div class="method-source-code"
             id="assert_empty-source">
 <pre>
-<span class="ruby-comment"># File lib/assay/assertions/empty_failure.rb, line 39</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">assert_empty</span>(<span class="ruby-identifier">exp</span>, <span class="ruby-identifier">opts</span>={})
-  <span class="ruby-identifier">opts</span>[<span class="ruby-value">:backtrace</span>] <span class="ruby-operator">||=</span> <span class="ruby-identifier">caller</span>
-  <span class="ruby-constant">EmptyFailure</span>.<span class="ruby-identifier">assert</span>(<span class="ruby-identifier">exp</span>, <span class="ruby-identifier">opts</span>)
+<span class="ruby-comment"># File lib/assay/assertions/empty_failure.rb, line 40</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">assert_empty</span>(<span class="ruby-identifier">exp</span>, <span class="ruby-identifier">msg</span>=<span class="ruby-keyword">nil</span>)
+  <span class="ruby-constant">EmptyFailure</span>.<span class="ruby-identifier">assert</span>(<span class="ruby-identifier">exp</span>, <span class="ruby-value">:message=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">msg</span>, <span class="ruby-value">:backtrace=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">caller</span>)
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -515,7 +514,7 @@
         <div class="method-heading">
         
           <span class="method-name">assert_equal</span><span
-            class="method-args">(exp, act, opts={})</span>
+            class="method-args">(exp, act, msg=nil)</span>
           <span class="method-click-advice">click to toggle source</span>
         
         </div>
@@ -535,14 +534,9 @@ expected and actual.</p>
           <div class="method-source-code"
             id="assert_equal-source">
 <pre>
-<span class="ruby-comment"># File lib/assay/assertions/equality_failure.rb, line 56</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">assert_equal</span>(<span class="ruby-identifier">exp</span>, <span class="ruby-identifier">act</span>, <span class="ruby-identifier">opts</span>={})
-  <span class="ruby-identifier">opts</span>[<span class="ruby-value">:backtrace</span>] <span class="ruby-operator">||=</span> <span class="ruby-identifier">caller</span>
-  <span class="ruby-comment">#message   = opts[:message]</span>
-  <span class="ruby-constant">EqualityFailure</span>.<span class="ruby-identifier">assert</span>(<span class="ruby-identifier">exp</span>, <span class="ruby-identifier">act</span>, <span class="ruby-identifier">opts</span>)
-  <span class="ruby-comment">#err = EqualityFailure.new(message, exp, act)</span>
-  <span class="ruby-comment">#err.set_backtrace(backtrace)</span>
-  <span class="ruby-comment">#err.assert(opts)</span>
+<span class="ruby-comment"># File lib/assay/assertions/equality_failure.rb, line 57</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">assert_equal</span>(<span class="ruby-identifier">exp</span>, <span class="ruby-identifier">act</span>, <span class="ruby-identifier">msg</span>=<span class="ruby-keyword">nil</span>)
+  <span class="ruby-constant">EqualityFailure</span>.<span class="ruby-identifier">assert</span>(<span class="ruby-identifier">exp</span>, <span class="ruby-identifier">act</span>, <span class="ruby-value">:message=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">msg</span>, <span class="ruby-value">:backtrace=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">caller</span>)
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -558,7 +552,7 @@ expected and actual.</p>
         <div class="method-heading">
         
           <span class="method-name">assert_executes</span><span
-            class="method-args">(opts={}, &blk)</span>
+            class="method-args">(msg=nil, &blk)</span>
           <span class="method-click-advice">click to toggle source</span>
         
         </div>
@@ -579,10 +573,9 @@ expected and actual.</p>
           <div class="method-source-code"
             id="assert_executes-source">
 <pre>
-<span class="ruby-comment"># File lib/assay/assertions/execution_failure.rb, line 54</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">assert_executes</span>(<span class="ruby-identifier">opts</span>={}, &amp;<span class="ruby-identifier">blk</span>)
-  <span class="ruby-identifier">opts</span>[<span class="ruby-value">:backtrace</span>] <span class="ruby-operator">||=</span> <span class="ruby-identifier">caller</span>
-  <span class="ruby-constant">ExecutionFailure</span>.<span class="ruby-identifier">assert</span>(<span class="ruby-identifier">opts</span>, &amp;<span class="ruby-identifier">blk</span>)
+<span class="ruby-comment"># File lib/assay/assertions/execution_failure.rb, line 55</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">assert_executes</span>(<span class="ruby-identifier">msg</span>=<span class="ruby-keyword">nil</span>, &amp;<span class="ruby-identifier">blk</span>)
+  <span class="ruby-constant">ExecutionFailure</span>.<span class="ruby-identifier">assert</span>(<span class="ruby-value">:message=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">msg</span>, <span class="ruby-value">:backtrace=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">caller</span>, &amp;<span class="ruby-identifier">blk</span>)
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -598,7 +591,7 @@ expected and actual.</p>
         <div class="method-heading">
         
           <span class="method-name">assert_false</span><span
-            class="method-args">(exp, opts={})</span>
+            class="method-args">(exp, msg=nil)</span>
           <span class="method-click-advice">click to toggle source</span>
         
         </div>
@@ -612,10 +605,9 @@ expected and actual.</p>
           <div class="method-source-code"
             id="assert_false-source">
 <pre>
-<span class="ruby-comment"># File lib/assay/assertions/false_failure.rb, line 39</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">assert_false</span>(<span class="ruby-identifier">exp</span>, <span class="ruby-identifier">opts</span>={})
-  <span class="ruby-identifier">opts</span>[<span class="ruby-value">:backtrace</span>] <span class="ruby-operator">||=</span> <span class="ruby-identifier">caller</span>
-  <span class="ruby-constant">FalseFailure</span>.<span class="ruby-identifier">assert</span>(<span class="ruby-identifier">exp</span>, <span class="ruby-identifier">opts</span>)
+<span class="ruby-comment"># File lib/assay/assertions/false_failure.rb, line 40</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">assert_false</span>(<span class="ruby-identifier">exp</span>, <span class="ruby-identifier">msg</span>=<span class="ruby-keyword">nil</span>)
+  <span class="ruby-constant">FalseFailure</span>.<span class="ruby-identifier">assert</span>(<span class="ruby-identifier">exp</span>, <span class="ruby-value">:message=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">msg</span>, <span class="ruby-value">:backtrace=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">caller</span>)
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -631,7 +623,7 @@ expected and actual.</p>
         <div class="method-heading">
         
           <span class="method-name">assert_identical</span><span
-            class="method-args">(exp, act, opts={})</span>
+            class="method-args">(exp, act, msg=nil)</span>
           <span class="method-click-advice">click to toggle source</span>
         
         </div>
@@ -649,10 +641,9 @@ assert_identical(o, o)</pre>
           <div class="method-source-code"
             id="assert_identical-source">
 <pre>
-<span class="ruby-comment"># File lib/assay/assertions/identity_failure.rb, line 51</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">assert_identical</span>(<span class="ruby-identifier">exp</span>, <span class="ruby-identifier">act</span>, <span class="ruby-identifier">opts</span>={})
-  <span class="ruby-identifier">opts</span>[<span class="ruby-value">:backtrace</span>] <span class="ruby-operator">||=</span> <span class="ruby-identifier">caller</span>
-  <span class="ruby-constant">IdentityFailure</span>.<span class="ruby-identifier">assert</span>(<span class="ruby-identifier">exp</span>, <span class="ruby-identifier">act</span>, <span class="ruby-identifier">opts</span>)
+<span class="ruby-comment"># File lib/assay/assertions/identity_failure.rb, line 52</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">assert_identical</span>(<span class="ruby-identifier">exp</span>, <span class="ruby-identifier">act</span>, <span class="ruby-identifier">msg</span>=<span class="ruby-keyword">nil</span>)
+  <span class="ruby-constant">IdentityFailure</span>.<span class="ruby-identifier">assert</span>(<span class="ruby-identifier">exp</span>, <span class="ruby-identifier">act</span>, <span class="ruby-value">:message=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">msg</span>, <span class="ruby-value">:backtrace=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">caller</span>)
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -668,7 +659,7 @@ assert_identical(o, o)</pre>
         <div class="method-heading">
         
           <span class="method-name">assert_in_delta</span><span
-            class="method-args">(exp, act, delta, opts={})</span>
+            class="method-args">(exp, act, delta, msg=nil)</span>
           <span class="method-click-advice">click to toggle source</span>
         
         </div>
@@ -684,10 +675,9 @@ assert_identical(o, o)</pre>
           <div class="method-source-code"
             id="assert_in_delta-source">
 <pre>
-<span class="ruby-comment"># File lib/assay/assertions/delta_failure.rb, line 46</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">assert_in_delta</span>(<span class="ruby-identifier">exp</span>, <span class="ruby-identifier">act</span>, <span class="ruby-identifier">delta</span>, <span class="ruby-identifier">opts</span>={})
-  <span class="ruby-identifier">opts</span>[<span class="ruby-value">:backtrace</span>] <span class="ruby-operator">||=</span> <span class="ruby-identifier">caller</span>
-  <span class="ruby-constant">DeltaFailure</span>.<span class="ruby-identifier">assert</span>(<span class="ruby-identifier">exp</span>, <span class="ruby-identifier">act</span>, <span class="ruby-identifier">delta</span>, <span class="ruby-identifier">opts</span>)
+<span class="ruby-comment"># File lib/assay/assertions/delta_failure.rb, line 47</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">assert_in_delta</span>(<span class="ruby-identifier">exp</span>, <span class="ruby-identifier">act</span>, <span class="ruby-identifier">delta</span>, <span class="ruby-identifier">msg</span>=<span class="ruby-keyword">nil</span>)
+  <span class="ruby-constant">DeltaFailure</span>.<span class="ruby-identifier">assert</span>(<span class="ruby-identifier">exp</span>, <span class="ruby-identifier">act</span>, <span class="ruby-identifier">delta</span>, <span class="ruby-value">:message=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">msg</span>, <span class="ruby-value">:backtrace=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">caller</span>)
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -703,7 +693,7 @@ assert_identical(o, o)</pre>
         <div class="method-heading">
         
           <span class="method-name">assert_instance_of</span><span
-            class="method-args">(cls, obj, opts={})</span>
+            class="method-args">(cls, obj, msg=nil)</span>
           <span class="method-click-advice">click to toggle source</span>
         
         </div>
@@ -719,10 +709,9 @@ assert_identical(o, o)</pre>
           <div class="method-source-code"
             id="assert_instance_of-source">
 <pre>
-<span class="ruby-comment"># File lib/assay/assertions/instance_failure.rb, line 41</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">assert_instance_of</span>(<span class="ruby-identifier">cls</span>, <span class="ruby-identifier">obj</span>, <span class="ruby-identifier">opts</span>={})
-  <span class="ruby-identifier">opts</span>[<span class="ruby-value">:backtrace</span>] <span class="ruby-operator">||=</span> <span class="ruby-identifier">caller</span>
-  <span class="ruby-constant">InstanceFailure</span>.<span class="ruby-identifier">assert</span>(<span class="ruby-identifier">cls</span>, <span class="ruby-identifier">obj</span>, <span class="ruby-identifier">opts</span>)
+<span class="ruby-comment"># File lib/assay/assertions/instance_failure.rb, line 42</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">assert_instance_of</span>(<span class="ruby-identifier">cls</span>, <span class="ruby-identifier">obj</span>, <span class="ruby-identifier">msg</span>=<span class="ruby-keyword">nil</span>)
+  <span class="ruby-constant">InstanceFailure</span>.<span class="ruby-identifier">assert</span>(<span class="ruby-identifier">cls</span>, <span class="ruby-identifier">obj</span>, <span class="ruby-value">:message=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">msg</span>, <span class="ruby-value">:backtrace=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">caller</span>)
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -738,7 +727,7 @@ assert_identical(o, o)</pre>
         <div class="method-heading">
         
           <span class="method-name">assert_kind_of</span><span
-            class="method-args">(cls, obj, opts={})</span>
+            class="method-args">(cls, obj, msg=nil)</span>
           <span class="method-click-advice">click to toggle source</span>
         
         </div>
@@ -754,10 +743,9 @@ assert_identical(o, o)</pre>
           <div class="method-source-code"
             id="assert_kind_of-source">
 <pre>
-<span class="ruby-comment"># File lib/assay/assertions/kind_failure.rb, line 46</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">assert_kind_of</span>(<span class="ruby-identifier">cls</span>, <span class="ruby-identifier">obj</span>, <span class="ruby-identifier">opts</span>={})
-  <span class="ruby-identifier">opts</span>[<span class="ruby-value">:backtrace</span>] <span class="ruby-operator">||=</span> <span class="ruby-identifier">caller</span>
-  <span class="ruby-constant">KindFailure</span>.<span class="ruby-identifier">assert</span>(<span class="ruby-identifier">cls</span>, <span class="ruby-identifier">obj</span>, <span class="ruby-identifier">opts</span>)
+<span class="ruby-comment"># File lib/assay/assertions/kind_failure.rb, line 47</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">assert_kind_of</span>(<span class="ruby-identifier">cls</span>, <span class="ruby-identifier">obj</span>, <span class="ruby-identifier">msg</span>=<span class="ruby-keyword">nil</span>)
+  <span class="ruby-constant">KindFailure</span>.<span class="ruby-identifier">assert</span>(<span class="ruby-identifier">cls</span>, <span class="ruby-identifier">obj</span>, <span class="ruby-value">:message=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">msg</span>, <span class="ruby-value">:backtrace=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">caller</span>)
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -773,7 +761,7 @@ assert_identical(o, o)</pre>
         <div class="method-heading">
         
           <span class="method-name">assert_match</span><span
-            class="method-args">(exp, act, opts={})</span>
+            class="method-args">(exp, act, msg=nil)</span>
           <span class="method-click-advice">click to toggle source</span>
         
         </div>
@@ -789,10 +777,9 @@ assert_identical(o, o)</pre>
           <div class="method-source-code"
             id="assert_match-source">
 <pre>
-<span class="ruby-comment"># File lib/assay/assertions/match_failure.rb, line 52</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">assert_match</span>(<span class="ruby-identifier">exp</span>, <span class="ruby-identifier">act</span>, <span class="ruby-identifier">opts</span>={})
-  <span class="ruby-identifier">opts</span>[<span class="ruby-value">:backtrace</span>] <span class="ruby-operator">||=</span> <span class="ruby-identifier">caller</span>
-  <span class="ruby-constant">MatchFailure</span>.<span class="ruby-identifier">assert</span>(<span class="ruby-identifier">exp</span>, <span class="ruby-identifier">act</span>, <span class="ruby-identifier">opts</span>)
+<span class="ruby-comment"># File lib/assay/assertions/match_failure.rb, line 53</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">assert_match</span>(<span class="ruby-identifier">exp</span>, <span class="ruby-identifier">act</span>, <span class="ruby-identifier">msg</span>=<span class="ruby-keyword">nil</span>)
+  <span class="ruby-constant">MatchFailure</span>.<span class="ruby-identifier">assert</span>(<span class="ruby-identifier">exp</span>, <span class="ruby-identifier">act</span>, <span class="ruby-value">:message=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">msg</span>, <span class="ruby-value">:backtrace=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">caller</span>)
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -808,7 +795,7 @@ assert_identical(o, o)</pre>
         <div class="method-heading">
         
           <span class="method-name">assert_nil</span><span
-            class="method-args">(exp, opts={})</span>
+            class="method-args">(exp, msg=nil)</span>
           <span class="method-click-advice">click to toggle source</span>
         
         </div>
@@ -822,10 +809,9 @@ assert_identical(o, o)</pre>
           <div class="method-source-code"
             id="assert_nil-source">
 <pre>
-<span class="ruby-comment"># File lib/assay/assertions/nil_failure.rb, line 39</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">assert_nil</span>(<span class="ruby-identifier">exp</span>, <span class="ruby-identifier">opts</span>={})
-  <span class="ruby-identifier">opts</span>[<span class="ruby-value">:backtrace</span>] <span class="ruby-operator">||=</span> <span class="ruby-identifier">caller</span>
-  <span class="ruby-constant">NilFailure</span>.<span class="ruby-identifier">assert</span>(<span class="ruby-identifier">exp</span>, <span class="ruby-identifier">opts</span>)
+<span class="ruby-comment"># File lib/assay/assertions/nil_failure.rb, line 40</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">assert_nil</span>(<span class="ruby-identifier">exp</span>, <span class="ruby-identifier">msg</span>=<span class="ruby-keyword">nil</span>)
+  <span class="ruby-constant">NilFailure</span>.<span class="ruby-identifier">assert</span>(<span class="ruby-identifier">exp</span>, <span class="ruby-value">:message=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">msg</span>, <span class="ruby-value">:backtrace=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">caller</span>)
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -841,7 +827,7 @@ assert_identical(o, o)</pre>
         <div class="method-heading">
         
           <span class="method-name">assert_not_empty</span><span
-            class="method-args">(exp, opts={})</span>
+            class="method-args">(exp, msg=nil)</span>
           <span class="method-click-advice">click to toggle source</span>
         
         </div>
@@ -864,7 +850,7 @@ assert_identical(o, o)</pre>
         <div class="method-heading">
         
           <span class="method-name">assert_not_equal</span><span
-            class="method-args">(exp, act, opts)</span>
+            class="method-args">(exp, act, msg=nil)</span>
           <span class="method-click-advice">click to toggle source</span>
         
         </div>
@@ -880,10 +866,9 @@ assert_identical(o, o)</pre>
           <div class="method-source-code"
             id="assert_not_equal-source">
 <pre>
-<span class="ruby-comment"># File lib/assay/assertions/equality_failure.rb, line 69</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">assert_not_equal</span>(<span class="ruby-identifier">exp</span>, <span class="ruby-identifier">act</span>, <span class="ruby-identifier">opts</span>)
-   <span class="ruby-identifier">opts</span>[<span class="ruby-value">:backtrace</span>] <span class="ruby-operator">||=</span> <span class="ruby-identifier">caller</span>
-   <span class="ruby-constant">EqualityFailure</span>.<span class="ruby-identifier">refute</span>(<span class="ruby-identifier">exp</span>, <span class="ruby-identifier">act</span>, <span class="ruby-identifier">opts</span>)
+<span class="ruby-comment"># File lib/assay/assertions/equality_failure.rb, line 65</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">assert_not_equal</span>(<span class="ruby-identifier">exp</span>, <span class="ruby-identifier">act</span>, <span class="ruby-identifier">msg</span>=<span class="ruby-keyword">nil</span>)
+   <span class="ruby-constant">EqualityFailure</span>.<span class="ruby-identifier">refute</span>(<span class="ruby-identifier">exp</span>, <span class="ruby-identifier">act</span>, <span class="ruby-value">:message=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">msg</span>, <span class="ruby-value">:backtrace=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">caller</span>)
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -899,7 +884,7 @@ assert_identical(o, o)</pre>
         <div class="method-heading">
         
           <span class="method-name">assert_not_executes</span><span
-            class="method-args">(opts={}, &blk)</span>
+            class="method-args">(msg=nil, &blk)</span>
           <span class="method-click-advice">click to toggle source</span>
         
         </div>
@@ -922,9 +907,8 @@ href="Assertives.html#method-i-assert_not_executes">assert_not_executes</a>
             id="assert_not_executes-source">
 <pre>
 <span class="ruby-comment"># File lib/assay/assertions/execution_failure.rb, line 65</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">assert_not_executes</span>(<span class="ruby-identifier">opts</span>={}, &amp;<span class="ruby-identifier">blk</span>)
-  <span class="ruby-identifier">opts</span>[<span class="ruby-value">:backtrace</span>] <span class="ruby-operator">||=</span> <span class="ruby-identifier">caller</span>
-  <span class="ruby-constant">ExecutionFailure</span>.<span class="ruby-identifier">refute</span>(<span class="ruby-identifier">opts</span>, &amp;<span class="ruby-identifier">blk</span>)
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">assert_not_executes</span>(<span class="ruby-identifier">msg</span>=<span class="ruby-keyword">nil</span>, &amp;<span class="ruby-identifier">blk</span>)
+  <span class="ruby-constant">ExecutionFailure</span>.<span class="ruby-identifier">refute</span>(<span class="ruby-value">:message=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">msg</span>, <span class="ruby-value">:backtrace=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">caller</span>, &amp;<span class="ruby-identifier">blk</span>)
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -940,7 +924,7 @@ href="Assertives.html#method-i-assert_not_executes">assert_not_executes</a>
         <div class="method-heading">
         
           <span class="method-name">assert_not_false</span><span
-            class="method-args">(exp, opts={})</span>
+            class="method-args">(exp, msg=nil)</span>
           <span class="method-click-advice">click to toggle source</span>
         
         </div>
@@ -957,9 +941,8 @@ href="Assertives.html#method-i-assert_not_executes">assert_not_executes</a>
             id="assert_not_false-source">
 <pre>
 <span class="ruby-comment"># File lib/assay/assertions/false_failure.rb, line 48</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">assert_not_false</span>(<span class="ruby-identifier">exp</span>, <span class="ruby-identifier">opts</span>={})
-  <span class="ruby-identifier">opts</span>[<span class="ruby-value">:backtrace</span>] <span class="ruby-operator">||=</span> <span class="ruby-identifier">caller</span>
-  <span class="ruby-constant">FalseFailure</span>.<span class="ruby-identifier">refute</span>(<span class="ruby-identifier">exp</span>, <span class="ruby-identifier">opts</span>)
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">assert_not_false</span>(<span class="ruby-identifier">exp</span>, <span class="ruby-identifier">msg</span>=<span class="ruby-keyword">nil</span>)
+  <span class="ruby-constant">FalseFailure</span>.<span class="ruby-identifier">refute</span>(<span class="ruby-identifier">exp</span>, <span class="ruby-value">:message=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">msg</span>, <span class="ruby-value">:backtrace=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">caller</span>)
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -975,7 +958,7 @@ href="Assertives.html#method-i-assert_not_executes">assert_not_executes</a>
         <div class="method-heading">
         
           <span class="method-name">assert_not_identical</span><span
-            class="method-args">(exp, act, opts={})</span>
+            class="method-args">(exp, act, msg=nil)</span>
           <span class="method-click-advice">click to toggle source</span>
         
         </div>
@@ -992,9 +975,8 @@ href="Assertives.html#method-i-assert_not_executes">assert_not_executes</a>
             id="assert_not_identical-source">
 <pre>
 <span class="ruby-comment"># File lib/assay/assertions/identity_failure.rb, line 60</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">assert_not_identical</span>(<span class="ruby-identifier">exp</span>, <span class="ruby-identifier">act</span>, <span class="ruby-identifier">opts</span>={})
-  <span class="ruby-identifier">opts</span>[<span class="ruby-value">:backtrace</span>] <span class="ruby-operator">||=</span> <span class="ruby-identifier">caller</span>
-  <span class="ruby-constant">IdentityFailure</span>.<span class="ruby-identifier">refute</span>(<span class="ruby-identifier">exp</span>, <span class="ruby-identifier">act</span>, <span class="ruby-identifier">opts</span>)
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">assert_not_identical</span>(<span class="ruby-identifier">exp</span>, <span class="ruby-identifier">act</span>, <span class="ruby-identifier">msg</span>=<span class="ruby-keyword">nil</span>)
+  <span class="ruby-constant">IdentityFailure</span>.<span class="ruby-identifier">refute</span>(<span class="ruby-identifier">exp</span>, <span class="ruby-identifier">act</span>, <span class="ruby-value">:message=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">msg</span>, <span class="ruby-value">:backtrace=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">caller</span>)
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -1010,7 +992,7 @@ href="Assertives.html#method-i-assert_not_executes">assert_not_executes</a>
         <div class="method-heading">
         
           <span class="method-name">assert_not_instance_of</span><span
-            class="method-args">(cls, obj, opts={})</span>
+            class="method-args">(cls, obj, msg=nil)</span>
           <span class="method-click-advice">click to toggle source</span>
         
         </div>
@@ -1033,7 +1015,7 @@ href="Assertives.html#method-i-assert_not_executes">assert_not_executes</a>
         <div class="method-heading">
         
           <span class="method-name">assert_not_kind_of</span><span
-            class="method-args">(cls, obj, opts={})</span>
+            class="method-args">(cls, obj, msg=nil)</span>
           <span class="method-click-advice">click to toggle source</span>
         
         </div>
@@ -1056,7 +1038,7 @@ href="Assertives.html#method-i-assert_not_executes">assert_not_executes</a>
         <div class="method-heading">
         
           <span class="method-name">assert_not_nil</span><span
-            class="method-args">(exp, opts={})</span>
+            class="method-args">(exp, msg=nil)</span>
           <span class="method-click-advice">click to toggle source</span>
         
         </div>
@@ -1073,9 +1055,9 @@ href="Assertives.html#method-i-assert_not_executes">assert_not_executes</a>
             id="assert_not_nil-source">
 <pre>
 <span class="ruby-comment"># File lib/assay/assertions/nil_failure.rb, line 48</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">assert_not_nil</span>(<span class="ruby-identifier">exp</span>, <span class="ruby-identifier">opts</span>={})
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">assert_not_nil</span>(<span class="ruby-identifier">exp</span>, <span class="ruby-identifier">msg</span>=<span class="ruby-keyword">nil</span>)
   <span class="ruby-identifier">opts</span>[<span class="ruby-value">:backtrace</span>] <span class="ruby-operator">||=</span> <span class="ruby-identifier">caller</span>
-  <span class="ruby-constant">NilFailure</span>.<span class="ruby-identifier">refute</span>(<span class="ruby-identifier">exp</span>, <span class="ruby-identifier">opts</span>)
+  <span class="ruby-constant">NilFailure</span>.<span class="ruby-identifier">refute</span>(<span class="ruby-identifier">exp</span>, <span class="ruby-value">:message=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">msg</span>, <span class="ruby-value">:backtrace=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">caller</span>)
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -1109,7 +1091,7 @@ end</pre>
           <div class="method-source-code"
             id="assert_not_raised-source">
 <pre>
-<span class="ruby-comment"># File lib/assay/assertions/raise_failure.rb, line 109</span>
+<span class="ruby-comment"># File lib/assay/assertions/raise_failure.rb, line 110</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">assert_not_raised</span>(<span class="ruby-identifier">exp</span>, <span class="ruby-identifier">msg</span>=<span class="ruby-keyword">nil</span>, <span class="ruby-identifier">call</span>=<span class="ruby-keyword">nil</span>, &amp;<span class="ruby-identifier">blk</span>) <span class="ruby-comment">#:yeild:</span>
   <span class="ruby-constant">RaiseFailure</span>.<span class="ruby-identifier">refute</span>(<span class="ruby-identifier">exp</span>, <span class="ruby-identifier">msg</span>, <span class="ruby-identifier">call</span>, &amp;<span class="ruby-identifier">blk</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -1127,7 +1109,7 @@ end</pre>
         <div class="method-heading">
         
           <span class="method-name">assert_not_respond_to</span><span
-            class="method-args">(reciever, method, opts={})</span>
+            class="method-args">(reciever, method, msg=nil)</span>
           <span class="method-click-advice">click to toggle source</span>
         
         </div>
@@ -1144,9 +1126,8 @@ end</pre>
             id="assert_not_respond_to-source">
 <pre>
 <span class="ruby-comment"># File lib/assay/assertions/response_failure.rb, line 59</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">assert_not_respond_to</span>(<span class="ruby-identifier">reciever</span>, <span class="ruby-identifier">method</span>, <span class="ruby-identifier">opts</span>={})
-  <span class="ruby-identifier">opts</span>[<span class="ruby-value">:backtrace</span>] <span class="ruby-operator">||=</span> <span class="ruby-identifier">caller</span>
-  <span class="ruby-constant">ResponseFailure</span>.<span class="ruby-identifier">refute</span>(<span class="ruby-identifier">reciever</span>, <span class="ruby-identifier">method</span>, <span class="ruby-identifier">opts</span>)
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">assert_not_respond_to</span>(<span class="ruby-identifier">reciever</span>, <span class="ruby-identifier">method</span>, <span class="ruby-identifier">msg</span>=<span class="ruby-keyword">nil</span>)
+  <span class="ruby-constant">ResponseFailure</span>.<span class="ruby-identifier">refute</span>(<span class="ruby-identifier">reciever</span>, <span class="ruby-identifier">method</span>, <span class="ruby-value">:message=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">msg</span>, <span class="ruby-value">:backtrace=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">caller</span>)
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -1166,7 +1147,7 @@ end</pre>
         <div class="method-heading">
         
           <span class="method-name">assert_not_responds_to</span><span
-            class="method-args">(reciever, method, opts={})</span>
+            class="method-args">(reciever, method, msg=nil)</span>
           <span class="method-click-advice">click to toggle source</span>
         
         </div>
@@ -1189,7 +1170,7 @@ end</pre>
         <div class="method-heading">
         
           <span class="method-name">assert_not_same</span><span
-            class="method-args">(exp, act, opts={})</span>
+            class="method-args">(exp, act, msg=nil)</span>
           <span class="method-click-advice">click to toggle source</span>
         
         </div>
@@ -1212,7 +1193,7 @@ end</pre>
         <div class="method-heading">
         
           <span class="method-name">assert_not_thrown</span><span
-            class="method-args">(sym, opts={}, &blk)</span>
+            class="method-args">(sym, msg=nil, &blk)</span>
           <span class="method-click-advice">click to toggle source</span>
         
         </div>
@@ -1235,7 +1216,7 @@ end</pre>
         <div class="method-heading">
         
           <span class="method-name">assert_not_true</span><span
-            class="method-args">(exp, opts={})</span>
+            class="method-args">(exp, msg=nil)</span>
           <span class="method-click-advice">click to toggle source</span>
         
         </div>
@@ -1252,9 +1233,8 @@ end</pre>
             id="assert_not_true-source">
 <pre>
 <span class="ruby-comment"># File lib/assay/assertions/true_failure.rb, line 54</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">assert_not_true</span>(<span class="ruby-identifier">exp</span>, <span class="ruby-identifier">opts</span>={})
-  <span class="ruby-identifier">opts</span>[<span class="ruby-value">:backtrace</span>] <span class="ruby-operator">||=</span> <span class="ruby-identifier">caller</span>
-  <span class="ruby-constant">TrueFailure</span>.<span class="ruby-identifier">refute</span>(<span class="ruby-identifier">exp</span>, <span class="ruby-identifier">opts</span>)
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">assert_not_true</span>(<span class="ruby-identifier">exp</span>, <span class="ruby-identifier">msg</span>=<span class="ruby-keyword">nil</span>)
+  <span class="ruby-constant">TrueFailure</span>.<span class="ruby-identifier">refute</span>(<span class="ruby-identifier">exp</span>, <span class="ruby-value">:message=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">msg</span>, <span class="ruby-value">:backtrace=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">caller</span>)
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -1277,7 +1257,7 @@ end</pre>
 
         <div class="method-description">
           
-          <p>Passes if the block raises a given exceptions.</p>
+          <p>Passes if the block raises a given exception.</p>
 
 <pre>assert_raises RuntimeError do
   raise 'Boom!!!'
@@ -1288,7 +1268,7 @@ end</pre>
           <div class="method-source-code"
             id="assert_raises-source">
 <pre>
-<span class="ruby-comment"># File lib/assay/assertions/raise_failure.rb, line 99</span>
+<span class="ruby-comment"># File lib/assay/assertions/raise_failure.rb, line 100</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">assert_raises</span>(<span class="ruby-identifier">exp</span>, <span class="ruby-identifier">msg</span>=<span class="ruby-keyword">nil</span>, <span class="ruby-identifier">call</span>=<span class="ruby-keyword">nil</span>, &amp;<span class="ruby-identifier">blk</span>) <span class="ruby-comment">#:yeild:</span>
   <span class="ruby-constant">RaiseFailure</span>.<span class="ruby-identifier">assert</span>(<span class="ruby-identifier">exp</span>, <span class="ruby-identifier">msg</span>=<span class="ruby-keyword">nil</span>, <span class="ruby-identifier">call</span>=<span class="ruby-keyword">nil</span>, &amp;<span class="ruby-identifier">blk</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -1306,7 +1286,7 @@ end</pre>
         <div class="method-heading">
         
           <span class="method-name">assert_respond_to</span><span
-            class="method-args">(reciever, method, opts={})</span>
+            class="method-args">(reciever, method, msg=nil)</span>
           <span class="method-click-advice">click to toggle source</span>
         
         </div>
@@ -1322,10 +1302,9 @@ end</pre>
           <div class="method-source-code"
             id="assert_respond_to-source">
 <pre>
-<span class="ruby-comment"># File lib/assay/assertions/response_failure.rb, line 49</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">assert_respond_to</span>(<span class="ruby-identifier">reciever</span>, <span class="ruby-identifier">method</span>, <span class="ruby-identifier">opts</span>={})
-  <span class="ruby-identifier">opts</span>[<span class="ruby-value">:backtrace</span>] <span class="ruby-operator">||=</span> <span class="ruby-identifier">caller</span>
-  <span class="ruby-constant">ResponseFailure</span>.<span class="ruby-identifier">assert</span>(<span class="ruby-identifier">reciever</span>, <span class="ruby-identifier">method</span>, <span class="ruby-identifier">opts</span>)
+<span class="ruby-comment"># File lib/assay/assertions/response_failure.rb, line 50</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">assert_respond_to</span>(<span class="ruby-identifier">reciever</span>, <span class="ruby-identifier">method</span>, <span class="ruby-identifier">msg</span>=<span class="ruby-keyword">nil</span>)
+  <span class="ruby-constant">ResponseFailure</span>.<span class="ruby-identifier">assert</span>(<span class="ruby-identifier">reciever</span>, <span class="ruby-identifier">method</span>, <span class="ruby-value">:message=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">msg</span>, <span class="ruby-value">:backtrace=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">caller</span>)
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -1345,7 +1324,7 @@ end</pre>
         <div class="method-heading">
         
           <span class="method-name">assert_responds_to</span><span
-            class="method-args">(reciever, method, opts={})</span>
+            class="method-args">(reciever, method, msg=nil)</span>
           <span class="method-click-advice">click to toggle source</span>
         
         </div>
@@ -1368,7 +1347,7 @@ end</pre>
         <div class="method-heading">
         
           <span class="method-name">assert_same</span><span
-            class="method-args">(exp, act, opts={})</span>
+            class="method-args">(exp, act, msg=nil)</span>
           <span class="method-click-advice">click to toggle source</span>
         
         </div>
@@ -1388,10 +1367,9 @@ expected and actual.</p>
           <div class="method-source-code"
             id="assert_same-source">
 <pre>
-<span class="ruby-comment"># File lib/assay/assertions/same_failure.rb, line 47</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">assert_same</span>(<span class="ruby-identifier">exp</span>, <span class="ruby-identifier">act</span>, <span class="ruby-identifier">opts</span>={})
-  <span class="ruby-identifier">opts</span>[<span class="ruby-value">:backtrace</span>] <span class="ruby-operator">||=</span> <span class="ruby-identifier">caller</span>
-  <span class="ruby-constant">SameFailure</span>.<span class="ruby-identifier">assert</span>(<span class="ruby-identifier">exp</span>, <span class="ruby-identifier">act</span>, <span class="ruby-identifier">opts</span>)
+<span class="ruby-comment"># File lib/assay/assertions/same_failure.rb, line 48</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">assert_same</span>(<span class="ruby-identifier">exp</span>, <span class="ruby-identifier">act</span>, <span class="ruby-identifier">msg</span>=<span class="ruby-keyword">nil</span>)
+  <span class="ruby-constant">SameFailure</span>.<span class="ruby-identifier">assert</span>(<span class="ruby-identifier">exp</span>, <span class="ruby-identifier">act</span>, <span class="ruby-value">:message=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">msg</span>, <span class="ruby-value">:backtrace=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">caller</span>)
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -1407,7 +1385,7 @@ expected and actual.</p>
         <div class="method-heading">
         
           <span class="method-name">assert_throws</span><span
-            class="method-args">(sym, opts={}, &blk)</span>
+            class="method-args">(sym, msg=nil, &blk)</span>
           <span class="method-click-advice">click to toggle source</span>
         
         </div>
@@ -1425,10 +1403,9 @@ end</pre>
           <div class="method-source-code"
             id="assert_throws-source">
 <pre>
-<span class="ruby-comment"># File lib/assay/assertions/throw_failure.rb, line 84</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">assert_throws</span>(<span class="ruby-identifier">sym</span>, <span class="ruby-identifier">opts</span>={}, &amp;<span class="ruby-identifier">blk</span>)
-  <span class="ruby-identifier">opts</span>[<span class="ruby-value">:backtrace</span>] <span class="ruby-operator">||=</span> <span class="ruby-identifier">caller</span>
-  <span class="ruby-constant">ThrowFailure</span>.<span class="ruby-identifier">assert</span>(<span class="ruby-identifier">sym</span>, <span class="ruby-identifier">opts</span>, &amp;<span class="ruby-identifier">blk</span>)
+<span class="ruby-comment"># File lib/assay/assertions/throw_failure.rb, line 85</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">assert_throws</span>(<span class="ruby-identifier">sym</span>, <span class="ruby-identifier">msg</span>=<span class="ruby-keyword">nil</span>, &amp;<span class="ruby-identifier">blk</span>)
+  <span class="ruby-constant">ThrowFailure</span>.<span class="ruby-identifier">assert</span>(<span class="ruby-identifier">sym</span>, <span class="ruby-value">:message=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">msg</span>, <span class="ruby-value">:backtrace=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">caller</span>, &amp;<span class="ruby-identifier">blk</span>)
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -1444,7 +1421,7 @@ end</pre>
         <div class="method-heading">
         
           <span class="method-name">assert_true</span><span
-            class="method-args">(exp, opts={})</span>
+            class="method-args">(exp, msg=nil)</span>
           <span class="method-click-advice">click to toggle source</span>
         
         </div>
@@ -1458,10 +1435,9 @@ end</pre>
           <div class="method-source-code"
             id="assert_true-source">
 <pre>
-<span class="ruby-comment"># File lib/assay/assertions/true_failure.rb, line 45</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">assert_true</span>(<span class="ruby-identifier">exp</span>, <span class="ruby-identifier">opts</span>={})
-  <span class="ruby-identifier">opts</span>[<span class="ruby-value">:backtrace</span>] <span class="ruby-operator">||=</span> <span class="ruby-identifier">caller</span>
-  <span class="ruby-constant">TrueFailure</span>.<span class="ruby-identifier">assert</span>(<span class="ruby-identifier">exp</span>, <span class="ruby-identifier">opts</span>)
+<span class="ruby-comment"># File lib/assay/assertions/true_failure.rb, line 46</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">assert_true</span>(<span class="ruby-identifier">exp</span>, <span class="ruby-identifier">msg</span>=<span class="ruby-keyword">nil</span>)
+  <span class="ruby-constant">TrueFailure</span>.<span class="ruby-identifier">assert</span>(<span class="ruby-identifier">exp</span>, <span class="ruby-value">:message=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">msg</span>, <span class="ruby-value">:backtrace=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">caller</span>)
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -1477,7 +1453,7 @@ end</pre>
         <div class="method-heading">
         
           <span class="method-name">refute_empty</span><span
-            class="method-args">(exp, opts={})</span>
+            class="method-args">(exp, msg=nil)</span>
           <span class="method-click-advice">click to toggle source</span>
         
         </div>
@@ -1494,9 +1470,9 @@ end</pre>
             id="refute_empty-source">
 <pre>
 <span class="ruby-comment"># File lib/assay/assertions/empty_failure.rb, line 48</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">refute_empty</span>(<span class="ruby-identifier">exp</span>, <span class="ruby-identifier">opts</span>={})
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">refute_empty</span>(<span class="ruby-identifier">exp</span>, <span class="ruby-identifier">msg</span>=<span class="ruby-keyword">nil</span>)
   <span class="ruby-identifier">opts</span>[<span class="ruby-value">:backtrace</span>] <span class="ruby-operator">||=</span> <span class="ruby-identifier">caller</span>
-  <span class="ruby-constant">EmptyFailure</span>.<span class="ruby-identifier">refute</span>(<span class="ruby-identifier">exp</span>, <span class="ruby-identifier">opts</span>)
+  <span class="ruby-constant">EmptyFailure</span>.<span class="ruby-identifier">refute</span>(<span class="ruby-identifier">exp</span>, <span class="ruby-value">:message=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">msg</span>, <span class="ruby-value">:backtrace=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">caller</span>)
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -1516,7 +1492,7 @@ end</pre>
         <div class="method-heading">
         
           <span class="method-name">refute_instance_of</span><span
-            class="method-args">(cls, obj, opts={})</span>
+            class="method-args">(cls, obj, msg=nil)</span>
           <span class="method-click-advice">click to toggle source</span>
         
         </div>
@@ -1533,9 +1509,8 @@ end</pre>
             id="refute_instance_of-source">
 <pre>
 <span class="ruby-comment"># File lib/assay/assertions/instance_failure.rb, line 50</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">refute_instance_of</span>(<span class="ruby-identifier">cls</span>, <span class="ruby-identifier">obj</span>, <span class="ruby-identifier">opts</span>={})
-  <span class="ruby-identifier">opts</span>[<span class="ruby-value">:backtrace</span>] <span class="ruby-operator">||=</span> <span class="ruby-identifier">caller</span>
-  <span class="ruby-constant">InstanceFailure</span>.<span class="ruby-identifier">refute</span>(<span class="ruby-identifier">cls</span>, <span class="ruby-identifier">obj</span>, <span class="ruby-identifier">opts</span>)
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">refute_instance_of</span>(<span class="ruby-identifier">cls</span>, <span class="ruby-identifier">obj</span>, <span class="ruby-identifier">msg</span>=<span class="ruby-keyword">nil</span>)
+  <span class="ruby-constant">InstanceFailure</span>.<span class="ruby-identifier">refute</span>(<span class="ruby-identifier">cls</span>, <span class="ruby-identifier">obj</span>, <span class="ruby-value">:message=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">msg</span>, <span class="ruby-value">:backtrace=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">caller</span>)
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -1555,7 +1530,7 @@ end</pre>
         <div class="method-heading">
         
           <span class="method-name">refute_kind_of</span><span
-            class="method-args">(cls, obj, opts={})</span>
+            class="method-args">(cls, obj, msg=nil)</span>
           <span class="method-click-advice">click to toggle source</span>
         
         </div>
@@ -1572,8 +1547,8 @@ end</pre>
             id="refute_kind_of-source">
 <pre>
 <span class="ruby-comment"># File lib/assay/assertions/kind_failure.rb, line 55</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">refute_kind_of</span>(<span class="ruby-identifier">cls</span>, <span class="ruby-identifier">obj</span>, <span class="ruby-identifier">opts</span>={})
-  <span class="ruby-constant">KindFailure</span>.<span class="ruby-identifier">refute</span>(<span class="ruby-identifier">cls</span>, <span class="ruby-identifier">obj</span>, <span class="ruby-identifier">opts</span>)
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">refute_kind_of</span>(<span class="ruby-identifier">cls</span>, <span class="ruby-identifier">obj</span>, <span class="ruby-identifier">msg</span>=<span class="ruby-keyword">nil</span>)
+  <span class="ruby-constant">KindFailure</span>.<span class="ruby-identifier">refute</span>(<span class="ruby-identifier">cls</span>, <span class="ruby-identifier">obj</span>, <span class="ruby-value">:message=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">msg</span>, <span class="ruby-value">:backtrace=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">caller</span>)
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -1593,7 +1568,7 @@ end</pre>
         <div class="method-heading">
         
           <span class="method-name">refute_match</span><span
-            class="method-args">(exp, act, opts={})</span>
+            class="method-args">(exp, act, msg=nil)</span>
           <span class="method-click-advice">click to toggle source</span>
         
         </div>
@@ -1610,9 +1585,8 @@ end</pre>
             id="refute_match-source">
 <pre>
 <span class="ruby-comment"># File lib/assay/assertions/match_failure.rb, line 61</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">refute_match</span>(<span class="ruby-identifier">exp</span>, <span class="ruby-identifier">act</span>, <span class="ruby-identifier">opts</span>={})
-  <span class="ruby-identifier">opts</span>[<span class="ruby-value">:backtrace</span>] <span class="ruby-operator">||=</span> <span class="ruby-identifier">caller</span>
-  <span class="ruby-constant">MatchFailure</span>.<span class="ruby-identifier">refute</span>(<span class="ruby-identifier">exp</span>, <span class="ruby-identifier">act</span>, <span class="ruby-identifier">opts</span>)
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">refute_match</span>(<span class="ruby-identifier">exp</span>, <span class="ruby-identifier">act</span>, <span class="ruby-identifier">msg</span>=<span class="ruby-keyword">nil</span>)
+  <span class="ruby-constant">MatchFailure</span>.<span class="ruby-identifier">refute</span>(<span class="ruby-identifier">exp</span>, <span class="ruby-identifier">act</span>, <span class="ruby-value">:message=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">msg</span>, <span class="ruby-value">:backtrace=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">caller</span>)
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -1628,7 +1602,7 @@ end</pre>
         <div class="method-heading">
         
           <span class="method-name">refute_same</span><span
-            class="method-args">(exp, act, opts={})</span>
+            class="method-args">(exp, act, msg=nil)</span>
           <span class="method-click-advice">click to toggle source</span>
         
         </div>
@@ -1645,9 +1619,8 @@ end</pre>
             id="refute_same-source">
 <pre>
 <span class="ruby-comment"># File lib/assay/assertions/same_failure.rb, line 56</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">refute_same</span>(<span class="ruby-identifier">exp</span>, <span class="ruby-identifier">act</span>, <span class="ruby-identifier">opts</span>={})
-  <span class="ruby-identifier">opts</span>[<span class="ruby-value">:backtrace</span>] <span class="ruby-operator">||=</span> <span class="ruby-identifier">caller</span>
-  <span class="ruby-constant">SameFailure</span>.<span class="ruby-identifier">refute</span>(<span class="ruby-identifier">exp</span>, <span class="ruby-identifier">act</span>, <span class="ruby-identifier">opts</span>)
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">refute_same</span>(<span class="ruby-identifier">exp</span>, <span class="ruby-identifier">act</span>, <span class="ruby-identifier">msg</span>=<span class="ruby-keyword">nil</span>)
+  <span class="ruby-constant">SameFailure</span>.<span class="ruby-identifier">refute</span>(<span class="ruby-identifier">exp</span>, <span class="ruby-identifier">act</span>, <span class="ruby-value">:message=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">msg</span>, <span class="ruby-value">:backtrace=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">caller</span>)
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -1667,7 +1640,7 @@ end</pre>
         <div class="method-heading">
         
           <span class="method-name">refute_throws</span><span
-            class="method-args">(sym, opts={}, &blk)</span>
+            class="method-args">(sym, msg=nil, &blk)</span>
           <span class="method-click-advice">click to toggle source</span>
         
         </div>
@@ -1686,9 +1659,8 @@ end</pre>
             id="refute_throws-source">
 <pre>
 <span class="ruby-comment"># File lib/assay/assertions/throw_failure.rb, line 95</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">refute_throws</span>(<span class="ruby-identifier">sym</span>, <span class="ruby-identifier">opts</span>={}, &amp;<span class="ruby-identifier">blk</span>)
-  <span class="ruby-identifier">opts</span>[<span class="ruby-value">:backtrace</span>] <span class="ruby-operator">||=</span> <span class="ruby-identifier">caller</span>
-  <span class="ruby-constant">ThrowFailure</span>.<span class="ruby-identifier">refute</span>(<span class="ruby-identifier">sym</span>, <span class="ruby-identifier">opts</span>, &amp;<span class="ruby-identifier">blk</span>)
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">refute_throws</span>(<span class="ruby-identifier">sym</span>, <span class="ruby-identifier">msg</span>=<span class="ruby-keyword">nil</span>, &amp;<span class="ruby-identifier">blk</span>)
+  <span class="ruby-constant">ThrowFailure</span>.<span class="ruby-identifier">refute</span>(<span class="ruby-identifier">sym</span>, <span class="ruby-value">:message=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">msg</span>, <span class="ruby-value">:backtrace=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">caller</span>, &amp;<span class="ruby-identifier">blk</span>)
 <span class="ruby-keyword">end</span></pre>
           </div>
           

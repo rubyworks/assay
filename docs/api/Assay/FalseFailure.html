@@ -361,6 +361,7 @@
 <pre>
 <span class="ruby-comment"># File lib/assay/assertions/false_failure.rb, line 21</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">to_s</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-ivar">@mesg</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@mesg</span>
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">super</span> <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@arguments</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span>
 
   <span class="ruby-identifier">exp</span> = <span class="ruby-ivar">@arguments</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">inspect</span>

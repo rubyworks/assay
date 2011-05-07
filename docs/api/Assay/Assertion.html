@@ -446,6 +446,7 @@ the inspected object will be too big for a single line message.</p></dd>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">message</span>=<span class="ruby-keyword">nil</span>, *<span class="ruby-identifier">arguments</span>, &amp;<span class="ruby-identifier">block</span>)
   <span class="ruby-identifier">message</span> <span class="ruby-operator">?</span> <span class="ruby-keyword">super</span>(<span class="ruby-identifier">message</span> <span class="ruby-operator">%</span> <span class="ruby-identifier">arguments</span>) <span class="ruby-operator">:</span> <span class="ruby-keyword">super</span>()
 
+  <span class="ruby-ivar">@mesg</span>      = <span class="ruby-identifier">message</span>  <span class="ruby-comment"># why isn't this in @mesg from super()?</span>
   <span class="ruby-ivar">@arguments</span> = <span class="ruby-identifier">arguments</span>
   <span class="ruby-ivar">@block</span>     = <span class="ruby-identifier">block</span>
 
@@ -600,7 +601,7 @@ the inspected object will be too big for a single line message.</p></dd>
           <div class="method-source-code"
             id="assert-source">
 <pre>
-<span class="ruby-comment"># File lib/assay/assertion.rb, line 109</span>
+<span class="ruby-comment"># File lib/assay/assertion.rb, line 110</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">assert</span>
   <span class="ruby-comment">#@negative = false</span>
   <span class="ruby-identifier">raise</span> <span class="ruby-keyword">self</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">pass?</span>
@@ -636,7 +637,7 @@ supports this interface.</p>
           <div class="method-source-code"
             id="assertion-3F-source">
 <pre>
-<span class="ruby-comment"># File lib/assay/assertion.rb, line 94</span>
+<span class="ruby-comment"># File lib/assay/assertion.rb, line 95</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">assertion?</span>
   <span class="ruby-keyword">true</span>  <span class="ruby-comment"># @assertion = true if @assertion.nil?</span>
 <span class="ruby-keyword">end</span></pre>
@@ -668,7 +669,7 @@ supports this interface.</p>
           <div class="method-source-code"
             id="fail-3F-source">
 <pre>
-<span class="ruby-comment"># File lib/assay/assertion.rb, line 104</span>
+<span class="ruby-comment"># File lib/assay/assertion.rb, line 105</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">fail?</span>
   <span class="ruby-keyword">not</span> <span class="ruby-identifier">pass?</span>
 <span class="ruby-keyword">end</span></pre>
@@ -700,7 +701,7 @@ supports this interface.</p>
           <div class="method-source-code"
             id="negative-3F-source">
 <pre>
-<span class="ruby-comment"># File lib/assay/assertion.rb, line 121</span>
+<span class="ruby-comment"># File lib/assay/assertion.rb, line 122</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">negative?</span>
   <span class="ruby-ivar">@negative</span>
 <span class="ruby-keyword">end</span></pre>
@@ -732,7 +733,7 @@ supports this interface.</p>
           <div class="method-source-code"
             id="pass-3F-source">
 <pre>
-<span class="ruby-comment"># File lib/assay/assertion.rb, line 99</span>
+<span class="ruby-comment"># File lib/assay/assertion.rb, line 100</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">pass?</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">pass?</span>(*<span class="ruby-ivar">@arguments</span>, &amp;<span class="ruby-ivar">@block</span>) <span class="ruby-comment">#^ @negative</span>
 <span class="ruby-keyword">end</span></pre>
@@ -764,7 +765,7 @@ supports this interface.</p>
           <div class="method-source-code"
             id="refute-source">
 <pre>
-<span class="ruby-comment"># File lib/assay/assertion.rb, line 115</span>
+<span class="ruby-comment"># File lib/assay/assertion.rb, line 116</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">refute</span>
   <span class="ruby-comment">#@negative = true</span>
   <span class="ruby-identifier">raise</span> <span class="ruby-keyword">self</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">fail?</span>
@@ -797,7 +798,7 @@ supports this interface.</p>
           <div class="method-source-code"
             id="set_arguments-source">
 <pre>
-<span class="ruby-comment"># File lib/assay/assertion.rb, line 132</span>
+<span class="ruby-comment"># File lib/assay/assertion.rb, line 133</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">set_arguments</span>(<span class="ruby-identifier">arguments</span>)
   <span class="ruby-ivar">@arguments</span> = <span class="ruby-identifier">arguments</span>
   <span class="ruby-comment">#@block    = block</span>
@@ -831,7 +832,7 @@ example, `!=` rather than `==`.</p>
           <div class="method-source-code"
             id="set_negative-source">
 <pre>
-<span class="ruby-comment"># File lib/assay/assertion.rb, line 127</span>
+<span class="ruby-comment"># File lib/assay/assertion.rb, line 128</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">set_negative</span>(<span class="ruby-identifier">negative</span>)
   <span class="ruby-ivar">@negative</span> = <span class="ruby-operator">!</span><span class="ruby-operator">!</span><span class="ruby-identifier">negative</span>
 <span class="ruby-keyword">end</span></pre>
@@ -863,7 +864,7 @@ example, `!=` rather than `==`.</p>
           <div class="method-source-code"
             id="to_s-source">
 <pre>
-<span class="ruby-comment"># File lib/assay/assertion.rb, line 138</span>
+<span class="ruby-comment"># File lib/assay/assertion.rb, line 139</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">to_s</span>
   <span class="ruby-keyword">if</span> <span class="ruby-ivar">@negative</span>
     <span class="ruby-string">&quot;NOT &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-keyword">super</span>()
