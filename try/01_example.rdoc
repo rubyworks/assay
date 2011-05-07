@@ -1,0 +1,15 @@
+= Sample Assay via QED
+
+    require 'assay'
+
+    include Assay::Matchers
+
+Example of a failed assertion.
+
+    1.assert is_equal_to(2)
+
+Example of a failed refutation.
+
+    1.refute is_equal_to(1)
+
+QED.
