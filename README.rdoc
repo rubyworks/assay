@@ -2,17 +2,14 @@
 
 == DESCRIPTION
 
-The Assay project defines assertions in the same way that Ruby
-defines exceptions. An asserition then is nothing more that
-an extended Exception class. Assay defines additonal exception
-classes for common testing assertions, such a equality.
-
-Assy provides both traditional assertion methods and RSpec compatiable
-matchers built from these assertion-exception classes.
-
-Assay alse works with Assertive Expressive[http://rubyworks.github.com/ae].
-In fact Assay was created as an exploratory project for a possible future
-version of AE that would integrate tightly with Assay.
+Assay defines assertions in the same way that Ruby defines
+exceptions. An assertion then is nothing more that an
+extended Exception class. Assay provides a complete set
+of these assertion classes for the most common assertion types.
+It also provides both TestUnit-style assertion methods and
+RSpec-compatiable matchers built from these assertion classes
+for use in your preferred test harness. Assay works with
+TestUnit, MiniTest, RSpec and other test frameworks.
 
 
 == FEATURES
@@ -43,7 +40,7 @@ Site installation with the tarball can be done with Ruby Setup
 (gem install setup). See http://rubyworks.github.com/setup.
 
 
-== COPYRIGHTS
+== COPYING
 
 Copyright (c) 2009 Thomas Sawyer
 

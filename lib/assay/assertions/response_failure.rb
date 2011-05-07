@@ -1,9 +1,9 @@
-require 'assay/assertions/execution_failure'
+require 'assay/assertion'
 
 module Assay
 
-  #
-  class ResponseFailure < ExecutionFailure
+  # Does an object #respond_to? a method call.
+  class ResponseFailure < Assertion
 
     def self.assertion_name
       :respond_to
