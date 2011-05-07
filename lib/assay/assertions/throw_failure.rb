@@ -1,9 +1,9 @@
-require 'assay/assertion'
+require 'assay/assertions/execution_failure'
 
 module Assay
 
   #
-  class ThrowFailure < Assertion
+  class ThrowFailure < ExecutionFailure
 
     def self.assertion_name
       :throws
