@@ -7,7 +7,7 @@ module Assay
     @_failure_classes_by_operator ||= (
       c = {}
       ObjectSpace.each_object(Class) do |fc|
-        next unless fc < Assay::Failure
+        next unless fc < Assay::Assertion
         if fc.respond_to?(:assertion_operator)
           c[fc.assertion_operator.to_sym] = fc
         end
@@ -37,8 +37,8 @@ end
 
 # Load Assay's failure classes.
 dir  = File.dirname(__FILE__)
-glob = File.join(dir, 'assay', '*.rb')
+glob = File.join(dir, 'assay', 'assertions', '*.rb')
 Dir[glob].each do |rb|
-  require 'assay/' + File.basename(rb)
+  require 'assay/assertions/' + File.basename(rb)
 end
 
