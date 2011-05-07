@@ -18,7 +18,7 @@ TestUnit, MiniTest, RSpec and other test frameworks.
 * Assertions get their own specialized error messages.
 
 
-= RESOURCES
+== RESOURCES
 
 * home: http://rubyworks.github.com/assay
 * code: http://github.com/rubyworks/assay
