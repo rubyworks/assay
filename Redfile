@@ -2,10 +2,8 @@
 grancher:
   active: false
 
-box:
-  service: Box
-  types  : [gem]
-  spec   : '.gemspec'
+gem:
+  service: Gem
   active : true
 
 dnote:
@@ -28,11 +26,11 @@ rdoc:
   service  : RDoc
   format   : redfish
   include  : ~
-  exclude  : ~
+  exclude  : [Profile, Version, MANIFEST.txt]
   main     : ~
   extra    : ~
   output   : site/docs/api
-  active   : false
+  active   : true
 
 ri:
   service: RI
