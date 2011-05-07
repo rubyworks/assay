@@ -1,0 +1,1622 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <META CONTENT="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  <META NAME="generator" CONTENT="RDazzle Yardfish 2.0.0">
+  <META NAME="timestamp" CONTENT="Sat May 07 13:00:04 -0400 2011">
+
+  <title>&quot;Assay&quot;</title>
+
+  <link rel="SHORTCUT ICON" href="assets/icon/ruby.png">
+
+  <link type="text/css" rel="stylesheet" href="assets/rdoc.css" media="screen" />
+  <link type="text/css" rel="stylesheet" href="assets/highlight/styles/github.css" title="GitHub" />
+
+  <script type="text/javascript" charset="utf-8" src="assets/jquery.js"></script>
+  <script type="text/javascript" charset="utf-8" src="assets/highlight/highlight.pack.js"></script>
+  <script type="text/javascript" charset="utf-8" src="assets/quicksearch.js"></script>
+  <script type="text/javascript" charset="utf-8" src="assets/main.js"></script>
+
+  <script type="text/javascript">
+    $(document).ready( function() {
+      hookHighlightSyntax()
+	    hookSourceViews();
+	    hookDebuggingToggle();
+	    hookQuickSearch();
+	    highlightLocationTarget();
+
+	    $('ul.link-list a').bind("click", highlightClickTarget);
+    });
+  </script>
+</head>
+<body class="indexpage">
+<div id="main">
+
+  
+  <div class="head">
+    <h1>
+      <img src="assets/icon/project.png" align="absmiddle">&nbsp;
+      <a href="index.html">&quot;Assay&quot;</a>
+    </h1>
+  </div>
+
+  <div id="metadata">
+    <div id="project-metadata">
+
+      
+      
+      <div id="fileindex-section" class="section project-section">
+        <h3 class="section-header">Information</h3>
+        <ul>
+        
+          <li class="file"><a href="HISTORY_rdoc.html">HISTORY.rdoc</a></li>
+        
+          <li class="file"><a href="Redfile.html">Redfile</a></li>
+        
+          <li class="file"><a href="README_rdoc.html">README.rdoc</a></li>
+        
+          <li class="file"><a href="NOTICE_rdoc.html">NOTICE.rdoc</a></li>
+        
+          <li class="file"><a href="APACHE2_txt.html">APACHE2.txt</a></li>
+        
+        </ul>
+      </div>
+      
+
+      <div id="classindex-section" class="section project-section">
+        <h3 class="section-header">Class Index
+          <span class="search-toggle"><img src="assets/icon/find.png" height="16" width="16" alt="[+]" title="show/hide quicksearch" /></span>
+        </h3>
+        <form action="#" method="get" accept-charset="utf-8" class="initially-hidden">
+        <fieldset>
+          <legend>Quicksearch</legend>
+          <input type="text" name="quicksearch" value="" class="quicksearch-field" />
+        </fieldset>
+        </form>
+
+        <ul class="link-list">
+        
+          <li class="module"><a href="Assay.html">Assay</a></li>
+        
+          <li class="class"><a href="Assay/Assertion.html">Assay::Assertion</a></li>
+        
+          <li class="module"><a href="Assay/Assertives.html">Assay::Assertives</a></li>
+        
+          <li class="class"><a href="Assay/CompareFailure.html">Assay::CompareFailure</a></li>
+        
+          <li class="class"><a href="Assay/DeltaFailure.html">Assay::DeltaFailure</a></li>
+        
+          <li class="class"><a href="Assay/EmptyFailure.html">Assay::EmptyFailure</a></li>
+        
+          <li class="class"><a href="Assay/EqualityFailure.html">Assay::EqualityFailure</a></li>
+        
+          <li class="class"><a href="Assay/ExecutionFailure.html">Assay::ExecutionFailure</a></li>
+        
+          <li class="class"><a href="Assay/FalseFailure.html">Assay::FalseFailure</a></li>
+        
+          <li class="class"><a href="Assay/IdentityFailure.html">Assay::IdentityFailure</a></li>
+        
+          <li class="class"><a href="Assay/InstanceFailure.html">Assay::InstanceFailure</a></li>
+        
+          <li class="class"><a href="Assay/KindFailure.html">Assay::KindFailure</a></li>
+        
+          <li class="class"><a href="Assay/MatchFailure.html">Assay::MatchFailure</a></li>
+        
+          <li class="class"><a href="Assay/Matcher.html">Assay::Matcher</a></li>
+        
+          <li class="module"><a href="Assay/Matchers.html">Assay::Matchers</a></li>
+        
+          <li class="class"><a href="Assay/NilFailure.html">Assay::NilFailure</a></li>
+        
+          <li class="class"><a href="Assay/RaiseFailure.html">Assay::RaiseFailure</a></li>
+        
+          <li class="class"><a href="Assay/ResponseFailure.html">Assay::ResponseFailure</a></li>
+        
+          <li class="class"><a href="Assay/SameFailure.html">Assay::SameFailure</a></li>
+        
+          <li class="class"><a href="Assay/ThrowFailure.html">Assay::ThrowFailure</a></li>
+        
+          <li class="class"><a href="Assay/TrueFailure.html">Assay::TrueFailure</a></li>
+        
+        </ul>
+        <div id="no-class-search-results" style="display: none;">No matching classes.</div>
+      </div>
+
+      <!-- METHODS -->
+      <div id="methodindex-section" class="section project-section">
+        <h3 class="section-header">Method Index
+          <span class="search-toggle"><img src="assets/icon/find.png" height="16" width="16" alt="[+]" title="show/hide quicksearch" /></span>
+        </h3>
+        <form action="#" method="get" accept-charset="utf-8" class="initially-hidden">
+        <fieldset>
+          <legend>Quicksearch</legend>
+          <input type="text" name="quicksearch" value="" class="quicksearch-field" />
+        </fieldset>
+        </form>
+
+        <ul>
+        
+          
+          <li class="singleton" style="clear: both;">
+            <span class="method-parent-aside">Assay::RaiseFailure</span>
+            <a href="Assay/RaiseFailure.html#method-c-assert">::assert</a>
+          </li>
+        
+          
+          <li class="singleton" style="clear: both;">
+            <span class="method-parent-aside">Assay::Assertion</span>
+            <a href="Assay/Assertion.html#method-c-assert">::assert</a>
+          </li>
+        
+          
+          <li class="singleton" style="clear: both;">
+            <span class="method-parent-aside">Assay::RaiseFailure</span>
+            <a href="Assay/RaiseFailure.html#method-c-assert-21">::assert!</a>
+          </li>
+        
+          
+          <li class="singleton" style="clear: both;">
+            <span class="method-parent-aside">Assay::MatchFailure</span>
+            <a href="Assay/MatchFailure.html#method-c-assertable_method">::assertable_method</a>
+          </li>
+        
+          
+          <li class="singleton" style="clear: both;">
+            <span class="method-parent-aside">Assay::Assertion</span>
+            <a href="Assay/Assertion.html#method-c-assertable_method">::assertable_method</a>
+          </li>
+        
+          
+          <li class="singleton" style="clear: both;">
+            <span class="method-parent-aside">Assay::RaiseFailure</span>
+            <a href="Assay/RaiseFailure.html#method-c-assertion_name">::assertion_name</a>
+          </li>
+        
+          
+          <li class="singleton" style="clear: both;">
+            <span class="method-parent-aside">Assay::InstanceFailure</span>
+            <a href="Assay/InstanceFailure.html#method-c-assertion_name">::assertion_name</a>
+          </li>
+        
+          
+          <li class="singleton" style="clear: both;">
+            <span class="method-parent-aside">Assay::NilFailure</span>
+            <a href="Assay/NilFailure.html#method-c-assertion_name">::assertion_name</a>
+          </li>
+        
+          
+          <li class="singleton" style="clear: both;">
+            <span class="method-parent-aside">Assay::FalseFailure</span>
+            <a href="Assay/FalseFailure.html#method-c-assertion_name">::assertion_name</a>
+          </li>
+        
+          
+          <li class="singleton" style="clear: both;">
+            <span class="method-parent-aside">Assay::SameFailure</span>
+            <a href="Assay/SameFailure.html#method-c-assertion_name">::assertion_name</a>
+          </li>
+        
+          
+          <li class="singleton" style="clear: both;">
+            <span class="method-parent-aside">Assay::EmptyFailure</span>
+            <a href="Assay/EmptyFailure.html#method-c-assertion_name">::assertion_name</a>
+          </li>
+        
+          
+          <li class="singleton" style="clear: both;">
+            <span class="method-parent-aside">Assay::MatchFailure</span>
+            <a href="Assay/MatchFailure.html#method-c-assertion_name">::assertion_name</a>
+          </li>
+        
+          
+          <li class="singleton" style="clear: both;">
+            <span class="method-parent-aside">Assay::IdentityFailure</span>
+            <a href="Assay/IdentityFailure.html#method-c-assertion_name">::assertion_name</a>
+          </li>
+        
+          
+          <li class="singleton" style="clear: both;">
+            <span class="method-parent-aside">Assay::CompareFailure</span>
+            <a href="Assay/CompareFailure.html#method-c-assertion_name">::assertion_name</a>
+          </li>
+        
+          
+          <li class="singleton" style="clear: both;">
+            <span class="method-parent-aside">Assay::KindFailure</span>
+            <a href="Assay/KindFailure.html#method-c-assertion_name">::assertion_name</a>
+          </li>
+        
+          
+          <li class="singleton" style="clear: both;">
+            <span class="method-parent-aside">Assay::TrueFailure</span>
+            <a href="Assay/TrueFailure.html#method-c-assertion_name">::assertion_name</a>
+          </li>
+        
+          
+          <li class="singleton" style="clear: both;">
+            <span class="method-parent-aside">Assay::ResponseFailure</span>
+            <a href="Assay/ResponseFailure.html#method-c-assertion_name">::assertion_name</a>
+          </li>
+        
+          
+          <li class="singleton" style="clear: both;">
+            <span class="method-parent-aside">Assay::DeltaFailure</span>
+            <a href="Assay/DeltaFailure.html#method-c-assertion_name">::assertion_name</a>
+          </li>
+        
+          
+          <li class="singleton" style="clear: both;">
+            <span class="method-parent-aside">Assay::EqualityFailure</span>
+            <a href="Assay/EqualityFailure.html#method-c-assertion_name">::assertion_name</a>
+          </li>
+        
+          
+          <li class="singleton" style="clear: both;">
+            <span class="method-parent-aside">Assay::ThrowFailure</span>
+            <a href="Assay/ThrowFailure.html#method-c-assertion_name">::assertion_name</a>
+          </li>
+        
+          
+          <li class="singleton" style="clear: both;">
+            <span class="method-parent-aside">Assay::ExecutionFailure</span>
+            <a href="Assay/ExecutionFailure.html#method-c-assertion_name">::assertion_name</a>
+          </li>
+        
+          
+          <li class="singleton" style="clear: both;">
+            <span class="method-parent-aside">Assay::ThrowFailure</span>
+            <a href="Assay/ThrowFailure.html#method-c-assertion_name-21">::assertion_name!</a>
+          </li>
+        
+          
+          <li class="singleton" style="clear: both;">
+            <span class="method-parent-aside">Assay::ResponseFailure</span>
+            <a href="Assay/ResponseFailure.html#method-c-assertion_name-21">::assertion_name!</a>
+          </li>
+        
+          
+          <li class="singleton" style="clear: both;">
+            <span class="method-parent-aside">Assay::RaiseFailure</span>
+            <a href="Assay/RaiseFailure.html#method-c-assertion_name-21">::assertion_name!</a>
+          </li>
+        
+          
+          <li class="singleton" style="clear: both;">
+            <span class="method-parent-aside">Assay::EqualityFailure</span>
+            <a href="Assay/EqualityFailure.html#method-c-assertion_operator">::assertion_operator</a>
+          </li>
+        
+          
+          <li class="singleton" style="clear: both;">
+            <span class="method-parent-aside">Assay::EmptyFailure</span>
+            <a href="Assay/EmptyFailure.html#method-c-assertion_operator">::assertion_operator</a>
+          </li>
+        
+          
+          <li class="singleton" style="clear: both;">
+            <span class="method-parent-aside">Assay::IdentityFailure</span>
+            <a href="Assay/IdentityFailure.html#method-c-assertion_operator">::assertion_operator</a>
+          </li>
+        
+          
+          <li class="singleton" style="clear: both;">
+            <span class="method-parent-aside">Assay::FalseFailure</span>
+            <a href="Assay/FalseFailure.html#method-c-assertion_operator">::assertion_operator</a>
+          </li>
+        
+          
+          <li class="singleton" style="clear: both;">
+            <span class="method-parent-aside">Assay::InstanceFailure</span>
+            <a href="Assay/InstanceFailure.html#method-c-assertion_operator">::assertion_operator</a>
+          </li>
+        
+          
+          <li class="singleton" style="clear: both;">
+            <span class="method-parent-aside">Assay::MatchFailure</span>
+            <a href="Assay/MatchFailure.html#method-c-assertion_operator">::assertion_operator</a>
+          </li>
+        
+          
+          <li class="singleton" style="clear: both;">
+            <span class="method-parent-aside">Assay::NilFailure</span>
+            <a href="Assay/NilFailure.html#method-c-assertion_operator">::assertion_operator</a>
+          </li>
+        
+          
+          <li class="singleton" style="clear: both;">
+            <span class="method-parent-aside">Assay::SameFailure</span>
+            <a href="Assay/SameFailure.html#method-c-assertion_operator">::assertion_operator</a>
+          </li>
+        
+          
+          <li class="singleton" style="clear: both;">
+            <span class="method-parent-aside">Assay::TrueFailure</span>
+            <a href="Assay/TrueFailure.html#method-c-assertion_operator">::assertion_operator</a>
+          </li>
+        
+          
+          <li class="singleton" style="clear: both;">
+            <span class="method-parent-aside">Assay::KindFailure</span>
+            <a href="Assay/KindFailure.html#method-c-assertion_operator">::assertion_operator</a>
+          </li>
+        
+          
+          <li class="singleton" style="clear: both;">
+            <span class="method-parent-aside">Assay</span>
+            <a href="Assay.html#method-c-const_missing">::const_missing</a>
+          </li>
+        
+          
+          <li class="singleton" style="clear: both;">
+            <span class="method-parent-aside">Assay::RaiseFailure</span>
+            <a href="Assay/RaiseFailure.html#method-c-fail-3F">::fail?</a>
+          </li>
+        
+          
+          <li class="singleton" style="clear: both;">
+            <span class="method-parent-aside">Assay::Assertion</span>
+            <a href="Assay/Assertion.html#method-c-fail-3F">::fail?</a>
+          </li>
+        
+          
+          <li class="singleton" style="clear: both;">
+            <span class="method-parent-aside">Assay::EqualityFailure</span>
+            <a href="Assay/EqualityFailure.html#method-c-fail-3F">::fail?</a>
+          </li>
+        
+          
+          <li class="singleton" style="clear: both;">
+            <span class="method-parent-aside">Assay::ThrowFailure</span>
+            <a href="Assay/ThrowFailure.html#method-c-fail-3F">::fail?</a>
+          </li>
+        
+          
+          <li class="singleton" style="clear: both;">
+            <span class="method-parent-aside">Assay::MatchFailure</span>
+            <a href="Assay/MatchFailure.html#method-c-fail-3F">::fail?</a>
+          </li>
+        
+          
+          <li class="singleton" style="clear: both;">
+            <span class="method-parent-aside">Assay::ExecutionFailure</span>
+            <a href="Assay/ExecutionFailure.html#method-c-fail-3F">::fail?</a>
+          </li>
+        
+          
+          <li class="singleton" style="clear: both;">
+            <span class="method-parent-aside">Assay</span>
+            <a href="Assay.html#method-c-failure_classes_by_operator">::failure_classes_by_operator</a>
+          </li>
+        
+          
+          <li class="singleton" style="clear: both;">
+            <span class="method-parent-aside">Assay</span>
+            <a href="Assay.html#method-c-lookup">::lookup</a>
+          </li>
+        
+          
+          <li class="singleton" style="clear: both;">
+            <span class="method-parent-aside">Assay</span>
+            <a href="Assay.html#method-c-meta">::meta</a>
+          </li>
+        
+          
+          <li class="singleton" style="clear: both;">
+            <span class="method-parent-aside">Assay::Matcher</span>
+            <a href="Assay/Matcher.html#method-c-new">::new</a>
+          </li>
+        
+          
+          <li class="singleton" style="clear: both;">
+            <span class="method-parent-aside">Assay::Assertion</span>
+            <a href="Assay/Assertion.html#method-c-new">::new</a>
+          </li>
+        
+          
+          <li class="singleton" style="clear: both;">
+            <span class="method-parent-aside">Assay::Assertives</span>
+            <a href="Assay/Assertives.html#method-c-not_in_delta">::not_in_delta</a>
+          </li>
+        
+          
+          <li class="singleton" style="clear: both;">
+            <span class="method-parent-aside">Assay::ResponseFailure</span>
+            <a href="Assay/ResponseFailure.html#method-c-operator_name">::operator_name</a>
+          </li>
+        
+          
+          <li class="singleton" style="clear: both;">
+            <span class="method-parent-aside">Assay::KindFailure</span>
+            <a href="Assay/KindFailure.html#method-c-pass-3F">::pass?</a>
+          </li>
+        
+          
+          <li class="singleton" style="clear: both;">
+            <span class="method-parent-aside">Assay::Assertion</span>
+            <a href="Assay/Assertion.html#method-c-pass-3F">::pass?</a>
+          </li>
+        
+          
+          <li class="singleton" style="clear: both;">
+            <span class="method-parent-aside">Assay::NilFailure</span>
+            <a href="Assay/NilFailure.html#method-c-pass-3F">::pass?</a>
+          </li>
+        
+          
+          <li class="singleton" style="clear: both;">
+            <span class="method-parent-aside">Assay::ResponseFailure</span>
+            <a href="Assay/ResponseFailure.html#method-c-pass-3F">::pass?</a>
+          </li>
+        
+          
+          <li class="singleton" style="clear: both;">
+            <span class="method-parent-aside">Assay::IdentityFailure</span>
+            <a href="Assay/IdentityFailure.html#method-c-pass-3F">::pass?</a>
+          </li>
+        
+          
+          <li class="singleton" style="clear: both;">
+            <span class="method-parent-aside">Assay::FalseFailure</span>
+            <a href="Assay/FalseFailure.html#method-c-pass-3F">::pass?</a>
+          </li>
+        
+          
+          <li class="singleton" style="clear: both;">
+            <span class="method-parent-aside">Assay::InstanceFailure</span>
+            <a href="Assay/InstanceFailure.html#method-c-pass-3F">::pass?</a>
+          </li>
+        
+          
+          <li class="singleton" style="clear: both;">
+            <span class="method-parent-aside">Assay::ExecutionFailure</span>
+            <a href="Assay/ExecutionFailure.html#method-c-pass-3F">::pass?</a>
+          </li>
+        
+          
+          <li class="singleton" style="clear: both;">
+            <span class="method-parent-aside">Assay::TrueFailure</span>
+            <a href="Assay/TrueFailure.html#method-c-pass-3F">::pass?</a>
+          </li>
+        
+          
+          <li class="singleton" style="clear: both;">
+            <span class="method-parent-aside">Assay::ThrowFailure</span>
+            <a href="Assay/ThrowFailure.html#method-c-pass-3F">::pass?</a>
+          </li>
+        
+          
+          <li class="singleton" style="clear: both;">
+            <span class="method-parent-aside">Assay::CompareFailure</span>
+            <a href="Assay/CompareFailure.html#method-c-pass-3F">::pass?</a>
+          </li>
+        
+          
+          <li class="singleton" style="clear: both;">
+            <span class="method-parent-aside">Assay::EqualityFailure</span>
+            <a href="Assay/EqualityFailure.html#method-c-pass-3F">::pass?</a>
+          </li>
+        
+          
+          <li class="singleton" style="clear: both;">
+            <span class="method-parent-aside">Assay::RaiseFailure</span>
+            <a href="Assay/RaiseFailure.html#method-c-pass-3F">::pass?</a>
+          </li>
+        
+          
+          <li class="singleton" style="clear: both;">
+            <span class="method-parent-aside">Assay::DeltaFailure</span>
+            <a href="Assay/DeltaFailure.html#method-c-pass-3F">::pass?</a>
+          </li>
+        
+          
+          <li class="singleton" style="clear: both;">
+            <span class="method-parent-aside">Assay::MatchFailure</span>
+            <a href="Assay/MatchFailure.html#method-c-pass-3F">::pass?</a>
+          </li>
+        
+          
+          <li class="singleton" style="clear: both;">
+            <span class="method-parent-aside">Assay::EmptyFailure</span>
+            <a href="Assay/EmptyFailure.html#method-c-pass-3F">::pass?</a>
+          </li>
+        
+          
+          <li class="singleton" style="clear: both;">
+            <span class="method-parent-aside">Assay::SameFailure</span>
+            <a href="Assay/SameFailure.html#method-c-pass-3F">::pass?</a>
+          </li>
+        
+          
+          <li class="singleton" style="clear: both;">
+            <span class="method-parent-aside">Assay::Assertion</span>
+            <a href="Assay/Assertion.html#method-c-refute">::refute</a>
+          </li>
+        
+          
+          <li class="singleton" style="clear: both;">
+            <span class="method-parent-aside">Assay::Assertion</span>
+            <a href="Assay/Assertion.html#method-c-to_matcher">::to_matcher</a>
+          </li>
+        
+          
+          <li class="method" style="clear: both;">
+            <span class="method-parent-aside">Assay::Assertion</span>
+            <a href="Assay/Assertion.html#method-i-assert">#assert</a>
+          </li>
+        
+          
+          <li class="method" style="clear: both;">
+            <span class="method-parent-aside">Assay::Assertives</span>
+            <a href="Assay/Assertives.html#method-i-assert_empty">#assert_empty</a>
+          </li>
+        
+          
+          <li class="method" style="clear: both;">
+            <span class="method-parent-aside">Assay::Assertives</span>
+            <a href="Assay/Assertives.html#method-i-assert_equal">#assert_equal</a>
+          </li>
+        
+          
+          <li class="method" style="clear: both;">
+            <span class="method-parent-aside">Assay::Assertives</span>
+            <a href="Assay/Assertives.html#method-i-assert_executes">#assert_executes</a>
+          </li>
+        
+          
+          <li class="method" style="clear: both;">
+            <span class="method-parent-aside">Assay::Assertives</span>
+            <a href="Assay/Assertives.html#method-i-assert_false">#assert_false</a>
+          </li>
+        
+          
+          <li class="method" style="clear: both;">
+            <span class="method-parent-aside">Assay::Assertives</span>
+            <a href="Assay/Assertives.html#method-i-assert_identical">#assert_identical</a>
+          </li>
+        
+          
+          <li class="method" style="clear: both;">
+            <span class="method-parent-aside">Assay::Assertives</span>
+            <a href="Assay/Assertives.html#method-i-assert_in_delta">#assert_in_delta</a>
+          </li>
+        
+          
+          <li class="method" style="clear: both;">
+            <span class="method-parent-aside">Assay::Assertives</span>
+            <a href="Assay/Assertives.html#method-i-assert_instance_of">#assert_instance_of</a>
+          </li>
+        
+          
+          <li class="method" style="clear: both;">
+            <span class="method-parent-aside">Assay::Assertives</span>
+            <a href="Assay/Assertives.html#method-i-assert_kind_of">#assert_kind_of</a>
+          </li>
+        
+          
+          <li class="method" style="clear: both;">
+            <span class="method-parent-aside">Assay::Assertives</span>
+            <a href="Assay/Assertives.html#method-i-assert_match">#assert_match</a>
+          </li>
+        
+          
+          <li class="method" style="clear: both;">
+            <span class="method-parent-aside">Assay::Assertives</span>
+            <a href="Assay/Assertives.html#method-i-assert_nil">#assert_nil</a>
+          </li>
+        
+          
+          <li class="method" style="clear: both;">
+            <span class="method-parent-aside">Assay::Assertives</span>
+            <a href="Assay/Assertives.html#method-i-assert_not_empty">#assert_not_empty</a>
+          </li>
+        
+          
+          <li class="method" style="clear: both;">
+            <span class="method-parent-aside">Assay::Assertives</span>
+            <a href="Assay/Assertives.html#method-i-assert_not_equal">#assert_not_equal</a>
+          </li>
+        
+          
+          <li class="method" style="clear: both;">
+            <span class="method-parent-aside">Assay::Assertives</span>
+            <a href="Assay/Assertives.html#method-i-assert_not_executes">#assert_not_executes</a>
+          </li>
+        
+          
+          <li class="method" style="clear: both;">
+            <span class="method-parent-aside">Assay::Assertives</span>
+            <a href="Assay/Assertives.html#method-i-assert_not_false">#assert_not_false</a>
+          </li>
+        
+          
+          <li class="method" style="clear: both;">
+            <span class="method-parent-aside">Assay::Assertives</span>
+            <a href="Assay/Assertives.html#method-i-assert_not_identical">#assert_not_identical</a>
+          </li>
+        
+          
+          <li class="method" style="clear: both;">
+            <span class="method-parent-aside">Assay::Assertives</span>
+            <a href="Assay/Assertives.html#method-i-assert_not_instance_of">#assert_not_instance_of</a>
+          </li>
+        
+          
+          <li class="method" style="clear: both;">
+            <span class="method-parent-aside">Assay::Assertives</span>
+            <a href="Assay/Assertives.html#method-i-assert_not_kind_of">#assert_not_kind_of</a>
+          </li>
+        
+          
+          <li class="method" style="clear: both;">
+            <span class="method-parent-aside">Assay::Assertives</span>
+            <a href="Assay/Assertives.html#method-i-assert_not_nil">#assert_not_nil</a>
+          </li>
+        
+          
+          <li class="method" style="clear: both;">
+            <span class="method-parent-aside">Assay::Assertives</span>
+            <a href="Assay/Assertives.html#method-i-assert_not_raised">#assert_not_raised</a>
+          </li>
+        
+          
+          <li class="method" style="clear: both;">
+            <span class="method-parent-aside">Assay::Assertives</span>
+            <a href="Assay/Assertives.html#method-i-assert_not_respond_to">#assert_not_respond_to</a>
+          </li>
+        
+          
+          <li class="method" style="clear: both;">
+            <span class="method-parent-aside">Assay::Assertives</span>
+            <a href="Assay/Assertives.html#method-i-assert_not_responds_to">#assert_not_responds_to</a>
+          </li>
+        
+          
+          <li class="method" style="clear: both;">
+            <span class="method-parent-aside">Assay::Assertives</span>
+            <a href="Assay/Assertives.html#method-i-assert_not_same">#assert_not_same</a>
+          </li>
+        
+          
+          <li class="method" style="clear: both;">
+            <span class="method-parent-aside">Assay::Assertives</span>
+            <a href="Assay/Assertives.html#method-i-assert_not_thrown">#assert_not_thrown</a>
+          </li>
+        
+          
+          <li class="method" style="clear: both;">
+            <span class="method-parent-aside">Assay::Assertives</span>
+            <a href="Assay/Assertives.html#method-i-assert_not_true">#assert_not_true</a>
+          </li>
+        
+          
+          <li class="method" style="clear: both;">
+            <span class="method-parent-aside">Assay::Assertives</span>
+            <a href="Assay/Assertives.html#method-i-assert_raises">#assert_raises</a>
+          </li>
+        
+          
+          <li class="method" style="clear: both;">
+            <span class="method-parent-aside">Assay::Assertives</span>
+            <a href="Assay/Assertives.html#method-i-assert_respond_to">#assert_respond_to</a>
+          </li>
+        
+          
+          <li class="method" style="clear: both;">
+            <span class="method-parent-aside">Assay::Assertives</span>
+            <a href="Assay/Assertives.html#method-i-assert_responds_to">#assert_responds_to</a>
+          </li>
+        
+          
+          <li class="method" style="clear: both;">
+            <span class="method-parent-aside">Assay::Assertives</span>
+            <a href="Assay/Assertives.html#method-i-assert_same">#assert_same</a>
+          </li>
+        
+          
+          <li class="method" style="clear: both;">
+            <span class="method-parent-aside">Assay::Assertives</span>
+            <a href="Assay/Assertives.html#method-i-assert_throws">#assert_throws</a>
+          </li>
+        
+          
+          <li class="method" style="clear: both;">
+            <span class="method-parent-aside">Assay::Assertives</span>
+            <a href="Assay/Assertives.html#method-i-assert_true">#assert_true</a>
+          </li>
+        
+          
+          <li class="method" style="clear: both;">
+            <span class="method-parent-aside">Assay::Assertion</span>
+            <a href="Assay/Assertion.html#method-i-assertion-3F">#assertion?</a>
+          </li>
+        
+          
+          <li class="method" style="clear: both;">
+            <span class="method-parent-aside">Assay::Matchers</span>
+            <a href="Assay/Matchers.html#method-i-be_empty">#be_empty</a>
+          </li>
+        
+          
+          <li class="method" style="clear: both;">
+            <span class="method-parent-aside">Assay::Matchers</span>
+            <a href="Assay/Matchers.html#method-i-be_equal_to">#be_equal_to</a>
+          </li>
+        
+          
+          <li class="method" style="clear: both;">
+            <span class="method-parent-aside">Assay::Matchers</span>
+            <a href="Assay/Matchers.html#method-i-be_extecuted">#be_extecuted</a>
+          </li>
+        
+          
+          <li class="method" style="clear: both;">
+            <span class="method-parent-aside">Assay::Matchers</span>
+            <a href="Assay/Matchers.html#method-i-be_false">#be_false</a>
+          </li>
+        
+          
+          <li class="method" style="clear: both;">
+            <span class="method-parent-aside">Assay::Matchers</span>
+            <a href="Assay/Matchers.html#method-i-be_identical_to">#be_identical_to</a>
+          </li>
+        
+          
+          <li class="method" style="clear: both;">
+            <span class="method-parent-aside">Assay::Matchers</span>
+            <a href="Assay/Matchers.html#method-i-be_instance_of">#be_instance_of</a>
+          </li>
+        
+          
+          <li class="method" style="clear: both;">
+            <span class="method-parent-aside">Assay::Matchers</span>
+            <a href="Assay/Matchers.html#method-i-be_kind_of">#be_kind_of</a>
+          </li>
+        
+          
+          <li class="method" style="clear: both;">
+            <span class="method-parent-aside">Assay::Matchers</span>
+            <a href="Assay/Matchers.html#method-i-be_like">#be_like</a>
+          </li>
+        
+          
+          <li class="method" style="clear: both;">
+            <span class="method-parent-aside">Assay::Matchers</span>
+            <a href="Assay/Matchers.html#method-i-be_match_for">#be_match_for</a>
+          </li>
+        
+          
+          <li class="method" style="clear: both;">
+            <span class="method-parent-aside">Assay::Matchers</span>
+            <a href="Assay/Matchers.html#method-i-be_nil">#be_nil</a>
+          </li>
+        
+          
+          <li class="method" style="clear: both;">
+            <span class="method-parent-aside">Assay::Matchers</span>
+            <a href="Assay/Matchers.html#method-i-be_raised">#be_raised</a>
+          </li>
+        
+          
+          <li class="method" style="clear: both;">
+            <span class="method-parent-aside">Assay::Matchers</span>
+            <a href="Assay/Matchers.html#method-i-be_responsive_to">#be_responsive_to</a>
+          </li>
+        
+          
+          <li class="method" style="clear: both;">
+            <span class="method-parent-aside">Assay::Matchers</span>
+            <a href="Assay/Matchers.html#method-i-be_same_as">#be_same_as</a>
+          </li>
+        
+          
+          <li class="method" style="clear: both;">
+            <span class="method-parent-aside">Assay::Matchers</span>
+            <a href="Assay/Matchers.html#method-i-be_thrown">#be_thrown</a>
+          </li>
+        
+          
+          <li class="method" style="clear: both;">
+            <span class="method-parent-aside">Assay::Matchers</span>
+            <a href="Assay/Matchers.html#method-i-be_true">#be_true</a>
+          </li>
+        
+          
+          <li class="method" style="clear: both;">
+            <span class="method-parent-aside">Assay::Matchers</span>
+            <a href="Assay/Matchers.html#method-i-be_within">#be_within</a>
+          </li>
+        
+          
+          <li class="method" style="clear: both;">
+            <span class="method-parent-aside">Assay::Matcher</span>
+            <a href="Assay/Matcher.html#method-i-exception">#exception</a>
+          </li>
+        
+          
+          <li class="method" style="clear: both;">
+            <span class="method-parent-aside">Assay::Matcher</span>
+            <a href="Assay/Matcher.html#method-i-fail">#fail</a>
+          </li>
+        
+          
+          <li class="method" style="clear: both;">
+            <span class="method-parent-aside">Assay::Assertion</span>
+            <a href="Assay/Assertion.html#method-i-fail-3F">#fail?</a>
+          </li>
+        
+          
+          <li class="method" style="clear: both;">
+            <span class="method-parent-aside">Assay::Matcher</span>
+            <a href="Assay/Matcher.html#method-i-fail_class">#fail_class</a>
+          </li>
+        
+          
+          <li class="method" style="clear: both;">
+            <span class="method-parent-aside">Assay::Matcher</span>
+            <a href="Assay/Matcher.html#method-i-fail_message">#fail_message</a>
+          </li>
+        
+          
+          <li class="method" style="clear: both;">
+            <span class="method-parent-aside">Assay::Matchers</span>
+            <a href="Assay/Matchers.html#method-i-is_empty">#is_empty</a>
+          </li>
+        
+          
+          <li class="method" style="clear: both;">
+            <span class="method-parent-aside">Assay::Matchers</span>
+            <a href="Assay/Matchers.html#method-i-is_equal_to">#is_equal_to</a>
+          </li>
+        
+          
+          <li class="method" style="clear: both;">
+            <span class="method-parent-aside">Assay::Matchers</span>
+            <a href="Assay/Matchers.html#method-i-is_executed">#is_executed</a>
+          </li>
+        
+          
+          <li class="method" style="clear: both;">
+            <span class="method-parent-aside">Assay::Matchers</span>
+            <a href="Assay/Matchers.html#method-i-is_false">#is_false</a>
+          </li>
+        
+          
+          <li class="method" style="clear: both;">
+            <span class="method-parent-aside">Assay::Matchers</span>
+            <a href="Assay/Matchers.html#method-i-is_identical_to">#is_identical_to</a>
+          </li>
+        
+          
+          <li class="method" style="clear: both;">
+            <span class="method-parent-aside">Assay::Matchers</span>
+            <a href="Assay/Matchers.html#method-i-is_instance_of">#is_instance_of</a>
+          </li>
+        
+          
+          <li class="method" style="clear: both;">
+            <span class="method-parent-aside">Assay::Matchers</span>
+            <a href="Assay/Matchers.html#method-i-is_kind_of">#is_kind_of</a>
+          </li>
+        
+          
+          <li class="method" style="clear: both;">
+            <span class="method-parent-aside">Assay::Matchers</span>
+            <a href="Assay/Matchers.html#method-i-is_like">#is_like</a>
+          </li>
+        
+          
+          <li class="method" style="clear: both;">
+            <span class="method-parent-aside">Assay::Matchers</span>
+            <a href="Assay/Matchers.html#method-i-is_match_for">#is_match_for</a>
+          </li>
+        
+          
+          <li class="method" style="clear: both;">
+            <span class="method-parent-aside">Assay::Matchers</span>
+            <a href="Assay/Matchers.html#method-i-is_nil">#is_nil</a>
+          </li>
+        
+          
+          <li class="method" style="clear: both;">
+            <span class="method-parent-aside">Assay::Matchers</span>
+            <a href="Assay/Matchers.html#method-i-is_raised">#is_raised</a>
+          </li>
+        
+          
+          <li class="method" style="clear: both;">
+            <span class="method-parent-aside">Assay::Matchers</span>
+            <a href="Assay/Matchers.html#method-i-is_responsive_to">#is_responsive_to</a>
+          </li>
+        
+          
+          <li class="method" style="clear: both;">
+            <span class="method-parent-aside">Assay::Matchers</span>
+            <a href="Assay/Matchers.html#method-i-is_same_as">#is_same_as</a>
+          </li>
+        
+          
+          <li class="method" style="clear: both;">
+            <span class="method-parent-aside">Assay::Matchers</span>
+            <a href="Assay/Matchers.html#method-i-is_thrown">#is_thrown</a>
+          </li>
+        
+          
+          <li class="method" style="clear: both;">
+            <span class="method-parent-aside">Assay::Matchers</span>
+            <a href="Assay/Matchers.html#method-i-is_true">#is_true</a>
+          </li>
+        
+          
+          <li class="method" style="clear: both;">
+            <span class="method-parent-aside">Assay::Matchers</span>
+            <a href="Assay/Matchers.html#method-i-is_within">#is_within</a>
+          </li>
+        
+          
+          <li class="method" style="clear: both;">
+            <span class="method-parent-aside">Assay::Matcher</span>
+            <a href="Assay/Matcher.html#method-i-matches-3F">#matches?</a>
+          </li>
+        
+          
+          <li class="method" style="clear: both;">
+            <span class="method-parent-aside">Assay::Assertion</span>
+            <a href="Assay/Assertion.html#method-i-negative-3F">#negative?</a>
+          </li>
+        
+          
+          <li class="method" style="clear: both;">
+            <span class="method-parent-aside">Assay::Matcher</span>
+            <a href="Assay/Matcher.html#method-i-negative_fail_message">#negative_fail_message</a>
+          </li>
+        
+          
+          <li class="method" style="clear: both;">
+            <span class="method-parent-aside">Assay::Assertion</span>
+            <a href="Assay/Assertion.html#method-i-pass-3F">#pass?</a>
+          </li>
+        
+          
+          <li class="method" style="clear: both;">
+            <span class="method-parent-aside">Assay::Assertion</span>
+            <a href="Assay/Assertion.html#method-i-refute">#refute</a>
+          </li>
+        
+          
+          <li class="method" style="clear: both;">
+            <span class="method-parent-aside">Assay::Assertives</span>
+            <a href="Assay/Assertives.html#method-i-refute_empty">#refute_empty</a>
+          </li>
+        
+          
+          <li class="method" style="clear: both;">
+            <span class="method-parent-aside">Assay::Assertives</span>
+            <a href="Assay/Assertives.html#method-i-refute_instance_of">#refute_instance_of</a>
+          </li>
+        
+          
+          <li class="method" style="clear: both;">
+            <span class="method-parent-aside">Assay::Assertives</span>
+            <a href="Assay/Assertives.html#method-i-refute_kind_of">#refute_kind_of</a>
+          </li>
+        
+          
+          <li class="method" style="clear: both;">
+            <span class="method-parent-aside">Assay::Assertives</span>
+            <a href="Assay/Assertives.html#method-i-refute_match">#refute_match</a>
+          </li>
+        
+          
+          <li class="method" style="clear: both;">
+            <span class="method-parent-aside">Assay::Assertives</span>
+            <a href="Assay/Assertives.html#method-i-refute_same">#refute_same</a>
+          </li>
+        
+          
+          <li class="method" style="clear: both;">
+            <span class="method-parent-aside">Assay::Assertives</span>
+            <a href="Assay/Assertives.html#method-i-refute_throws">#refute_throws</a>
+          </li>
+        
+          
+          <li class="method" style="clear: both;">
+            <span class="method-parent-aside">Assay::Assertion</span>
+            <a href="Assay/Assertion.html#method-i-set_arguments">#set_arguments</a>
+          </li>
+        
+          
+          <li class="method" style="clear: both;">
+            <span class="method-parent-aside">Assay::Assertion</span>
+            <a href="Assay/Assertion.html#method-i-set_negative">#set_negative</a>
+          </li>
+        
+          
+          <li class="method" style="clear: both;">
+            <span class="method-parent-aside">Assay::SameFailure</span>
+            <a href="Assay/SameFailure.html#method-i-to_s">#to_s</a>
+          </li>
+        
+          
+          <li class="method" style="clear: both;">
+            <span class="method-parent-aside">Assay::EqualityFailure</span>
+            <a href="Assay/EqualityFailure.html#method-i-to_s">#to_s</a>
+          </li>
+        
+          
+          <li class="method" style="clear: both;">
+            <span class="method-parent-aside">Assay::DeltaFailure</span>
+            <a href="Assay/DeltaFailure.html#method-i-to_s">#to_s</a>
+          </li>
+        
+          
+          <li class="method" style="clear: both;">
+            <span class="method-parent-aside">Assay::ResponseFailure</span>
+            <a href="Assay/ResponseFailure.html#method-i-to_s">#to_s</a>
+          </li>
+        
+          
+          <li class="method" style="clear: both;">
+            <span class="method-parent-aside">Assay::ExecutionFailure</span>
+            <a href="Assay/ExecutionFailure.html#method-i-to_s">#to_s</a>
+          </li>
+        
+          
+          <li class="method" style="clear: both;">
+            <span class="method-parent-aside">Assay::FalseFailure</span>
+            <a href="Assay/FalseFailure.html#method-i-to_s">#to_s</a>
+          </li>
+        
+          
+          <li class="method" style="clear: both;">
+            <span class="method-parent-aside">Assay::IdentityFailure</span>
+            <a href="Assay/IdentityFailure.html#method-i-to_s">#to_s</a>
+          </li>
+        
+          
+          <li class="method" style="clear: both;">
+            <span class="method-parent-aside">Assay::EmptyFailure</span>
+            <a href="Assay/EmptyFailure.html#method-i-to_s">#to_s</a>
+          </li>
+        
+          
+          <li class="method" style="clear: both;">
+            <span class="method-parent-aside">Assay::Assertion</span>
+            <a href="Assay/Assertion.html#method-i-to_s">#to_s</a>
+          </li>
+        
+          
+          <li class="method" style="clear: both;">
+            <span class="method-parent-aside">Assay::CompareFailure</span>
+            <a href="Assay/CompareFailure.html#method-i-to_s">#to_s</a>
+          </li>
+        
+          
+          <li class="method" style="clear: both;">
+            <span class="method-parent-aside">Assay::RaiseFailure</span>
+            <a href="Assay/RaiseFailure.html#method-i-to_s">#to_s</a>
+          </li>
+        
+          
+          <li class="method" style="clear: both;">
+            <span class="method-parent-aside">Assay::NilFailure</span>
+            <a href="Assay/NilFailure.html#method-i-to_s">#to_s</a>
+          </li>
+        
+          
+          <li class="method" style="clear: both;">
+            <span class="method-parent-aside">Assay::ThrowFailure</span>
+            <a href="Assay/ThrowFailure.html#method-i-to_s">#to_s</a>
+          </li>
+        
+          
+          <li class="method" style="clear: both;">
+            <span class="method-parent-aside">Assay::InstanceFailure</span>
+            <a href="Assay/InstanceFailure.html#method-i-to_s">#to_s</a>
+          </li>
+        
+          
+          <li class="method" style="clear: both;">
+            <span class="method-parent-aside">Assay::KindFailure</span>
+            <a href="Assay/KindFailure.html#method-i-to_s">#to_s</a>
+          </li>
+        
+          
+          <li class="method" style="clear: both;">
+            <span class="method-parent-aside">Assay::MatchFailure</span>
+            <a href="Assay/MatchFailure.html#method-i-to_s">#to_s</a>
+          </li>
+        
+          
+          <li class="method" style="clear: both;">
+            <span class="method-parent-aside">Assay::TrueFailure</span>
+            <a href="Assay/TrueFailure.html#method-i-to_s">#to_s</a>
+          </li>
+        
+        </ul>
+      </div>
+
+    </div>
+
+    <div id="validator-badges">
+      
+      <div style="float: right; margin-right: 5px;">
+        <a href="http://validator.w3.org/check/referer"><img src="assets/icon/check.png" alt="[Validate]" height="16" width="16" /></a>
+      </div>
+      Generated with <a href="http://rubyworks.github.com/rdazzle">RDazzle</a>
+                     <a href="http://rubyworks.github.com/redfish">RedFish</a>
+                     v1.0.1
+      <br/><br/> 
+    </div>
+  </div>
+
+<!--
+  
+  
+  <h2>Files</h2>
+  <ul>
+    
+      <li class="file"><a href="APACHE2_txt.html">APACHE2.txt</a></li>
+    
+      <li class="file"><a href="HISTORY_rdoc.html">HISTORY.rdoc</a></li>
+    
+      <li class="file"><a href="NOTICE_rdoc.html">NOTICE.rdoc</a></li>
+    
+      <li class="file"><a href="README_rdoc.html">README.rdoc</a></li>
+    
+      <li class="file"><a href="Redfile.html">Redfile</a></li>
+    
+  </ul>
+  
+
+  <h2>Classes/Modules</h2>
+  <ul>
+    
+    <li class="module"><a href="Assay.html">Assay</a></li>
+    
+    <li class="class"><a href="Assay/Assertion.html">Assay::Assertion</a></li>
+    
+    <li class="module"><a href="Assay/Assertives.html">Assay::Assertives</a></li>
+    
+    <li class="class"><a href="Assay/CompareFailure.html">Assay::CompareFailure</a></li>
+    
+    <li class="class"><a href="Assay/DeltaFailure.html">Assay::DeltaFailure</a></li>
+    
+    <li class="class"><a href="Assay/EmptyFailure.html">Assay::EmptyFailure</a></li>
+    
+    <li class="class"><a href="Assay/EqualityFailure.html">Assay::EqualityFailure</a></li>
+    
+    <li class="class"><a href="Assay/ExecutionFailure.html">Assay::ExecutionFailure</a></li>
+    
+    <li class="class"><a href="Assay/FalseFailure.html">Assay::FalseFailure</a></li>
+    
+    <li class="class"><a href="Assay/IdentityFailure.html">Assay::IdentityFailure</a></li>
+    
+    <li class="class"><a href="Assay/InstanceFailure.html">Assay::InstanceFailure</a></li>
+    
+    <li class="class"><a href="Assay/KindFailure.html">Assay::KindFailure</a></li>
+    
+    <li class="class"><a href="Assay/MatchFailure.html">Assay::MatchFailure</a></li>
+    
+    <li class="class"><a href="Assay/Matcher.html">Assay::Matcher</a></li>
+    
+    <li class="module"><a href="Assay/Matchers.html">Assay::Matchers</a></li>
+    
+    <li class="class"><a href="Assay/NilFailure.html">Assay::NilFailure</a></li>
+    
+    <li class="class"><a href="Assay/RaiseFailure.html">Assay::RaiseFailure</a></li>
+    
+    <li class="class"><a href="Assay/ResponseFailure.html">Assay::ResponseFailure</a></li>
+    
+    <li class="class"><a href="Assay/SameFailure.html">Assay::SameFailure</a></li>
+    
+    <li class="class"><a href="Assay/ThrowFailure.html">Assay::ThrowFailure</a></li>
+    
+    <li class="class"><a href="Assay/TrueFailure.html">Assay::TrueFailure</a></li>
+    
+  </ul>
+
+  <h2>Methods</h2>
+  <ul>
+    
+      <li><a href="Assay/RaiseFailure.html#method-c-assert">::assert &mdash; Assay::RaiseFailure</a></li>
+    
+      <li><a href="Assay/Assertion.html#method-c-assert">::assert &mdash; Assay::Assertion</a></li>
+    
+      <li><a href="Assay/RaiseFailure.html#method-c-assert-21">::assert! &mdash; Assay::RaiseFailure</a></li>
+    
+      <li><a href="Assay/Assertion.html#method-c-assertable_method">::assertable_method &mdash; Assay::Assertion</a></li>
+    
+      <li><a href="Assay/MatchFailure.html#method-c-assertable_method">::assertable_method &mdash; Assay::MatchFailure</a></li>
+    
+      <li><a href="Assay/KindFailure.html#method-c-assertion_name">::assertion_name &mdash; Assay::KindFailure</a></li>
+    
+      <li><a href="Assay/ExecutionFailure.html#method-c-assertion_name">::assertion_name &mdash; Assay::ExecutionFailure</a></li>
+    
+      <li><a href="Assay/MatchFailure.html#method-c-assertion_name">::assertion_name &mdash; Assay::MatchFailure</a></li>
+    
+      <li><a href="Assay/RaiseFailure.html#method-c-assertion_name">::assertion_name &mdash; Assay::RaiseFailure</a></li>
+    
+      <li><a href="Assay/TrueFailure.html#method-c-assertion_name">::assertion_name &mdash; Assay::TrueFailure</a></li>
+    
+      <li><a href="Assay/IdentityFailure.html#method-c-assertion_name">::assertion_name &mdash; Assay::IdentityFailure</a></li>
+    
+      <li><a href="Assay/InstanceFailure.html#method-c-assertion_name">::assertion_name &mdash; Assay::InstanceFailure</a></li>
+    
+      <li><a href="Assay/NilFailure.html#method-c-assertion_name">::assertion_name &mdash; Assay::NilFailure</a></li>
+    
+      <li><a href="Assay/ResponseFailure.html#method-c-assertion_name">::assertion_name &mdash; Assay::ResponseFailure</a></li>
+    
+      <li><a href="Assay/EmptyFailure.html#method-c-assertion_name">::assertion_name &mdash; Assay::EmptyFailure</a></li>
+    
+      <li><a href="Assay/EqualityFailure.html#method-c-assertion_name">::assertion_name &mdash; Assay::EqualityFailure</a></li>
+    
+      <li><a href="Assay/CompareFailure.html#method-c-assertion_name">::assertion_name &mdash; Assay::CompareFailure</a></li>
+    
+      <li><a href="Assay/FalseFailure.html#method-c-assertion_name">::assertion_name &mdash; Assay::FalseFailure</a></li>
+    
+      <li><a href="Assay/SameFailure.html#method-c-assertion_name">::assertion_name &mdash; Assay::SameFailure</a></li>
+    
+      <li><a href="Assay/ThrowFailure.html#method-c-assertion_name">::assertion_name &mdash; Assay::ThrowFailure</a></li>
+    
+      <li><a href="Assay/DeltaFailure.html#method-c-assertion_name">::assertion_name &mdash; Assay::DeltaFailure</a></li>
+    
+      <li><a href="Assay/ResponseFailure.html#method-c-assertion_name-21">::assertion_name! &mdash; Assay::ResponseFailure</a></li>
+    
+      <li><a href="Assay/ThrowFailure.html#method-c-assertion_name-21">::assertion_name! &mdash; Assay::ThrowFailure</a></li>
+    
+      <li><a href="Assay/RaiseFailure.html#method-c-assertion_name-21">::assertion_name! &mdash; Assay::RaiseFailure</a></li>
+    
+      <li><a href="Assay/NilFailure.html#method-c-assertion_operator">::assertion_operator &mdash; Assay::NilFailure</a></li>
+    
+      <li><a href="Assay/InstanceFailure.html#method-c-assertion_operator">::assertion_operator &mdash; Assay::InstanceFailure</a></li>
+    
+      <li><a href="Assay/MatchFailure.html#method-c-assertion_operator">::assertion_operator &mdash; Assay::MatchFailure</a></li>
+    
+      <li><a href="Assay/IdentityFailure.html#method-c-assertion_operator">::assertion_operator &mdash; Assay::IdentityFailure</a></li>
+    
+      <li><a href="Assay/FalseFailure.html#method-c-assertion_operator">::assertion_operator &mdash; Assay::FalseFailure</a></li>
+    
+      <li><a href="Assay/EqualityFailure.html#method-c-assertion_operator">::assertion_operator &mdash; Assay::EqualityFailure</a></li>
+    
+      <li><a href="Assay/TrueFailure.html#method-c-assertion_operator">::assertion_operator &mdash; Assay::TrueFailure</a></li>
+    
+      <li><a href="Assay/KindFailure.html#method-c-assertion_operator">::assertion_operator &mdash; Assay::KindFailure</a></li>
+    
+      <li><a href="Assay/EmptyFailure.html#method-c-assertion_operator">::assertion_operator &mdash; Assay::EmptyFailure</a></li>
+    
+      <li><a href="Assay/SameFailure.html#method-c-assertion_operator">::assertion_operator &mdash; Assay::SameFailure</a></li>
+    
+      <li><a href="Assay.html#method-c-const_missing">::const_missing &mdash; Assay</a></li>
+    
+      <li><a href="Assay/Assertion.html#method-c-fail-3F">::fail? &mdash; Assay::Assertion</a></li>
+    
+      <li><a href="Assay/RaiseFailure.html#method-c-fail-3F">::fail? &mdash; Assay::RaiseFailure</a></li>
+    
+      <li><a href="Assay/ThrowFailure.html#method-c-fail-3F">::fail? &mdash; Assay::ThrowFailure</a></li>
+    
+      <li><a href="Assay/ExecutionFailure.html#method-c-fail-3F">::fail? &mdash; Assay::ExecutionFailure</a></li>
+    
+      <li><a href="Assay/EqualityFailure.html#method-c-fail-3F">::fail? &mdash; Assay::EqualityFailure</a></li>
+    
+      <li><a href="Assay/MatchFailure.html#method-c-fail-3F">::fail? &mdash; Assay::MatchFailure</a></li>
+    
+      <li><a href="Assay.html#method-c-failure_classes_by_operator">::failure_classes_by_operator &mdash; Assay</a></li>
+    
+      <li><a href="Assay.html#method-c-lookup">::lookup &mdash; Assay</a></li>
+    
+      <li><a href="Assay.html#method-c-meta">::meta &mdash; Assay</a></li>
+    
+      <li><a href="Assay/Matcher.html#method-c-new">::new &mdash; Assay::Matcher</a></li>
+    
+      <li><a href="Assay/Assertion.html#method-c-new">::new &mdash; Assay::Assertion</a></li>
+    
+      <li><a href="Assay/Assertives.html#method-c-not_in_delta">::not_in_delta &mdash; Assay::Assertives</a></li>
+    
+      <li><a href="Assay/ResponseFailure.html#method-c-operator_name">::operator_name &mdash; Assay::ResponseFailure</a></li>
+    
+      <li><a href="Assay/SameFailure.html#method-c-pass-3F">::pass? &mdash; Assay::SameFailure</a></li>
+    
+      <li><a href="Assay/ResponseFailure.html#method-c-pass-3F">::pass? &mdash; Assay::ResponseFailure</a></li>
+    
+      <li><a href="Assay/KindFailure.html#method-c-pass-3F">::pass? &mdash; Assay::KindFailure</a></li>
+    
+      <li><a href="Assay/ExecutionFailure.html#method-c-pass-3F">::pass? &mdash; Assay::ExecutionFailure</a></li>
+    
+      <li><a href="Assay/CompareFailure.html#method-c-pass-3F">::pass? &mdash; Assay::CompareFailure</a></li>
+    
+      <li><a href="Assay/InstanceFailure.html#method-c-pass-3F">::pass? &mdash; Assay::InstanceFailure</a></li>
+    
+      <li><a href="Assay/NilFailure.html#method-c-pass-3F">::pass? &mdash; Assay::NilFailure</a></li>
+    
+      <li><a href="Assay/RaiseFailure.html#method-c-pass-3F">::pass? &mdash; Assay::RaiseFailure</a></li>
+    
+      <li><a href="Assay/EqualityFailure.html#method-c-pass-3F">::pass? &mdash; Assay::EqualityFailure</a></li>
+    
+      <li><a href="Assay/MatchFailure.html#method-c-pass-3F">::pass? &mdash; Assay::MatchFailure</a></li>
+    
+      <li><a href="Assay/ThrowFailure.html#method-c-pass-3F">::pass? &mdash; Assay::ThrowFailure</a></li>
+    
+      <li><a href="Assay/DeltaFailure.html#method-c-pass-3F">::pass? &mdash; Assay::DeltaFailure</a></li>
+    
+      <li><a href="Assay/FalseFailure.html#method-c-pass-3F">::pass? &mdash; Assay::FalseFailure</a></li>
+    
+      <li><a href="Assay/Assertion.html#method-c-pass-3F">::pass? &mdash; Assay::Assertion</a></li>
+    
+      <li><a href="Assay/TrueFailure.html#method-c-pass-3F">::pass? &mdash; Assay::TrueFailure</a></li>
+    
+      <li><a href="Assay/EmptyFailure.html#method-c-pass-3F">::pass? &mdash; Assay::EmptyFailure</a></li>
+    
+      <li><a href="Assay/IdentityFailure.html#method-c-pass-3F">::pass? &mdash; Assay::IdentityFailure</a></li>
+    
+      <li><a href="Assay/Assertion.html#method-c-refute">::refute &mdash; Assay::Assertion</a></li>
+    
+      <li><a href="Assay/Assertion.html#method-c-to_matcher">::to_matcher &mdash; Assay::Assertion</a></li>
+    
+      <li><a href="Assay/Assertion.html#method-i-assert">#assert &mdash; Assay::Assertion</a></li>
+    
+      <li><a href="Assay/Assertives.html#method-i-assert_empty">#assert_empty &mdash; Assay::Assertives</a></li>
+    
+      <li><a href="Assay/Assertives.html#method-i-assert_equal">#assert_equal &mdash; Assay::Assertives</a></li>
+    
+      <li><a href="Assay/Assertives.html#method-i-assert_executes">#assert_executes &mdash; Assay::Assertives</a></li>
+    
+      <li><a href="Assay/Assertives.html#method-i-assert_false">#assert_false &mdash; Assay::Assertives</a></li>
+    
+      <li><a href="Assay/Assertives.html#method-i-assert_identical">#assert_identical &mdash; Assay::Assertives</a></li>
+    
+      <li><a href="Assay/Assertives.html#method-i-assert_in_delta">#assert_in_delta &mdash; Assay::Assertives</a></li>
+    
+      <li><a href="Assay/Assertives.html#method-i-assert_instance_of">#assert_instance_of &mdash; Assay::Assertives</a></li>
+    
+      <li><a href="Assay/Assertives.html#method-i-assert_kind_of">#assert_kind_of &mdash; Assay::Assertives</a></li>
+    
+      <li><a href="Assay/Assertives.html#method-i-assert_match">#assert_match &mdash; Assay::Assertives</a></li>
+    
+      <li><a href="Assay/Assertives.html#method-i-assert_nil">#assert_nil &mdash; Assay::Assertives</a></li>
+    
+      <li><a href="Assay/Assertives.html#method-i-assert_not_empty">#assert_not_empty &mdash; Assay::Assertives</a></li>
+    
+      <li><a href="Assay/Assertives.html#method-i-assert_not_equal">#assert_not_equal &mdash; Assay::Assertives</a></li>
+    
+      <li><a href="Assay/Assertives.html#method-i-assert_not_executes">#assert_not_executes &mdash; Assay::Assertives</a></li>
+    
+      <li><a href="Assay/Assertives.html#method-i-assert_not_false">#assert_not_false &mdash; Assay::Assertives</a></li>
+    
+      <li><a href="Assay/Assertives.html#method-i-assert_not_identical">#assert_not_identical &mdash; Assay::Assertives</a></li>
+    
+      <li><a href="Assay/Assertives.html#method-i-assert_not_instance_of">#assert_not_instance_of &mdash; Assay::Assertives</a></li>
+    
+      <li><a href="Assay/Assertives.html#method-i-assert_not_kind_of">#assert_not_kind_of &mdash; Assay::Assertives</a></li>
+    
+      <li><a href="Assay/Assertives.html#method-i-assert_not_nil">#assert_not_nil &mdash; Assay::Assertives</a></li>
+    
+      <li><a href="Assay/Assertives.html#method-i-assert_not_raised">#assert_not_raised &mdash; Assay::Assertives</a></li>
+    
+      <li><a href="Assay/Assertives.html#method-i-assert_not_respond_to">#assert_not_respond_to &mdash; Assay::Assertives</a></li>
+    
+      <li><a href="Assay/Assertives.html#method-i-assert_not_responds_to">#assert_not_responds_to &mdash; Assay::Assertives</a></li>
+    
+      <li><a href="Assay/Assertives.html#method-i-assert_not_same">#assert_not_same &mdash; Assay::Assertives</a></li>
+    
+      <li><a href="Assay/Assertives.html#method-i-assert_not_thrown">#assert_not_thrown &mdash; Assay::Assertives</a></li>
+    
+      <li><a href="Assay/Assertives.html#method-i-assert_not_true">#assert_not_true &mdash; Assay::Assertives</a></li>
+    
+      <li><a href="Assay/Assertives.html#method-i-assert_raises">#assert_raises &mdash; Assay::Assertives</a></li>
+    
+      <li><a href="Assay/Assertives.html#method-i-assert_respond_to">#assert_respond_to &mdash; Assay::Assertives</a></li>
+    
+      <li><a href="Assay/Assertives.html#method-i-assert_responds_to">#assert_responds_to &mdash; Assay::Assertives</a></li>
+    
+      <li><a href="Assay/Assertives.html#method-i-assert_same">#assert_same &mdash; Assay::Assertives</a></li>
+    
+      <li><a href="Assay/Assertives.html#method-i-assert_throws">#assert_throws &mdash; Assay::Assertives</a></li>
+    
+      <li><a href="Assay/Assertives.html#method-i-assert_true">#assert_true &mdash; Assay::Assertives</a></li>
+    
+      <li><a href="Assay/Assertion.html#method-i-assertion-3F">#assertion? &mdash; Assay::Assertion</a></li>
+    
+      <li><a href="Assay/Matchers.html#method-i-be_empty">#be_empty &mdash; Assay::Matchers</a></li>
+    
+      <li><a href="Assay/Matchers.html#method-i-be_equal_to">#be_equal_to &mdash; Assay::Matchers</a></li>
+    
+      <li><a href="Assay/Matchers.html#method-i-be_extecuted">#be_extecuted &mdash; Assay::Matchers</a></li>
+    
+      <li><a href="Assay/Matchers.html#method-i-be_false">#be_false &mdash; Assay::Matchers</a></li>
+    
+      <li><a href="Assay/Matchers.html#method-i-be_identical_to">#be_identical_to &mdash; Assay::Matchers</a></li>
+    
+      <li><a href="Assay/Matchers.html#method-i-be_instance_of">#be_instance_of &mdash; Assay::Matchers</a></li>
+    
+      <li><a href="Assay/Matchers.html#method-i-be_kind_of">#be_kind_of &mdash; Assay::Matchers</a></li>
+    
+      <li><a href="Assay/Matchers.html#method-i-be_like">#be_like &mdash; Assay::Matchers</a></li>
+    
+      <li><a href="Assay/Matchers.html#method-i-be_match_for">#be_match_for &mdash; Assay::Matchers</a></li>
+    
+      <li><a href="Assay/Matchers.html#method-i-be_nil">#be_nil &mdash; Assay::Matchers</a></li>
+    
+      <li><a href="Assay/Matchers.html#method-i-be_raised">#be_raised &mdash; Assay::Matchers</a></li>
+    
+      <li><a href="Assay/Matchers.html#method-i-be_responsive_to">#be_responsive_to &mdash; Assay::Matchers</a></li>
+    
+      <li><a href="Assay/Matchers.html#method-i-be_same_as">#be_same_as &mdash; Assay::Matchers</a></li>
+    
+      <li><a href="Assay/Matchers.html#method-i-be_thrown">#be_thrown &mdash; Assay::Matchers</a></li>
+    
+      <li><a href="Assay/Matchers.html#method-i-be_true">#be_true &mdash; Assay::Matchers</a></li>
+    
+      <li><a href="Assay/Matchers.html#method-i-be_within">#be_within &mdash; Assay::Matchers</a></li>
+    
+      <li><a href="Assay/Matcher.html#method-i-exception">#exception &mdash; Assay::Matcher</a></li>
+    
+      <li><a href="Assay/Matcher.html#method-i-fail">#fail &mdash; Assay::Matcher</a></li>
+    
+      <li><a href="Assay/Assertion.html#method-i-fail-3F">#fail? &mdash; Assay::Assertion</a></li>
+    
+      <li><a href="Assay/Matcher.html#method-i-fail_class">#fail_class &mdash; Assay::Matcher</a></li>
+    
+      <li><a href="Assay/Matcher.html#method-i-fail_message">#fail_message &mdash; Assay::Matcher</a></li>
+    
+      <li><a href="Assay/Matchers.html#method-i-is_empty">#is_empty &mdash; Assay::Matchers</a></li>
+    
+      <li><a href="Assay/Matchers.html#method-i-is_equal_to">#is_equal_to &mdash; Assay::Matchers</a></li>
+    
+      <li><a href="Assay/Matchers.html#method-i-is_executed">#is_executed &mdash; Assay::Matchers</a></li>
+    
+      <li><a href="Assay/Matchers.html#method-i-is_false">#is_false &mdash; Assay::Matchers</a></li>
+    
+      <li><a href="Assay/Matchers.html#method-i-is_identical_to">#is_identical_to &mdash; Assay::Matchers</a></li>
+    
+      <li><a href="Assay/Matchers.html#method-i-is_instance_of">#is_instance_of &mdash; Assay::Matchers</a></li>
+    
+      <li><a href="Assay/Matchers.html#method-i-is_kind_of">#is_kind_of &mdash; Assay::Matchers</a></li>
+    
+      <li><a href="Assay/Matchers.html#method-i-is_like">#is_like &mdash; Assay::Matchers</a></li>
+    
+      <li><a href="Assay/Matchers.html#method-i-is_match_for">#is_match_for &mdash; Assay::Matchers</a></li>
+    
+      <li><a href="Assay/Matchers.html#method-i-is_nil">#is_nil &mdash; Assay::Matchers</a></li>
+    
+      <li><a href="Assay/Matchers.html#method-i-is_raised">#is_raised &mdash; Assay::Matchers</a></li>
+    
+      <li><a href="Assay/Matchers.html#method-i-is_responsive_to">#is_responsive_to &mdash; Assay::Matchers</a></li>
+    
+      <li><a href="Assay/Matchers.html#method-i-is_same_as">#is_same_as &mdash; Assay::Matchers</a></li>
+    
+      <li><a href="Assay/Matchers.html#method-i-is_thrown">#is_thrown &mdash; Assay::Matchers</a></li>
+    
+      <li><a href="Assay/Matchers.html#method-i-is_true">#is_true &mdash; Assay::Matchers</a></li>
+    
+      <li><a href="Assay/Matchers.html#method-i-is_within">#is_within &mdash; Assay::Matchers</a></li>
+    
+      <li><a href="Assay/Matcher.html#method-i-matches-3F">#matches? &mdash; Assay::Matcher</a></li>
+    
+      <li><a href="Assay/Assertion.html#method-i-negative-3F">#negative? &mdash; Assay::Assertion</a></li>
+    
+      <li><a href="Assay/Matcher.html#method-i-negative_fail_message">#negative_fail_message &mdash; Assay::Matcher</a></li>
+    
+      <li><a href="Assay/Assertion.html#method-i-pass-3F">#pass? &mdash; Assay::Assertion</a></li>
+    
+      <li><a href="Assay/Assertion.html#method-i-refute">#refute &mdash; Assay::Assertion</a></li>
+    
+      <li><a href="Assay/Assertives.html#method-i-refute_empty">#refute_empty &mdash; Assay::Assertives</a></li>
+    
+      <li><a href="Assay/Assertives.html#method-i-refute_instance_of">#refute_instance_of &mdash; Assay::Assertives</a></li>
+    
+      <li><a href="Assay/Assertives.html#method-i-refute_kind_of">#refute_kind_of &mdash; Assay::Assertives</a></li>
+    
+      <li><a href="Assay/Assertives.html#method-i-refute_match">#refute_match &mdash; Assay::Assertives</a></li>
+    
+      <li><a href="Assay/Assertives.html#method-i-refute_same">#refute_same &mdash; Assay::Assertives</a></li>
+    
+      <li><a href="Assay/Assertives.html#method-i-refute_throws">#refute_throws &mdash; Assay::Assertives</a></li>
+    
+      <li><a href="Assay/Assertion.html#method-i-set_arguments">#set_arguments &mdash; Assay::Assertion</a></li>
+    
+      <li><a href="Assay/Assertion.html#method-i-set_negative">#set_negative &mdash; Assay::Assertion</a></li>
+    
+      <li><a href="Assay/FalseFailure.html#method-i-to_s">#to_s &mdash; Assay::FalseFailure</a></li>
+    
+      <li><a href="Assay/EmptyFailure.html#method-i-to_s">#to_s &mdash; Assay::EmptyFailure</a></li>
+    
+      <li><a href="Assay/TrueFailure.html#method-i-to_s">#to_s &mdash; Assay::TrueFailure</a></li>
+    
+      <li><a href="Assay/Assertion.html#method-i-to_s">#to_s &mdash; Assay::Assertion</a></li>
+    
+      <li><a href="Assay/ThrowFailure.html#method-i-to_s">#to_s &mdash; Assay::ThrowFailure</a></li>
+    
+      <li><a href="Assay/ResponseFailure.html#method-i-to_s">#to_s &mdash; Assay::ResponseFailure</a></li>
+    
+      <li><a href="Assay/CompareFailure.html#method-i-to_s">#to_s &mdash; Assay::CompareFailure</a></li>
+    
+      <li><a href="Assay/DeltaFailure.html#method-i-to_s">#to_s &mdash; Assay::DeltaFailure</a></li>
+    
+      <li><a href="Assay/SameFailure.html#method-i-to_s">#to_s &mdash; Assay::SameFailure</a></li>
+    
+      <li><a href="Assay/EqualityFailure.html#method-i-to_s">#to_s &mdash; Assay::EqualityFailure</a></li>
+    
+      <li><a href="Assay/InstanceFailure.html#method-i-to_s">#to_s &mdash; Assay::InstanceFailure</a></li>
+    
+      <li><a href="Assay/RaiseFailure.html#method-i-to_s">#to_s &mdash; Assay::RaiseFailure</a></li>
+    
+      <li><a href="Assay/ExecutionFailure.html#method-i-to_s">#to_s &mdash; Assay::ExecutionFailure</a></li>
+    
+      <li><a href="Assay/KindFailure.html#method-i-to_s">#to_s &mdash; Assay::KindFailure</a></li>
+    
+      <li><a href="Assay/NilFailure.html#method-i-to_s">#to_s &mdash; Assay::NilFailure</a></li>
+    
+      <li><a href="Assay/MatchFailure.html#method-i-to_s">#to_s &mdash; Assay::MatchFailure</a></li>
+    
+      <li><a href="Assay/IdentityFailure.html#method-i-to_s">#to_s &mdash; Assay::IdentityFailure</a></li>
+    
+  </ul>
+-->
+
+  
+  <div id="documentation">
+    
+<h1><a href="Assay.html">Assay</a></h1>
+
+<h2>DESCRIPTION</h2>
+
+<p><a href="Assay.html">Assay</a> defines assertions in the same way that Ruby
+defines exceptions. An assertion then is nothing more that an extended
+Exception class. <a href="Assay.html">Assay</a> provides a complete set of
+these assertion classes for the most common assertion types. It also
+provides both TestUnit-style assertion methods and RSpec-compatiable
+matchers built from these assertion classes for use in your preferred test
+harness. <a href="Assay.html">Assay</a> works with TestUnit, MiniTest,
+RSpec and other test frameworks.</p>
+
+<h2>FEATURES</h2>
+<ul><li>
+<p>Mirrors the Ruby Exception system.</p>
+</li><li>
+<p>Assertions get their own specialized error messages.</p>
+</li></ul>
+
+<h1>RESOURCES</h1>
+<ul><li>
+<p>home: <a
+href="http://rubyworks.github.com/assay">rubyworks.github.com/assay</a></p>
+</li><li>
+<p>code: <a
+href="http://github.com/rubyworks/assay">github.com/rubyworks/assay</a></p>
+</li><li>
+<p>mail: <a
+href="http://groups.google.com/group/rubyworks-mailinglist">groups.google.com/group/rubyworks-mailinglist</a></p>
+</li></ul>
+
+<h2>SYNOPSIS</h2>
+
+<p>See QED documentation.</p>
+
+<h2>INSTALLATION</h2>
+
+<p>To install with RubyGems simply open a console and type:</p>
+
+<pre>$ gem install assay</pre>
+
+<p>Site installation with the tarball can be done with Ruby Setup (gem install
+setup). See <a
+href="http://rubyworks.github.com/setup.">rubyworks.github.com/setup.</a></p>
+
+<h2>COPYING</h2>
+
+<p>Copyright © 2009 Thomas Sawyer</p>
+
+<p>This program is ditributed under the terms of the Apache 2.0 license.</p>
+
+<p>See <a href="NOTICE_rdoc.html">NOTICE.rdoc</a> and <a
+href="APACHE2_txt.html">APACHE2.txt</a> file for details.</p>
+
+  </div>
+  
+
+</div>
+</body>
+</html>
+

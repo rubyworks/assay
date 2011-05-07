@@ -1,0 +1,1484 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+
+  <title>Module: Assay::Matchers</title>
+
+  
+    <link rel="SHORTCUT ICON" href="../assets/icon/module.png">
+  
+
+  <link type="text/css" rel="stylesheet" href="../assets/rdoc.css" media="screen" />
+  <link type="text/css" rel="stylesheet" href="../assets/highlight/styles/github.css" title="GitHub" />
+
+  <script type="text/javascript" charset="utf-8" src="../assets/jquery.js"></script>
+  <script type="text/javascript" charset="utf-8" src="../assets/highlight/highlight.pack.js"></script>
+  <script type="text/javascript" charset="utf-8" src="../assets/quicksearch.js"></script>
+  <script type="text/javascript" charset="utf-8" src="../assets/main.js"></script>
+
+  <script type="text/javascript">
+    $(document).ready( function() {
+      hookHighlightSyntax();
+	    hookSourceViews();
+	    hookDebuggingToggle();
+	    hookQuickSearch();
+	    highlightLocationTarget();
+
+	    $('ul.link-list a').bind("click", highlightClickTarget);
+    });
+  </script>
+</head>
+<body class="module">
+<div id="main">
+
+  <div class="head">
+    <h1>
+      
+        <img src="../assets/icon/module.png" align="absmiddle">&nbsp;
+      
+      <a href="../index.html">&quot;Assay&quot;</a>&nbsp;
+      <a href="">Assay::Matchers</a>
+    </h1>
+  </div>
+
+  <div id="metadata">
+    <div id="project-metadata">
+
+      <div id="file-list-section" class="section">
+        <h3 class="section-header">In Files</h3>
+        <div class="section-body">
+          <ul>
+          
+            <li class="file"><a href="../lib/assay/assertions/equality_failure_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+              class="thickbox" title="lib/assay/assertions/equality_failure.rb">lib/assay/assertions/equality_failure.rb</a></li>
+          
+            <li class="file"><a href="../lib/assay/assertions/match_failure_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+              class="thickbox" title="lib/assay/assertions/match_failure.rb">lib/assay/assertions/match_failure.rb</a></li>
+          
+            <li class="file"><a href="../lib/assay/assertions/response_failure_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+              class="thickbox" title="lib/assay/assertions/response_failure.rb">lib/assay/assertions/response_failure.rb</a></li>
+          
+            <li class="file"><a href="../lib/assay/assertions/nil_failure_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+              class="thickbox" title="lib/assay/assertions/nil_failure.rb">lib/assay/assertions/nil_failure.rb</a></li>
+          
+            <li class="file"><a href="../lib/assay/assertions/instance_failure_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+              class="thickbox" title="lib/assay/assertions/instance_failure.rb">lib/assay/assertions/instance_failure.rb</a></li>
+          
+            <li class="file"><a href="../lib/assay/assertions/raise_failure_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+              class="thickbox" title="lib/assay/assertions/raise_failure.rb">lib/assay/assertions/raise_failure.rb</a></li>
+          
+            <li class="file"><a href="../lib/assay/assertions/empty_failure_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+              class="thickbox" title="lib/assay/assertions/empty_failure.rb">lib/assay/assertions/empty_failure.rb</a></li>
+          
+            <li class="file"><a href="../lib/assay/assertions/execution_failure_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+              class="thickbox" title="lib/assay/assertions/execution_failure.rb">lib/assay/assertions/execution_failure.rb</a></li>
+          
+            <li class="file"><a href="../lib/assay/assertions/compare_failure_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+              class="thickbox" title="lib/assay/assertions/compare_failure.rb">lib/assay/assertions/compare_failure.rb</a></li>
+          
+            <li class="file"><a href="../lib/assay/assertions/identity_failure_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+              class="thickbox" title="lib/assay/assertions/identity_failure.rb">lib/assay/assertions/identity_failure.rb</a></li>
+          
+            <li class="file"><a href="../lib/assay/assertions/true_failure_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+              class="thickbox" title="lib/assay/assertions/true_failure.rb">lib/assay/assertions/true_failure.rb</a></li>
+          
+            <li class="file"><a href="../lib/assay/assertions/throw_failure_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+              class="thickbox" title="lib/assay/assertions/throw_failure.rb">lib/assay/assertions/throw_failure.rb</a></li>
+          
+            <li class="file"><a href="../lib/assay/assertions/false_failure_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+              class="thickbox" title="lib/assay/assertions/false_failure.rb">lib/assay/assertions/false_failure.rb</a></li>
+          
+            <li class="file"><a href="../lib/assay/assertions/kind_failure_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+              class="thickbox" title="lib/assay/assertions/kind_failure.rb">lib/assay/assertions/kind_failure.rb</a></li>
+          
+            <li class="file"><a href="../lib/assay/assertions/delta_failure_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+              class="thickbox" title="lib/assay/assertions/delta_failure.rb">lib/assay/assertions/delta_failure.rb</a></li>
+          
+            <li class="file"><a href="../lib/assay/assertions/same_failure_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+              class="thickbox" title="lib/assay/assertions/same_failure.rb">lib/assay/assertions/same_failure.rb</a></li>
+          
+          </ul>
+        </div>
+      </div>
+
+      <!-- What about Git info, or Hg info? This seems almost silly, albeit kind of cool. -->
+      <!-- TODO: generalize this for all SCMs -->
+
+      
+    </div>
+
+    <div id="class-metadata">
+
+      <!-- Parent Class -->
+      
+
+      <!-- Namespace Contents -->
+      
+
+      <!-- Method Quickref -->
+      
+      <div id="method-list-section" class="section">
+        <h3 class="section-header">Methods</h3>
+        <ul class="link-list">
+          
+            
+            <li class="method">
+              <a href="#method-i-be_empty">#be_empty</a>
+            </li>
+          
+            
+            <li class="method">
+              <a href="#method-i-be_equal_to">#be_equal_to</a>
+            </li>
+          
+            
+            <li class="method">
+              <a href="#method-i-be_extecuted">#be_extecuted</a>
+            </li>
+          
+            
+            <li class="method">
+              <a href="#method-i-be_false">#be_false</a>
+            </li>
+          
+            
+            <li class="method">
+              <a href="#method-i-be_identical_to">#be_identical_to</a>
+            </li>
+          
+            
+            <li class="method">
+              <a href="#method-i-be_instance_of">#be_instance_of</a>
+            </li>
+          
+            
+            <li class="method">
+              <a href="#method-i-be_kind_of">#be_kind_of</a>
+            </li>
+          
+            
+            <li class="method">
+              <a href="#method-i-be_like">#be_like</a>
+            </li>
+          
+            
+            <li class="method">
+              <a href="#method-i-be_match_for">#be_match_for</a>
+            </li>
+          
+            
+            <li class="method">
+              <a href="#method-i-be_nil">#be_nil</a>
+            </li>
+          
+            
+            <li class="method">
+              <a href="#method-i-be_raised">#be_raised</a>
+            </li>
+          
+            
+            <li class="method">
+              <a href="#method-i-be_responsive_to">#be_responsive_to</a>
+            </li>
+          
+            
+            <li class="method">
+              <a href="#method-i-be_same_as">#be_same_as</a>
+            </li>
+          
+            
+            <li class="method">
+              <a href="#method-i-be_thrown">#be_thrown</a>
+            </li>
+          
+            
+            <li class="method">
+              <a href="#method-i-be_true">#be_true</a>
+            </li>
+          
+            
+            <li class="method">
+              <a href="#method-i-be_within">#be_within</a>
+            </li>
+          
+            
+            <li class="method">
+              <a href="#method-i-is_empty">#is_empty</a>
+            </li>
+          
+            
+            <li class="method">
+              <a href="#method-i-is_equal_to">#is_equal_to</a>
+            </li>
+          
+            
+            <li class="method">
+              <a href="#method-i-is_executed">#is_executed</a>
+            </li>
+          
+            
+            <li class="method">
+              <a href="#method-i-is_false">#is_false</a>
+            </li>
+          
+            
+            <li class="method">
+              <a href="#method-i-is_identical_to">#is_identical_to</a>
+            </li>
+          
+            
+            <li class="method">
+              <a href="#method-i-is_instance_of">#is_instance_of</a>
+            </li>
+          
+            
+            <li class="method">
+              <a href="#method-i-is_kind_of">#is_kind_of</a>
+            </li>
+          
+            
+            <li class="method">
+              <a href="#method-i-is_like">#is_like</a>
+            </li>
+          
+            
+            <li class="method">
+              <a href="#method-i-is_match_for">#is_match_for</a>
+            </li>
+          
+            
+            <li class="method">
+              <a href="#method-i-is_nil">#is_nil</a>
+            </li>
+          
+            
+            <li class="method">
+              <a href="#method-i-is_raised">#is_raised</a>
+            </li>
+          
+            
+            <li class="method">
+              <a href="#method-i-is_responsive_to">#is_responsive_to</a>
+            </li>
+          
+            
+            <li class="method">
+              <a href="#method-i-is_same_as">#is_same_as</a>
+            </li>
+          
+            
+            <li class="method">
+              <a href="#method-i-is_thrown">#is_thrown</a>
+            </li>
+          
+            
+            <li class="method">
+              <a href="#method-i-is_true">#is_true</a>
+            </li>
+          
+            
+            <li class="method">
+              <a href="#method-i-is_within">#is_within</a>
+            </li>
+          
+        </ul>
+      </div>
+      
+
+      <!-- Included Modules -->
+      
+    </div>
+
+    <div id="project-metadata">
+      
+      
+      <div id="fileindex-section" class="section project-section">
+        <h3 class="section-header">Information</h3>
+        <ul>
+        
+          <li class="file"><a href="../HISTORY_rdoc.html">HISTORY.rdoc</a></li>
+        
+          <li class="file"><a href="../Redfile.html">Redfile</a></li>
+        
+          <li class="file"><a href="../README_rdoc.html">README.rdoc</a></li>
+        
+          <li class="file"><a href="../NOTICE_rdoc.html">NOTICE.rdoc</a></li>
+        
+          <li class="file"><a href="../APACHE2_txt.html">APACHE2.txt</a></li>
+        
+        </ul>
+      </div>
+      
+
+      <div id="classindex-section" class="section project-section">
+        <h3 class="section-header">Class Index
+          <span class="search-toggle"><img src="../assets/icon/find.png"
+            height="16" width="16" alt="[+]"
+            title="show/hide quicksearch" /></span></h3>
+        <form action="#" method="get" accept-charset="utf-8" class="initially-hidden">
+        <fieldset>
+          <legend>Quicksearch</legend>
+          <input type="text" name="quicksearch" value=""
+            class="quicksearch-field" />
+        </fieldset>
+        </form>
+
+        <!-- classpage.html : classes -->
+        <ul class="link-list">
+        
+          <li class="module"><a href="../Assay.html">Assay</a></li>
+        
+          <li class="class"><a href="../Assay/Assertion.html">Assay::Assertion</a></li>
+        
+          <li class="module"><a href="../Assay/Assertives.html">Assay::Assertives</a></li>
+        
+          <li class="class"><a href="../Assay/CompareFailure.html">Assay::CompareFailure</a></li>
+        
+          <li class="class"><a href="../Assay/DeltaFailure.html">Assay::DeltaFailure</a></li>
+        
+          <li class="class"><a href="../Assay/EmptyFailure.html">Assay::EmptyFailure</a></li>
+        
+          <li class="class"><a href="../Assay/EqualityFailure.html">Assay::EqualityFailure</a></li>
+        
+          <li class="class"><a href="../Assay/ExecutionFailure.html">Assay::ExecutionFailure</a></li>
+        
+          <li class="class"><a href="../Assay/FalseFailure.html">Assay::FalseFailure</a></li>
+        
+          <li class="class"><a href="../Assay/IdentityFailure.html">Assay::IdentityFailure</a></li>
+        
+          <li class="class"><a href="../Assay/InstanceFailure.html">Assay::InstanceFailure</a></li>
+        
+          <li class="class"><a href="../Assay/KindFailure.html">Assay::KindFailure</a></li>
+        
+          <li class="class"><a href="../Assay/MatchFailure.html">Assay::MatchFailure</a></li>
+        
+          <li class="class"><a href="../Assay/Matcher.html">Assay::Matcher</a></li>
+        
+          <li class="module"><a href="../Assay/Matchers.html">Assay::Matchers</a></li>
+        
+          <li class="class"><a href="../Assay/NilFailure.html">Assay::NilFailure</a></li>
+        
+          <li class="class"><a href="../Assay/RaiseFailure.html">Assay::RaiseFailure</a></li>
+        
+          <li class="class"><a href="../Assay/ResponseFailure.html">Assay::ResponseFailure</a></li>
+        
+          <li class="class"><a href="../Assay/SameFailure.html">Assay::SameFailure</a></li>
+        
+          <li class="class"><a href="../Assay/ThrowFailure.html">Assay::ThrowFailure</a></li>
+        
+          <li class="class"><a href="../Assay/TrueFailure.html">Assay::TrueFailure</a></li>
+        
+        </ul>
+        <div id="no-class-search-results" style="display: none;">No matching classes.</div>
+      </div>
+    </div>
+
+    <div id="validator-badges">
+      
+      <div style="float: right; margin-right: 5px;">
+        <a href="http://validator.w3.org/check/referer"><img src="../assets/icon/check.png" alt="[Validate]" height="16" width="16" /></a>
+      </div>
+      Generated with <a href="http://rubyworks.github.com/rdazzle">RDazzle</a>
+                     <a href="http://rubyworks.github.com/redfish">RedFish</a>
+                     v1.0.1
+      <br/><br/>
+    </div>
+  </div>
+
+  <div id="documentation">
+
+    <div id="description">
+      
+        <h1>Matchers</h1>
+      
+
+      
+    </div>
+
+    <!-- Constants -->
+    
+
+    <!-- Attributes -->
+    
+
+    <!-- Methods -->
+    
+    <div id="public-instance-method-details" class="method-section section">
+      <h3 class="section-header">Public Instance Methods</h3>
+
+    
+      <div id="be_empty-method" class="method-detail ">
+        <a name="method-i-be_empty"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">be_empty</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p>Empty?</p>
+
+<pre>object.should be_empty</pre>
+          
+
+          
+          <div class="method-source-code"
+            id="be_empty-source">
+<pre>
+<span class="ruby-comment"># File lib/assay/assertions/empty_failure.rb, line 70</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">be_empty</span>
+  <span class="ruby-constant">EmptyFailure</span>.<span class="ruby-identifier">to_matcher</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="be_equal_to-method" class="method-detail ">
+        <a name="method-i-be_equal_to"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">be_equal_to</span><span
+            class="method-args">(exp)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p>Passes if <tt>expected</tt> == <tt>actual</tt>.</p>
+
+<pre>'MY STRING'.should be_equal_to('my string'.upcase)
+'MY STRING'.should_not be_equal_to('another string')</pre>
+          
+
+          
+          <div class="method-source-code"
+            id="be_equal_to-source">
+<pre>
+<span class="ruby-comment"># File lib/assay/assertions/equality_failure.rb, line 91</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">be_equal_to</span>(<span class="ruby-identifier">exp</span>)
+  <span class="ruby-constant">EqualityFailure</span>.<span class="ruby-identifier">to_matcher</span>(<span class="ruby-identifier">exp</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="be_extecuted-method" class="method-detail ">
+        <a name="method-i-be_extecuted"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">be_extecuted</span><span
+            class="method-args">(&block)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p>proc.should be_executed(*args)</p>
+          
+
+          
+          <div class="method-source-code"
+            id="be_extecuted-source">
+<pre>
+<span class="ruby-comment"># File lib/assay/assertions/execution_failure.rb, line 86</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">be_extecuted</span>(&amp;<span class="ruby-identifier">block</span>)
+  <span class="ruby-constant">ExecutionFailure</span>.<span class="ruby-identifier">to_matcher</span>(&amp;<span class="ruby-identifier">block</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="be_false-method" class="method-detail ">
+        <a name="method-i-be_false"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">be_false</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p>value.should <a href="Matchers.html#method-i-be_false">be_false</a></p>
+          
+
+          
+          <div class="method-source-code"
+            id="be_false-source">
+<pre>
+<span class="ruby-comment"># File lib/assay/assertions/false_failure.rb, line 68</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">be_false</span>
+  <span class="ruby-constant">FalseFailure</span>.<span class="ruby-identifier">to_matcher</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="be_identical_to-method" class="method-detail ">
+        <a name="method-i-be_identical_to"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">be_identical_to</span><span
+            class="method-args">(obj)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p>object1.should <a
+href="Matchers.html#method-i-be_identical_to">be_identical_to</a>(object2)</p>
+          
+
+          
+          <div class="method-source-code"
+            id="be_identical_to-source">
+<pre>
+<span class="ruby-comment"># File lib/assay/assertions/identity_failure.rb, line 80</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">be_identical_to</span>(<span class="ruby-identifier">obj</span>)
+  <span class="ruby-constant">IdentityFailure</span>.<span class="ruby-identifier">to_matcher</span>(<span class="ruby-identifier">obj</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="be_instance_of-method" class="method-detail ">
+        <a name="method-i-be_instance_of"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">be_instance_of</span><span
+            class="method-args">(cls)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p>object.should <a
+href="Matchers.html#method-i-be_instance_of">be_instance_of</a>(class)</p>
+          
+
+          
+          <div class="method-source-code"
+            id="be_instance_of-source">
+<pre>
+<span class="ruby-comment"># File lib/assay/assertions/instance_failure.rb, line 72</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">be_instance_of</span>(<span class="ruby-identifier">cls</span>)
+  <span class="ruby-constant">InstanceFailure</span>.<span class="ruby-identifier">to_matcher</span>(<span class="ruby-identifier">cls</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="be_kind_of-method" class="method-detail ">
+        <a name="method-i-be_kind_of"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">be_kind_of</span><span
+            class="method-args">(cls)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p>object.should be_a_kind_of(class)</p>
+          
+
+          
+          <div class="method-source-code"
+            id="be_kind_of-source">
+<pre>
+<span class="ruby-comment"># File lib/assay/assertions/kind_failure.rb, line 75</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">be_kind_of</span>(<span class="ruby-identifier">cls</span>)
+  <span class="ruby-constant">KindFailure</span>.<span class="ruby-identifier">to_matcher</span>(<span class="ruby-identifier">cls</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="be_like-method" class="method-detail ">
+        <a name="method-i-be_like"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">be_like</span><span
+            class="method-args">(act)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p>object1.should <a
+href="Matchers.html#method-i-be_like">be_like</a>(object2)</p>
+          
+
+          
+          <div class="method-source-code"
+            id="be_like-source">
+<pre>
+<span class="ruby-comment"># File lib/assay/assertions/compare_failure.rb, line 46</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">be_like</span>(<span class="ruby-identifier">act</span>)
+  <span class="ruby-constant">CompareFailure</span>.<span class="ruby-identifier">to_matcher</span>(<span class="ruby-identifier">act</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="be_match_for-method" class="method-detail ">
+        <a name="method-i-be_match_for"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">be_match_for</span><span
+            class="method-args">(regexp)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p>object.should be_a_match_for(regexp)</p>
+          
+
+          
+          <div class="method-source-code"
+            id="be_match_for-source">
+<pre>
+<span class="ruby-comment"># File lib/assay/assertions/match_failure.rb, line 81</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">be_match_for</span>(<span class="ruby-identifier">regexp</span>)
+  <span class="ruby-constant">MatchFailure</span>.<span class="ruby-identifier">to_matcher</span>(<span class="ruby-identifier">regexp</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="be_nil-method" class="method-detail ">
+        <a name="method-i-be_nil"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">be_nil</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p>value.should <a href="Matchers.html#method-i-be_nil">be_nil</a></p>
+          
+
+          
+          <div class="method-source-code"
+            id="be_nil-source">
+<pre>
+<span class="ruby-comment"># File lib/assay/assertions/nil_failure.rb, line 69</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">be_nil</span>
+  <span class="ruby-constant">NilFailure</span>.<span class="ruby-identifier">to_matcher</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="be_raised-method" class="method-detail ">
+        <a name="method-i-be_raised"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">be_raised</span><span
+            class="method-args">(&blk)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p>Exception.should <a href="Matchers.html#method-i-be_raised">be_raised</a>{
+… }</p>
+          
+
+          
+          <div class="method-source-code"
+            id="be_raised-source">
+<pre>
+<span class="ruby-comment"># File lib/assay/assertions/raise_failure.rb, line 128</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">be_raised</span>(&amp;<span class="ruby-identifier">blk</span>)
+  <span class="ruby-constant">RaiseFailure</span>.<span class="ruby-identifier">to_matcher</span>(&amp;<span class="ruby-identifier">blk</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="be_responsive_to-method" class="method-detail ">
+        <a name="method-i-be_responsive_to"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">be_responsive_to</span><span
+            class="method-args">(method)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p>object.should <a
+href="Matchers.html#method-i-be_responsive_to">be_responsive_to</a>(:method_symbol)</p>
+          
+
+          
+          <div class="method-source-code"
+            id="be_responsive_to-source">
+<pre>
+<span class="ruby-comment"># File lib/assay/assertions/response_failure.rb, line 81</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">be_responsive_to</span>(<span class="ruby-identifier">method</span>)
+  <span class="ruby-constant">ResponseFailure</span>.<span class="ruby-identifier">to_matcher</span>(<span class="ruby-identifier">method</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="be_same_as-method" class="method-detail ">
+        <a name="method-i-be_same_as"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">be_same_as</span><span
+            class="method-args">(obj)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p>object1.should <a
+href="Matchers.html#method-i-be_same_as">be_same_as</a>(object2)</p>
+          
+
+          
+          <div class="method-source-code"
+            id="be_same_as-source">
+<pre>
+<span class="ruby-comment"># File lib/assay/assertions/same_failure.rb, line 78</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">be_same_as</span>(<span class="ruby-identifier">obj</span>)
+  <span class="ruby-constant">SameFailure</span>.<span class="ruby-identifier">to_matcher</span>(<span class="ruby-identifier">obj</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="be_thrown-method" class="method-detail ">
+        <a name="method-i-be_thrown"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">be_thrown</span><span
+            class="method-args">(&blk)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p>:symbol.should <a href="Matchers.html#method-i-be_thrown">be_thrown</a>{
+… }</p>
+          
+
+          
+          <div class="method-source-code"
+            id="be_thrown-source">
+<pre>
+<span class="ruby-comment"># File lib/assay/assertions/throw_failure.rb, line 117</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">be_thrown</span>(&amp;<span class="ruby-identifier">blk</span>)
+  <span class="ruby-constant">ThrowFailure</span>.<span class="ruby-identifier">to_matcher</span>(&amp;<span class="ruby-identifier">blk</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="be_true-method" class="method-detail ">
+        <a name="method-i-be_true"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">be_true</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p>True?</p>
+
+<pre>value.should be_true</pre>
+          
+
+          
+          <div class="method-source-code"
+            id="be_true-source">
+<pre>
+<span class="ruby-comment"># File lib/assay/assertions/true_failure.rb, line 74</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">be_true</span>
+  <span class="ruby-constant">TrueFailure</span>.<span class="ruby-identifier">to_matcher</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="be_within-method" class="method-detail ">
+        <a name="method-i-be_within"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">be_within</span><span
+            class="method-args">(delta, act)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p>value1.assert <a
+href="Matchers.html#method-i-is_within">is_within</a>(delta, value2)</p>
+          
+
+          
+          <div class="method-source-code"
+            id="be_within-source">
+<pre>
+<span class="ruby-comment"># File lib/assay/assertions/delta_failure.rb, line 75</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">be_within</span>(<span class="ruby-identifier">delta</span>, <span class="ruby-identifier">act</span>)
+  <span class="ruby-constant">DeltaFailure</span>.<span class="ruby-identifier">to_matcher</span>(<span class="ruby-identifier">act</span>, <span class="ruby-identifier">delta</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="is_empty-method" class="method-detail ">
+        <a name="method-i-is_empty"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">is_empty</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p>Empty?</p>
+
+<pre>object.assert is_true</pre>
+          
+
+          
+          <div class="method-source-code"
+            id="is_empty-source">
+<pre>
+<span class="ruby-comment"># File lib/assay/assertions/empty_failure.rb, line 62</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">is_empty</span>
+  <span class="ruby-constant">EmptyFailure</span>.<span class="ruby-identifier">to_matcher</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="is_equal_to-method" class="method-detail ">
+        <a name="method-i-is_equal_to"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">is_equal_to</span><span
+            class="method-args">(exp, opts={})</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p>Passes if <tt>expected</tt> == <tt>actual</tt>.</p>
+
+<pre>'MY STRING'.assert is_equal_to('my string'.upcase)
+'MY STRING'.refute is_equal_to('another string')</pre>
+          
+
+          
+          <div class="method-source-code"
+            id="is_equal_to-source">
+<pre>
+<span class="ruby-comment"># File lib/assay/assertions/equality_failure.rb, line 82</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">is_equal_to</span>(<span class="ruby-identifier">exp</span>, <span class="ruby-identifier">opts</span>={})
+  <span class="ruby-constant">EqualityFailure</span>.<span class="ruby-identifier">to_matcher</span>(<span class="ruby-identifier">exp</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="is_executed-method" class="method-detail ">
+        <a name="method-i-is_executed"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">is_executed</span><span
+            class="method-args">(&block)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p>TODO: Reasonable matcher for ExectuionFailure ?</p>
+
+<pre>proc.assert is_executed(*args)</pre>
+          
+
+          
+          <div class="method-source-code"
+            id="is_executed-source">
+<pre>
+<span class="ruby-comment"># File lib/assay/assertions/execution_failure.rb, line 78</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">is_executed</span>(&amp;<span class="ruby-identifier">block</span>)
+  <span class="ruby-constant">ExecutionFailure</span>.<span class="ruby-identifier">to_matcher</span>(&amp;<span class="ruby-identifier">block</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="is_false-method" class="method-detail ">
+        <a name="method-i-is_false"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">is_false</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p>value.assert <a href="Matchers.html#method-i-is_false">is_false</a></p>
+          
+
+          
+          <div class="method-source-code"
+            id="is_false-source">
+<pre>
+<span class="ruby-comment"># File lib/assay/assertions/false_failure.rb, line 60</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">is_false</span>
+  <span class="ruby-constant">FalseFailure</span>.<span class="ruby-identifier">to_matcher</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="is_identical_to-method" class="method-detail ">
+        <a name="method-i-is_identical_to"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">is_identical_to</span><span
+            class="method-args">(obj)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p>object1.assert <a
+href="Matchers.html#method-i-is_identical_to">is_identical_to</a>(object2)</p>
+          
+
+          
+          <div class="method-source-code"
+            id="is_identical_to-source">
+<pre>
+<span class="ruby-comment"># File lib/assay/assertions/identity_failure.rb, line 72</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">is_identical_to</span>(<span class="ruby-identifier">obj</span>)
+  <span class="ruby-constant">IdentityFailure</span>.<span class="ruby-identifier">to_matcher</span>(<span class="ruby-identifier">obj</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="is_instance_of-method" class="method-detail ">
+        <a name="method-i-is_instance_of"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">is_instance_of</span><span
+            class="method-args">(cls)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p>object.assert <a
+href="Matchers.html#method-i-is_instance_of">is_instance_of</a>(class)</p>
+          
+
+          
+          <div class="method-source-code"
+            id="is_instance_of-source">
+<pre>
+<span class="ruby-comment"># File lib/assay/assertions/instance_failure.rb, line 64</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">is_instance_of</span>(<span class="ruby-identifier">cls</span>)
+  <span class="ruby-constant">InstanceFailure</span>.<span class="ruby-identifier">to_matcher</span>(<span class="ruby-identifier">cls</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="is_kind_of-method" class="method-detail ">
+        <a name="method-i-is_kind_of"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">is_kind_of</span><span
+            class="method-args">(cls)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p>object.assert is_a_kind_of(class)</p>
+          
+
+          
+          <div class="method-source-code"
+            id="is_kind_of-source">
+<pre>
+<span class="ruby-comment"># File lib/assay/assertions/kind_failure.rb, line 67</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">is_kind_of</span>(<span class="ruby-identifier">cls</span>)
+  <span class="ruby-constant">KindFailure</span>.<span class="ruby-identifier">to_matcher</span>(<span class="ruby-identifier">cls</span>) 
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="is_like-method" class="method-detail ">
+        <a name="method-i-is_like"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">is_like</span><span
+            class="method-args">(act)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p>object1.should <a
+href="Matchers.html#method-i-be_like">be_like</a>(object2)</p>
+          
+
+          
+          <div class="method-source-code"
+            id="is_like-source">
+<pre>
+<span class="ruby-comment"># File lib/assay/assertions/compare_failure.rb, line 54</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">is_like</span>(<span class="ruby-identifier">act</span>)
+  <span class="ruby-constant">CompareFailure</span>.<span class="ruby-identifier">to_matcher</span>(<span class="ruby-identifier">act</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="is_match_for-method" class="method-detail ">
+        <a name="method-i-is_match_for"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">is_match_for</span><span
+            class="method-args">(regexp)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p>object.assert is_a_match_for(regexp)</p>
+          
+
+          
+          <div class="method-source-code"
+            id="is_match_for-source">
+<pre>
+<span class="ruby-comment"># File lib/assay/assertions/match_failure.rb, line 73</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">is_match_for</span>(<span class="ruby-identifier">regexp</span>)
+  <span class="ruby-constant">MatchFailure</span>.<span class="ruby-identifier">to_matcher</span>(<span class="ruby-identifier">regexp</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="is_nil-method" class="method-detail ">
+        <a name="method-i-is_nil"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">is_nil</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p>value.assert <a href="Matchers.html#method-i-is_nil">is_nil</a></p>
+          
+
+          
+          <div class="method-source-code"
+            id="is_nil-source">
+<pre>
+<span class="ruby-comment"># File lib/assay/assertions/nil_failure.rb, line 61</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">is_nil</span>
+  <span class="ruby-constant">NilFailure</span>.<span class="ruby-identifier">to_matcher</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="is_raised-method" class="method-detail ">
+        <a name="method-i-is_raised"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">is_raised</span><span
+            class="method-args">(&blk)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p>Exception.assert <a href="Matchers.html#method-i-is_raised">is_raised</a>{
+… }</p>
+          
+
+          
+          <div class="method-source-code"
+            id="is_raised-source">
+<pre>
+<span class="ruby-comment"># File lib/assay/assertions/raise_failure.rb, line 120</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">is_raised</span>(&amp;<span class="ruby-identifier">blk</span>)
+  <span class="ruby-constant">RaiseFailure</span>.<span class="ruby-identifier">to_matcher</span>(&amp;<span class="ruby-identifier">blk</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="is_responsive_to-method" class="method-detail ">
+        <a name="method-i-is_responsive_to"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">is_responsive_to</span><span
+            class="method-args">(method)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p>object.assert <a
+href="Matchers.html#method-i-is_responsive_to">is_responsive_to</a>(:method_symbol)</p>
+          
+
+          
+          <div class="method-source-code"
+            id="is_responsive_to-source">
+<pre>
+<span class="ruby-comment"># File lib/assay/assertions/response_failure.rb, line 73</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">is_responsive_to</span>(<span class="ruby-identifier">method</span>)
+  <span class="ruby-constant">ResponseFailure</span>.<span class="ruby-identifier">to_matcher</span>(<span class="ruby-identifier">method</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="is_same_as-method" class="method-detail ">
+        <a name="method-i-is_same_as"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">is_same_as</span><span
+            class="method-args">(obj)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p>object1.assert <a
+href="Matchers.html#method-i-is_same_as">is_same_as</a>(object2)</p>
+          
+
+          
+          <div class="method-source-code"
+            id="is_same_as-source">
+<pre>
+<span class="ruby-comment"># File lib/assay/assertions/same_failure.rb, line 70</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">is_same_as</span>(<span class="ruby-identifier">obj</span>)
+  <span class="ruby-constant">SameFailure</span>.<span class="ruby-identifier">to_matcher</span>(<span class="ruby-identifier">obj</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="is_thrown-method" class="method-detail ">
+        <a name="method-i-is_thrown"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">is_thrown</span><span
+            class="method-args">(&blk)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p>:symbol.assert <a href="Matchers.html#method-i-is_thrown">is_thrown</a>{
+… }</p>
+          
+
+          
+          <div class="method-source-code"
+            id="is_thrown-source">
+<pre>
+<span class="ruby-comment"># File lib/assay/assertions/throw_failure.rb, line 109</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">is_thrown</span>(&amp;<span class="ruby-identifier">blk</span>)
+  <span class="ruby-constant">ThrowFailure</span>.<span class="ruby-identifier">to_matcher</span>(&amp;<span class="ruby-identifier">blk</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="is_true-method" class="method-detail ">
+        <a name="method-i-is_true"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">is_true</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p>True?</p>
+
+<pre>value.assert is_true</pre>
+          
+
+          
+          <div class="method-source-code"
+            id="is_true-source">
+<pre>
+<span class="ruby-comment"># File lib/assay/assertions/true_failure.rb, line 66</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">is_true</span>
+  <span class="ruby-constant">TrueFailure</span>.<span class="ruby-identifier">to_matcher</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="is_within-method" class="method-detail ">
+        <a name="method-i-is_within"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">is_within</span><span
+            class="method-args">(delta, act)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p>value1.should <a
+href="Matchers.html#method-i-be_within">be_within</a>(delta, value2)</p>
+          
+
+          
+          <div class="method-source-code"
+            id="is_within-source">
+<pre>
+<span class="ruby-comment"># File lib/assay/assertions/delta_failure.rb, line 67</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">is_within</span>(<span class="ruby-identifier">delta</span>, <span class="ruby-identifier">act</span>)
+  <span class="ruby-constant">DeltaFailure</span>.<span class="ruby-identifier">to_matcher</span>(<span class="ruby-identifier">act</span>, <span class="ruby-identifier">delta</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+    </div>
+  
+
+  </div>
+
+
+  <div id="rdoc-debugging-section-dump" class="debugging-section">
+  
+    <p>Disabled; run with --debug to generate this.</p>
+  
+  </div>
+
+</main>
+</body>
+</html>
+

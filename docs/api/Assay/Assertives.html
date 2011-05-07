@@ -1,0 +1,1720 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+
+  <title>Module: Assay::Assertives</title>
+
+  
+    <link rel="SHORTCUT ICON" href="../assets/icon/module.png">
+  
+
+  <link type="text/css" rel="stylesheet" href="../assets/rdoc.css" media="screen" />
+  <link type="text/css" rel="stylesheet" href="../assets/highlight/styles/github.css" title="GitHub" />
+
+  <script type="text/javascript" charset="utf-8" src="../assets/jquery.js"></script>
+  <script type="text/javascript" charset="utf-8" src="../assets/highlight/highlight.pack.js"></script>
+  <script type="text/javascript" charset="utf-8" src="../assets/quicksearch.js"></script>
+  <script type="text/javascript" charset="utf-8" src="../assets/main.js"></script>
+
+  <script type="text/javascript">
+    $(document).ready( function() {
+      hookHighlightSyntax();
+	    hookSourceViews();
+	    hookDebuggingToggle();
+	    hookQuickSearch();
+	    highlightLocationTarget();
+
+	    $('ul.link-list a').bind("click", highlightClickTarget);
+    });
+  </script>
+</head>
+<body class="module">
+<div id="main">
+
+  <div class="head">
+    <h1>
+      
+        <img src="../assets/icon/module.png" align="absmiddle">&nbsp;
+      
+      <a href="../index.html">&quot;Assay&quot;</a>&nbsp;
+      <a href="">Assay::Assertives</a>
+    </h1>
+  </div>
+
+  <div id="metadata">
+    <div id="project-metadata">
+
+      <div id="file-list-section" class="section">
+        <h3 class="section-header">In Files</h3>
+        <div class="section-body">
+          <ul>
+          
+            <li class="file"><a href="../lib/assay/assertions/equality_failure_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+              class="thickbox" title="lib/assay/assertions/equality_failure.rb">lib/assay/assertions/equality_failure.rb</a></li>
+          
+            <li class="file"><a href="../lib/assay/assertions/match_failure_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+              class="thickbox" title="lib/assay/assertions/match_failure.rb">lib/assay/assertions/match_failure.rb</a></li>
+          
+            <li class="file"><a href="../lib/assay/assertions/response_failure_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+              class="thickbox" title="lib/assay/assertions/response_failure.rb">lib/assay/assertions/response_failure.rb</a></li>
+          
+            <li class="file"><a href="../lib/assay/assertions/nil_failure_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+              class="thickbox" title="lib/assay/assertions/nil_failure.rb">lib/assay/assertions/nil_failure.rb</a></li>
+          
+            <li class="file"><a href="../lib/assay/assertions/instance_failure_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+              class="thickbox" title="lib/assay/assertions/instance_failure.rb">lib/assay/assertions/instance_failure.rb</a></li>
+          
+            <li class="file"><a href="../lib/assay/assertions/raise_failure_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+              class="thickbox" title="lib/assay/assertions/raise_failure.rb">lib/assay/assertions/raise_failure.rb</a></li>
+          
+            <li class="file"><a href="../lib/assay/assertions/empty_failure_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+              class="thickbox" title="lib/assay/assertions/empty_failure.rb">lib/assay/assertions/empty_failure.rb</a></li>
+          
+            <li class="file"><a href="../lib/assay/assertions/execution_failure_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+              class="thickbox" title="lib/assay/assertions/execution_failure.rb">lib/assay/assertions/execution_failure.rb</a></li>
+          
+            <li class="file"><a href="../lib/assay/assertions/compare_failure_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+              class="thickbox" title="lib/assay/assertions/compare_failure.rb">lib/assay/assertions/compare_failure.rb</a></li>
+          
+            <li class="file"><a href="../lib/assay/assertions/identity_failure_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+              class="thickbox" title="lib/assay/assertions/identity_failure.rb">lib/assay/assertions/identity_failure.rb</a></li>
+          
+            <li class="file"><a href="../lib/assay/assertions/true_failure_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+              class="thickbox" title="lib/assay/assertions/true_failure.rb">lib/assay/assertions/true_failure.rb</a></li>
+          
+            <li class="file"><a href="../lib/assay/assertions/throw_failure_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+              class="thickbox" title="lib/assay/assertions/throw_failure.rb">lib/assay/assertions/throw_failure.rb</a></li>
+          
+            <li class="file"><a href="../lib/assay/assertions/false_failure_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+              class="thickbox" title="lib/assay/assertions/false_failure.rb">lib/assay/assertions/false_failure.rb</a></li>
+          
+            <li class="file"><a href="../lib/assay/assertions/kind_failure_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+              class="thickbox" title="lib/assay/assertions/kind_failure.rb">lib/assay/assertions/kind_failure.rb</a></li>
+          
+            <li class="file"><a href="../lib/assay/assertions/delta_failure_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+              class="thickbox" title="lib/assay/assertions/delta_failure.rb">lib/assay/assertions/delta_failure.rb</a></li>
+          
+            <li class="file"><a href="../lib/assay/assertions/same_failure_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+              class="thickbox" title="lib/assay/assertions/same_failure.rb">lib/assay/assertions/same_failure.rb</a></li>
+          
+          </ul>
+        </div>
+      </div>
+
+      <!-- What about Git info, or Hg info? This seems almost silly, albeit kind of cool. -->
+      <!-- TODO: generalize this for all SCMs -->
+
+      
+    </div>
+
+    <div id="class-metadata">
+
+      <!-- Parent Class -->
+      
+
+      <!-- Namespace Contents -->
+      
+
+      <!-- Method Quickref -->
+      
+      <div id="method-list-section" class="section">
+        <h3 class="section-header">Methods</h3>
+        <ul class="link-list">
+          
+            
+            <li class="singleton">
+              <a href="#method-c-not_in_delta">::not_in_delta</a>
+            </li>
+          
+            
+            <li class="method">
+              <a href="#method-i-assert_empty">#assert_empty</a>
+            </li>
+          
+            
+            <li class="method">
+              <a href="#method-i-assert_equal">#assert_equal</a>
+            </li>
+          
+            
+            <li class="method">
+              <a href="#method-i-assert_executes">#assert_executes</a>
+            </li>
+          
+            
+            <li class="method">
+              <a href="#method-i-assert_false">#assert_false</a>
+            </li>
+          
+            
+            <li class="method">
+              <a href="#method-i-assert_identical">#assert_identical</a>
+            </li>
+          
+            
+            <li class="method">
+              <a href="#method-i-assert_in_delta">#assert_in_delta</a>
+            </li>
+          
+            
+            <li class="method">
+              <a href="#method-i-assert_instance_of">#assert_instance_of</a>
+            </li>
+          
+            
+            <li class="method">
+              <a href="#method-i-assert_kind_of">#assert_kind_of</a>
+            </li>
+          
+            
+            <li class="method">
+              <a href="#method-i-assert_match">#assert_match</a>
+            </li>
+          
+            
+            <li class="method">
+              <a href="#method-i-assert_nil">#assert_nil</a>
+            </li>
+          
+            
+            <li class="method">
+              <a href="#method-i-assert_not_empty">#assert_not_empty</a>
+            </li>
+          
+            
+            <li class="method">
+              <a href="#method-i-assert_not_equal">#assert_not_equal</a>
+            </li>
+          
+            
+            <li class="method">
+              <a href="#method-i-assert_not_executes">#assert_not_executes</a>
+            </li>
+          
+            
+            <li class="method">
+              <a href="#method-i-assert_not_false">#assert_not_false</a>
+            </li>
+          
+            
+            <li class="method">
+              <a href="#method-i-assert_not_identical">#assert_not_identical</a>
+            </li>
+          
+            
+            <li class="method">
+              <a href="#method-i-assert_not_instance_of">#assert_not_instance_of</a>
+            </li>
+          
+            
+            <li class="method">
+              <a href="#method-i-assert_not_kind_of">#assert_not_kind_of</a>
+            </li>
+          
+            
+            <li class="method">
+              <a href="#method-i-assert_not_nil">#assert_not_nil</a>
+            </li>
+          
+            
+            <li class="method">
+              <a href="#method-i-assert_not_raised">#assert_not_raised</a>
+            </li>
+          
+            
+            <li class="method">
+              <a href="#method-i-assert_not_respond_to">#assert_not_respond_to</a>
+            </li>
+          
+            
+            <li class="method">
+              <a href="#method-i-assert_not_responds_to">#assert_not_responds_to</a>
+            </li>
+          
+            
+            <li class="method">
+              <a href="#method-i-assert_not_same">#assert_not_same</a>
+            </li>
+          
+            
+            <li class="method">
+              <a href="#method-i-assert_not_thrown">#assert_not_thrown</a>
+            </li>
+          
+            
+            <li class="method">
+              <a href="#method-i-assert_not_true">#assert_not_true</a>
+            </li>
+          
+            
+            <li class="method">
+              <a href="#method-i-assert_raises">#assert_raises</a>
+            </li>
+          
+            
+            <li class="method">
+              <a href="#method-i-assert_respond_to">#assert_respond_to</a>
+            </li>
+          
+            
+            <li class="method">
+              <a href="#method-i-assert_responds_to">#assert_responds_to</a>
+            </li>
+          
+            
+            <li class="method">
+              <a href="#method-i-assert_same">#assert_same</a>
+            </li>
+          
+            
+            <li class="method">
+              <a href="#method-i-assert_throws">#assert_throws</a>
+            </li>
+          
+            
+            <li class="method">
+              <a href="#method-i-assert_true">#assert_true</a>
+            </li>
+          
+            
+            <li class="method">
+              <a href="#method-i-refute_empty">#refute_empty</a>
+            </li>
+          
+            
+            <li class="method">
+              <a href="#method-i-refute_instance_of">#refute_instance_of</a>
+            </li>
+          
+            
+            <li class="method">
+              <a href="#method-i-refute_kind_of">#refute_kind_of</a>
+            </li>
+          
+            
+            <li class="method">
+              <a href="#method-i-refute_match">#refute_match</a>
+            </li>
+          
+            
+            <li class="method">
+              <a href="#method-i-refute_same">#refute_same</a>
+            </li>
+          
+            
+            <li class="method">
+              <a href="#method-i-refute_throws">#refute_throws</a>
+            </li>
+          
+        </ul>
+      </div>
+      
+
+      <!-- Included Modules -->
+      
+    </div>
+
+    <div id="project-metadata">
+      
+      
+      <div id="fileindex-section" class="section project-section">
+        <h3 class="section-header">Information</h3>
+        <ul>
+        
+          <li class="file"><a href="../HISTORY_rdoc.html">HISTORY.rdoc</a></li>
+        
+          <li class="file"><a href="../Redfile.html">Redfile</a></li>
+        
+          <li class="file"><a href="../README_rdoc.html">README.rdoc</a></li>
+        
+          <li class="file"><a href="../NOTICE_rdoc.html">NOTICE.rdoc</a></li>
+        
+          <li class="file"><a href="../APACHE2_txt.html">APACHE2.txt</a></li>
+        
+        </ul>
+      </div>
+      
+
+      <div id="classindex-section" class="section project-section">
+        <h3 class="section-header">Class Index
+          <span class="search-toggle"><img src="../assets/icon/find.png"
+            height="16" width="16" alt="[+]"
+            title="show/hide quicksearch" /></span></h3>
+        <form action="#" method="get" accept-charset="utf-8" class="initially-hidden">
+        <fieldset>
+          <legend>Quicksearch</legend>
+          <input type="text" name="quicksearch" value=""
+            class="quicksearch-field" />
+        </fieldset>
+        </form>
+
+        <!-- classpage.html : classes -->
+        <ul class="link-list">
+        
+          <li class="module"><a href="../Assay.html">Assay</a></li>
+        
+          <li class="class"><a href="../Assay/Assertion.html">Assay::Assertion</a></li>
+        
+          <li class="module"><a href="../Assay/Assertives.html">Assay::Assertives</a></li>
+        
+          <li class="class"><a href="../Assay/CompareFailure.html">Assay::CompareFailure</a></li>
+        
+          <li class="class"><a href="../Assay/DeltaFailure.html">Assay::DeltaFailure</a></li>
+        
+          <li class="class"><a href="../Assay/EmptyFailure.html">Assay::EmptyFailure</a></li>
+        
+          <li class="class"><a href="../Assay/EqualityFailure.html">Assay::EqualityFailure</a></li>
+        
+          <li class="class"><a href="../Assay/ExecutionFailure.html">Assay::ExecutionFailure</a></li>
+        
+          <li class="class"><a href="../Assay/FalseFailure.html">Assay::FalseFailure</a></li>
+        
+          <li class="class"><a href="../Assay/IdentityFailure.html">Assay::IdentityFailure</a></li>
+        
+          <li class="class"><a href="../Assay/InstanceFailure.html">Assay::InstanceFailure</a></li>
+        
+          <li class="class"><a href="../Assay/KindFailure.html">Assay::KindFailure</a></li>
+        
+          <li class="class"><a href="../Assay/MatchFailure.html">Assay::MatchFailure</a></li>
+        
+          <li class="class"><a href="../Assay/Matcher.html">Assay::Matcher</a></li>
+        
+          <li class="module"><a href="../Assay/Matchers.html">Assay::Matchers</a></li>
+        
+          <li class="class"><a href="../Assay/NilFailure.html">Assay::NilFailure</a></li>
+        
+          <li class="class"><a href="../Assay/RaiseFailure.html">Assay::RaiseFailure</a></li>
+        
+          <li class="class"><a href="../Assay/ResponseFailure.html">Assay::ResponseFailure</a></li>
+        
+          <li class="class"><a href="../Assay/SameFailure.html">Assay::SameFailure</a></li>
+        
+          <li class="class"><a href="../Assay/ThrowFailure.html">Assay::ThrowFailure</a></li>
+        
+          <li class="class"><a href="../Assay/TrueFailure.html">Assay::TrueFailure</a></li>
+        
+        </ul>
+        <div id="no-class-search-results" style="display: none;">No matching classes.</div>
+      </div>
+    </div>
+
+    <div id="validator-badges">
+      
+      <div style="float: right; margin-right: 5px;">
+        <a href="http://validator.w3.org/check/referer"><img src="../assets/icon/check.png" alt="[Validate]" height="16" width="16" /></a>
+      </div>
+      Generated with <a href="http://rubyworks.github.com/rdazzle">RDazzle</a>
+                     <a href="http://rubyworks.github.com/redfish">RedFish</a>
+                     v1.0.1
+      <br/><br/>
+    </div>
+  </div>
+
+  <div id="documentation">
+
+    <div id="description">
+      
+        <h1>Assertives</h1>
+      
+
+      
+    </div>
+
+    <!-- Constants -->
+    
+
+    <!-- Attributes -->
+    
+
+    <!-- Methods -->
+    
+    <div id="public-class-method-details" class="method-section section">
+      <h3 class="section-header">Public Class Methods</h3>
+
+    
+      <div id="not_in_delta-method" class="method-detail ">
+        <a name="method-c-not_in_delta"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">not_in_delta</span><span
+            class="method-args">(exp, act, delta, opts)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p>Passes if expected and actual are equal not within delta tolerance.</p>
+
+<pre>assert_not_in_delta 0.05, (50000.0 / 10**6), 0.00001</pre>
+          
+
+          
+          <div class="method-source-code"
+            id="not_in_delta-source">
+<pre>
+<span class="ruby-comment"># File lib/assay/assertions/delta_failure.rb, line 55</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">not_in_delta</span>(<span class="ruby-identifier">exp</span>, <span class="ruby-identifier">act</span>, <span class="ruby-identifier">delta</span>, <span class="ruby-identifier">opts</span>)
+  <span class="ruby-identifier">opts</span>[<span class="ruby-value">:backtrace</span>] <span class="ruby-operator">||=</span> <span class="ruby-identifier">caller</span>
+  <span class="ruby-constant">DeltaFailure</span>.<span class="ruby-identifier">refute</span>(<span class="ruby-identifier">exp</span>, <span class="ruby-identifier">act</span>, <span class="ruby-identifier">delta</span>, <span class="ruby-identifier">opts</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+    </div>
+  
+    <div id="public-instance-method-details" class="method-section section">
+      <h3 class="section-header">Public Instance Methods</h3>
+
+    
+      <div id="assert_empty-method" class="method-detail ">
+        <a name="method-i-assert_empty"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">assert_empty</span><span
+            class="method-args">(exp, opts={})</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p>Passed if object is <tt>true</tt>.</p>
+          
+
+          
+          <div class="method-source-code"
+            id="assert_empty-source">
+<pre>
+<span class="ruby-comment"># File lib/assay/assertions/empty_failure.rb, line 39</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">assert_empty</span>(<span class="ruby-identifier">exp</span>, <span class="ruby-identifier">opts</span>={})
+  <span class="ruby-identifier">opts</span>[<span class="ruby-value">:backtrace</span>] <span class="ruby-operator">||=</span> <span class="ruby-identifier">caller</span>
+  <span class="ruby-constant">EmptyFailure</span>.<span class="ruby-identifier">assert</span>(<span class="ruby-identifier">exp</span>, <span class="ruby-identifier">opts</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="assert_equal-method" class="method-detail ">
+        <a name="method-i-assert_equal"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">assert_equal</span><span
+            class="method-args">(exp, act, opts={})</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p>Passes if expected == +actual.</p>
+
+<p>Note that the ordering of arguments is important, since a helpful error
+message is generated when this one fails that tells you the values of
+expected and actual.</p>
+
+<pre>assert_equal 'MY STRING', 'my string'.upcase</pre>
+          
+
+          
+          <div class="method-source-code"
+            id="assert_equal-source">
+<pre>
+<span class="ruby-comment"># File lib/assay/assertions/equality_failure.rb, line 56</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">assert_equal</span>(<span class="ruby-identifier">exp</span>, <span class="ruby-identifier">act</span>, <span class="ruby-identifier">opts</span>={})
+  <span class="ruby-identifier">opts</span>[<span class="ruby-value">:backtrace</span>] <span class="ruby-operator">||=</span> <span class="ruby-identifier">caller</span>
+  <span class="ruby-comment">#message   = opts[:message]</span>
+  <span class="ruby-constant">EqualityFailure</span>.<span class="ruby-identifier">assert</span>(<span class="ruby-identifier">exp</span>, <span class="ruby-identifier">act</span>, <span class="ruby-identifier">opts</span>)
+  <span class="ruby-comment">#err = EqualityFailure.new(message, exp, act)</span>
+  <span class="ruby-comment">#err.set_backtrace(backtrace)</span>
+  <span class="ruby-comment">#err.assert(opts)</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="assert_executes-method" class="method-detail ">
+        <a name="method-i-assert_executes"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">assert_executes</span><span
+            class="method-args">(opts={}, &blk)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p>Passes if the block yields successfully.</p>
+
+<p><a href="Assertives.html#method-i-assert_executes">assert_executes</a>
+“Couldn’t do the thing” do</p>
+
+<pre>do_the_thing</pre>
+
+<p>end</p>
+          
+
+          
+          <div class="method-source-code"
+            id="assert_executes-source">
+<pre>
+<span class="ruby-comment"># File lib/assay/assertions/execution_failure.rb, line 54</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">assert_executes</span>(<span class="ruby-identifier">opts</span>={}, &amp;<span class="ruby-identifier">blk</span>)
+  <span class="ruby-identifier">opts</span>[<span class="ruby-value">:backtrace</span>] <span class="ruby-operator">||=</span> <span class="ruby-identifier">caller</span>
+  <span class="ruby-constant">ExecutionFailure</span>.<span class="ruby-identifier">assert</span>(<span class="ruby-identifier">opts</span>, &amp;<span class="ruby-identifier">blk</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="assert_false-method" class="method-detail ">
+        <a name="method-i-assert_false"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">assert_false</span><span
+            class="method-args">(exp, opts={})</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p>Passed if object is <tt>false</tt>.</p>
+          
+
+          
+          <div class="method-source-code"
+            id="assert_false-source">
+<pre>
+<span class="ruby-comment"># File lib/assay/assertions/false_failure.rb, line 39</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">assert_false</span>(<span class="ruby-identifier">exp</span>, <span class="ruby-identifier">opts</span>={})
+  <span class="ruby-identifier">opts</span>[<span class="ruby-value">:backtrace</span>] <span class="ruby-operator">||=</span> <span class="ruby-identifier">caller</span>
+  <span class="ruby-constant">FalseFailure</span>.<span class="ruby-identifier">assert</span>(<span class="ruby-identifier">exp</span>, <span class="ruby-identifier">opts</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="assert_identical-method" class="method-detail ">
+        <a name="method-i-assert_identical"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">assert_identical</span><span
+            class="method-args">(exp, act, opts={})</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p>Passes if <tt>actual</tt> .equal? <tt>expected</tt> (i.e. they are the same
+instance).</p>
+
+<pre>o = Object.new
+assert_identical(o, o)</pre>
+          
+
+          
+          <div class="method-source-code"
+            id="assert_identical-source">
+<pre>
+<span class="ruby-comment"># File lib/assay/assertions/identity_failure.rb, line 51</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">assert_identical</span>(<span class="ruby-identifier">exp</span>, <span class="ruby-identifier">act</span>, <span class="ruby-identifier">opts</span>={})
+  <span class="ruby-identifier">opts</span>[<span class="ruby-value">:backtrace</span>] <span class="ruby-operator">||=</span> <span class="ruby-identifier">caller</span>
+  <span class="ruby-constant">IdentityFailure</span>.<span class="ruby-identifier">assert</span>(<span class="ruby-identifier">exp</span>, <span class="ruby-identifier">act</span>, <span class="ruby-identifier">opts</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="assert_in_delta-method" class="method-detail ">
+        <a name="method-i-assert_in_delta"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">assert_in_delta</span><span
+            class="method-args">(exp, act, delta, opts={})</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p>Passes if expected and actual are equal within delta tolerance.</p>
+
+<pre>assert_in_delta 0.05, (50000.0 / 10**6), 0.00001</pre>
+          
+
+          
+          <div class="method-source-code"
+            id="assert_in_delta-source">
+<pre>
+<span class="ruby-comment"># File lib/assay/assertions/delta_failure.rb, line 46</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">assert_in_delta</span>(<span class="ruby-identifier">exp</span>, <span class="ruby-identifier">act</span>, <span class="ruby-identifier">delta</span>, <span class="ruby-identifier">opts</span>={})
+  <span class="ruby-identifier">opts</span>[<span class="ruby-value">:backtrace</span>] <span class="ruby-operator">||=</span> <span class="ruby-identifier">caller</span>
+  <span class="ruby-constant">DeltaFailure</span>.<span class="ruby-identifier">assert</span>(<span class="ruby-identifier">exp</span>, <span class="ruby-identifier">act</span>, <span class="ruby-identifier">delta</span>, <span class="ruby-identifier">opts</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="assert_instance_of-method" class="method-detail ">
+        <a name="method-i-assert_instance_of"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">assert_instance_of</span><span
+            class="method-args">(cls, obj, opts={})</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p>Passes if object .instance_of? klass</p>
+
+<pre>assert_instance_of(String, 'foo')</pre>
+          
+
+          
+          <div class="method-source-code"
+            id="assert_instance_of-source">
+<pre>
+<span class="ruby-comment"># File lib/assay/assertions/instance_failure.rb, line 41</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">assert_instance_of</span>(<span class="ruby-identifier">cls</span>, <span class="ruby-identifier">obj</span>, <span class="ruby-identifier">opts</span>={})
+  <span class="ruby-identifier">opts</span>[<span class="ruby-value">:backtrace</span>] <span class="ruby-operator">||=</span> <span class="ruby-identifier">caller</span>
+  <span class="ruby-constant">InstanceFailure</span>.<span class="ruby-identifier">assert</span>(<span class="ruby-identifier">cls</span>, <span class="ruby-identifier">obj</span>, <span class="ruby-identifier">opts</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="assert_kind_of-method" class="method-detail ">
+        <a name="method-i-assert_kind_of"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">assert_kind_of</span><span
+            class="method-args">(cls, obj, opts={})</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p>Passes if object .kind_of? klass</p>
+
+<pre>assert_kind_of(Object, 'foo')</pre>
+          
+
+          
+          <div class="method-source-code"
+            id="assert_kind_of-source">
+<pre>
+<span class="ruby-comment"># File lib/assay/assertions/kind_failure.rb, line 46</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">assert_kind_of</span>(<span class="ruby-identifier">cls</span>, <span class="ruby-identifier">obj</span>, <span class="ruby-identifier">opts</span>={})
+  <span class="ruby-identifier">opts</span>[<span class="ruby-value">:backtrace</span>] <span class="ruby-operator">||=</span> <span class="ruby-identifier">caller</span>
+  <span class="ruby-constant">KindFailure</span>.<span class="ruby-identifier">assert</span>(<span class="ruby-identifier">cls</span>, <span class="ruby-identifier">obj</span>, <span class="ruby-identifier">opts</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="assert_match-method" class="method-detail ">
+        <a name="method-i-assert_match"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">assert_match</span><span
+            class="method-args">(exp, act, opts={})</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p>Passes if string =~ pattern.</p>
+
+<pre>assert_match(/\d+/, 'five, 6, seven')</pre>
+          
+
+          
+          <div class="method-source-code"
+            id="assert_match-source">
+<pre>
+<span class="ruby-comment"># File lib/assay/assertions/match_failure.rb, line 52</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">assert_match</span>(<span class="ruby-identifier">exp</span>, <span class="ruby-identifier">act</span>, <span class="ruby-identifier">opts</span>={})
+  <span class="ruby-identifier">opts</span>[<span class="ruby-value">:backtrace</span>] <span class="ruby-operator">||=</span> <span class="ruby-identifier">caller</span>
+  <span class="ruby-constant">MatchFailure</span>.<span class="ruby-identifier">assert</span>(<span class="ruby-identifier">exp</span>, <span class="ruby-identifier">act</span>, <span class="ruby-identifier">opts</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="assert_nil-method" class="method-detail ">
+        <a name="method-i-assert_nil"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">assert_nil</span><span
+            class="method-args">(exp, opts={})</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p>Passed if object is <tt>nil</tt>.</p>
+          
+
+          
+          <div class="method-source-code"
+            id="assert_nil-source">
+<pre>
+<span class="ruby-comment"># File lib/assay/assertions/nil_failure.rb, line 39</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">assert_nil</span>(<span class="ruby-identifier">exp</span>, <span class="ruby-identifier">opts</span>={})
+  <span class="ruby-identifier">opts</span>[<span class="ruby-value">:backtrace</span>] <span class="ruby-operator">||=</span> <span class="ruby-identifier">caller</span>
+  <span class="ruby-constant">NilFailure</span>.<span class="ruby-identifier">assert</span>(<span class="ruby-identifier">exp</span>, <span class="ruby-identifier">opts</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="assert_not_empty-method" class="method-detail method-alias">
+        <a name="method-i-assert_not_empty"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">assert_not_empty</span><span
+            class="method-args">(exp, opts={})</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          
+          
+
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="assert_not_equal-method" class="method-detail ">
+        <a name="method-i-assert_not_equal"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">assert_not_equal</span><span
+            class="method-args">(exp, act, opts)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p>Passes if expected != actual</p>
+
+<pre>assert_not_equal 'some string', 5</pre>
+          
+
+          
+          <div class="method-source-code"
+            id="assert_not_equal-source">
+<pre>
+<span class="ruby-comment"># File lib/assay/assertions/equality_failure.rb, line 69</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">assert_not_equal</span>(<span class="ruby-identifier">exp</span>, <span class="ruby-identifier">act</span>, <span class="ruby-identifier">opts</span>)
+   <span class="ruby-identifier">opts</span>[<span class="ruby-value">:backtrace</span>] <span class="ruby-operator">||=</span> <span class="ruby-identifier">caller</span>
+   <span class="ruby-constant">EqualityFailure</span>.<span class="ruby-identifier">refute</span>(<span class="ruby-identifier">exp</span>, <span class="ruby-identifier">act</span>, <span class="ruby-identifier">opts</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="assert_not_executes-method" class="method-detail ">
+        <a name="method-i-assert_not_executes"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">assert_not_executes</span><span
+            class="method-args">(opts={}, &blk)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p>Passes if the block does not yield successfully.</p>
+
+<p><a
+href="Assertives.html#method-i-assert_not_executes">assert_not_executes</a>
+“Couldn’t do the thing” do</p>
+
+<pre>do_the_thing</pre>
+
+<p>end</p>
+          
+
+          
+          <div class="method-source-code"
+            id="assert_not_executes-source">
+<pre>
+<span class="ruby-comment"># File lib/assay/assertions/execution_failure.rb, line 65</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">assert_not_executes</span>(<span class="ruby-identifier">opts</span>={}, &amp;<span class="ruby-identifier">blk</span>)
+  <span class="ruby-identifier">opts</span>[<span class="ruby-value">:backtrace</span>] <span class="ruby-operator">||=</span> <span class="ruby-identifier">caller</span>
+  <span class="ruby-constant">ExecutionFailure</span>.<span class="ruby-identifier">refute</span>(<span class="ruby-identifier">opts</span>, &amp;<span class="ruby-identifier">blk</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="assert_not_false-method" class="method-detail ">
+        <a name="method-i-assert_not_false"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">assert_not_false</span><span
+            class="method-args">(exp, opts={})</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p>Passed if object is not <tt>false</tt>.</p>
+
+<pre>assert_not_false(false)</pre>
+          
+
+          
+          <div class="method-source-code"
+            id="assert_not_false-source">
+<pre>
+<span class="ruby-comment"># File lib/assay/assertions/false_failure.rb, line 48</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">assert_not_false</span>(<span class="ruby-identifier">exp</span>, <span class="ruby-identifier">opts</span>={})
+  <span class="ruby-identifier">opts</span>[<span class="ruby-value">:backtrace</span>] <span class="ruby-operator">||=</span> <span class="ruby-identifier">caller</span>
+  <span class="ruby-constant">FalseFailure</span>.<span class="ruby-identifier">refute</span>(<span class="ruby-identifier">exp</span>, <span class="ruby-identifier">opts</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="assert_not_identical-method" class="method-detail ">
+        <a name="method-i-assert_not_identical"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">assert_not_identical</span><span
+            class="method-args">(exp, act, opts={})</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p>Passes if ! actual .equal? expected</p>
+
+<pre>assert_not_identical(Object.new, Object.new)</pre>
+          
+
+          
+          <div class="method-source-code"
+            id="assert_not_identical-source">
+<pre>
+<span class="ruby-comment"># File lib/assay/assertions/identity_failure.rb, line 60</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">assert_not_identical</span>(<span class="ruby-identifier">exp</span>, <span class="ruby-identifier">act</span>, <span class="ruby-identifier">opts</span>={})
+  <span class="ruby-identifier">opts</span>[<span class="ruby-value">:backtrace</span>] <span class="ruby-operator">||=</span> <span class="ruby-identifier">caller</span>
+  <span class="ruby-constant">IdentityFailure</span>.<span class="ruby-identifier">refute</span>(<span class="ruby-identifier">exp</span>, <span class="ruby-identifier">act</span>, <span class="ruby-identifier">opts</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="assert_not_instance_of-method" class="method-detail method-alias">
+        <a name="method-i-assert_not_instance_of"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">assert_not_instance_of</span><span
+            class="method-args">(cls, obj, opts={})</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          
+          
+
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="assert_not_kind_of-method" class="method-detail method-alias">
+        <a name="method-i-assert_not_kind_of"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">assert_not_kind_of</span><span
+            class="method-args">(cls, obj, opts={})</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          
+          
+
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="assert_not_nil-method" class="method-detail ">
+        <a name="method-i-assert_not_nil"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">assert_not_nil</span><span
+            class="method-args">(exp, opts={})</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p>Passed if object is not <tt>nil</tt>.</p>
+
+<pre>assert_not_nil(true)</pre>
+          
+
+          
+          <div class="method-source-code"
+            id="assert_not_nil-source">
+<pre>
+<span class="ruby-comment"># File lib/assay/assertions/nil_failure.rb, line 48</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">assert_not_nil</span>(<span class="ruby-identifier">exp</span>, <span class="ruby-identifier">opts</span>={})
+  <span class="ruby-identifier">opts</span>[<span class="ruby-value">:backtrace</span>] <span class="ruby-operator">||=</span> <span class="ruby-identifier">caller</span>
+  <span class="ruby-constant">NilFailure</span>.<span class="ruby-identifier">refute</span>(<span class="ruby-identifier">exp</span>, <span class="ruby-identifier">opts</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="assert_not_raised-method" class="method-detail ">
+        <a name="method-i-assert_not_raised"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">assert_not_raised</span><span
+            class="method-args">(exp, msg=nil, call=nil, &blk)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p>Passes if the block *does not* raise a given exceptions.</p>
+
+<pre>assert_not_raised IOError do
+  raise 'Boom!!!'
+end</pre>
+          
+
+          
+          <div class="method-source-code"
+            id="assert_not_raised-source">
+<pre>
+<span class="ruby-comment"># File lib/assay/assertions/raise_failure.rb, line 109</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">assert_not_raised</span>(<span class="ruby-identifier">exp</span>, <span class="ruby-identifier">msg</span>=<span class="ruby-keyword">nil</span>, <span class="ruby-identifier">call</span>=<span class="ruby-keyword">nil</span>, &amp;<span class="ruby-identifier">blk</span>) <span class="ruby-comment">#:yeild:</span>
+  <span class="ruby-constant">RaiseFailure</span>.<span class="ruby-identifier">refute</span>(<span class="ruby-identifier">exp</span>, <span class="ruby-identifier">msg</span>, <span class="ruby-identifier">call</span>, &amp;<span class="ruby-identifier">blk</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="assert_not_respond_to-method" class="method-detail ">
+        <a name="method-i-assert_not_respond_to"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">assert_not_respond_to</span><span
+            class="method-args">(reciever, method, opts={})</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p>Passes if <tt>object</tt> does not respond_to? <tt>methods</tt>.</p>
+
+<pre>assert_not_respond_to 'bugbear', :slice</pre>
+          
+
+          
+          <div class="method-source-code"
+            id="assert_not_respond_to-source">
+<pre>
+<span class="ruby-comment"># File lib/assay/assertions/response_failure.rb, line 59</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">assert_not_respond_to</span>(<span class="ruby-identifier">reciever</span>, <span class="ruby-identifier">method</span>, <span class="ruby-identifier">opts</span>={})
+  <span class="ruby-identifier">opts</span>[<span class="ruby-value">:backtrace</span>] <span class="ruby-operator">||=</span> <span class="ruby-identifier">caller</span>
+  <span class="ruby-constant">ResponseFailure</span>.<span class="ruby-identifier">refute</span>(<span class="ruby-identifier">reciever</span>, <span class="ruby-identifier">method</span>, <span class="ruby-identifier">opts</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+        <div class="aliases">
+          Also aliased as: <a href="Assertives.html#method-i-assert_not_responds_to">assert_not_responds_to</a>
+        </div>
+        
+      </div>
+
+    
+      <div id="assert_not_responds_to-method" class="method-detail method-alias">
+        <a name="method-i-assert_not_responds_to"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">assert_not_responds_to</span><span
+            class="method-args">(reciever, method, opts={})</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          
+          
+
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="assert_not_same-method" class="method-detail method-alias">
+        <a name="method-i-assert_not_same"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">assert_not_same</span><span
+            class="method-args">(exp, act, opts={})</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          
+          
+
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="assert_not_thrown-method" class="method-detail method-alias">
+        <a name="method-i-assert_not_thrown"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">assert_not_thrown</span><span
+            class="method-args">(sym, opts={}, &blk)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          
+          
+
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="assert_not_true-method" class="method-detail ">
+        <a name="method-i-assert_not_true"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">assert_not_true</span><span
+            class="method-args">(exp, opts={})</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p>Passed if object is not <tt>true</tt>.</p>
+
+<pre>assert_not_true(false)</pre>
+          
+
+          
+          <div class="method-source-code"
+            id="assert_not_true-source">
+<pre>
+<span class="ruby-comment"># File lib/assay/assertions/true_failure.rb, line 54</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">assert_not_true</span>(<span class="ruby-identifier">exp</span>, <span class="ruby-identifier">opts</span>={})
+  <span class="ruby-identifier">opts</span>[<span class="ruby-value">:backtrace</span>] <span class="ruby-operator">||=</span> <span class="ruby-identifier">caller</span>
+  <span class="ruby-constant">TrueFailure</span>.<span class="ruby-identifier">refute</span>(<span class="ruby-identifier">exp</span>, <span class="ruby-identifier">opts</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="assert_raises-method" class="method-detail ">
+        <a name="method-i-assert_raises"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">assert_raises</span><span
+            class="method-args">(exp, msg=nil, call=nil, &blk)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p>Passes if the block raises a given exceptions.</p>
+
+<pre>assert_raises RuntimeError do
+  raise 'Boom!!!'
+end</pre>
+          
+
+          
+          <div class="method-source-code"
+            id="assert_raises-source">
+<pre>
+<span class="ruby-comment"># File lib/assay/assertions/raise_failure.rb, line 99</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">assert_raises</span>(<span class="ruby-identifier">exp</span>, <span class="ruby-identifier">msg</span>=<span class="ruby-keyword">nil</span>, <span class="ruby-identifier">call</span>=<span class="ruby-keyword">nil</span>, &amp;<span class="ruby-identifier">blk</span>) <span class="ruby-comment">#:yeild:</span>
+  <span class="ruby-constant">RaiseFailure</span>.<span class="ruby-identifier">assert</span>(<span class="ruby-identifier">exp</span>, <span class="ruby-identifier">msg</span>=<span class="ruby-keyword">nil</span>, <span class="ruby-identifier">call</span>=<span class="ruby-keyword">nil</span>, &amp;<span class="ruby-identifier">blk</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="assert_respond_to-method" class="method-detail ">
+        <a name="method-i-assert_respond_to"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">assert_respond_to</span><span
+            class="method-args">(reciever, method, opts={})</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p>Passes if <tt>object</tt> respond_to? <tt>methods</tt>.</p>
+
+<pre>assert_respond_to 'bugbear', :slice</pre>
+          
+
+          
+          <div class="method-source-code"
+            id="assert_respond_to-source">
+<pre>
+<span class="ruby-comment"># File lib/assay/assertions/response_failure.rb, line 49</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">assert_respond_to</span>(<span class="ruby-identifier">reciever</span>, <span class="ruby-identifier">method</span>, <span class="ruby-identifier">opts</span>={})
+  <span class="ruby-identifier">opts</span>[<span class="ruby-value">:backtrace</span>] <span class="ruby-operator">||=</span> <span class="ruby-identifier">caller</span>
+  <span class="ruby-constant">ResponseFailure</span>.<span class="ruby-identifier">assert</span>(<span class="ruby-identifier">reciever</span>, <span class="ruby-identifier">method</span>, <span class="ruby-identifier">opts</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+        <div class="aliases">
+          Also aliased as: <a href="Assertives.html#method-i-assert_responds_to">assert_responds_to</a>
+        </div>
+        
+      </div>
+
+    
+      <div id="assert_responds_to-method" class="method-detail method-alias">
+        <a name="method-i-assert_responds_to"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">assert_responds_to</span><span
+            class="method-args">(reciever, method, opts={})</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          
+          
+
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="assert_same-method" class="method-detail ">
+        <a name="method-i-assert_same"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">assert_same</span><span
+            class="method-args">(exp, act, opts={})</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p>Passes if <tt>expected</tt> .eq? <tt>actual</tt>.</p>
+
+<p>Note that the ordering of arguments is important, since a helpful error
+message is generated when this one fails that tells you the values of
+expected and actual.</p>
+
+<pre>assert_same 'MY STRING', 'my string'.upcase</pre>
+          
+
+          
+          <div class="method-source-code"
+            id="assert_same-source">
+<pre>
+<span class="ruby-comment"># File lib/assay/assertions/same_failure.rb, line 47</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">assert_same</span>(<span class="ruby-identifier">exp</span>, <span class="ruby-identifier">act</span>, <span class="ruby-identifier">opts</span>={})
+  <span class="ruby-identifier">opts</span>[<span class="ruby-value">:backtrace</span>] <span class="ruby-operator">||=</span> <span class="ruby-identifier">caller</span>
+  <span class="ruby-constant">SameFailure</span>.<span class="ruby-identifier">assert</span>(<span class="ruby-identifier">exp</span>, <span class="ruby-identifier">act</span>, <span class="ruby-identifier">opts</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="assert_throws-method" class="method-detail ">
+        <a name="method-i-assert_throws"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">assert_throws</span><span
+            class="method-args">(sym, opts={}, &blk)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p>Passes if the block throws expected_symbol</p>
+
+<pre>assert_throws :done do
+  throw :done
+end</pre>
+          
+
+          
+          <div class="method-source-code"
+            id="assert_throws-source">
+<pre>
+<span class="ruby-comment"># File lib/assay/assertions/throw_failure.rb, line 84</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">assert_throws</span>(<span class="ruby-identifier">sym</span>, <span class="ruby-identifier">opts</span>={}, &amp;<span class="ruby-identifier">blk</span>)
+  <span class="ruby-identifier">opts</span>[<span class="ruby-value">:backtrace</span>] <span class="ruby-operator">||=</span> <span class="ruby-identifier">caller</span>
+  <span class="ruby-constant">ThrowFailure</span>.<span class="ruby-identifier">assert</span>(<span class="ruby-identifier">sym</span>, <span class="ruby-identifier">opts</span>, &amp;<span class="ruby-identifier">blk</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="assert_true-method" class="method-detail ">
+        <a name="method-i-assert_true"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">assert_true</span><span
+            class="method-args">(exp, opts={})</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p>Passed if object is <tt>true</tt>.</p>
+          
+
+          
+          <div class="method-source-code"
+            id="assert_true-source">
+<pre>
+<span class="ruby-comment"># File lib/assay/assertions/true_failure.rb, line 45</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">assert_true</span>(<span class="ruby-identifier">exp</span>, <span class="ruby-identifier">opts</span>={})
+  <span class="ruby-identifier">opts</span>[<span class="ruby-value">:backtrace</span>] <span class="ruby-operator">||=</span> <span class="ruby-identifier">caller</span>
+  <span class="ruby-constant">TrueFailure</span>.<span class="ruby-identifier">assert</span>(<span class="ruby-identifier">exp</span>, <span class="ruby-identifier">opts</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="refute_empty-method" class="method-detail ">
+        <a name="method-i-refute_empty"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">refute_empty</span><span
+            class="method-args">(exp, opts={})</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p>Passed if object is not <tt>true</tt>.</p>
+
+<pre>assert_not_true(false)</pre>
+          
+
+          
+          <div class="method-source-code"
+            id="refute_empty-source">
+<pre>
+<span class="ruby-comment"># File lib/assay/assertions/empty_failure.rb, line 48</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">refute_empty</span>(<span class="ruby-identifier">exp</span>, <span class="ruby-identifier">opts</span>={})
+  <span class="ruby-identifier">opts</span>[<span class="ruby-value">:backtrace</span>] <span class="ruby-operator">||=</span> <span class="ruby-identifier">caller</span>
+  <span class="ruby-constant">EmptyFailure</span>.<span class="ruby-identifier">refute</span>(<span class="ruby-identifier">exp</span>, <span class="ruby-identifier">opts</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+        <div class="aliases">
+          Also aliased as: <a href="Assertives.html#method-i-assert_not_empty">assert_not_empty</a>
+        </div>
+        
+      </div>
+
+    
+      <div id="refute_instance_of-method" class="method-detail ">
+        <a name="method-i-refute_instance_of"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">refute_instance_of</span><span
+            class="method-args">(cls, obj, opts={})</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p>Passes if object .instance_of? klass</p>
+
+<pre>assert_instance_of(String, 'foo')</pre>
+          
+
+          
+          <div class="method-source-code"
+            id="refute_instance_of-source">
+<pre>
+<span class="ruby-comment"># File lib/assay/assertions/instance_failure.rb, line 50</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">refute_instance_of</span>(<span class="ruby-identifier">cls</span>, <span class="ruby-identifier">obj</span>, <span class="ruby-identifier">opts</span>={})
+  <span class="ruby-identifier">opts</span>[<span class="ruby-value">:backtrace</span>] <span class="ruby-operator">||=</span> <span class="ruby-identifier">caller</span>
+  <span class="ruby-constant">InstanceFailure</span>.<span class="ruby-identifier">refute</span>(<span class="ruby-identifier">cls</span>, <span class="ruby-identifier">obj</span>, <span class="ruby-identifier">opts</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+        <div class="aliases">
+          Also aliased as: <a href="Assertives.html#method-i-assert_not_instance_of">assert_not_instance_of</a>
+        </div>
+        
+      </div>
+
+    
+      <div id="refute_kind_of-method" class="method-detail ">
+        <a name="method-i-refute_kind_of"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">refute_kind_of</span><span
+            class="method-args">(cls, obj, opts={})</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p>Passes if object .kind_of? klass</p>
+
+<pre>assert_not_kind_of(Object, 'foo')</pre>
+          
+
+          
+          <div class="method-source-code"
+            id="refute_kind_of-source">
+<pre>
+<span class="ruby-comment"># File lib/assay/assertions/kind_failure.rb, line 55</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">refute_kind_of</span>(<span class="ruby-identifier">cls</span>, <span class="ruby-identifier">obj</span>, <span class="ruby-identifier">opts</span>={})
+  <span class="ruby-constant">KindFailure</span>.<span class="ruby-identifier">refute</span>(<span class="ruby-identifier">cls</span>, <span class="ruby-identifier">obj</span>, <span class="ruby-identifier">opts</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+        <div class="aliases">
+          Also aliased as: <a href="Assertives.html#method-i-assert_not_kind_of">assert_not_kind_of</a>
+        </div>
+        
+      </div>
+
+    
+      <div id="refute_match-method" class="method-detail ">
+        <a name="method-i-refute_match"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">refute_match</span><span
+            class="method-args">(exp, act, opts={})</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p>Passes if regexp !~ string</p>
+
+<pre>refute_match(/two/, 'one 2 three')</pre>
+          
+
+          
+          <div class="method-source-code"
+            id="refute_match-source">
+<pre>
+<span class="ruby-comment"># File lib/assay/assertions/match_failure.rb, line 61</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">refute_match</span>(<span class="ruby-identifier">exp</span>, <span class="ruby-identifier">act</span>, <span class="ruby-identifier">opts</span>={})
+  <span class="ruby-identifier">opts</span>[<span class="ruby-value">:backtrace</span>] <span class="ruby-operator">||=</span> <span class="ruby-identifier">caller</span>
+  <span class="ruby-constant">MatchFailure</span>.<span class="ruby-identifier">refute</span>(<span class="ruby-identifier">exp</span>, <span class="ruby-identifier">act</span>, <span class="ruby-identifier">opts</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="refute_same-method" class="method-detail ">
+        <a name="method-i-refute_same"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">refute_same</span><span
+            class="method-args">(exp, act, opts={})</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p>Passes if not <tt>expected</tt> .eq? <tt>actual</tt>.</p>
+
+<pre>assert_not_the_same 'some string', 5</pre>
+          
+
+          
+          <div class="method-source-code"
+            id="refute_same-source">
+<pre>
+<span class="ruby-comment"># File lib/assay/assertions/same_failure.rb, line 56</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">refute_same</span>(<span class="ruby-identifier">exp</span>, <span class="ruby-identifier">act</span>, <span class="ruby-identifier">opts</span>={})
+  <span class="ruby-identifier">opts</span>[<span class="ruby-value">:backtrace</span>] <span class="ruby-operator">||=</span> <span class="ruby-identifier">caller</span>
+  <span class="ruby-constant">SameFailure</span>.<span class="ruby-identifier">refute</span>(<span class="ruby-identifier">exp</span>, <span class="ruby-identifier">act</span>, <span class="ruby-identifier">opts</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+        <div class="aliases">
+          Also aliased as: <a href="Assertives.html#method-i-assert_not_same">assert_not_same</a>
+        </div>
+        
+      </div>
+
+    
+      <div id="refute_throws-method" class="method-detail ">
+        <a name="method-i-refute_throws"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">refute_throws</span><span
+            class="method-args">(sym, opts={}, &blk)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p>Passes if the block throws expected_symbol</p>
+
+<pre>refute_throws :done do
+  throw :chimp
+end</pre>
+          
+
+          
+          <div class="method-source-code"
+            id="refute_throws-source">
+<pre>
+<span class="ruby-comment"># File lib/assay/assertions/throw_failure.rb, line 95</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">refute_throws</span>(<span class="ruby-identifier">sym</span>, <span class="ruby-identifier">opts</span>={}, &amp;<span class="ruby-identifier">blk</span>)
+  <span class="ruby-identifier">opts</span>[<span class="ruby-value">:backtrace</span>] <span class="ruby-operator">||=</span> <span class="ruby-identifier">caller</span>
+  <span class="ruby-constant">ThrowFailure</span>.<span class="ruby-identifier">refute</span>(<span class="ruby-identifier">sym</span>, <span class="ruby-identifier">opts</span>, &amp;<span class="ruby-identifier">blk</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+        <div class="aliases">
+          Also aliased as: <a href="Assertives.html#method-i-assert_not_thrown">assert_not_thrown</a>
+        </div>
+        
+      </div>
+
+    
+    </div>
+  
+
+  </div>
+
+
+  <div id="rdoc-debugging-section-dump" class="debugging-section">
+  
+    <p>Disabled; run with --debug to generate this.</p>
+  
+  </div>
+
+</main>
+</body>
+</html>
+
