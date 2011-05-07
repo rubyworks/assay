@@ -18,6 +18,7 @@ module Assay
 
     #
     def to_s
+      return @mesg if @mesg
       return super unless @arguments.size == 2
 
       iexp = @arguments[0].inspect

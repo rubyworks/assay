@@ -34,6 +34,7 @@ module Assay
 
     #
     def to_s
+      return @mesg if @mesg
       if @_negated
         "Expected procedure to raise an exception"
       else
@@ -51,9 +52,8 @@ module Assay
     #   do_the_thing
     # end
     #
-    def assert_executes(opts={}, &blk)
-      opts[:backtrace] ||= caller
-      ExecutionFailure.assert(opts, &blk)
+    def assert_executes(msg=nil, &blk)
+      ExecutionFailure.assert(:message=>msg, :backtrace=>caller, &blk)
     end
 
     # Passes if the block does not yield successfully.
@@ -62,9 +62,8 @@ module Assay
     #   do_the_thing
     # end
     #
-    def assert_not_executes(opts={}, &blk)
-      opts[:backtrace] ||= caller
-      ExecutionFailure.refute(opts, &blk)
+    def assert_not_executes(msg=nil, &blk)
+      ExecutionFailure.refute(:message=>msg, :backtrace=>caller, &blk)
     end
   end
 

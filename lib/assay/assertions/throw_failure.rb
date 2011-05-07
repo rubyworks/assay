@@ -60,6 +60,7 @@ module Assay
 
     #
     def to_s
+      return @mesg if @mesg
       return super unless @arguments.size == 1
 
       sym = @arguments[0].inspect
@@ -81,9 +82,8 @@ module Assay
     #     throw :done
     #   end
     #
-    def assert_throws(sym, opts={}, &blk)
-      opts[:backtrace] ||= caller
-      ThrowFailure.assert(sym, opts, &blk)
+    def assert_throws(sym, msg=nil, &blk)
+      ThrowFailure.assert(sym, :message=>msg, :backtrace=>caller, &blk)
     end
 
     # Passes if the block throws expected_symbol
@@ -92,9 +92,8 @@ module Assay
     #     throw :chimp
     #   end
     #
-    def refute_throws(sym, opts={}, &blk)
-      opts[:backtrace] ||= caller
-      ThrowFailure.refute(sym, opts, &blk)
+    def refute_throws(sym, msg=nil, &blk)
+      ThrowFailure.refute(sym, :message=>msg, :backtrace=>caller, &blk)
     end
 
     alias_method :assert_not_thrown, :refute_throws

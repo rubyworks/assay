@@ -29,6 +29,7 @@ module Assay
 
     #
     def to_s
+      return @mesg if @mesg
       return super unless @arguments.size == 2
 
       exp = @arguments[0].inspect
@@ -49,18 +50,16 @@ module Assay
     #
     #   assert_match(/\d+/, 'five, 6, seven')
     #
-    def assert_match(exp, act, opts={})
-      opts[:backtrace] ||= caller
-      MatchFailure.assert(exp, act, opts)
+    def assert_match(exp, act, msg=nil)
+      MatchFailure.assert(exp, act, :message=>msg, :backtrace=>caller)
     end
 
     # Passes if regexp !~ string
     #
     #   refute_match(/two/, 'one 2 three')
     #
-    def refute_match(exp, act, opts={})
-      opts[:backtrace] ||= caller
-      MatchFailure.refute(exp, act, opts)
+    def refute_match(exp, act, msg=nil)
+      MatchFailure.refute(exp, act, :message=>msg, :backtrace=>caller)
     end
   end
 

@@ -26,6 +26,7 @@ module Assay
 
     #
     def to_s
+      return @mesg if @mesg
       return super unless @arguments.size == 2
 
       reciever = @arguments[0].inspect
@@ -46,9 +47,8 @@ module Assay
     #
     #   assert_respond_to 'bugbear', :slice
     #
-    def assert_respond_to(reciever, method, opts={})
-      opts[:backtrace] ||= caller
-      ResponseFailure.assert(reciever, method, opts)
+    def assert_respond_to(reciever, method, msg=nil)
+      ResponseFailure.assert(reciever, method, :message=>msg, :backtrace=>caller)
     end
     alias_method :assert_responds_to, :assert_respond_to
 
@@ -56,9 +56,8 @@ module Assay
     #
     #   assert_not_respond_to 'bugbear', :slice
     #
-    def assert_not_respond_to(reciever, method, opts={})
-      opts[:backtrace] ||= caller
-      ResponseFailure.refute(reciever, method, opts)
+    def assert_not_respond_to(reciever, method, msg=nil)
+      ResponseFailure.refute(reciever, method, :message=>msg, :backtrace=>caller)
     end
 
     alias_method :assert_not_responds_to, :assert_not_respond_to

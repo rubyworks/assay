@@ -74,6 +74,7 @@ module Assay
 
     # TODO: how to add `but got class` instead.
     def to_s
+      return @mesg if @mesg
       return super unless @arguments.size == 1
 
       exp = @arguments[0].inspect
@@ -90,7 +91,7 @@ module Assay
 
 
   module Assertives
-    # Passes if the block raises a given exceptions.
+    # Passes if the block raises a given exception.
     #
     #   assert_raises RuntimeError do
     #     raise 'Boom!!!'

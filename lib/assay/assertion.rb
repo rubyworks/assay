@@ -79,6 +79,7 @@ module Assay
     def initialize(message=nil, *arguments, &block)
       message ? super(message % arguments) : super()
 
+      @mesg      = message  # why isn't this in @mesg from super()?
       @arguments = arguments
       @block     = block
 

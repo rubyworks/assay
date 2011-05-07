@@ -22,6 +22,7 @@ module Assay
 
     #
     def to_s
+      return @mesg if @mesg
       return super unless @arguments.size == 3
 
       exp   = @arguments[0].inspect
@@ -43,18 +44,17 @@ module Assay
     #
     #   assert_in_delta 0.05, (50000.0 / 10**6), 0.00001
     #
-    def assert_in_delta(exp, act, delta, opts={})
-      opts[:backtrace] ||= caller
-      DeltaFailure.assert(exp, act, delta, opts)
+    def assert_in_delta(exp, act, delta, msg=nil)
+      DeltaFailure.assert(exp, act, delta, :message=>msg, :backtrace=>caller)
     end
 
     # Passes if expected and actual are equal not within delta tolerance.
     #
     #   assert_not_in_delta 0.05, (50000.0 / 10**6), 0.00001
     #
-    def self.not_in_delta(exp, act, delta, opts)
+    def self.not_in_delta(exp, act, delta, msg=nil)
       opts[:backtrace] ||= caller
-      DeltaFailure.refute(exp, act, delta, opts)
+      DeltaFailure.refute(exp, act, delta, :message=>msg, :backtrace=>caller)
     end
   end
 

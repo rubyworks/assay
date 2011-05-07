@@ -27,6 +27,7 @@ module Assay
 
     #
     def to_s
+      return @mesg if @mesg
       return super unless @arguments.size == 2
 
       iexp = @arguments[0].inspect
@@ -48,18 +49,16 @@ module Assay
     #   o = Object.new
     #   assert_identical(o, o)
     #
-    def assert_identical(exp, act, opts={})
-      opts[:backtrace] ||= caller
-      IdentityFailure.assert(exp, act, opts)
+    def assert_identical(exp, act, msg=nil)
+      IdentityFailure.assert(exp, act, :message=>msg, :backtrace=>caller)
     end
 
     # Passes if ! actual .equal? expected
     #
     #   assert_not_identical(Object.new, Object.new)
     #
-    def assert_not_identical(exp, act, opts={})
-      opts[:backtrace] ||= caller
-      IdentityFailure.refute(exp, act, opts)
+    def assert_not_identical(exp, act, msg=nil)
+      IdentityFailure.refute(exp, act, :message=>msg, :backtrace=>caller)
     end
   end
 

@@ -20,6 +20,7 @@ module Assay
 
     #
     def to_s
+      return @mesg if @mesg
       return super unless @arguments.size == 2
 
       exp = @arguments[0].inspect
@@ -44,18 +45,16 @@ module Assay
     #
     #   assert_same 'MY STRING', 'my string'.upcase
     #
-    def assert_same(exp, act, opts={})
-      opts[:backtrace] ||= caller
-      SameFailure.assert(exp, act, opts)
+    def assert_same(exp, act, msg=nil)
+      SameFailure.assert(exp, act, :message=>msg, :backtrace=>caller)
     end
 
     # Passes if not +expected+ .eq? +actual+.
     #
     #  assert_not_the_same 'some string', 5
     #
-    def refute_same(exp, act, opts={})
-      opts[:backtrace] ||= caller
-      SameFailure.refute(exp, act, opts)
+    def refute_same(exp, act, msg=nil)
+      SameFailure.refute(exp, act, :message=>msg, :backtrace=>caller)
     end
 
     alias_method :assert_not_same, :refute_same

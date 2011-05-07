@@ -19,6 +19,7 @@ module Assay
 
     #
     def to_s
+      return @mesg if @mesg
       return super unless @arguments.size == 1
 
       exp = @arguments.first.inspect
@@ -36,18 +37,17 @@ module Assay
   module Assertives
     # Passed if object is +true+.
     #
-    def assert_empty(exp, opts={})
-      opts[:backtrace] ||= caller
-      EmptyFailure.assert(exp, opts)
+    def assert_empty(exp, msg=nil)
+      EmptyFailure.assert(exp, :message=>msg, :backtrace=>caller)
     end
 
     # Passed if object is not +true+.
     #
     #   assert_not_true(false)
     #
-    def refute_empty(exp, opts={})
+    def refute_empty(exp, msg=nil)
       opts[:backtrace] ||= caller
-      EmptyFailure.refute(exp, opts)
+      EmptyFailure.refute(exp, :message=>msg, :backtrace=>caller)
     end
 
     alias_method :assert_not_empty, :refute_empty

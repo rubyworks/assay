@@ -27,6 +27,7 @@ module Assay
 
     #
     def to_s
+      return @mesg if @mesg
       return super unless @arguments.size == 2
 
       oper = @_negated ? "!=" : "=="
@@ -53,22 +54,16 @@ module Assay
     #
     #   assert_equal 'MY STRING', 'my string'.upcase
     #
-    def assert_equal(exp, act, opts={})
-      opts[:backtrace] ||= caller
-      #message   = opts[:message]
-      EqualityFailure.assert(exp, act, opts)
-      #err = EqualityFailure.new(message, exp, act)
-      #err.set_backtrace(backtrace)
-      #err.assert(opts)
+    def assert_equal(exp, act, msg=nil)
+      EqualityFailure.assert(exp, act, :message=>msg, :backtrace=>caller)
     end
 
     # Passes if expected != actual
     #
     #  assert_not_equal 'some string', 5
     #
-    def assert_not_equal(exp, act, opts)
-       opts[:backtrace] ||= caller
-       EqualityFailure.refute(exp, act, opts)
+    def assert_not_equal(exp, act, msg=nil)
+       EqualityFailure.refute(exp, act, :message=>msg, :backtrace=>caller)
     end
   end
 

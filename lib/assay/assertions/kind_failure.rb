@@ -24,6 +24,7 @@ module Assay
 
     #
     def to_s
+      return @mesg if @mesg
       return super unless @arguments.size == 2
 
       exp = @arguments[0].inspect
@@ -43,17 +44,16 @@ module Assay
     #
     #   assert_kind_of(Object, 'foo')
     #
-    def assert_kind_of(cls, obj, opts={})
-      opts[:backtrace] ||= caller
-      KindFailure.assert(cls, obj, opts)
+    def assert_kind_of(cls, obj, msg=nil)
+      KindFailure.assert(cls, obj, :message=>msg, :backtrace=>caller)
     end
 
     # Passes if object .kind_of? klass
     #
     #   assert_not_kind_of(Object, 'foo')
     #
-    def refute_kind_of(cls, obj, opts={})
-      KindFailure.refute(cls, obj, opts)
+    def refute_kind_of(cls, obj, msg=nil)
+      KindFailure.refute(cls, obj, :message=>msg, :backtrace=>caller)
     end
     alias_method :assert_not_kind_of, :refute_kind_of
   end

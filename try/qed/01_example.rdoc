@@ -12,4 +12,12 @@ Example of a failed refutation.
 
     1.refute is_equal_to(1)
 
+Lets try the assertives.
+
+    include Assay::Assertives
+
+Now
+
+    assert_equal(1,2, "1 is not 2 dingo!")
+
 QED.

@@ -19,6 +19,7 @@ module Assay
 
     #
     def to_s
+      return @mesg if @mesg
       return super unless @arguments.size == 2
 
       exp = @arguments[0].inspect
@@ -38,18 +39,16 @@ module Assay
     #
     #   assert_instance_of(String, 'foo')
     #
-    def assert_instance_of(cls, obj, opts={})
-      opts[:backtrace] ||= caller
-      InstanceFailure.assert(cls, obj, opts)
+    def assert_instance_of(cls, obj, msg=nil)
+      InstanceFailure.assert(cls, obj, :message=>msg, :backtrace=>caller)
     end
 
     # Passes if object .instance_of? klass
     #
     #   assert_instance_of(String, 'foo')
     #
-    def refute_instance_of(cls, obj, opts={})
-      opts[:backtrace] ||= caller
-      InstanceFailure.refute(cls, obj, opts)
+    def refute_instance_of(cls, obj, msg=nil)
+      InstanceFailure.refute(cls, obj, :message=>msg, :backtrace=>caller)
     end
 
     alias_method :assert_not_instance_of, :refute_instance_of
