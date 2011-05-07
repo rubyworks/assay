@@ -1,8 +1,8 @@
-= Assertable
+= Assertion Methods
 
   require 'assay'
 
-  include Assay::Assertable
+  include Assay::Assertives
 
 == EqualityFailure
 
@@ -98,14 +98,6 @@
 
   expect Assay::ResponseFailure do
     assert_responds_to("string", :not_a_method)
-  end
-
-== ExecutionFailure
-
-  assert_executes{ nil }
-
-  expect Assay::ExecutionFailure do
-    assert_executes{ raise }
   end
 
 == ThrowFailure
