@@ -100,6 +100,14 @@
     "string".assert is_responsive_to(:not_a_method)
   end
 
+== ExecutionFailure
+
+  assert is_executed{ :foo }
+
+  expect Assay::ExecutionFailure do
+    assert is_executed{ raise }
+  end
+
 == ThrowFailure
 
   :foo.assert is_thrown{ throw :foo }
