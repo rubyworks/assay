@@ -1,21 +1,19 @@
 require 'ansi/diff'
+require 'assay/matcher'
 
 module Assay
 
   #
-  class Failure < Exception #< Assertion
+  class Assertion < Exception
 
     # When displaying errors, use this as a rule of thumb
     # for determining when the inspected object will be too
     # big for a single line message.
     SIZE_LIMIT = 13
 
-    # Returns a Matcher for the failure class.
+    # Returns Matcher for the failure class.
     def self.to_matcher(*args, &blk)
       Matcher.new(self, *args, &blk)
-      #matcher = new
-      #matcher.set_arguments(args, &blk)
-      #matcher
     end
 
     #
@@ -54,8 +52,7 @@ module Assay
 
       err = new(message, *args, &blk)
       err.set_backtrace(backtrace)
-      err.set_negative(true)
-      err.assert
+      err.refute
 
       #opts = Hash === args.last ? args.pop : {}
       #chk  = check!(*args, &blk)
@@ -78,16 +75,6 @@ module Assay
       ! pass?(*args, &blk)
     end
 
-    ##
-    #def self.fail_message(*)
-    #  raise NotImplementedError
-    #end
-
-    #
-    #def self.fail_message!(*args)
-    #  "NOT " + fail_message(*args)
-    #end
-
     #
     def initialize(message=nil, *arguments, &block)
       message ? super(message % arguments) : super()
@@ -105,27 +92,29 @@ module Assay
     # This method allows Assay's classes to work in any test framework
     # that supports this interface.
     def assertion?
-      true
+      true  # @assertion = true if @assertion.nil?
     end
 
     #
-    def valid?
-      self.class.pass?(*@arguments, &@block)
+    def pass?
+      self.class.pass?(*@arguments, &@block) #^ @negative
     end
 
     #
-    def invalid?
-      not valid?
+    def fail?
+      not pass?
     end
 
     #
     def assert
-      raise self unless valid?
+      #@negative = false
+      raise self unless pass?
     end
 
     #
     def refute
-      raise self unless invalid?
+      #@negative = true
+      raise self unless fail?
     end
 
     #
@@ -154,57 +143,6 @@ module Assay
       end
     end
 
-    #
-    #def matches?(target)
-    #  #@target = target
-    #  self.class.check(target, *@_arguments, &@_block)
-    #end
-
-  end
-
-  #
-  class Matcher
-    def initialize(fail_class, *arguments, &block)
-      @fail_class = fail_class
-      @arguments  = arguments
-      @block      = block
-    end
-
-    #
-    def fail_class
-      @fail_class
-    end
-
-    #
-    def matches?(target)
-      @exception = nil
-      @target    = target
-
-      @fail_class.pass?(target, *@arguments, &@block)
-    end
-
-    # Returns Exception class.
-    def exception
-      @exception ||= fail_class.new(nil, @target, *@arguments, &@block)     
-      #  :negated   => options[:negated],
-      #  :backtrace => options[:backtrace] || caller,
-    end
-
-    # This is just for RSpec matcher compatability.
-    def fail_message
-      exception.to_s
-    end
-
-    # This is just for RSpec matcher compatability.
-    def negative_fail_message
-      #exception.set_negative(true)
-      exception.to_s
-    end
-
-    #
-    def fail(backtrace=nil)
-      super exception #(backtrace || caller)
-    end
   end
 
 end
