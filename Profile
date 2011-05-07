@@ -1,15 +1,14 @@
 ---
-name: assay
+name    : assay
+title   : Assay
+summary : Class-based Assertions Framework
+license : Apache 2.0
+contact : trans <transfire@gmail.com>
 
 requires:
   - ansi >=1.2.5
   - redline (build)
   - qed (test)
-
-title     : Assay
-summary   : Class-based Assertions Framework
-license   : Apache 2.0
-suite     : rubyworks
 
 authors:
   - Thomas Sawyer
@@ -23,6 +22,8 @@ resources:
   home: http://rubydoc.info/gems/assay
   docs: http://rubydoc.info/gems/assay
   code: http://github.com/rubyworks/assay
+
+organization: Rubyworks
 
 created   : 2009-08-21
 copyright : Copyright (c) 2007 Thomas Sawyer

@@ -63,7 +63,7 @@ dependencies:
   type: :development
   version_requirements: *id003
 description: The Assay project defines Assertions in the same way that Ruby defines Exceptions. An asserition then simply becomes an extension to an Exception class.
-email: ""
+email: transfire@gmail.com
 executables: []
 
 extensions: []
