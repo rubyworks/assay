@@ -1,6 +1,7 @@
 ---
 grancher:
-  active: false
+  service: Grancher
+  active : true
 
 gem:
   service: Gem
