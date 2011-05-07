@@ -1,5 +1,16 @@
 = HISTORY
 
+== 0.3.0 | 2011-05-07
+
+This release fix the interface of the assertive methods so they accept
+a message argument, like the original testunit.
+
+Changes:
+
+* Fix assertive methods to take message argument.
+* Fix Assertion class to store message.
+
+
 == 0.2.0 | 2011-05-05
 
 This release of Assay is in good working order and can now be used
