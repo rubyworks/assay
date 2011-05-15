@@ -1,13 +1,13 @@
 --- !ruby/object:Gem::Specification 
 name: assay
 version: !ruby/object:Gem::Version 
-  hash: 23
+  hash: 19
   prerelease: false
   segments: 
   - 0
-  - 2
+  - 3
   - 0
-  version: 0.2.0
+  version: 0.3.0
 platform: ruby
 authors: 
 - Thomas Sawyer
