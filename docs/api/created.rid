@@ -1,4 +1,4 @@
-Sat, 07 May 2011 15:39:06 -0400
+Sun, 15 May 2011 13:49:28 -0400
 lib/assay/assertions/throw_failure.rb	Sat, 07 May 2011 15:32:34 -0400
 lib/assay/assertions/instance_failure.rb	Sat, 07 May 2011 15:31:39 -0400
 lib/assay/assertions/kind_failure.rb	Sat, 07 May 2011 15:31:43 -0400
@@ -7,7 +7,6 @@ lib/assay/assertions/nil_failure.rb	Sat, 07 May 2011 15:31:51 -0400
 lib/assay/adapters/minitest.rb	Mon, 02 May 2011 14:10:34 -0400
 lib/assay/assertions/match_failure.rb	Sat, 07 May 2011 15:31:47 -0400
 lib/assay.yml	Sat, 07 May 2011 12:41:01 -0400
-Redfile	Sat, 07 May 2011 12:57:40 -0400
 lib/assay.rb	Sat, 07 May 2011 12:04:03 -0400
 lib/assay/assertions/delta_failure.rb	Sat, 07 May 2011 15:31:01 -0400
 lib/assay/assertions/identity_failure.rb	Sat, 07 May 2011 15:31:35 -0400
@@ -16,7 +15,7 @@ lib/assay/assertions/execution_failure.rb	Sat, 07 May 2011 15:31:28 -0400
 lib/assay/assertions/raise_failure.rb	Sat, 07 May 2011 15:32:19 -0400
 lib/assay/assertions/equality_failure.rb	Sat, 07 May 2011 15:31:22 -0400
 lib/assay/matcher.rb	Fri, 06 May 2011 16:14:34 -0400
-README.rdoc	Sat, 07 May 2011 13:01:30 -0400
+README.rdoc	Sun, 15 May 2011 13:48:22 -0400
 lib/assay/assertion.rb	Sat, 07 May 2011 15:33:35 -0400
 lib/assay/assertions/same_failure.rb	Sat, 07 May 2011 15:32:25 -0400
 lib/assay/assertions/empty_failure.rb	Sat, 07 May 2011 15:31:09 -0400
