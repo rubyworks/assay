@@ -27,7 +27,7 @@ rdoc:
   service  : RDoc
   format   : redfish
   include  : ~
-  exclude  : [Profile, Version, MANIFEST.txt]
+  exclude  : [Profile, Version, MANIFEST.txt, Redfile]
   main     : ~
   extra    : ~
   output   : site/docs/api
