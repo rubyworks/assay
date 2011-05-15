@@ -8,7 +8,7 @@ extended Exception class. Assay provides a complete set
 of these assertion classes for the most common assertion types.
 It also provides both TestUnit-style assertion methods and
 RSpec-compatiable matchers built from these assertion classes
-for use in your preferred test harness. Assay works with
+for use in your preferred test harness. Assay is compatible with
 TestUnit, MiniTest, RSpec and other test frameworks.
 
 
