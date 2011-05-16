@@ -30,7 +30,7 @@ rdoc:
   exclude  : [Profile, Version, MANIFEST.txt, Redfile]
   main     : ~
   extra    : ~
-  output   : site/docs/api
+  output   : site/doc
   active   : true
 
 ri:
