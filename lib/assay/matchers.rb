@@ -3,8 +3,8 @@ module Assay
   module Nomenclature
 
     # Matchers provide a set of RSpec-compatible matcher methods. These 
-    # matchers are provide all the traditional Rspec matchers, less some
-    # extraneous verbosity, plus a few additional matchers.
+    # matchers provide all the traditional Rspec matchers, less some
+    # extraneous verbosity, plus additional matchers.
     #
     module Matchers
 
@@ -15,7 +15,7 @@ module Assay
 
     # CompareFailure
 
-      #
+      # Passes if the expected and actual are alike.
       #
       #   object.should be_like(criterion)
       #
@@ -23,13 +23,11 @@ module Assay
         CompareFailure.to_matcher(exp)
       end
 
-      #
+      # Passes if the expected and actual are alike.
       #
       #   object.assert is_like(criterion)
       #
-      def is_like(exp)
-        CompareFailure.to_matcher(exp)
-      end
+      alias_method :is_like, :be_like
 
     # DeltaFailure
 

@@ -1,44 +1,49 @@
---- 
-spec_version: 1.0.0
-replaces: []
-
-loadpath: 
-- lib
-name: assay
-repositories: {}
-
-conflicts: []
-
-engine_check: []
-
-title: Assay
-resources: 
-  code: http://github.com/rubyworks/assay
-  docs: http://rubydoc.info/gems/assay
-  home: http://rubydoc.info/gems/assay
-maintainers: []
-
-requires: 
-- group: []
-
-  name: ansi
-  version: ">=1.2.5"
-- group: 
+---
+source:
+- meta
+authors:
+- name: Thomas Sawyer
+  email: transfire@gmail.com
+copyrights:
+- holder: Thomas Sawyer
+  year: '2007'
+  license: BSD-2-Clause
+replacements: []
+alternatives: []
+requirements:
+- name: ansi
+  version: ! '>=1.2.5'
+- name: detroit
+  groups:
   - build
-  name: redline
-  version: 0+
-- group: 
+  development: true
+- name: qed
+  groups:
   - test
-  name: qed
-  version: 0+
-suite: rubyworks
-manifest: MANIFEST.txt
-version: 0.2.0
-licenses: 
-- Apache 2.0
-copyright: Copyright (c) 2007 Thomas Sawyer
-authors: 
-- Thomas Sawyer
-description: The Assay project defines Assertions in the same way that Ruby defines Exceptions. An asserition then simply becomes an extension to an Exception class.
+  development: true
+dependencies: []
+conflicts: []
+repositories:
+- uri: git@github.com:rubyworks/assay.git
+  scm: git
+  name: upstream
+resources:
+  home: http://rubydoc.info/gems/assay
+  docs: http://rubydoc.info/gems/assay
+  code: http://github.com/rubyworks/assay
+  mail: http://groups.google.com/groups/rubyworks-mailinglist
+extra: {}
+load_path:
+- lib
+revision: 0
+created: '2009-08-21'
 summary: Class-based Assertions Framework
-created: 2009-08-21
+title: Assay
+name: assay
+description: ! 'The Assay project defines Assertions in the same way that Ruby defines
+  Exceptions.
+
+  An asserition then simply becomes an extension to an Exception class.'
+organization: Rubyworks
+version: ''
+date: '2012-01-14'

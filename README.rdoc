@@ -1,5 +1,10 @@
 = Assay
 
+[Homepage]{http://rubyworks.github.com/assay} /
+[Source Code]{http://github.com/rubyworks/assay} /
+[MailingList]{http://groups.google.com/group/rubyworks-mailinglist}
+
+
 == DESCRIPTION
 
 Assay defines assertions in the same way that Ruby defines
@@ -16,16 +21,10 @@ TestUnit, MiniTest, RSpec and other test frameworks.
 
 * Mirrors the Ruby Exception system.
 * Assertions get their own specialized error messages.
+* Support a variety of assertion nomenclatures.
 
 
-== RESOURCES
-
-* home: http://rubyworks.github.com/assay
-* code: http://github.com/rubyworks/assay
-* mail: http://groups.google.com/group/rubyworks-mailinglist
-
-
-== SYNOPSIS
+== USAGE
 
 See QED documentation.
 
@@ -40,11 +39,11 @@ Site installation with the tarball can be done with Ruby Setup
 (gem install setup). See http://rubyworks.github.com/setup.
 
 
-== COPYING
+== COPYRIGHTS
 
-Copyright (c) 2009 Thomas Sawyer
+Copyright (c) 2009 Rubyworks
 
-This program is ditributed under the terms of the Apache 2.0 license.
+This program is ditributed under the terms of the *BSD-2-Cluase* license.
 
-See NOTICE.rdoc and APACHE2.txt file for details.
+See LICENSE.rdoc file for details.
 

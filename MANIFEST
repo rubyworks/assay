@@ -23,10 +23,14 @@ lib/assay/assertions/response_failure.rb
 lib/assay/assertions/same_failure.rb
 lib/assay/assertions/throw_failure.rb
 lib/assay/assertions/true_failure.rb
-lib/assay/matcher.rb
+lib/assay/legacy.rb
+lib/assay/matchers.rb
+lib/assay/objectives/is.rb
+lib/assay/objectives/must.rb
 lib/assay.rb
 lib/assay.yml
 HISTORY.rdoc
-APACHE2.txt
 README.rdoc
-NOTICE.rdoc
+METADATA
+VERSION
+LICENSE.rdoc
