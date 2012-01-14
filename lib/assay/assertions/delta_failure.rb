@@ -2,7 +2,9 @@ require 'assay/assertions/compare_failure'
 
 module Assay
 
-  # TODO: Support Range
+  # TODO: Support Range for Delta comparisons.
+
+  #
   class DeltaFailure < CompareFailure
 
     #
@@ -11,7 +13,7 @@ module Assay
     end
 
     # Check assertion.
-    def self.pass?(exp, act, delta)
+    def self.pass?(act, exp, delta)
       case delta
       when Numeric
         (exp.to_f - act.to_f).abs <= delta.to_f
@@ -36,45 +38,6 @@ module Assay
       end
     end
 
-  end
-
-
-  module Assertives
-    # Passes if expected and actual are equal within delta tolerance.
-    #
-    #   assert_in_delta 0.05, (50000.0 / 10**6), 0.00001
-    #
-    def assert_in_delta(exp, act, delta, msg=nil)
-      DeltaFailure.assert(exp, act, delta, :message=>msg, :backtrace=>caller)
-    end
-
-    # Passes if expected and actual are equal not within delta tolerance.
-    #
-    #   assert_not_in_delta 0.05, (50000.0 / 10**6), 0.00001
-    #
-    def self.not_in_delta(exp, act, delta, msg=nil)
-      opts[:backtrace] ||= caller
-      DeltaFailure.refute(exp, act, delta, :message=>msg, :backtrace=>caller)
-    end
-  end
-
-
-  module Matchers
-    #
-    #
-    #   value1.should be_within(delta, value2)
-    #
-    def is_within(delta, act)
-      DeltaFailure.to_matcher(act, delta)
-    end
-
-    #
-    #
-    #   value1.assert is_within(delta, value2)
-    #
-    def be_within(delta, act)
-      DeltaFailure.to_matcher(act, delta)
-    end
   end
 
 end

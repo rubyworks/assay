@@ -41,46 +41,5 @@ module Assay
 
   end
 
-
-  module Assertives
-    # Passes if +object+ respond_to? +methods+.
-    #
-    #   assert_respond_to 'bugbear', :slice
-    #
-    def assert_respond_to(reciever, method, msg=nil)
-      ResponseFailure.assert(reciever, method, :message=>msg, :backtrace=>caller)
-    end
-    alias_method :assert_responds_to, :assert_respond_to
-
-    # Passes if +object+ does not respond_to? +methods+.
-    #
-    #   assert_not_respond_to 'bugbear', :slice
-    #
-    def assert_not_respond_to(reciever, method, msg=nil)
-      ResponseFailure.refute(reciever, method, :message=>msg, :backtrace=>caller)
-    end
-
-    alias_method :assert_not_responds_to, :assert_not_respond_to
-  end
-
-
-  module Matchers
-    #
-    #
-    #   object.assert is_responsive_to(:method_symbol)
-    #
-    def is_responsive_to(method)
-      ResponseFailure.to_matcher(method)
-    end
-
-    #
-    #
-    #   object.should be_responsive_to(:method_symbol)
-    #
-    def be_responsive_to(method)
-      ResponseFailure.to_matcher(method)
-    end
-  end
-
 end
 

@@ -44,42 +44,4 @@ module Assay
 
   end
 
-
-  module Assertives
-    # Passes if string =~ pattern.
-    #
-    #   assert_match(/\d+/, 'five, 6, seven')
-    #
-    def assert_match(exp, act, msg=nil)
-      MatchFailure.assert(exp, act, :message=>msg, :backtrace=>caller)
-    end
-
-    # Passes if regexp !~ string
-    #
-    #   refute_match(/two/, 'one 2 three')
-    #
-    def refute_match(exp, act, msg=nil)
-      MatchFailure.refute(exp, act, :message=>msg, :backtrace=>caller)
-    end
-  end
-
-
-  module Matchers
-    #
-    #
-    #   object.assert is_a_match_for(regexp)
-    #
-    def is_match_for(regexp)
-      MatchFailure.to_matcher(regexp)
-    end
-
-    #
-    #
-    #   object.should be_a_match_for(regexp)
-    #
-    def be_match_for(regexp)
-      MatchFailure.to_matcher(regexp)
-    end
-  end
-
 end

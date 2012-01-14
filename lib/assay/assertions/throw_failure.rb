@@ -74,49 +74,5 @@ module Assay
 
   end
 
-
-  module Assertives
-    # Passes if the block throws expected_symbol
-    #
-    #   assert_throws :done do
-    #     throw :done
-    #   end
-    #
-    def assert_throws(sym, msg=nil, &blk)
-      ThrowFailure.assert(sym, :message=>msg, :backtrace=>caller, &blk)
-    end
-
-    # Passes if the block throws expected_symbol
-    #
-    #   refute_throws :done do
-    #     throw :chimp
-    #   end
-    #
-    def refute_throws(sym, msg=nil, &blk)
-      ThrowFailure.refute(sym, :message=>msg, :backtrace=>caller, &blk)
-    end
-
-    alias_method :assert_not_thrown, :refute_throws
-  end
-
-
-  module Matchers
-    #
-    #
-    #   :symbol.assert is_thrown{ ... }
-    #
-    def is_thrown(&blk)
-      ThrowFailure.to_matcher(&blk)
-    end
-
-    #
-    #
-    #   :symbol.should be_thrown{ ... }
-    #
-    def be_thrown(&blk)
-      ThrowFailure.to_matcher(&blk)
-    end
-  end
-
 end
 

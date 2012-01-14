@@ -21,7 +21,7 @@ module Assay
       @fail_class.pass?(target, *@arguments, &@block)
     end
 
-    # Returns Exception class.
+    # Returns Exception instance.
     def exception(message=nil)
       @exception ||= fail_class.new(message, @target, *@arguments, &@block)     
       #  :negated   => options[:negated],

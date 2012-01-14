@@ -21,7 +21,7 @@ module Assay
     #end
 
     # Check assertion.
-    def self.pass?(exp, act)
+    def self.pass?(act, exp)
       exp.object_id == act.object_id
     end
 
@@ -38,46 +38,6 @@ module Assay
       else
         "Expected #{iact} to be identical to #{iexp}"
       end
-    end
-
-  end
-
-
-  module Assertives
-    # Passes if +actual+ .equal? +expected+ (i.e. they are the same instance).
-    #
-    #   o = Object.new
-    #   assert_identical(o, o)
-    #
-    def assert_identical(exp, act, msg=nil)
-      IdentityFailure.assert(exp, act, :message=>msg, :backtrace=>caller)
-    end
-
-    # Passes if ! actual .equal? expected
-    #
-    #   assert_not_identical(Object.new, Object.new)
-    #
-    def assert_not_identical(exp, act, msg=nil)
-      IdentityFailure.refute(exp, act, :message=>msg, :backtrace=>caller)
-    end
-  end
-
-
-  module Matchers
-    #
-    #
-    #   object1.assert is_identical_to(object2)
-    #
-    def is_identical_to(obj)
-      IdentityFailure.to_matcher(obj)
-    end
-
-    #
-    #
-    #   object1.should be_identical_to(object2)
-    #
-    def be_identical_to(obj)
-      IdentityFailure.to_matcher(obj)
     end
 
   end

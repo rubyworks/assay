@@ -1,5 +1,8 @@
 require 'assay/assertion'
 
+# FIXME: This thing needs work!!!!!!!!!!!!
+
+
 module Assay
 
   # Assert that a block of coded executes without error.
@@ -42,49 +45,6 @@ module Assay
       end
     end
 
-  end
-
-
-  module Assertives
-    # Passes if the block yields successfully.
-    #
-    # assert_executes "Couldn't do the thing" do
-    #   do_the_thing
-    # end
-    #
-    def assert_executes(msg=nil, &blk)
-      ExecutionFailure.assert(:message=>msg, :backtrace=>caller, &blk)
-    end
-
-    # Passes if the block does not yield successfully.
-    #
-    # assert_not_executes "Couldn't do the thing" do
-    #   do_the_thing
-    # end
-    #
-    def assert_not_executes(msg=nil, &blk)
-      ExecutionFailure.refute(:message=>msg, :backtrace=>caller, &blk)
-    end
-  end
-
-
-  module Matchers
-    # TODO: Reasonable matcher for ExectuionFailure ?
-    #
-    #
-    #   proc.assert is_executed(*args)
-    #
-    def is_executed(&block)
-      ExecutionFailure.to_matcher(&block)
-    end
-
-    #
-    #
-    #   proc.should be_executed(*args)
-    #
-    def be_extecuted(&block)
-      ExecutionFailure.to_matcher(&block)
-    end
   end
 
 end

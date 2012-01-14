@@ -89,46 +89,4 @@ module Assay
 
   end
 
-
-  module Assertives
-    # Passes if the block raises a given exception.
-    #
-    #   assert_raises RuntimeError do
-    #     raise 'Boom!!!'
-    #   end
-    #
-    def assert_raises(exp, msg=nil, call=nil, &blk) #:yeild:
-      RaiseFailure.assert(exp, msg=nil, call=nil, &blk)
-    end
-
-    # Passes if the block *does not* raise a given exceptions.
-    #
-    #   assert_not_raised IOError do
-    #     raise 'Boom!!!'
-    #   end
-    #
-    def assert_not_raised(exp, msg=nil, call=nil, &blk) #:yeild:
-      RaiseFailure.refute(exp, msg, call, &blk)
-    end
-  end
-
-
-  module Matchers
-    #
-    #
-    #   Exception.assert is_raised{ ... }
-    #
-    def is_raised(&blk)
-      RaiseFailure.to_matcher(&blk)
-    end
-
-    #
-    #
-    #   Exception.should be_raised{ ... }
-    #
-    def be_raised(&blk)
-      RaiseFailure.to_matcher(&blk)
-    end
-  end
-
 end

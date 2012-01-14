@@ -3,13 +3,13 @@ require 'assay/assertion'
 module Assay
 
   class CompareFailure < Assertion
-
+    #
     def self.assertion_name
       :like
     end
 
     # Test assertion.
-    def self.pass?(exp, act)
+    def self.pass?(act, exp)
       exp.equal?(act) ||
       exp.eq?(act)    ||
       exp.==(act)     ||
@@ -29,31 +29,6 @@ module Assay
       else
         "Expected #{iact} to be like #{iexp}"
       end
-    end
-
-  end
-
-
-  module Assertives
-
-  end
-
-
-  module Matchers
-    #
-    #
-    #   object1.should be_like(object2)
-    #
-    def be_like(act)
-      CompareFailure.to_matcher(act)
-    end
-
-    #
-    #
-    #   object1.should be_like(object2)
-    #
-    def is_like(act)
-      CompareFailure.to_matcher(act)
     end
   end
 

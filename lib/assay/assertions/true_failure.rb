@@ -39,41 +39,5 @@ module Assay
 
   end
 
-
-  module Assertives
-    # Passed if object is +true+.
-    #
-    def assert_true(exp, msg=nil)
-      TrueFailure.assert(exp, :message=>msg, :backtrace=>caller)
-    end
-
-    # Passed if object is not +true+.
-    #
-    #   assert_not_true(false)
-    #
-    def assert_not_true(exp, msg=nil)
-      TrueFailure.refute(exp, :message=>msg, :backtrace=>caller)
-    end
-  end
-
-
-  module Matchers
-    # True?
-    #
-    #   value.assert is_true
-    #
-    def is_true
-      TrueFailure.to_matcher
-    end
-
-    # True?
-    #
-    #   value.should be_true
-    #
-    def be_true
-      TrueFailure.to_matcher
-    end
-  end
-
 end
 
