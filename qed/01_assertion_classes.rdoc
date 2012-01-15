@@ -1,75 +1,75 @@
-= Failure Classes
+= Assertion Classes
 
   require 'assay'
 
-== EqualityFailure
+== EqualityAssay
 
-  assert Assay::EqualityFailure.pass?(1,1)
-  refute Assay::EqualityFailure.pass?(1,2)
+  assert Assay::EqualityAssay.pass?(1,1)
+  refute Assay::EqualityAssay.pass?(1,2)
 
-== TrueFailure
+== TrueAssay
 
-  assert Assay::TrueFailure.pass?(true)
-  refute Assay::TrueFailure.pass?(false)
+  assert Assay::TrueAssay.pass?(true)
+  refute Assay::TrueAssay.pass?(false)
 
-== FalseFailure
+== FalseAssay
 
-  assert Assay::FalseFailure.pass?(false)
-  refute Assay::FalseFailure.pass?(true)
+  assert Assay::FalseAssay.pass?(false)
+  refute Assay::FalseAssay.pass?(true)
 
-== NilFailure
+== NilAssay
 
-  assert Assay::NilFailure.pass?(nil)
-  refute Assay::NilFailure.pass?(true)
-  refute Assay::NilFailure.pass?(false)
+  assert Assay::NilAssay.pass?(nil)
+  refute Assay::NilAssay.pass?(true)
+  refute Assay::NilAssay.pass?(false)
 
-== DeltaFailure
+== DeltaAssay
 
-  assert Assay::DeltaFailure.pass?(1, 1.5, 2)
-  refute Assay::DeltaFailure.pass?(1, 2.5, 1)
+  assert Assay::DeltaAssay.pass?(1, 1.5, 2)
+  refute Assay::DeltaAssay.pass?(1, 2.5, 1)
 
-== MatchFailure
+== MatchAssay
 
-  assert Assay::MatchFailure.pass?(/a/, "abc")
-  refute Assay::MatchFailure.pass?(/x/, "abc")
+  assert Assay::MatchAssay.pass?(/a/, "abc")
+  refute Assay::MatchAssay.pass?(/x/, "abc")
 
-== SameFailure
+== SameAssay
 
-  assert Assay::SameFailure.pass?(1, 1)
-  refute Assay::SameFailure.pass?(1, 1.0)
+  assert Assay::SameAssay.pass?(1, 1)
+  refute Assay::SameAssay.pass?(1, 1.0)
 
-== IdentityFailure
+== IdentityAssay
 
-  assert Assay::IdentityFailure.pass?(:a, :a)
-  refute Assay::IdentityFailure.pass?("a", "a")
+  assert Assay::IdentityAssay.pass?(:a, :a)
+  refute Assay::IdentityAssay.pass?("a", "a")
 
-== InstanceFailure
+== InstanceAssay
 
-  assert Assay::InstanceFailure.pass?(1, Fixnum)
-  refute Assay::InstanceFailure.pass?(1, String)
+  assert Assay::InstanceAssay.pass?(1, Fixnum)
+  refute Assay::InstanceAssay.pass?(1, String)
 
-== KindFailure
+== KindAssay
 
-  assert Assay::KindFailure.pass?(1, Integer)
-  refute Assay::KindFailure.pass?(1, String)
+  assert Assay::KindAssay.pass?(1, Integer)
+  refute Assay::KindAssay.pass?(1, String)
 
-== RaiseFailure
+== RaiseAssay
 
-  assert Assay::RaiseFailure.pass?(ArgumentError){ raise ArgumentError }
-  refute Assay::RaiseFailure.pass?(ArgumentError){ raise TypeError }
+  assert Assay::RaiseAssay.pass?(ArgumentError){ raise ArgumentError }
+  refute Assay::RaiseAssay.pass?(ArgumentError){ raise TypeError }
 
-== ResponseFailure
+== ResponseAssay
 
-  assert Assay::ResponseFailure.pass?("string", :upcase)
-  refute Assay::ResponseFailure.pass?("string", :not_a_method)
+  assert Assay::ResponseAssay.pass?("string", :upcase)
+  refute Assay::ResponseAssay.pass?("string", :not_a_method)
 
-== ExecutionFailure
+== ExecutionAssay
 
-  assert Assay::ExecutionFailure.pass?(){ nil }
-  refute Assay::ExecutionFailure.pass?(){ raise }
+  assert Assay::ExecutionAssay.pass?(){ nil }
+  refute Assay::ExecutionAssay.pass?(){ raise }
 
-== ThrowFailure
+== ThrowAssay
 
-  assert Assay::ThrowFailure.pass?(:foo){ throw :foo }
-  refute Assay::ThrowFailure.pass?(:foo){ throw :bar }
+  assert Assay::ThrowAssay.pass?(:foo){ throw :foo }
+  refute Assay::ThrowAssay.pass?(:foo){ throw :bar }
 
