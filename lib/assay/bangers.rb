@@ -1,3 +1,5 @@
+require_relative 'handlers/extensions'
+
 module Assay
 
   # This module provides assertion mettods as object extensions in the

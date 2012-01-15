@@ -1,12 +1,16 @@
+require_relative '../matchers'
+
 module Assay
 
   # This module provides matchers for RSpec-compatiblity.
   #
   # The set is not fully compataible, but provides most traditional Rspec
   # matchers, less some extraneous verbosity (use of `a` and `an`) and
-  # some of the less common matchers.
+  # some of the more complex and less common matchers.
   #
-  module Matchers
+  # Compatability will improve with time.
+  #
+  module RspecMatchers
 
     RSPEC_NAMES = {
       :equal    => :equal_to,
@@ -37,8 +41,12 @@ module Assay
     #
     bootstrap
 
-    # TODO: Improve compatability here.
+    # TODO: Improve compatability...
 
+  end
+
+  module Matchers
+    include RSpecMatchers
   end
 
 end

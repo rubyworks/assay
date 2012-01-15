@@ -3,7 +3,7 @@ module Assay
   # This module holds the assertive methods, which can be mixed into
   # one's testing scope (e.g. World).
   #
-  module AssertiveMethods
+  module Assertions
 
     #
     # Meta-programming routine for creating all the subjective methods.

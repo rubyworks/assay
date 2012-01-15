@@ -7,3 +7,8 @@ module Assay
   end
 
 end
+
+class Object
+  include Assay::Extensions
+end
+

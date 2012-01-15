@@ -1,10 +1,35 @@
-module Assay
-  #VERSION="1.0.0"
+# Load Assay's assertion classes.
+dir = File.dirname(__FILE__) + '/assay/assertions'
+Dir.entries(dir).each do |file|
+  next if File.extname(file) != '.rb'
+  require_relative 'assay/assertions/' + file
+end
 
+module Assay
+
+  #
+  # Returns Hash table of project metadata.
+  #
+  def self.meta
+    @spec ||= (
+      require 'yaml'
+      YAML.load(File.new(File.dirname(__FILE__) + '/assay.yml'))
+    )
+  end
+
+  #
+  # Check metadata for missing constants.
+  #
+  def self.const_missing(name)
+    meta[name.to_s.downcase] || super(name)
+  end
+
+  #
   # Returns a Hash table of failure classes indexed by
   # asserton operator.
-  def self.failure_classes_by_operator
-    @_failure_classes_by_operator ||= (
+  #
+  def self.assertions_by_operator
+    @assertions_by_operator ||= (
       c = {}
       ObjectSpace.each_object(Class) do |fc|
         next unless fc < Assay::Assertion
@@ -16,29 +41,12 @@ module Assay
     )
   end
 
+  #
   # Lookup failure class by operator.
+  #
   def self.lookup(operator)
-    failure_classes_by_operator[operator.to_sym]
+    assertions_by_operator[operator.to_sym]
   end
 
-  # Returns Hash table of project metadata.
-  def self.meta
-    @spec ||= (
-      require 'yaml'
-      YAML.load(File.new(File.dirname(__FILE__) + '/assay.yml'))
-    )
-  end
-
-  # Check metadata for missing constants.
-  def self.const_missing(name)
-    meta[name.to_s.downcase] || super(name)
-  end
-end
-
-# Load Assay's failure classes.
-dir  = File.dirname(__FILE__)
-glob = File.join(dir, 'assay', 'assertions', '*.rb')
-Dir[glob].each do |rb|
-  require 'assay/assertions/' + File.basename(rb)
 end
 

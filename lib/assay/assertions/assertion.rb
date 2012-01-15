@@ -178,7 +178,7 @@ end
 # Assertion Matcher is used to convert an Assertion class into an 
 # Matcher class.
 #
-class Assay::Matcher
+class Assertion::Matcher
 
   #
   def initialize(fail_class, *arguments, &block)
@@ -194,18 +194,22 @@ class Assay::Matcher
 
   #
   def matches?(target)
-    @exception = nil
-    @target    = target
+    #@exception = nil
+    #@target    = target
 
     @fail_class.pass?(target, *@arguments, &@block)
   end
 
-  alias_method :===, :matches?
-  alias_method :=~,  :matches?
+  alias_method :=~, :matches?
+
+  #
+  def ===(target)
+    raise(fail_class, nil, target) unless self =~ @target
+  end
 
   # Returns Exception instance.
-  def exception(message=nil)
-    @exception ||= fail_class.new(message, @target, *@arguments, &@block)     
+  def exception(message=nil, target=nil)
+    fail_class.new(message, target, *@arguments, &@block)     
     #  :negated   => options[:negated],
     #  :backtrace => options[:backtrace] || caller,
   end
@@ -223,7 +227,8 @@ class Assay::Matcher
 
   #
   def fail(backtrace=nil)
-    super exception #(backtrace || caller)
+    super(exception) #(backtrace || caller)
   end
+
 end
 
