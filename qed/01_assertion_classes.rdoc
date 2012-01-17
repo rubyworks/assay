@@ -43,6 +43,11 @@
   assert IdentityAssay.pass?(:a, :a)
   refute IdentityAssay.pass?("a", "a")
 
+== IncludeAssay
+
+  assert IncludeAssay.pass?([1,2,3], 2)
+  refute IncludeAssay.pass?([1,2,3], 4)
+
 == InstanceAssay
 
   assert InstanceAssay.pass?(1, Fixnum)
@@ -65,8 +70,15 @@
 
 == ExecutionAssay
 
-  assert ExecutionAssay.pass?(){ nil }
+  assert ExecutionAssay.pass?(){ true }
+  refute ExecutionAssay.pass?(){ nil }
+  refute ExecutionAssay.pass?(){ false }
   refute ExecutionAssay.pass?(){ raise }
+
+  refute ExecutionAssay.fail?(){ true }
+  assert ExecutionAssay.fail?(){ nil }
+  assert ExecutionAssay.fail?(){ false }
+  assert ExecutionAssay.fail?(){ raise }
 
 == ThrowAssay
 
