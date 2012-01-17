@@ -5,11 +5,11 @@ module Assay
   #
   # Examples
   #
-  #   "string".instance_of!(String)
+  #   "string".is.instance_of?(String)
   #
-  #   "string".equal!("string")
+  #   "string".is.equal?("string")
   #
-  #   "string".not_equal!("another")
+  #   "string".should be.not_equal?("another")
   #
   class ToBe
 

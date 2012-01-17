@@ -7,7 +7,7 @@ class Object
   #
   def should(matcher=nil)
     if matcher
-      matcher === self
+      matcher =~ self
     else
       ToBe.new(self)
     end
@@ -18,7 +18,7 @@ class Object
   #
   def should_not(matcher=nil)
     if matcher
-      matcher.negate === self
+      matcher !~ self
     else
       NotToBe.new(self)      
     end

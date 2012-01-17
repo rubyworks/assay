@@ -1,5 +1,6 @@
 require 'ansi/diff'
 #require 'assay/matcher'
+require 'assay/na'
 
 class Exception
 
@@ -19,7 +20,6 @@ class Exception
   end
 
 end
-
 
 #
 class Assertion < Exception
@@ -121,16 +121,16 @@ class Assertion < Exception
   end
 
   #
-  def self.assert(*arguments, &block)
-    instance.assert(*arguments, &block)
-  end
-
-  #
   def self.fail!(*arguments, &block)
     instance.fail!(*arguments, &block)
   end
 
-  #
+  # Alias for `#pass!`.
+  def self.assert(*arguments, &block)
+    instance.assert(*arguments, &block)
+  end
+
+  # Alias for `#fail!`.
   def self.refute(*arguments, &block)
     instance.refute(*arguments, &block)
   end
@@ -145,7 +145,6 @@ class Assertion < Exception
 
     super(message) if message
 
-    #message ? super(message % arguments) : super()
     #set_backtrace(options[:backtrace]) if options[:backtrace]
     #set_negative(options[:negated])   if options[:negated]
   end
@@ -171,9 +170,12 @@ class Assertion < Exception
     options = (Hash === arguments.last ? arguments.pop : {})
 
     backtrace = options[:backtrace] || caller
-    message   = options[:message]   || message(*arguments)
+    message   = options[:message]   || pass_message(*arguments)
 
-    unless pass?(*arguments, &block)
+    if pass?(*arguments, &block)
+      # TODO: count the assertions passed
+    else
+      # TODO: count the assertions failed
       fail self, message, backtrace
     end
   end
@@ -189,22 +191,17 @@ class Assertion < Exception
     options = (Hash === arguments.last ? arguments.pop : {})
 
     backtrace = options[:backtrace] || caller
-    message   = options[:message]   || message(*arguments)
+    message   = options[:message]   || fail_message(*arguments)
 
-    unless fail?(*arguments, &block)
+    if fail?(*arguments, &block)
+      # TODO: count the assertions passed
+    else
+      # TODO: count the assertions failed
       fail self, message, backtrace
     end
   end
 
   alias refute fail!
-
-
-# FIXME
-
-  #
-  def negative?
-    @negative
-  end
 
   #
   # Set message.
@@ -213,20 +210,22 @@ class Assertion < Exception
     @mesg = msg.to_str
   end
 
+  def pass_message(*arguments)
+    return @mesg if @mesg
+    message(*arguments)
+  end
+
+  def fail_message(*arguments)
+    return "NOT " + @mesg if @mesg
+    return "NOT " + message(*arguments)
+  end
+
   ##
   ## Set whether this failure was the inverse of it's normal meaning.
   ## For example, `!=` rather than `==`.
   ##
   #def set_negative(negative)
   #  @negative = !!negative
-  #end
-
-  ##
-  ## Set arguments used to make assertion.
-  ##
-  #def set_arguments(*arguments, &block)
-  #  @arguments = arguments
-  #  @block     = block
   #end
 
   #
@@ -249,99 +248,148 @@ class Assertion < Exception
   class Matcher
 
     #
-    def initialize(fail_class, *arguments, &block)
-      @fail_class = fail_class
-      @arguments  = arguments
-      @block      = block
+    def initialize(assertion, *arguments, &block)
+      @assertion = assertion
+      @arguments = arguments
+      @block     = block
     end
 
     #
-    def fail_class
-      @fail_class
+    def assertion
+      @assertion
     end
 
     #
     def pass?(target)
       if Proc === target && @block.nil?
-        @fail_class.pass?(*@arguments, &target)
+        @assertion.pass?(*@arguments, &target)
       else
-        @fail_class.pass?(target, *@arguments, &@block)
+        @assertion.pass?(*complete_arguments(target), &@block)
       end
     end
-
-    alias_method :=~, :pass?
 
     #
     def fail?(target)
       if Proc === target && @block.nil?
-        @fail_class.fail?(*@arguments, &target)
+        @assertion.fail?(*@arguments, &target)
       else
-        @fail_class.fail?(target, *@arguments, &@block)
+        @assertion.fail?(*complete_arguments(target), &@block)
       end
     end
 
     #
     def pass!(target)
       if Proc === target && @block.nil?
-        @fail_class.pass!(*@arguments, &target)
+        @assertion.pass!(*@arguments, &target)
       else
-        @fail_class.pass!(target, *@arguments, &@block)
+        @assertion.pass!(*complete_arguments(target), &@block)
       end
     end
-
-    alias_method :===, :pass!
 
     #
     def fail!(target)
       if Proc === target && @block.nil?
-        @fail_class.fail!(*@arguments, &target)
+        @assertion.fail!(*@arguments, &target)
       else
-        @fail_class.fail!(target, *@arguments, &@block)
+        @assertion.fail!(*complete_arguments(target), &@block)
       end
     end
 
-    #
-    #def ===(target)
-    #  raise(fail_class.new(nil, target, *@arguments, &@block)) unless self =~ target
-    #end
+    alias_method :==, :pass?
+    alias_method :!=, :fail?
+
+    alias_method :=~,  :pass!
+    alias_method :!~, :fail!
+
+    alias_method :===, :pass!
 
     #
-    #
-    #
-    def message(target)
-      @fail_class.message % [target, *@arguments]
+    def pass_message(target)
+      @assertion.instance.pass_message(*complete_arguments(target))
     end
 
     #
-    #def negated_message(target)
-    #  @fail_class.message % [target, *@arguments]
-    #end
-
-    #
-    # Returns Exception instance.
-    #
-    def exception(target, msg=nil)
-      @fail_class.new(msg || message, target, *@arguments, &@block)     
-      #  :negated   => options[:negated],
-      #  :backtrace => options[:backtrace] || caller,
+    def fail_message(target)
+      @assertion.instance.fail_message(*complete_arguments(target))
     end
+
+    # For RSpec matcher compatability.
+    alias matches? pass?
+
+    # For RSpec matcher compatability.
+    alias does_not_match? fail?
+
+    # For RSpec matcher compatability.
+    alias failure_message_for_should pass_message
+
+    # For RSpec matcher compatability.
+    alias failure_message_for_should_not fail_message
+
+    ##
+    ## Returns Exception instance.
+    ##
+    #def exception(target, msg=nil)
+    #  @assertion.new(msg || message, target, *@arguments, &@block)     
+    #  #  :negated   => options[:negated],
+    #  #  :backtrace => options[:backtrace] || caller,
+    #end
 
     ##
     #def fail(*args)
     #  super(self, *args)
     #end
 
-    # rspec matcher compatability
+    # Create a negated form of the matcher.
+    #
+    # @todo Should this be @! method instead?
+    #
+    def ~@
+      Negated.new(self)
+    end
 
-    alias matches? pass?
+    # Create a negated form of the matcher.
+    #
+    # @todo Best name for this method?
+    #
+    def negated
+      Negated.new(self)
+    end
 
-    alias does_not_match? fail?
+  private
 
-    alias failure_message_for_should message
+    def complete_arguments(target)
+      if i = @arguments.index(__)
+        @arguments[0...i] + [target] + @arguments[i+1..-1]
+      else
+        [target] +  @arguments
+      end
+    end
 
-    alias failure_message_for_should_not message  # TODO
+    # Negated Matcher
+    #
+    class Negated
+      def initialize(matcher)
+        @matcher = matcher
+      end
+
+      def pass?(*a,&b) ; @matcher.fail?(*a,&b) ; end
+      def fail?(*a,&b) ; @matcher.pass?(*a,&b) ; end
+      def pass!(*a,&b) ; @matcher.fail!(*a,&b) ; end
+      def fail!(*a,&b) ; @matcher.pass!(*a,&b) ; end
+
+      alias_method :==, :pass?
+      alias_method :!=, :fail?
+
+      alias_method :=~, :pass!
+      alias_method :!~, :fail!
+
+      alias_method :===, :pass!
+
+      def method_missing(s, *a, &b)
+        @matcher.send(s, *a, &b)
+      end
+    end
 
   end
 
 end
-

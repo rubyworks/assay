@@ -26,7 +26,7 @@ class CompareAssay < Assertion
   #
   def message(*arguments)
     return @mesg if @mesg
-    return super unless arguments.size == 2
+    return super unless arguments.size == 3
 
     act = arguments[0].inspect
     op  = arguments[1].inspect

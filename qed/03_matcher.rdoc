@@ -1,0 +1,44 @@
+= Assertion::Matcher
+
+We need to load the library, of course.
+
+  require 'assay'
+
+== Partial Arguments
+
+  matcher = EqualityAssay[__,1]
+
+We can apply the matcher using the `#pass!` method.
+
+  matcher.pass!(1)
+
+Likewise we can assert the negated expression using `#fail!`.
+
+  matcher.fail!(2)
+
+The `#===` method is an alias for `#pass!`.
+
+  matcher === 1
+
+Assay partial a very versile because they allow any argument to become
+the target of a matcher.
+
+  matcher = CompareAssay[1,__,2]
+
+  matcher.pass!(:<)
+  matcher.fail!(:>)
+
+== Negated Matchers
+
+Matchers can be negated so that pass and fail methods swap behaviors.
+
+   matcher = EqualityAssay[__,1]
+
+   matcher.negated.assert.is_a?(Assertion::Matcher::Negated)
+
+   matcher.negated === 2
+
+For conveience we can also negate the matcher using the `~` unary operator.
+
+  ~matcher === 2
+
