@@ -1,0 +1,137 @@
+= Assertion Methods
+
+  require 'assay'
+  require 'assay/testunit'
+
+  include ::Assay::Assertions
+
+== EqualityAssay
+
+  assert_equal(1,1)
+
+  expect ::EqualityAssay do
+    assert_equal(1,2)
+  end
+
+  assert_not_equal(1,2)
+
+== TrueAssay
+
+  assert_true(true)
+
+  expect ::TrueAssay do
+    assert_true(false)
+  end
+
+  assert_not_true(false)
+
+== FalseAssay
+
+  assert_false(false)
+
+  expect ::FalseAssay do
+    assert_false(true)
+  end
+
+== NilAssay
+
+  assert_nil(nil)
+
+  expect ::NilAssay do
+    assert_nil(true)
+  end
+
+== WithinAssay
+
+  assert_in_delta(1, 1.5, 2)
+
+  expect ::WithinAssay do
+    assert_in_delta(1, 2.5, 1)
+  end
+
+== MatchAssay
+
+  assert_match(/a/, "abc")
+
+  expect ::MatchAssay do
+    assert_match(/x/, "abc")
+  end
+
+== SameAssay
+
+  assert_equivalent(1, 1)
+
+  expect ::SameAssay do
+    assert_equivalent(1, 1.0)
+  end
+
+  assert_not_equivalent(1, 1.0)
+
+== IdentityAssay
+
+  assert_same(:a, :a)
+
+  expect ::IdentityAssay do
+    assert_same("a", "a")
+  end
+
+  assert_not_same(:a, :b)
+
+== InstanceAssay
+
+  assert_instance_of(Fixnum, 1)
+
+  expect ::InstanceAssay do
+    assert_instance_of(String, 1)
+  end
+
+  assert_not_instance_of(String, 1)
+
+== KindAssay
+
+  assert_kind_of(Integer, 1)
+
+  expect ::KindAssay do
+    assert_kind_of(String, 1)
+  end
+
+  assert_not_kind_of(String, 1)
+
+== RaiseAssay
+
+  assert_raise(ArgumentError){ raise ArgumentError }
+
+  expect ::RaiseAssay do
+    assert_raise(ArgumentError){ raise TypeError }
+  end
+
+  assert_not_raised(ArgumentError){ raise TypeError }
+
+== ResponseAssay
+
+  assert_respond_to("string", :upcase)
+
+  expect ::ResponseAssay do
+    assert_respond_to("string", :not_a_method)
+  end
+
+  assert_not_respond_to("string", :not_a_method)
+
+== ExecutionAssay
+
+  assert_block{ :ok }
+
+  expect ::ExecutionAssay do
+    assert_block{ raise }
+  end
+
+== ThrowAssay
+
+  assert_throw(:foo){ throw :foo }
+
+  expect ::ThrowAssay do
+    assert_throw(:foo){ throw :bar }
+  end
+
+  assert_not_thrown(:foo){ throw :bar }
+

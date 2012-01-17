@@ -7,13 +7,13 @@ require_relative 'compare_assay'
 class IdentityAssay < CompareAssay
 
   #
-  def self.assertive_name
-    :identical
+  def self.operator
+    :equal?
   end
 
   #
-  def self.operator
-    :equal?
+  def self.assertive_name
+    :identical
   end
 
   #def self.fail_message(exp, act)
@@ -25,17 +25,17 @@ class IdentityAssay < CompareAssay
   #end
 
   # Check assertion.
-  def self.pass?(act, exp)
+  def pass?(act, exp)
     exp.object_id == act.object_id
   end
 
   #
-  def to_s
+  def message(*arguments)
     return @mesg if @mesg
-    return super unless @arguments.size == 2
+    return super unless arguments.size == 2
 
-    iexp = @arguments[0].inspect
-    iact = @arguments[1].inspect
+    iexp = arguments[0].inspect
+    iact = arguments[1].inspect
 
     if @_negated
       "Expected #{iact} not to be identical to #{iexp}"

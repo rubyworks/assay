@@ -10,38 +10,37 @@ require_relative 'assertion'
 class ExecutionAssay < Assertion
 
   #
+  def self.operator
+    :executes?
+  end
+
+  #
   def self.assertive_name
     :executes
   end
 
-  #
-  def self.subjective_name
-    :executed
-  end
-
   # Check assertion.
-  def self.pass?(_=nil, &block)
+  def pass?(*args, &block)
     begin
-      block.call
-      true
+      block.call(*args)
     rescue Exception
       false
     end
   end
 
   # Check negated assertion.
-  def self.fail?(_=nil, &block)
+  def fail?(*args, &block)
     begin
-      block.call
-      false
+      !block.call(*args)
     rescue Exception
       true
     end
   end
 
   #
-  def to_s
+  def message(*arguments)
     return @mesg if @mesg
+
     if @_negated
       "Expected procedure to raise an exception."
     else

@@ -6,38 +6,33 @@ require_relative 'compare_assay'
 class MatchAssay < CompareAssay
 
   #
-  def self.assertive_name
-    :match
-  end
-
-  #
   def self.operator
     :=~
   end
 
+  #
+  def self.assertive_name
+    :match
+  end
+
   # Check assertion.
-  def self.pass?(exp, act)
+  def pass?(exp, act)
     exp =~ act
   end
 
   # Check negated assertion.
-  def self.fail?(exp, act)
+  def fail?(exp, act)
     exp !~ act
   end
 
   #
-  def self.assertable_method
-    :assert_match
-  end
-
-  #
-  def to_s
+  def message(*arguments)
     return @mesg if @mesg
-    return super unless @arguments.size == 2
-
-    exp = @arguments[0].inspect
-    act = @arguments[1].inspect
-
+    return super unless arguments.size == 2
+  
+    exp = arguments[0].inspect
+    act = arguments[1].inspect
+  
     if @_negated
       "Expected #{act} !~ #{exp}"
     else

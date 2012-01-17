@@ -3,26 +3,26 @@ require_relative 'compare_assay'
 class FalseAssay < CompareAssay
 
   #
-  def self.assertive_name
-    :false
-  end
-
-  #
   def self.operator
     :false?
   end
 
+  #
+  def self.assertive_name
+    :false
+  end
+
   # Check assertion.
-  def self.pass?(exp)
+  def pass?(exp)
     FalseClass === exp
   end
 
   #
-  def to_s
+  def message(*arguments)
     return @mesg if @mesg
-    return super unless @arguments.size == 1
+    return super unless arguments.size == 1
 
-    exp = @arguments[0].inspect
+    exp = arguments[0].inspect
 
     if @_negated
       "Expected #{exp} to NOT be false"

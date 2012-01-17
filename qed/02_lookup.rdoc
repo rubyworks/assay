@@ -1,10 +1,19 @@
 = Lookup
 
-Assay can be used to look up failure classes by associated opearators.
+Assertion classes can be looked-up by associated opearator name.
 
   require 'assay'
 
-  Assay.lookup(:==)     #=> ::Assay::EqualityFailure
+Let's lookup assertion class for equality.
 
-  Assay.lookup(:empty?) #=> ::Assay::EmptyFailure
+  Assertion.by_operator(:==)  #=> ::EqualityAssay
+
+Let's lookup the assertion class for empty.
+
+  Assertion.by_operator(:empty?)  #=> ::EmptyAssay
+
+Deprecated approach is to use the `Assay.lookup` module method.
+
+  Assay.lookup(:==)      #=> ::EqualityAssay
+  Assay.lookup(:empty?)  #=> ::EmptyAssay
 

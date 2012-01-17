@@ -5,26 +5,26 @@ require_relative 'assertion'
 class EmptyAssay < Assertion
 
   #
-  def self.assertive_name
-    :empty
-  end
-
-  #
   def self.operator
     :empty?
   end
 
+  #
+  def self.assertive_name
+    :empty
+  end
+
   # Check assertion.
-  def self.pass?(exp)
+  def pass?(exp)
     exp.empty?
   end
 
   #
-  def to_s
+  def message(*arguments)
     return @mesg if @mesg
-    return super unless @arguments.size == 1
+    return super unless arguments.size == 1
 
-    exp = @arguments.first.inspect
+    exp = arguments.first.inspect
 
     if @_negated
       "Expected #{exp} to NOT be empty"  

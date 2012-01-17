@@ -8,32 +8,32 @@ require_relative 'compare_assay'
 class KindAssay < CompareAssay
 
   #
-  def self.assertive_name
-    :kind_of
-  end
-
-  #
   def self.operator
     :kind_of?
   end
 
+  #
+  def self.assertive_name
+    :kind_of
+  end
+
   # Check assertion.
-  def self.pass?(act, exp)
-    act.kind_of?(exp)
+  def pass?(obj, cls)
+    obj.kind_of?(cls)
   end
 
   #
-  def to_s
+  def message(*arguments)
     return @mesg if @mesg
-    return super unless @arguments.size == 2
+    return super unless arguments.size == 2
 
-    exp = @arguments[0].inspect
-    act = @arguments[1].inspect
+    obj = arguments[0].inspect
+    cls = arguments[1].inspect
 
     if @_negated
-      "Expected #{act} to be kind of #{exp}"
+      "Expected #{obj} to be kind of #{cls}"
     else
-      "Expected #{act} to be kind of #{exp}"
+      "Expected #{obj} to be kind of #{cls}"
     end
   end
 end

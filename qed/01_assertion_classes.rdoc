@@ -4,72 +4,72 @@
 
 == EqualityAssay
 
-  assert Assay::EqualityAssay.pass?(1,1)
-  refute Assay::EqualityAssay.pass?(1,2)
+  assert EqualityAssay.pass?(1,1)
+  refute EqualityAssay.pass?(1,2)
 
 == TrueAssay
 
-  assert Assay::TrueAssay.pass?(true)
-  refute Assay::TrueAssay.pass?(false)
+  assert TrueAssay.pass?(true)
+  refute TrueAssay.pass?(false)
 
 == FalseAssay
 
-  assert Assay::FalseAssay.pass?(false)
-  refute Assay::FalseAssay.pass?(true)
+  assert FalseAssay.pass?(false)
+  refute FalseAssay.pass?(true)
 
 == NilAssay
 
-  assert Assay::NilAssay.pass?(nil)
-  refute Assay::NilAssay.pass?(true)
-  refute Assay::NilAssay.pass?(false)
+  assert NilAssay.pass?(nil)
+  refute NilAssay.pass?(true)
+  refute NilAssay.pass?(false)
 
-== DeltaAssay
+== WithinAssay
 
-  assert Assay::DeltaAssay.pass?(1, 1.5, 2)
-  refute Assay::DeltaAssay.pass?(1, 2.5, 1)
+  assert WithinAssay.pass?(1, 1.5, 2)
+  refute WithinAssay.pass?(1, 2.5, 1)
 
 == MatchAssay
 
-  assert Assay::MatchAssay.pass?(/a/, "abc")
-  refute Assay::MatchAssay.pass?(/x/, "abc")
+  assert MatchAssay.pass?(/a/, "abc")
+  refute MatchAssay.pass?(/x/, "abc")
 
 == SameAssay
 
-  assert Assay::SameAssay.pass?(1, 1)
-  refute Assay::SameAssay.pass?(1, 1.0)
+  assert SameAssay.pass?(1, 1)
+  refute SameAssay.pass?(1, 1.0)
 
 == IdentityAssay
 
-  assert Assay::IdentityAssay.pass?(:a, :a)
-  refute Assay::IdentityAssay.pass?("a", "a")
+  assert IdentityAssay.pass?(:a, :a)
+  refute IdentityAssay.pass?("a", "a")
 
 == InstanceAssay
 
-  assert Assay::InstanceAssay.pass?(1, Fixnum)
-  refute Assay::InstanceAssay.pass?(1, String)
+  assert InstanceAssay.pass?(1, Fixnum)
+  refute InstanceAssay.pass?(1, String)
 
 == KindAssay
 
-  assert Assay::KindAssay.pass?(1, Integer)
-  refute Assay::KindAssay.pass?(1, String)
+  assert KindAssay.pass?(1, Integer)
+  refute KindAssay.pass?(1, String)
 
 == RaiseAssay
 
-  assert Assay::RaiseAssay.pass?(ArgumentError){ raise ArgumentError }
-  refute Assay::RaiseAssay.pass?(ArgumentError){ raise TypeError }
+  assert RaiseAssay.pass?(ArgumentError){ raise ArgumentError }
+  refute RaiseAssay.pass?(ArgumentError){ raise TypeError }
 
 == ResponseAssay
 
-  assert Assay::ResponseAssay.pass?("string", :upcase)
-  refute Assay::ResponseAssay.pass?("string", :not_a_method)
+  assert ResponseAssay.pass?("string", :upcase)
+  refute ResponseAssay.pass?("string", :not_a_method)
 
 == ExecutionAssay
 
-  assert Assay::ExecutionAssay.pass?(){ nil }
-  refute Assay::ExecutionAssay.pass?(){ raise }
+  assert ExecutionAssay.pass?(){ nil }
+  refute ExecutionAssay.pass?(){ raise }
 
 == ThrowAssay
 
-  assert Assay::ThrowAssay.pass?(:foo){ throw :foo }
-  refute Assay::ThrowAssay.pass?(:foo){ throw :bar }
+  assert ThrowAssay.pass?(:foo){ throw :foo }
+  refute ThrowAssay.pass?(:foo){ throw :bar }
 

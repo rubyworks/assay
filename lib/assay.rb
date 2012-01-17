@@ -28,21 +28,16 @@ module Assay
   # Returns a Hash table of failure classes indexed by
   # asserton operator.
   #
+  # @deprecated Use `Assertion.by_operator` instead.
+  #
   def self.assertions_by_operator
-    @assertions_by_operator ||= (
-      c = {}
-      ObjectSpace.each_object(Class) do |fc|
-        next unless fc < Assay::Assertion
-        if fc.respond_to?(:assertion_operator)
-          c[fc.assertion_operator.to_sym] = fc
-        end
-      end
-      c
-    )
+    Assertion.by_operator
   end
 
   #
   # Lookup failure class by operator.
+  #
+  # @deprecated Use `Assertion.by_operator(operator)` instead.
   #
   def self.lookup(operator)
     assertions_by_operator[operator.to_sym]

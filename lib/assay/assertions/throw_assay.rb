@@ -3,12 +3,12 @@ require_relative 'execution_assay'
 #
 class ThrowAssay < ExecutionAssay
 
-  def self.assertion_name
-    :throws
+  def self.operator
+    :throw?
   end
 
-  def self.subjective_name
-    :thrown
+  def self.assertive_name
+    :throw
   end
 
   # Passes if the block throws expected_symbol
@@ -17,7 +17,7 @@ class ThrowAssay < ExecutionAssay
   #     throw :done
   #   end
   #
-  def self.pass?(sym, &block)
+  def pass?(sym, &block)
     pass = true
     catch(sym) do
       begin
@@ -40,7 +40,7 @@ class ThrowAssay < ExecutionAssay
   #   end
   #
   # FIXME: Is this correct?
-  def self.fail?(sym, &block)
+  def fail?(sym, &block)
     pass = false
     catch(sym) do
       begin
@@ -57,12 +57,12 @@ class ThrowAssay < ExecutionAssay
   end
 
   #
-  def to_s
+  def message(*arguments)
     return @mesg if @mesg
-    return super unless @arguments.size == 1
-
-    sym = @arguments[0].inspect
-
+    return super unless arguments.size == 1
+  
+    sym = arguments[0].inspect
+  
     if @_negated
       "Expected #{sym} to have been thrown"
     else
