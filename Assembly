@@ -1,77 +1,29 @@
 ---
-grancher:
-  service: Grancher
-  active : true
+github:
+  gh_pages: web
 
 gem:
-  service: Gem
-  active : true
+  active: true
 
 dnote:
-  service  : DNote
-  loadpath : ~
-  labels   : ~
-  output   : ~
-  format   : ~
-  active   : true
+  title: Source Notes
+  output: log/notes.html
 
-stats:
-  service  : Stats
-  title    : ~
-  loadpath : ~
-  exclude  : ~
-  output   : ~
-  active   : true
-
-rdoc:
-  service  : RDoc
-  format   : redfish
-  include  : ~
-  exclude  : [Profile, Version, MANIFEST.txt, Redfile]
-  main     : ~
-  extra    : ~
-  output   : site/doc
-  active   : true
-
-ri:
-  service: RI
-  include: ~
-  exclude: ~
-  output : ri
-  active : true
-
-#vclog:
-#  service  : VClog
-#  format   : html   # xml, txt
-#  layout   : rel    # gnu
-#  typed    : true
-#  output   : ~
-#  active   : false
+vclog:
+  output:
+    - log/history.html
+    - log/changes.html
 
 email:
-  service : Email
-  file    : ~
-  subject : ~
-  mailto  : ruby-talk@ruby-lang.org
-  from    : <%= ENV['EMAIL_ACCOUNT'] %>
-  server  : <%= ENV['EMAIL_SERVER'] %>
-  port    : <%= ENV['EMAIL_PORT'] %>
-  account : <%= ENV['EMAIL_ACCOUNT'] %>
-  domain  : <%= ENV['EMAIL_DOMAIN'] %>
-  login   : <%= ENV['EMAIL_LOGIN'] %>
-  secure  : <%= ENV['EMAIL_SECURE'] %>
-  active  : true
+  mailto:
+    - ruby-talk@ruby-lang.org
+    - rubyworks-mailinglist@googlegroups.com
+
+qed:
+  files: qed/*.rdoc
 
 
-#testrb:
-#  service  : Testrb
-# tests    : ~
-#  exclude  : ~
-#  loadpath : ~
-#  requires : ~
-#  live     : false   
-#  active   : false
-
+# OMG! Look at this old thing!
 #rubyforge:
 #  service : Rubyforge
 #  unixname: <= suite %>
