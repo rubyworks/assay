@@ -1,11 +1,16 @@
 require_relative 'assertion'
 
-# FIXME: This thing needs work!!!!!!!!!!!!
-
-# Assert that a block of coded executes without error.
+# Assert that a block of coded executes without error and does
+# not return +nil+ or +false+.
 #
-# ExecutionAssay is also the base class of the other
-# block-executing assertion classes.
+# The ExecutionAssay is the base class of all other block-executing 
+# assertion classes. The vary by the conditions for success they
+# place on the executed procedure.
+#
+# NOTE: To test only for successful execution regardless of return value
+# use a negated {RaiseAssay} on the Exception class. But generally 
+# this would be pretty silly, if you think about it, this is exactly
+# what testing is for!
 #
 class ExecutionAssay < Assertion
 

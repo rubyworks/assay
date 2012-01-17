@@ -32,7 +32,7 @@ class CompareAssay < Assertion
     op  = arguments[1].inspect
     exp = arguments[2].inspect
 
-    "Expected #{exp} #{op} #{act} "
+    "should -- #{exp} #{op} #{act}"
   end
 
   #

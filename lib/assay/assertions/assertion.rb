@@ -210,14 +210,20 @@ class Assertion < Exception
     @mesg = msg.to_str
   end
 
+  #
   def pass_message(*arguments)
     return @mesg if @mesg
     message(*arguments)
   end
 
+  #
   def fail_message(*arguments)
-    return "NOT " + @mesg if @mesg
-    return "NOT " + message(*arguments)
+    msg = @mesg ? @mesg : pass_message(*arguments)
+    if msg.index('should')
+      msg.sub('should', 'should NOT')
+    else
+      "NOT " + msg
+    end
   end
 
   ##

@@ -26,11 +26,7 @@ class EmptyAssay < Assertion
 
     exp = arguments.first.inspect
 
-    if @_negated
-      "Expected #{exp} to NOT be empty"  
-    else
-      "Expected #{exp} to be empty"
-    end
+    "should be empty -- #{exp}"
   end
 
 end
