@@ -20,7 +20,7 @@ email:
     - rubyworks-mailinglist@googlegroups.com
 
 qed:
-  files: qed/*.rdoc
+  files: spec/*.rdoc
 
 
 # OMG! Look at this old thing!
