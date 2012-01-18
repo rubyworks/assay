@@ -1,13 +1,7 @@
 #!mast .ruby bin demo qed lib test [A-Z][A-Z]*
 .ruby
-qed/01_assertion_classes.rdoc
-qed/02_lookup.rdoc
-qed/03_matcher.rdoc
-qed/04_testunit_assertions.rdoc
-qed/05_minitest_extensions.rdoc
-qed/06_rspec_matchers.rdoc
-lib/assay/adapters/minitest.rb
-lib/assay/adapters/testunit.rb
+lib/assay/adapter/minitest.rb
+lib/assay/adapter/testunit.rb
 lib/assay/assertions/assertion.rb
 lib/assay/assertions/compare_assay.rb
 lib/assay/assertions/empty_assay.rb
@@ -27,17 +21,15 @@ lib/assay/assertions/response_assay.rb
 lib/assay/assertions/throw_assay.rb
 lib/assay/assertions/true_assay.rb
 lib/assay/assertions/within_assay.rb
-lib/assay/grammer/grammer.rb
+lib/assay/grammer/assert.rb
 lib/assay/grammer/is.rb
 lib/assay/grammer/must.rb
 lib/assay/grammer/should.rb
-lib/assay/minitest.rb
+lib/assay/grammer.rb
 lib/assay/na.rb
-lib/assay/rspec.rb
-lib/assay/testunit.rb
 lib/assay.rb
 lib/assay.yml
 HISTORY.rdoc
 README.rdoc
-METADATA
+QED.rdoc
 LICENSE.rdoc

@@ -22,6 +22,11 @@ email:
 qed:
   files: spec/*.rdoc
 
+qedoc:
+  files: spec/*.rdoc
+  output:
+    - QED.rdoc
+    - web/demos.html
 
 # OMG! Look at this old thing!
 #rubyforge:
