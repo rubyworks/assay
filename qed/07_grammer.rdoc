@@ -1,0 +1,42 @@
+= Grammer
+
+  require 'assay/grammer/should'
+
+Now we have a fluent notation with which to make assertions.
+
+  true.should.be.true
+  false.should.be.false
+
+  (5 + 5).should.equal 10
+
+  [1,2,3].should.include(2)
+
+We can also use the associated operator (Ruby's built-in query method name).
+
+  false.should.be.false?
+  true.should.be.true?
+
+  (5 + 5).should == 10
+
+Indefinite article `a` and `an` are suppored.
+
+  12.should.be.a.kind_of?(Integer)
+
+As is `not` for negation.
+
+  12.should.not.equal(20)
+
+We should also make sure such assertions can fail.
+
+  expect ::IncludeAssay do
+    [1,2,3].should.include(4)
+  end
+
+  expect ::FalseAssay do
+    true.should.be.false
+  end
+
+  expect ::EqualityAssay do
+    (5 + 5).should == 11
+  end
+

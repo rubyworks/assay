@@ -1,6 +1,6 @@
-# TODO: What about BasicObject ?
+require 'assay/grammer'
 
-class Object
+class BasicObject
 
   # Use `is` nomenclature for assertions.
   #
@@ -10,7 +10,7 @@ class Object
     if matcher
       matcher === self
     else
-      Assay::Grammer::Is.new(self)
+      ::Assay::Grammer::Is.new(self)
     end
   end
 

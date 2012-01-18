@@ -75,6 +75,9 @@
   assert RaiseAssay.pass?(ArgumentError){ raise ArgumentError }
   refute RaiseAssay.pass?(ArgumentError){ raise TypeError }
 
+  assert RaiseAssay.fail?(ArgumentError){ raise TypeError }
+  refute RaiseAssay.fail?(ArgumentError){ raise ArgumentError }
+
 == ResponseAssay
 
   assert ResponseAssay.pass?("string", :upcase)

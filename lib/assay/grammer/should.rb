@@ -1,6 +1,6 @@
-# TODO: What about BasicObject ?
+require 'assay/grammer'
 
-class Object
+class BasicObject
 
   # Use `should` nomenclature for assertions.
   #
@@ -10,7 +10,7 @@ class Object
     if matcher
       matcher =~ self
     else
-      Assay::Grammer::Should.new(self)
+      ::Assay::Grammer::Should.new(self)
     end
   end
 

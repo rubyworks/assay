@@ -66,6 +66,7 @@ class Assertion < Exception
   #
   def self.inherited(base)
     @@by_operator = nil
+    @@by_name     = nil
     subclasses << base
   end
 
@@ -94,6 +95,26 @@ class Assertion < Exception
     )
 
     operator ? @@by_operator[operator.to_sym] : @@by_operator
+  end
+
+  #
+  # If operator is not given, returns a hash table of assertion classes
+  # indexed by assertive name.
+  #
+  def self.by_name(name=nil)
+    name = name.to_sym if name
+
+    @@by_name ||= (
+      hash = {}
+      subclasses.each do |c|
+        if op = c.assertive_name
+          hash[op.to_sym] = c
+        end
+      end
+      hash
+    )
+
+    name ? @@by_name[name.to_sym] : @@by_name
   end
 
   #
