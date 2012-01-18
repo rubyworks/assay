@@ -40,8 +40,31 @@ module Assay
   # @deprecated Use `Assertion.by_operator(operator)` instead.
   #
   def self.lookup(operator)
-    assertions_by_operator[operator.to_sym]
+    Assertion.by_operator[operator.to_sym]
   end
+
+
+  # This module serves as the primary container for traditonal style assertion
+  # methods, which can be mixed in to one's testing scope (e.g. World).
+  #
+  module Assertions
+  end
+
+  # This module holds the subject matcher methods, which can be mixin
+  # to one's testing scope (e.g. World).
+  #
+  module Matchers
+  end
+
+  # This module holds the assertion extension mehods, which are mixed into
+  # the Object class.
+  #
+  module Extensions
+  end
+
+  #class ::Object
+  #  include Assay::Extensions
+  #end
 
 end
 

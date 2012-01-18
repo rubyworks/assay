@@ -1,5 +1,4 @@
 require_relative '../assay'
-require_relative 'containers/assertions'
 
 module Assay
 

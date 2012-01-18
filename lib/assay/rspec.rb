@@ -1,6 +1,5 @@
 require_relative '../assay'
-require_relative 'containers/matchers'
-require_relative 'handlers/should'
+require_relative 'grammer/should'
 
 module Assay
 

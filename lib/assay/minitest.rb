@@ -1,4 +1,3 @@
-require_relative 'containers/extensions'
 require_relative 'testunit'
 
 module Assay
