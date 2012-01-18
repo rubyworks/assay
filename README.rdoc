@@ -69,6 +69,28 @@ This means assay matchers can be used in case statments.
   when EqualityAssay[10.0]
   end
 
+=== Framework Adapters
+
+Assay follows a standard practice of defining assertion error classes with
+an `#assertion?` method that returns +true+. This can be used by any test 
+framework to easily detect when a raise error is an assertion rather than
+an ordinary error. To add support for this to common frameworks Assay
+provides adapters.
+
+For example, to use assay with MiniTest framework add to your test help
+script:
+
+  require 'assay/adapter/minitest'
+
+Likewise for TestUnit.
+
+  require 'assay/adapter/testunit'
+
+An RSpec adadpter is in the works, and should be out with the next release.
+
+Note that even without the adapter, you can use Assay with other these test
+frameworks. They will count Assay's assertions in with errors.
+
 === Grammers
 
 Of course, the classes are interesting and make an obviously sound 
@@ -93,31 +115,36 @@ Assay also provides `assert` for techy aficionados like yours truly.
 
   10.assert.kind_of(Integer)
 
-=== Compatibility Grammers
+=== Custom Grammers
 
-Assay provides compatability modules to serve as a transitions to
-Assay from other frameworks. These include, TestUnit, MiniTest and RSpec.
-To use one, simply load it by name.
+Although Assay ships with built-in grammers, there is no reason not to build
+your own grammer built on top of on Assay's classes. Indeed, feel free to do so!
+That, after all, is the main purpose of having such a set of reusable assertion
+classes! In fact, should it prove common enough, we might spin-off the grammers
+as separate projects, leaving Assay to be essentially a dependecny for other
+assertion nomenclature libraries.
 
-  require 'assay/rspec'
+=== Compatibility Gems
+
+Thre are a few spin-off projects that provide compatability modes for legacy
+test frameworks which can server as a transitions to Assay from these other
+frameworks. Follow the links below for each:
+
+* {TestUnit}[http://github.com/rubyworks/assay-testunit]
+* {MiniTest}[http://github.com/rubyworks/assay-minitest]
+* {RSpec}[http://github.com/rubyworks/assay-rspec]
+
+Usage of essentially the same for any one of them. For example,
+
+  require 'assay-rspec'
 
   include Assay::Matchers
 
   10.should be_kind_of(Integer)
 
-Note that the compatibility modules are not 100% compatable, lacking some
+Note that the compatibility modules are not yet 100% compatable, lacking some
 of the more esoteric and complex features. But they are very nearly so, and
 should become more so in time.
-
-=== Custom Grammers
-
-Although Assay ships with built-in grammers and the compatiblity layers,
-there is no reason not to build your own grammer based on Assay's classes,
-if you'd prefer it. Indeed, feel free to do so, as that is the main purpose 
-of having such a set of reusable assertion classes! In fact, should it prove
-common enough, we might spin-off the built-in grammers as separate projects,
-leaving Assay to be essentially a dependecny for other assertion nomenclature
-libraries.
 
 === Learn More
 
