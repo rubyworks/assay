@@ -1,8 +1,8 @@
 = Assay
 
-[Homepage]{http://rubyworks.github.com/assay} /
-[Source Code]{http://github.com/rubyworks/assay} /
-[MailingList]{http://groups.google.com/group/rubyworks-mailinglist}
+{Homepage}[http://rubyworks.github.com/assay] /
+{Source Code}[http://github.com/rubyworks/assay] /
+{MailingList}[http://groups.google.com/group/rubyworks-mailinglist]
 
 
 == DESCRIPTION
@@ -20,13 +20,111 @@ TestUnit, MiniTest, RSpec and other test frameworks.
 == FEATURES
 
 * Mirrors the Ruby Exception system.
+* Supports a variety of assertion grammers.
 * Assertions get their own specialized error messages.
-* Support a variety of assertion nomenclatures.
 
 
 == USAGE
 
-See QED documentation.
+=== Assay Classes
+
+Assay consists of a set of Assertion subclasses known as *assays*. They
+are akin to Ruby's Exception subclasses, indeed the +Assertion+ base class
+is a subclass of Exception. But assays have special class methods that are
+used to make assertions.
+
+Consider the +EqualityAssay+ class. It defines methods for asserting equality
+via the `#==` method.
+
+  EqualityAssay.pass!(1,1)
+
+Or equivalently,
+
+  EqualityAssay.assert(1,1)
+
+Additionally, we can check the assertion's test without actually raising the
+assertion if it fails using the query method.
+
+  EqualityAssay.pass?(1,1)  #=> true
+
+Assays also provide the opposite method `#fail!` and alias `#refute`.
+
+  EqualityAssay.fail!(1,2)
+
+Finally, assay's can produce matchers using the `#to_matcher` method, or more
+conveniently using `#[]`.
+
+  EqualityAssay[1] =~ 1
+
+Notice in the example we have used `#=~` to apply the matcher which makes
+the `#pass!` call to the Assay class. Likewise `#!~` can be used to
+call `#fail!` instead. Also note that `#===` is an alias for `#=~`.
+
+  EqualityAssay[1] === 1
+
+This means assay matchers can be used in case statments.
+
+  case 10
+  when InstanceAssay[Fixnum]
+  when EqualityAssay[10.0]
+  end
+
+=== Grammers
+
+Of course, the classes are interesting and make an obviously sound 
+foundation, but in the end we want to write assertions easily and
+concisely. To this, Assay comes with a flexible grammer system which
+can be used by requiring any of the prime grammer methods that extend
+BasicObject. The most common is probably `should`.
+
+  require 'assay/grammer/should'
+
+  10.should.be.kind_of(Integer)
+
+But is you are acustom to MiniTest's spec methods, you might prefer `must`.
+
+  require 'assay/grammer/must'
+
+  10.must.be.kind_of(Integer)
+
+Assay also provides `assert` for techy aficionados like yours truly.
+
+  require 'assay/grammer/assert'
+
+  10.assert.kind_of(Integer)
+
+=== Compatibility Grammers
+
+Assay provides compatability modules to serve as a transitions to
+Assay from other frameworks. These include, TestUnit, MiniTest and RSpec.
+To use one, simply load it by name.
+
+  require 'assay/rspec'
+
+  include Assay::Matchers
+
+  10.should be_kind_of(Integer)
+
+Note that the compatibility modules are not 100% compatable, lacking some
+of the more esoteric and complex features. But they are very nearly so, and
+should become more so in time.
+
+=== Custom Grammers
+
+Although Assay ships with built-in grammers and the compatiblity layers,
+there is no reason not to build your own grammer based on Assay's classes,
+if you'd prefer it. Indeed, feel free to do so, as that is the main purpose 
+of having such a set of reusable assertion classes! In fact, should it prove
+common enough, we might spin-off the built-in grammers as separate projects,
+leaving Assay to be essentially a dependecny for other assertion nomenclature
+libraries.
+
+=== Learn More
+
+There's plently more learn about Assay, mainly the variety of assay classes
+available, but also other bits of functionality not comvered here. To learn
+about these check out the {QED documentation}[http://github.com/rubyworks/assay],
+as well as the {API documentation}[http://rubydoc.info/gems/asasy].
 
 
 == INSTALLATION
