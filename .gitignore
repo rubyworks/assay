@@ -1,10 +1,8 @@
+.reap/digest
 .yardoc
-.ri
 log
 pkg
-ri
+site
 tmp
-site/doc
-site/qed
-site/readme.html
+web
 work/trash
