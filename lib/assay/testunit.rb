@@ -9,6 +9,8 @@ module Assay
   # While it does not provide 100% of Test::Unit assertions at the moment,
   # compatibility will improved with upcoming releases.
   #
+  # TODO: Should we adjust error message to be like Test::Units ?
+  #
   module TestUnitAssertions
 
     #
@@ -50,10 +52,8 @@ module Assay
 
     # Passes if `object` satisify compaision by `operator`.
     #
-    # @todo Adjust error message to be more like Test::Units.
-    #
-    def assert_compare(object, operator, operand, message=nil)
-      CompareAssay.assert(object, operator, operand, :message=>message)
+    def assert_compare(criterion, operator, actual, message=nil)
+      CompareAssay.assert(actual, criterion, operator, :message=>message)
     end
 
     #
@@ -158,12 +158,18 @@ module Assay
     end
 
     #
-    #def assert_include(collection, object, message=nil) 
-    #end
+    # Passes if `collection` contains `member`.
+    #
+    def assert_includes(collection, member, message=nil) 
+      IncludeAssay.assert(collection, member, :message=>message, :backtrace=>caller)
+    end
 
     #
-    #def assert_not_include(collection, object, message=nil) 
-    #end
+    # Passes if `collection` does not contain `member`.
+    #
+    def assert_not_includes(collection, member, message=nil)
+      IncludeAssay.refute(collection, member, :message=>message, :backtrace=>caller) 
+    end
 
     #
     # Passes if object is an instance of class.
@@ -422,34 +428,6 @@ module Assay
     def assert_not_true(exp, msg=nil)
       TrueAssay.refute(exp, :message=>msg, :backtrace=>caller)
     end
-
-=begin
-    #
-    # Meta-programming routine for creating all the subjective methods.
-    #
-    def self.bootstrap
-      ::Assertion.by_operator.each do |op, const|
-        name = const.assertive_name.to_sym
-
-        name = TESTUNIT_NAMES[name] || name
-
-        define_method("assert_#{name}") do |*args, &blk|
-          const.assert(*args, &blk)
-        end
-
-        define_method("refute_#{name}") do |*args, &blk|
-          const.refute(*args, &blk)
-        end
-
-        alias_method "assert_not_#{name}", "refute_#{name}"
-      end
-    end
-
-    #
-    # Do it!
-    #
-    bootstrap
-=end
 
   end
 

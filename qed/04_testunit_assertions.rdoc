@@ -41,6 +41,17 @@
     assert_nil(true)
   end
 
+== LikeAssay
+
+  assert_alike(1,1)
+  assert_alike(1,1.0)
+
+  expect ::LikeAssay do
+    assert_alike(1,"1")
+  end
+
+  assert_not_alike(1,"1")
+
 == WithinAssay
 
   assert_in_delta(1, 1.5, 2)
@@ -66,6 +77,26 @@
   end
 
   assert_not_equivalent(1, 1.0)
+
+== EmptyAssay
+
+  assert_empty([])
+
+  expect ::EmptyAssay do
+    assert_empty([1,2,3])
+  end
+
+  assert_not_empty([1,2,3])
+
+== IncludeAssay
+
+  assert_includes([1,2,3], 1)
+
+  expect ::IncludeAssay do
+    assert_includes([1,2,3], 4)
+  end
+
+  assert_not_includes([1,2,3], 4)
 
 == IdentityAssay
 

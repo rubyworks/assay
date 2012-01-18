@@ -23,7 +23,7 @@ The `#===` method is an alias for `#pass!`.
 Assay partial a very versile because they allow any argument to become
 the target of a matcher.
 
-  matcher = CompareAssay[1,__,2]
+  matcher = CompareAssay[2,1,__]
 
   matcher.pass!(:<)
   matcher.fail!(:>)

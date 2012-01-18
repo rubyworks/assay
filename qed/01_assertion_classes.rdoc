@@ -58,6 +58,18 @@
   assert KindAssay.pass?(1, Integer)
   refute KindAssay.pass?(1, String)
 
+== LikeAssay
+
+  assert LikeAssay.pass?(1, 1)
+  assert LikeAssay.pass?(1, 1.0)
+  assert LikeAssay.pass?("1", /\d/)
+
+  refute LikeAssay.pass?(1, "1")
+  refute LikeAssay.pass?("1", /\D/)
+
+  assert LikeAssay.fail?(1, "1")
+  assert LikeAssay.fail?("1", /\D/)
+
 == RaiseAssay
 
   assert RaiseAssay.pass?(ArgumentError){ raise ArgumentError }

@@ -23,23 +23,23 @@ module Assay
     #
     # See {LikeAssay}.
     #
-    def be_like(exp)
-      LikeAssay.to_matcher(exp)
+    def be_like(criterion)
+      LikeAssay.to_matcher(criterion)
     end
 
     # Passes if expected and actual are nto equal within delta tolerance.
     #
-    #   value1.assert is_within(delta, value2)
+    #   value.should be_close(delta, criterion)
     #
     # See {WithinAssay}.
     #
-    def be_close(delta, exp)
-      WithinAssay.to_matcher(exp, delta)
+    def be_close(delta, criterion)
+      WithinAssay.to_matcher(criterion, delta)
     end
 
     # Passes if object is empty.
     #
-    #   object.assert is_empty
+    #   object.should be_empty
     #
     # See {EmptyAssay}.
     #
@@ -110,7 +110,7 @@ module Assay
     #
     # Pass if object is a kind of class.
     #
-    #   object.should be_a_kind_of(class)
+    #   object.should be_kind_of(class)
     #
     # See {KindAssay}.
     #
@@ -204,30 +204,6 @@ module Assay
     def be_true
       TrueAssay.to_matcher
     end
-
-=begin
-    #
-    # Meta-programming routine for creating all the subjective methods.
-    #
-    def self.bootstrap
-      ::Assertion.by_operator.each do |op, const|
-        next unless const < Assertion
-
-        name = const.assertive_name.to_sym
-
-        #name = RSPEC_NAMES[name] || name
-
-        define_method("be_#{name}") do |*args|
-          const.to_matcher(*args)
-        end
-      end
-    end
-
-    #
-    # Do it!
-    #
-    bootstrap
-=end
 
   end
 

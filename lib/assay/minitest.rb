@@ -23,17 +23,21 @@ module Assay
 
     #
     #
-    # FIXME: should work without argument
+    # FIXME: without argument predicate usage is not really proper
     #
     def must_be(operator, argument=nil, msg=nil)
-      CompareAssay.assert(self, operator, argument, :message=>msg)
+      if argument
+        CompareAssay.assert(argument, self, operator, :message=>msg)
+      else
+        CompareAssay.assert(argument, self, :send, :message=>msg)
+      end
     end
 
     # Passes if object is like criterion.
     #
     #   object.must_be_like(criterion)
     #
-    # See {CompareAssay}.
+    # See {LikeAssay}.
     #
     def must_be_like(exp, msg=nil)
       LikeAssay.assert(self, exp, :message=>msg, :backtrace=>caller)
@@ -43,7 +47,7 @@ module Assay
     #
     #   object.wont_be_like(criterion)
     #
-    # See {CompareAssay}.
+    # See {LikeAssay}.
     #
     def wont_be_like(act, msg=nil)
       LikeAssay.refute(self, exp, :message=>msg, :backtrace=>caller)
