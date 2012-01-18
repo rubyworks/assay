@@ -16,7 +16,7 @@ class RaiseAssay < ExecutionAssay
   #
   #
   #
-  def pass!(*exp) #:yeild:
+  def self.pass!(*exp) #:yeild:
     options = (Hash === exp.last ? exp.pop : {})
 
     exp = exp.first
@@ -30,7 +30,7 @@ class RaiseAssay < ExecutionAssay
       arguments = [exp, err]
     end
 
-    message   = options[:message]   || message(*arguments)
+    message   = options[:message]   || pass_message(*arguments)
     backtrace = options[:backtrace] || caller
 
     if !test
@@ -41,7 +41,7 @@ class RaiseAssay < ExecutionAssay
   #
   #
   #
-  def fail!(*exp) #:yield:
+  def self.fail!(*exp) #:yield:
     options = (Hash === exp.last ? exp.pop : {})
 
     #exp = exp.first
@@ -55,7 +55,7 @@ class RaiseAssay < ExecutionAssay
       arguments = exp #+ [err]
     end
 
-    message   = options[:message]   || message(*arguments)
+    message   = options[:message]   || fail_message(*arguments)
     backtrace = options[:backtrace] || caller
 
     if !test
@@ -66,7 +66,7 @@ class RaiseAssay < ExecutionAssay
   # Check assertion.
   #
   # Note: This is not used by the #assert method.
-  def pass?(*exp)
+  def self.pass?(*exp)
     begin
       yield
       false
@@ -78,7 +78,7 @@ class RaiseAssay < ExecutionAssay
   # Check negated assertion.
   #
   # Note: This is not used by the #assert! method.
-  def fail?(*exp)
+  def self.fail?(*exp)
     begin
       yield
       true
@@ -87,18 +87,18 @@ class RaiseAssay < ExecutionAssay
     end
   end
 
-  # TODO: how to add `but got class` instead.
-  def message(*arguments)
-    return @mesg if @mesg
-    #return super unless arguments.size == 1
-
+  #
+  def self.pass_message(*arguments)
     exp = arguments.map{ |e| e.inspect }.join(' or ')
 
-    if @_negated
-      "Expected #{exp} NOT to be raised"
-    else
-      "Expected #{exp} to be raised" #, but was #{err} instead."
-    end
+    "raise #{exp}" #, but was #{err} instead."
+  end
+
+  # TODO: how to add `but got class` instead.
+  def self.fail_message(*arguments)
+    exp = arguments.map{ |e| e.inspect }.join(' or ')
+
+    "raise #{exp}" #, but was #{err} instead."
   end
 
 end

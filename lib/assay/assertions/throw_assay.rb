@@ -17,7 +17,7 @@ class ThrowAssay < ExecutionAssay
   #     throw :done
   #   end
   #
-  def pass?(sym, &block)
+  def self.pass?(sym, &block)
     pass = true
     catch(sym) do
       begin
@@ -40,7 +40,7 @@ class ThrowAssay < ExecutionAssay
   #   end
   #
   # FIXME: Is this correct?
-  def fail?(sym, &block)
+  def self.fail?(sym, &block)
     pass = false
     catch(sym) do
       begin
@@ -57,17 +57,10 @@ class ThrowAssay < ExecutionAssay
   end
 
   #
-  def message(*arguments)
-    return @mesg if @mesg
-    return super unless arguments.size == 1
-  
-    sym = arguments[0].inspect
-  
-    if @_negated
-      "Expected #{sym} to have been thrown"
-    else
-      "Expected #{sym} NOT to have been thrown"
-    end
+  def self.pass_message(symbol)
+    symbol = symbol.inspect
+
+    "throw #{symbol}"
   end
 
 end

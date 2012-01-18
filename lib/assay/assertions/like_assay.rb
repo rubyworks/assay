@@ -15,37 +15,29 @@ class LikeAssay < CompareAssay
   end
 
   # Test assertion.
-  def pass?(act, exp)
-    exp.equal?(act) ||
-    #exp.eq?(act)    ||
-    exp.==(act)     ||
-    exp.===(act)
-  end
-
-  def message(*arguments)
-    return @mesg if @mesg
-    return super unless arguments.size == 2
-
-    iexp = arguments[0].inspect
-    iact = arguments[1].inspect
-
-    "Expected #{iact} to be like #{iexp}"
+  def self.pass?(actual, criterion)
+    criterion.equal?(actual) ||
+    criterion.eql?(actual)   ||
+    criterion.==(actual)     ||
+    criterion.===(actual)
   end
 
   #
-  #def to_s
-  #  return @mesg if @mesg
-  #  return super unless @arguments.size == 2
+  def self.pass_message(actual, criterion)
+    actual    = actual.inspect
+    criterion = criterion.inspect
+
+    if actual.size > SIZE_LIMIT or criterion.size > SIZE_LIMIT
+      "a.like? b\na) #{criterion}\nb) #{actual}"
+    else
+      "#{criterion}.like? #{actual}"
+    end
+  end
+
   #
-  #  iexp = @arguments[0].inspect
-  #  iact = @arguments[1].inspect
-  #
-  #  if @_negated
-  #    "Expected #{iact} to NOT be like #{iexp}"
-  #  else
-  #    "Expected #{iact} to be like #{iexp}"
-  #  end
-  #end
+  def self.fail_message(actual, criterion)
+    "! " + pass_message(actual, criterion)
+  end
 
 end
 

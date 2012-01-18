@@ -19,22 +19,18 @@ class TrueAssay < CompareAssay
   end
 
   # Check assertion.
-  def pass?(exp)
-    TrueClass === exp
+  def self.pass?(actual)
+    TrueClass === actual
   end
 
   #
-  def message(*arguments)
-    return @mesg if @mesg
-    return super unless arguments.size == 1
-  
-    exp = arguments[0].inspect
-  
-    if @_negated
-      "Expected #{exp} to NOT be true"
-    else
-      "Expected #{exp} to be true"
-    end
+  def self.pass_message(actual)
+    "true == #{actual.inspect}"
+  end
+
+  #
+  def self.fail_message(actual)
+    "true != #{actual.inspect}"
   end
 
 end

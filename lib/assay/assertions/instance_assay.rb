@@ -14,24 +14,23 @@ class InstanceAssay < CompareAssay
     :instance
   end
 
+  #
   # Check assertion.
-  def pass?(obj, cls)
+  #
+  def self.pass?(obj, cls)
     obj.instance_of?(cls)
   end
 
   #
-  def message(*arguments)
-    return @mesg if @mesg
-    return super unless arguments.size == 2
+  def self.pass_message(object, class_type)
+    object = object.inspect
 
-    obj = arguments[0].inspect
-    cls = arguments[1].inspect
-
-    if @_negated
-      "Expected #{obj} to NOT be an instance of #{cls}"  
+    if object.size > SIZE_LIMIT
+      "a.instance_of? b\na) #{object}\nb) #{class_type}"
     else
-      "Expected #{obj} to be an instance of #{cls}"
+      "#{object}.instance_of? #{class_type}"
     end
   end
+
 end
 

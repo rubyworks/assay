@@ -19,6 +19,13 @@ class Exception
     @assertion = boolean ? true : false
   end
 
+  #
+  # Set message.
+  #
+  def set_message(msg)
+    @mesg = msg.to_str
+  end
+
 end
 
 #
@@ -98,79 +105,27 @@ class Assertion < Exception
   end
 
   #
-  # Singleton instance of class. By reusing the same instance, we can
-  # speed up assertion execution significantly.
-  #
-  def self.instance(message=nil)
-    @instance ||= new(message)
-  end
-
-  #
-  def self.pass?(*arguments, &block)
-    instance.pass?(*arguments, &block)
-  end
-
-  #
-  def self.fail?(*arguments, &block)
-    instance.fail?(*arguments, &block)
-  end
-
-  #
-  def self.pass!(*arguments, &block)
-    instance.pass!(*arguments, &block)
-  end
-
-  #
-  def self.fail!(*arguments, &block)
-    instance.fail!(*arguments, &block)
-  end
-
-  # Alias for `#pass!`.
-  def self.assert(*arguments, &block)
-    instance.assert(*arguments, &block)
-  end
-
-  # Alias for `#fail!`.
-  def self.refute(*arguments, &block)
-    instance.refute(*arguments, &block)
-  end
-
-  #
-  #
-  #
-  def initialize(message=nil)
-    #options = (Hash === arguments.last ? arguments.pop : {})
-
-    @assertion = true
-
-    super(message) if message
-
-    #set_backtrace(options[:backtrace]) if options[:backtrace]
-    #set_negative(options[:negated])   if options[:negated]
-  end
-
-  #
   # Check the assertion, return `true` if passing, `false` otherwise.
   #
-  def pass?(*args, &blk)
+  def self.pass?(*args, &blk)
     raise NotImplementedError
   end
 
   #
   # Check the assertion, return `true` if failing, `false` otherwise.
   #
-  def fail?(*args, &blk)
+  def self.fail?(*args, &blk)
     ! pass?(*args, &blk)
   end
 
   #
   # Test the assertion, raising the exception if failing.
   #
-  def pass!(*arguments, &block)
+  def self.pass!(*arguments, &block)
     options = (Hash === arguments.last ? arguments.pop : {})
 
     backtrace = options[:backtrace] || caller
-    message   = options[:message]   || pass_message(*arguments)
+    message   = options[:message]   || pass_message(*arguments, &block)
 
     if pass?(*arguments, &block)
       # TODO: count the assertions passed
@@ -180,18 +135,21 @@ class Assertion < Exception
     end
   end
 
-  alias assert pass!
+  # Alias for `#pass!`.
+  def self.assert(*arguments, &block)
+    pass!(*arguments, &block)
+  end
 
   #
   # Test the refutation of the assertion.
   #
   # Test the inverse assertion, raising the exception if not failing.
   #
-  def fail!(*arguments, &block)
+  def self.fail!(*arguments, &block)
     options = (Hash === arguments.last ? arguments.pop : {})
 
     backtrace = options[:backtrace] || caller
-    message   = options[:message]   || fail_message(*arguments)
+    message   = options[:message]   || fail_message(*arguments, &block)
 
     if fail?(*arguments, &block)
       # TODO: count the assertions passed
@@ -201,30 +159,47 @@ class Assertion < Exception
     end
   end
 
-  alias refute fail!
-
-  #
-  # Set message.
-  #
-  def set_message(msg)
-    @mesg = msg.to_str
+  # Alias for `#fail!`.
+  def self.refute(*arguments, &block)
+    fail!(*arguments, &block)
   end
 
   #
-  def pass_message(*arguments)
-    return @mesg if @mesg
-    message(*arguments)
+  def self.pass_message(*arguments, &block)
+    "#{name}.assert " + arguments.inspect
   end
 
   #
-  def fail_message(*arguments)
-    msg = @mesg ? @mesg : pass_message(*arguments)
-    if msg.index('should')
-      msg.sub('should', 'should NOT')
-    else
-      "NOT " + msg
-    end
+  def self.fail_message(*arguments, &block)
+    "! " + pass_message(*arguments, &block)
   end
+
+  #
+  #
+  #
+  def initialize(message=nil)
+    super(message)
+    set_assertion(true)
+    #options = (Hash === arguments.last ? arguments.pop : {})
+    #set_backtrace(options[:backtrace]) if options[:backtrace]
+    #set_negative(options[:negated])    if options[:negated]
+  end
+
+  ##
+  #def pass_message(*arguments)
+  #  return @mesg if @mesg
+  #  message(*arguments)
+  #end
+
+  #
+  #def fail_message(*arguments)
+  #  msg = @mesg ? @mesg : pass_message(*arguments)
+  #  if msg.index('should')
+  #    msg.sub('should', 'should NOT')
+  #  else
+  #    "NOT " + msg
+  #  end
+  #end
 
   ##
   ## Set whether this failure was the inverse of it's normal meaning.
@@ -304,19 +279,19 @@ class Assertion < Exception
     alias_method :==, :pass?
     alias_method :!=, :fail?
 
-    alias_method :=~,  :pass!
+    alias_method :=~, :pass!
     alias_method :!~, :fail!
 
     alias_method :===, :pass!
 
     #
     def pass_message(target)
-      @assertion.instance.pass_message(*complete_arguments(target))
+      @assertion.pass_message(*complete_arguments(target))
     end
 
     #
     def fail_message(target)
-      @assertion.instance.fail_message(*complete_arguments(target))
+      @assertion.fail_message(*complete_arguments(target))
     end
 
     # For RSpec matcher compatability.

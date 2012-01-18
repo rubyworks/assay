@@ -13,22 +13,18 @@ class NilAssay < CompareAssay
   end
 
   # Check assertion.
-  def pass?(exp)
-    exp.nil?
+  def self.pass?(actual)
+    actual.nil?
   end
 
   #
-  def message(*arguments)
-    return @mesg if @mesg
-    return super unless arguments.size == 1
-  
-    exp = arguments[0].inspect
-  
-    if @_negated
-      "Expected #{exp} to NOT be nil"
-    else
-      "Expected #{exp} to be nil"
-    end
+  def self.pass_message(actual)
+    "nil == #{actual.inspect}"
+  end
+
+  #
+  def self.pass_message(actual)
+    "nil != #{actual.inspect}"
   end
 
 end

@@ -15,18 +15,13 @@ class EmptyAssay < Assertion
   end
 
   # Check assertion.
-  def pass?(exp)
-    exp.empty?
+  def self.pass?(actual)
+    actual.empty?
   end
 
   #
-  def message(*arguments)
-    return @mesg if @mesg
-    return super unless arguments.size == 1
-
-    exp = arguments.first.inspect
-
-    "should be empty -- #{exp}"
+  def self.pass_message(actual)
+    "#{actual.inspect}.empty?"
   end
 
 end

@@ -21,23 +21,25 @@ class SameAssay < CompareAssay
   #
   # Check assertion via `#eql?` method.
   #
-  def pass?(act, criterion)
-    criterion.eql?(act)
+  def self.pass?(actual, criterion)
+    criterion.eql?(actual)
   end
 
   #
-  def message(*arguments)
-    return @mesg if @mesg
-    return super unless arguments.size == 2
-  
-    exp = arguments[0].inspect
-    act = arguments[1].inspect
-  
-    if @_negated
-      "Expected #{act} to NOT be equivalent to #{exp}"
+  def self.pass_message(actual, criterion)
+    actual    = actual.inspect
+    criterion = criterion.inspect
+
+    if actual.size > SIZE_LIMIT or criterion.size > SIZE_LIMIT
+      "a.eql? b\na) #{criterion}\nb) #{actual}"
     else
-      "Expected #{act} to be equivalent to #{exp}"
+      "#{criterion}.eql? #{actual}"
     end
+  end
+
+  #
+  def self.fail_message(actual, criterion)
+    "! " + pass_message(actual, criterion)
   end
 
 end

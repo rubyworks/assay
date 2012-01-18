@@ -16,27 +16,36 @@ class MatchAssay < CompareAssay
   end
 
   # Check assertion.
-  def pass?(exp, act)
-    exp =~ act
+  def self.pass?(actual, criterion)
+    criterion =~ actual
   end
 
   # Check negated assertion.
-  def fail?(exp, act)
-    exp !~ act
+  def self.fail?(actual, criterion)
+    criterion !~ actual
   end
 
   #
-  def message(*arguments)
-    return @mesg if @mesg
-    return super unless arguments.size == 2
-  
-    exp = arguments[0].inspect
-    act = arguments[1].inspect
-  
-    if @_negated
-      "Expected #{act} !~ #{exp}"
+  def self.pass_message(actual, criterion)
+    actual    = actual.inspect
+    criterion = criterion.inspect
+
+    if actual.size > SIZE_LIMIT or criterion.size > SIZE_LIMIT
+      "a =~ b\na) #{criterion}\nb) #{actual}"
     else
-      "Expected #{act} =~ #{exp}"
+      "#{criterion} =~ #{actual}"
+    end
+  end
+
+  #
+  def self.fail_message(actual, criterion)
+    actual    = actual.inspect
+    criterion = criterion.inspect
+
+    if actual.size > SIZE_LIMIT or criterion.size > SIZE_LIMIT
+      "a !~ b\na) #{criterion}\nb) #{actual}"
+    else
+      "#{criterion} !~ #{actual}"
     end
   end
 

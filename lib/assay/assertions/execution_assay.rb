@@ -25,7 +25,7 @@ class ExecutionAssay < Assertion
   end
 
   # Check assertion.
-  def pass?(*args, &block)
+  def self.pass?(*args, &block)
     begin
       block.call(*args)
     rescue Exception
@@ -34,7 +34,7 @@ class ExecutionAssay < Assertion
   end
 
   # Check negated assertion.
-  def fail?(*args, &block)
+  def self.fail?(*args, &block)
     begin
       !block.call(*args)
     rescue Exception
@@ -43,14 +43,9 @@ class ExecutionAssay < Assertion
   end
 
   #
-  def message(*arguments)
-    return @mesg if @mesg
-
-    if @_negated
-      "Expected procedure to raise an exception."
-    else
-      "Expected procedure to execute successfully."
-    end
+  def self.pass_message(*arguments, &block)
+    block = block.inspect
+    "#{block}#{arguments.inspect}"
   end
 
 end

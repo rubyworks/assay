@@ -14,23 +14,22 @@ class IncludeAssay < Assertion
     :include
   end
 
-  # Check assertion.
-  def pass?(container, object)
-    container.include?(object)
+  #
+  # Check assertion using `#include?` method.
+  #
+  def self.pass?(container, member)
+    container.include?(member)
   end
 
   #
-  def message(*arguments)
-    return @mesg if @mesg
-    return super unless arguments.size == 3
+  def self.pass_message(conatiner, member)
+    container = container.inspect
+    member    = member.inspect
 
-    container = arguments[0].inspect
-    object    = arguments[1].inspect
-  
-    if @_negated
-      "Expected #{object} to NOT be included in #{container}"
+    if container.size > SIZE_LIMIT or member.size > SIZE_LIMIT
+      "a.include? b\na) #{container}\nb) #{member}"
     else
-      "Expected #{object} to be included in #{container}"
+      "#{container}.include? #{member}"
     end
   end
 

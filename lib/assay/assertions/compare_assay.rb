@@ -3,11 +3,13 @@ require_relative 'assertion'
 # Compare assertion serves primarily as a base class
 # for other more specific comparison assertions.
 #
+# Maybe compare should just be <=> operation ?
+#
 class CompareAssay < Assertion
 
   # TODO: Not sure what this should be.
   def self.operator
-    :comp?
+    :cmp?
   end
 
   #
@@ -16,39 +18,24 @@ class CompareAssay < Assertion
   end
 
   #
-  # Test assertion.
+  # Check assertion.
   #
-  def pass?(object, operator, operand)
-    #raise ArgumentError unless [:>, :<, :>=, :<=, :==].include?(op.to_sym)
-    object.__send__(operator, operand)
+  def self.pass?(actual, criterion, operator=:<=>)
+    #raise ArgumentError unless [:<=>, :>, :<, :>=, :<=, :==].include?(operator.to_sym)
+    criterion.__send__(operator, actual)
   end
 
   #
-  def message(*arguments)
-    return @mesg if @mesg
-    return super unless arguments.size == 3
+  def self.pass_message(actual, criterion, operator=:<=>)
+    actual    = actual.inspect
+    criterion = criterion.inspect
 
-    act = arguments[0].inspect
-    op  = arguments[1].inspect
-    exp = arguments[2].inspect
-
-    "should -- #{exp} #{op} #{act}"
+    if actual.size > SIZE_LIMIT or criterion.size > SIZE_LIMIT
+      "a #{operator} b\na) #{criterion}\nb) #{actual}"
+    else
+      "#{criterion} #{operator} #{actual}"
+    end
   end
-
-  #
-  #def to_s
-  #  return @mesg if @mesg
-  #  return super unless @arguments.size == 2
-  #
-  #  iexp = @arguments[0].inspect
-  #  iact = @arguments[1].inspect
-  #
-  #  if @_negated
-  #    "Expected #{iact} to NOT be like #{iexp}"
-  #  else
-  #    "Expected #{iact} to be like #{iexp}"
-  #  end
-  #end
 
 end
 

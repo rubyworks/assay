@@ -16,46 +16,32 @@ class WithinAssay < CompareAssay
   end
 
   # Check assertion.
-  def pass?(act, exp, delta)
+  def self.pass?(actual, criterion, delta)
     case delta
     when Numeric
-      (exp.to_f - act.to_f).abs <= delta.to_f
+      (criterion.to_f - actual.to_f).abs <= delta.to_f
     else
-      exp - act <= delta
+      criterion - actual <= delta
     end
   end
 
   #
-  def message(*arguments)
-    return @mesg if @mesg
-    return super unless arguments.size == 3
+  def self.pass_message(actual, criterion, delta)
+    actual    = actual.inspect
+    criterion = criterion.inspect
+    delta     = delta.inspect
 
-    exp   = arguments[0].inspect
-    act   = arguments[1].inspect
-    delta = arguments[2].inspect
-  
-    if @_negated
-      "Expected #{exp} to NOT be within #{delta} of #{act}"
+    if actual.size > SIZE_LIMIT or criterion.size > SIZE_LIMIT
+      "b - #{delta} <  a  < b + #{delta}\na) #{actual}\nb) #{criterion}"
     else
-      "Expected #{exp} to be within #{delta} of #{act}"
+      "#{criterion} - #{delta} < #{actual} < #{criterion} + #{delta}"
     end
   end
 
   #
-  #def to_s
-  #  return @mesg if @mesg
-  #  return super unless @arguments.size == 3
-  #
-  #  exp   = @arguments[0].inspect
-  #  act   = @arguments[1].inspect
-  #  delta = @arguments[2].inspect
-  #
-  #  if @_negated
-  #    "Expected #{exp} to NOT be within #{delta} of #{act}"
-  #  else
-  #    "Expected #{exp} to be within #{delta} of #{act}"
-  #  end
-  #end
+  def self.fail_message(actual, criterion, delta)
+    "! " + pass_message(actual, criterion, delta)
+  end
 
 end
 

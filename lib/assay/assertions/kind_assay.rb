@@ -18,23 +18,20 @@ class KindAssay < CompareAssay
   end
 
   # Check assertion.
-  def pass?(obj, cls)
-    obj.kind_of?(cls)
+  def self.pass?(object, class_type)
+    object.kind_of?(class_type)
   end
 
   #
-  def message(*arguments)
-    return @mesg if @mesg
-    return super unless arguments.size == 2
+  def self.pass_message(object, class_type)
+    object = object.inspect
 
-    obj = arguments[0].inspect
-    cls = arguments[1].inspect
-
-    if @_negated
-      "Expected #{obj} to be kind of #{cls}"
+    if object.size > SIZE_LIMIT
+      "a.kind_of? b\na) #{object}\nb) #{class_type}"
     else
-      "Expected #{obj} to be kind of #{cls}"
+      "#{object}.kind_of? #{class_type}"
     end
   end
+
 end
 
