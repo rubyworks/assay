@@ -1,41 +1,18 @@
-require 'ansi/diff'
-#require 'assay/matcher'
-require 'assay/na'
+require 'ansi/diff'  # ANSI color output support
 
-class Exception
-
-  #
-  # This method allows Assay's classes to work in any test framework
-  # that supports this interface.
-  #
-  def assertion?
-    @assertion
-  end
-
-  #
-  # Set assertion flag.
-  #
-  def set_assertion(boolean)
-    @assertion = boolean ? true : false
-  end
-
-  #
-  # Set message.
-  #
-  def set_message(msg)
-    @mesg = msg.to_str
-  end
-
-end
+require_relative 'core_ext/na'
+require_relative 'core_ext/exception'
 
 #
 class Assertion < Exception
 
   $ASSERTION_COUNTS ||= {:total=>0,:pass=>0,:fail=>0}
 
+  #
   # When displaying errors, use this as a rule of thumb
   # for determining when the inspected object will be too
   # big for a single line message.
+  #
   SIZE_LIMIT = 13
 
   #

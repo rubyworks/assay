@@ -1,8 +1,9 @@
 # Load Assay's assertion classes.
-dir = File.dirname(__FILE__) + '/assay/assertions'
+require_relative 'assay/assertion'
+dir = File.dirname(__FILE__) + '/assay'
 Dir.entries(dir).each do |file|
   next if File.extname(file) != '.rb'
-  require_relative 'assay/assertions/' + file
+  require_relative 'assay/' + file
 end
 
 module Assay
@@ -43,6 +44,13 @@ module Assay
     Assertion.by_operator[operator.to_sym]
   end
 
+  #
+  # Set ANSI color mode. Default is true, so if you need to force ANSI color
+  # code to omitted from output message you can set `Assay.color = false`.
+  #
+  def self.color=(boolean)
+    $ansi = boolean ? true : false
+  end
 
   # This module serves as the primary container for traditonal style assertion
   # methods, which can be mixed in to one's testing scope (e.g. World).
