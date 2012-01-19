@@ -31,6 +31,8 @@ end
 #
 class Assertion < Exception
 
+  $ASSERTION_COUNTS ||= {:total=>0,:pass=>0,:fail=>0}
+
   # When displaying errors, use this as a rule of thumb
   # for determining when the inspected object will be too
   # big for a single line message.
@@ -148,10 +150,12 @@ class Assertion < Exception
     backtrace = options[:backtrace] || caller
     message   = options[:message]   || pass_message(*arguments, &block)
 
+    $ASSERTION_COUNTS[:total] += 1
+
     if pass?(*arguments, &block)
-      # TODO: count the assertions passed
+      $ASSERTION_COUNTS[:pass] += 1
     else
-      # TODO: count the assertions failed
+      $ASSERTION_COUNTS[:fail] += 1
       fail self, message, backtrace
     end
   end
@@ -172,10 +176,12 @@ class Assertion < Exception
     backtrace = options[:backtrace] || caller
     message   = options[:message]   || fail_message(*arguments, &block)
 
+    $ASSERTION_COUNTS[:total] += 1
+
     if fail?(*arguments, &block)
-      # TODO: count the assertions passed
+      $ASSERTION_COUNTS[:pass] += 1
     else
-      # TODO: count the assertions failed
+      $ASSERTION_COUNTS[:fail] += 1
       fail self, message, backtrace
     end
   end
