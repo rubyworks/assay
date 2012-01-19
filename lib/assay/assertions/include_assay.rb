@@ -22,7 +22,7 @@ class IncludeAssay < Assertion
   end
 
   #
-  def self.pass_message(conatiner, member)
+  def self.pass_message(container, member)
     container = container.inspect
     member    = member.inspect
 
