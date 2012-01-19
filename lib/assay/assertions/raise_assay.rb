@@ -5,12 +5,12 @@ class RaiseAssay < ExecutionAssay
 
   #
   def self.operator
-    :raise?
+    :raised?
   end
 
   #
   def self.assertive_name
-    :raise
+    :raised
   end
 
   #
