@@ -1,8 +1,9 @@
 = Assay
 
-{Homepage}[http://rubyworks.github.com/assay] /
+{Website}[http://rubyworks.github.com/assay] /
+{Report Issue}[http://github.com/rubyworks/assay/issues] /
 {Source Code}[http://github.com/rubyworks/assay] /
-{MailingList}[http://groups.google.com/group/rubyworks-mailinglist]
+{Mailing List}[http://groups.google.com/group/rubyworks-mailinglist]
 
 
 == DESCRIPTION
@@ -19,9 +20,10 @@ TestUnit, MiniTest, RSpec and other test frameworks.
 
 == FEATURES
 
-* Mirrors the Ruby Exception system.
-* Supports a variety of assertion grammers.
-* Assertions get their own specialized error messages.
+* Patterned after the Ruby exception system.
+* Allows assertions specialized error messages.
+* Supports any variety of assertion "grammers".
+* Can be used with almost any test framework. 
 
 
 == USAGE
@@ -93,48 +95,41 @@ frameworks. They will count Assay's assertions in with errors.
 
 === Grammers
 
-Of course, the classes are interesting and make an obviously sound 
-foundation, but in the end we want to write assertions easily and
-concisely. To this, Assay comes with a flexible grammer system which
-can be used by requiring any of the prime grammer methods that extend
-BasicObject. The most common is probably `should`.
+Of course the classes are interesting and make an obviously sound 
+foundation, but in the end we want to write assertions more easily and
+concisely. For this we turn to separate "grammer" projects that depend
+on Assay's classes. The first of these, created as a spin-off project
+to demonstrate Assay's prowess, is {Fluidity}[http://rubyworks.github.com/fluidity].
+Here is a quick taste.
 
-  require 'assay/grammer/should'
+  require 'fluidity'
 
   10.should.be.kind_of(Integer)
 
 But is you are acustom to MiniTest's spec methods, you might prefer `must`.
 
-  require 'assay/grammer/must'
-
   10.must.be.kind_of(Integer)
 
-Assay also provides `assert` for techy aficionados like yours truly.
-
-  require 'assay/grammer/assert'
+And to satisfy all those technical aficionados (like yours truly) there is `assert`.
 
   10.assert.kind_of(Integer)
 
-=== Custom Grammers
-
-Although Assay ships with built-in grammers, there is no reason not to build
-your own grammer built on top of on Assay's classes. Indeed, feel free to do so!
-That, after all, is the main purpose of having such a set of reusable assertion
-classes! In fact, should it prove common enough, we might spin-off the grammers
-as separate projects, leaving Assay to be essentially a dependecny for other
-assertion nomenclature libraries.
+Fluidity is just one possible grammer. There is no reason not to build
+your own grammer on top of Assay's classes if you have another approach.
+Indeed, please do so! That, after all, is the main purpose of having such
+a set of reusable assertion classes!
 
 === Compatibility Gems
 
 Thre are a few spin-off projects that provide compatability modes for legacy
-test frameworks which can server as a transitions to Assay from these other
+test frameworks which can server as transitions to Assay from these other
 frameworks. Follow the links below for each:
 
 * {TestUnit}[http://github.com/rubyworks/assay-testunit]
 * {MiniTest}[http://github.com/rubyworks/assay-minitest]
 * {RSpec}[http://github.com/rubyworks/assay-rspec]
 
-Usage of essentially the same for any one of them. For example,
+Usage is essentially the same for any one of them. For example,
 
   require 'assay-rspec'
 
@@ -144,9 +139,9 @@ Usage of essentially the same for any one of them. For example,
 
 Note that the compatibility modules are not yet 100% compatable, lacking some
 of the more esoteric and complex features. But they are very nearly so, and
-should become more so in time.
+will become more so in time.
 
-=== Learn More
+=== Learning More
 
 There's plently more learn about Assay, mainly the variety of assay classes
 available, but also other bits of functionality not comvered here. To learn
