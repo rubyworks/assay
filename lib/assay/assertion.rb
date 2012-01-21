@@ -65,23 +65,24 @@ class Assertion < Exception
     end
 
     #
-    def pass!(target, *criteria, &block)
+    def assert!(target, *criteria, &block)
       #if ! pass?(target, *criteria, &block)
         new(nil, *criteria, &block).pass!(target)
       #end
     end
 
-    #
-    alias_method :assert!, :pass!
+    # @deprecated
+    alias_method :pass!, :assert!
 
     #
-    def fail!(target, *criteria, &block)
+    def refute!(target, *criteria, &block)
       #if ! fail?(target, *criteria, &block)
         new(nil, *criteria, &block).fail!(target)
       #end
     end
 
-    alias_method :refute!, :fail!
+    # @deprecated
+    alias_method :fail!, :refute!
 
     #
     # When Assertion is inherited, a table is kept index by assertion operator.
