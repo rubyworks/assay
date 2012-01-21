@@ -93,14 +93,14 @@ An RSpec adadpter is in the works, and should be out with the next release.
 Note that even without the adapter, you can use Assay with other these test
 frameworks. They will count Assay's assertions in with errors.
 
-=== Grammers
+=== Customized Grammars
 
 Of course the classes are interesting and make an obviously sound 
 foundation, but in the end we want to write assertions more easily and
-concisely. For this we turn to separate "grammer" projects that depend
+concisely. For this we turn to separate "grammar" projects that depend
 on Assay's classes. The first of these, created as a spin-off project
 to demonstrate Assay's prowess, is {Fluidity}[http://rubyworks.github.com/fluidity].
-Here is a quick taste.
+Here is a quick taste of that gem's functionality.
 
   require 'fluidity'
 
@@ -114,15 +114,8 @@ And to satisfy all those technical aficionados (like yours truly) there is `asse
 
   10.assert.kind_of(Integer)
 
-Fluidity is just one possible grammer. There is no reason not to build
-your own grammer on top of Assay's classes if you have another approach.
-Indeed, please do so! That, after all, is the main purpose of having such
-a set of reusable assertion classes!
-
-=== Compatibility Gems
-
-Thre are a few spin-off projects that provide compatability modes for legacy
-test frameworks which can server as transitions to Assay from these other
+Thre are a few additional grammer project spun-off from Assay that provide
+compatability modes for legacy test frameworks which can server as transitions to Assay from these other
 frameworks. Follow the links below for each:
 
 * {TestUnit}[http://github.com/rubyworks/assay-testunit]
@@ -140,6 +133,11 @@ Usage is essentially the same for any one of them. For example,
 Note that the compatibility modules are not yet 100% compatable, lacking some
 of the more esoteric and complex features. But they are very nearly so, and
 will become more so in time.
+
+These are just a few possible grammars. There is no reason not to build
+your own grammar on top of Assay's classes if you have another approach in mind.
+Indeed, please do so! That, after all, is the main purpose of having such
+a set of reusable assertion classes!
 
 === Learning More
 
