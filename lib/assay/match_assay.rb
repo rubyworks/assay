@@ -26,26 +26,26 @@ class MatchAssay < CompareAssay
   end
 
   #
-  def self.pass_message(actual, criterion)
-    actual    = actual.inspect
-    criterion = criterion.inspect
+  def pass_message(actual, criterion)
+    a = actual.inspect
+    c = criterion.inspect
 
-    if actual.size > SIZE_LIMIT or criterion.size > SIZE_LIMIT
-      "a =~ b\na) #{criterion}\nb) #{actual}"
+    if a.size > SIZE_LIMIT or c.size > SIZE_LIMIT
+      "a =~ b\na) #{c}\nb) #{a}"
     else
-      "#{criterion} =~ #{actual}"
+      "#{c} =~ #{a}"
     end
   end
 
   #
   def self.fail_message(actual, criterion)
-    actual    = actual.inspect
-    criterion = criterion.inspect
+    a = actual.inspect
+    c = criterion.inspect
 
-    if actual.size > SIZE_LIMIT or criterion.size > SIZE_LIMIT
-      "a !~ b\na) #{criterion}\nb) #{actual}"
+    if a.size > SIZE_LIMIT or c.size > SIZE_LIMIT
+      "a !~ b\na) #{c}\nb) #{a}"
     else
-      "#{criterion} !~ #{actual}"
+      "#{c} !~ #{a}"
     end
   end
 

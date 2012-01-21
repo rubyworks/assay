@@ -5,23 +5,16 @@ require_relative 'assertion'
 class EmptyAssay < Assertion
 
   #
-  def self.operator
-    :empty?
-  end
+  #operator :empty?
 
   #
-  def self.assertive_name
-    :empty
-  end
+  #def self.assertive_name
+  #  :empty
+  #end
 
   # Check assertion.
-  def self.pass?(actual)
-    actual.empty?
-  end
-
-  #
-  def self.pass_message(actual)
-    "#{actual.inspect}.empty?"
+  def self.pass?(target)
+    target.empty?
   end
 
 end

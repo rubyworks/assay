@@ -2,6 +2,8 @@ require_relative 'assertion'
 
 # Does an object #respond_to? a method call.
 #
+# TODO: Rename to `RespondAssay`?
+#
 class ResponseAssay < Assertion
 
   #
@@ -15,21 +17,21 @@ class ResponseAssay < Assertion
   end
 
   # Check assertion.
-  def self.pass?(reciever, method)
+  def self.pass?(reciever, method_name)
     #flip = (Symbol === obj) && ! (Symbol === meth) # HACK for specs
     #obj, meth = meth, obj if flip
-    reciever.respond_to?(method)
+    reciever.respond_to?(method_name)
   end
 
   #
-  def self.pass_message(receiver, method)
-    ireceiver = receiver.inspect
-    imethod   = method.inspect
+  def pass_message(receiver)
+    r = receiver.inspect
+    m = criteria.first.inspect  # method_name
 
-    if ireceiver.size > SIZE_LIMIT
-      "a.respond_to? b\na) (#{receiver.class}) #{ireceiver}\nb) ##{imethod}"
+    if r.size > SIZE_LIMIT
+      "a.respond_to? b\na) (#{receiver.class}) #{r}\nb) ##{m}"
     else
-      "(#{receiver.class}) #{ireceiver}.respond_to? ##{imethod}"
+      "(#{receiver.class}) #{r}.respond_to? ##{m}"
     end
   end
 

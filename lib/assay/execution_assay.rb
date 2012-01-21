@@ -24,7 +24,9 @@ class ExecutionAssay < Assertion
     :executes
   end
 
+  #
   # Check assertion.
+  #
   def self.pass?(*args, &block)
     begin
       block.call(*args)
@@ -33,7 +35,9 @@ class ExecutionAssay < Assertion
     end
   end
 
+  #
   # Check negated assertion.
+  #
   def self.fail?(*args, &block)
     begin
       !block.call(*args)
@@ -43,8 +47,11 @@ class ExecutionAssay < Assertion
   end
 
   #
-  def self.pass_message(*arguments, &block)
+  #
+  #
+  def pass_message(*arguments, &block)
     block = block.inspect
+
     "#{block}#{arguments.inspect}"
   end
 

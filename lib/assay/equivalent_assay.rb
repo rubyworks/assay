@@ -9,9 +9,9 @@ require_relative 'compare_assay'
 class SameAssay < CompareAssay
 
   #
-  def self.operator
-    :eql?
-  end
+  #def self.operator
+  #  :eql?
+  #end
 
   #
   def self.assertive_name
@@ -21,26 +21,26 @@ class SameAssay < CompareAssay
   #
   # Check assertion via `#eql?` method.
   #
-  def self.pass?(actual, criterion)
-    criterion.eql?(actual)
+  def self.pass?(target, criterion)
+    criterion.eql?(target)
   end
 
   #
-  def self.pass_message(actual, criterion)
-    actual    = actual.inspect
-    criterion = criterion.inspect
-
-    if actual.size > SIZE_LIMIT or criterion.size > SIZE_LIMIT
-      "a.eql? b\na) #{criterion}\nb) #{actual}"
-    else
-      "#{criterion}.eql? #{actual}"
-    end
-  end
+  #def self.pass_message(actual, criterion)
+  #  actual    = actual.inspect
+  #  criterion = criterion.inspect
+  #
+  #  if actual.size > SIZE_LIMIT or criterion.size > SIZE_LIMIT
+  #    "a.eql? b\na) #{criterion}\nb) #{actual}"
+  #  else
+  #    "#{criterion}.eql? #{actual}"
+  #  end
+  #end
 
   #
-  def self.fail_message(actual, criterion)
-    "! " + pass_message(actual, criterion)
-  end
+  #def self.fail_message(actual, criterion)
+  #  "! " + pass_message(actual, criterion)
+  #end
 
 end
 

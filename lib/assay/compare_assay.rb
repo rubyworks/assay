@@ -3,11 +3,12 @@ require_relative 'assertion'
 # Compare assertion serves primarily as a base class
 # for other more specific comparison assertions.
 #
-# Maybe compare should just be <=> operation ?
+# In itself it can be used to test a comparision
+# made by #<=>.
 #
 class CompareAssay < Assertion
 
-  # TODO: Not sure what this should be.
+  #
   def self.operator
     :cmp?
   end
@@ -20,20 +21,20 @@ class CompareAssay < Assertion
   #
   # Check assertion.
   #
-  def self.pass?(actual, criterion, operator=:<=>)
-    #raise ArgumentError unless [:<=>, :>, :<, :>=, :<=, :==].include?(operator.to_sym)
-    criterion.__send__(operator, actual)
+  def self.pass?(target, criterion, result=0)
+    (criterion <=> target) == result
   end
 
   #
-  def self.pass_message(actual, criterion, operator=:<=>)
-    actual    = actual.inspect
-    criterion = criterion.inspect
+  def pass_message(target)
+    t  = target.inspect
+    c  = criteria[0].inspect
+    r  = criteria[1].inspect
 
-    if actual.size > SIZE_LIMIT or criterion.size > SIZE_LIMIT
-      "a #{operator} b\na) #{criterion}\nb) #{actual}"
+    if t.size > SIZE_LIMIT or c.size > SIZE_LIMIT
+      "a <=> b == #{r}\na) #{c}\nb) #{t}"
     else
-      "#{criterion} #{operator} #{actual}"
+      "#{c} <=> #{t} == #{r}"
     end
   end
 

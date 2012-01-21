@@ -3,17 +3,17 @@ require_relative 'execution_assay'
 #
 class ThrowAssay < ExecutionAssay
 
-  def self.operator
-    :throw?
-  end
+  #def self.operator
+  #  :throw?
+  #end
 
-  def self.assertive_name
-    :throw
-  end
+  #def self.assertive_name
+  #  :throw
+  #end
 
   # Passes if the block throws expected_symbol
   #
-  #   assert_throws :done do
+  #   ThrowAssay.pass? :done do
   #     throw :done
   #   end
   #
@@ -57,10 +57,9 @@ class ThrowAssay < ExecutionAssay
   end
 
   #
-  def self.pass_message(symbol)
-    symbol = symbol.inspect
-
-    "throw #{symbol}"
+  def pass_message(sym, &block)
+    s = sym.inspect
+    "throw #{s}"
   end
 
 end

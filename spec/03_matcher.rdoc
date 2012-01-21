@@ -25,16 +25,14 @@ the target of a matcher.
 
   matcher = CompareAssay[2,1,__]
 
-  matcher.pass!(:<)
-  matcher.fail!(:>)
+  matcher.pass!(1)
+  matcher.fail!(0)
 
 == Negated Matchers
 
 Matchers can be negated so that pass and fail methods swap behaviors.
 
    matcher = EqualityAssay[__,1]
-
-   matcher.negated.assert.is_a?(Assertion::Matcher::Negated)
 
    matcher.negated === 2
 

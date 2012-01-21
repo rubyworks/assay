@@ -6,7 +6,7 @@ require_relative 'core_ext/exception'
 #
 class Assertion < Exception
 
-  $ASSERTION_COUNTS ||= {:total=>0,:pass=>0,:fail=>0}
+  $ASSERTION_COUNTS ||= Hash.new{ |h,k| h[k] = 0 } #{:total=>0,:pass=>0,:fail=>0}
 
   #
   # When displaying errors, use this as a rule of thumb
@@ -16,27 +16,64 @@ class Assertion < Exception
   SIZE_LIMIT = 13
 
   #
-  # Returns Matcher for the failure class.
-  #
-  def self.to_matcher(*args, &blk)
-    Matcher.new(self, *args, &blk)
-  end
-
-  #
-  # Alias for #to_matcher.
-  #
-  def self.[](*args, &blk)
-    Matcher.new(self, *args, &blk)
-  end
-
-  #
   # If the assertion coresponds to a regular method, particular a symbolic
   # operator (hence the name of this method) then it should be specified via
   # this interface. Otherwise, it should be given a fitting "make believe"
-  # method name and specified here.
+  # method name and specified here. If not overridden it will be assumed
+  # to be the same as the `assertion_name` appended by `?`.
   #
   def self.operator
+    (assertive_name.to_s + '?').to_sym
+  end
+
+  #
+  # The assertive name is used for the construction of assertive nomenclatures
+  # such as `assert_equal`.
+  # 
+  def self.assertive_name
+    @assertive_name ||= name.split('::').last.chomp('Assay').downcase
+  end
+
+  #
+  # Returns Matcher for the failure class.
+  #
+  #def self.matcher(*args, &blk)
+  #  if args.include?(NA)
+  #    new(nil, *args, &blk)
+  #  else
+  #    new(nil, NA, *args, &blk)
+  #  end
+  #end
+
+  #
+  # Alias for #new.
+  #
+  def self.[](*args, &blk)
+    new(*args, &blk)
+  end
+
+  #
+  def self.pass?(target, *criteria, &block)
     raise NotImplementedError
+  end
+
+  #
+  def self.fail?(target, *criteria, &block)
+    ! pass?(target, *criteria, &block)
+  end
+
+  #
+  def self.pass!(target, *criteria, &block)
+    #if ! pass?(target, *criteria, &block)
+      new(nil, *criteria, &block).pass!(target)
+    #end
+  end
+
+  #
+  def self.fail!(target, *criteria, &block)
+    #if ! fail?(target, *criteria, &block)
+      new(nil, *criteria, &block).fail!(target)
+    #end
   end
 
   #
@@ -97,49 +134,75 @@ class Assertion < Exception
   end
 
   #
-  # The assertive name is used for the construction of assertive nomenclatures
-  # such as `assert_equal`.
-  # 
-  def self.assertive_name
-    name.split('::').last.chomp('assay').downcase
+  #
+  #
+  def initialize(msg=nil, *criteria, &block)
+    super(msg)
+
+    @criteria = criteria
+    @block    = block
+    @not      = false
+
+    #options = (Hash === criteria.last ? criteria.pop : {})
+    #set_backtrace(options[:backtrace]) if options[:backtrace]
+    #set_negative(options[:negated])    if options[:negated]
   end
+
+  # criteria
+  attr :criteria
+
+  # block
+  attr :block
 
   #
   # Check the assertion, return `true` if passing, `false` otherwise.
   #
-  def self.pass?(*args, &blk)
-    raise NotImplementedError
-  end
-
-  #
-  # Check the assertion, return `true` if failing, `false` otherwise.
-  #
-  def self.fail?(*args, &blk)
-    ! pass?(*args, &blk)
+  def pass?(target)
+    if Proc === target && @block.nil?
+      args = criteria
+      blk  = target
+    else
+      args = complete_criteria(target)
+      blk  = @block
+    end
+    @not ^ self.class.pass?(*args, &blk)
   end
 
   #
   # Test the assertion, raising the exception if failing.
   #
-  def self.pass!(*arguments, &block)
-    options = (Hash === arguments.last ? arguments.pop : {})
-
+  def pass!(target, options={})
     backtrace = options[:backtrace] || caller
-    message   = options[:message]   || pass_message(*arguments, &block)
+    message   = options[:message]   || get_message(target)
 
-    $ASSERTION_COUNTS[:total] += 1
-
-    if pass?(*arguments, &block)
-      $ASSERTION_COUNTS[:pass] += 1
+    if pass?(target)
+      increment(:pass)
     else
-      $ASSERTION_COUNTS[:fail] += 1
+      increment(:fail)
       fail self, message, backtrace
     end
   end
 
+  #
   # Alias for `#pass!`.
-  def self.assert(*arguments, &block)
-    pass!(*arguments, &block)
+  #
+  def assert(target, options={})
+    pass!(target, options={})
+  end
+
+  #
+  # Check the assertion, return `true` if failing, `false` otherwise.
+  #
+  def fail?(target)
+    if Proc === target && @block.nil?
+      args = criteria
+      blk  = target
+    else
+      args = complete_criteria(target)
+      blk  = @block
+    end
+
+    @not ^ self.class.fail?(*args, &blk)
   end
 
   #
@@ -147,57 +210,152 @@ class Assertion < Exception
   #
   # Test the inverse assertion, raising the exception if not failing.
   #
-  def self.fail!(*arguments, &block)
-    options = (Hash === arguments.last ? arguments.pop : {})
-
+  def fail!(target, options={})
     backtrace = options[:backtrace] || caller
-    message   = options[:message]   || fail_message(*arguments, &block)
+    message   = options[:message]   || get_message(target, true)
 
-    $ASSERTION_COUNTS[:total] += 1
-
-    if fail?(*arguments, &block)
-      $ASSERTION_COUNTS[:pass] += 1
+    if fail?(target)
+      increment(:pass)
     else
-      $ASSERTION_COUNTS[:fail] += 1
+      increment(:fail)
       fail self, message, backtrace
     end
   end
 
+  #
   # Alias for `#fail!`.
-  def self.refute(*arguments, &block)
-    fail!(*arguments, &block)
-  end
-
   #
-  def self.pass_message(*arguments, &block)
-    "#{name}.assert " + arguments.inspect
-  end
-
-  #
-  def self.fail_message(*arguments, &block)
-    "! " + pass_message(*arguments, &block)
+  def refute(target, options={})
+    fail!(target, options={})
   end
 
   #
   #
   #
-  def initialize(message=nil)
-    super(message)
-    set_assertion(true)
-    #options = (Hash === arguments.last ? arguments.pop : {})
-    #set_backtrace(options[:backtrace]) if options[:backtrace]
-    #set_negative(options[:negated])    if options[:negated]
+  def get_message(target, fail=false)
+    return @mesg if @mesg  # custom message
+    @not ^ fail ? fail_message(target) : pass_message(target)
   end
+
+  #
+  #
+  #
+  def pass_message(target)
+    standard_message(target)
+  end
+
+  #
+  #
+  #
+  def fail_message(target)
+    "! " + pass_message(target)
+  end
+
+  alias_method :==, :pass?
+  alias_method :!=, :fail?
+
+  alias_method :=~, :pass!
+  alias_method :!~, :fail!
+
+  alias_method :===, :pass!
+
+  #
+  # Create a negated form of the matcher.
+  #
+  # @todo Should this be @! method instead?
+  #
+  def ~@
+    dup.negate!
+  end
+
+  #
+  # Create a negated form of the matcher.
+  #
+  # @todo Best name for this method?
+  #
+  def negated
+    dup.negate!
+  end
+
+  # The following methods allow Assay objects to work as RSpec matchers.
+
+  # For RSpec matcher compatability.
+  alias matches? pass?
+
+  # For RSpec matcher compatability.
+  alias does_not_match? fail?
+
+  # For RSpec matcher compatability.
+  alias failure_message_for_should pass_message
+
+  # For RSpec matcher compatability.
+  alias failure_message_for_should_not fail_message
+
+protected
+
+  #
+  # Toggle the `@not` flag.
+  #
+  def negate!
+    @not = !@not
+    self
+  end
+
+private
+
+  #
+  # Increment global `$ASSERTION_COUNTS` variable.
+  #
+  def increment(which)
+    $ASSERTION_COUNTS[:total] += 1
+    $ASSERTION_COUNTS[which.to_sym] += 1
+  end
+
+  #
+  #
+  #
+  def complete_criteria(target)
+    if i = @criteria.index(NA)
+      @criteria[0...i] + [target] + @criteria[i+1..-1]
+    else
+      [target] + @criteria
+    end
+  end
+
+  #
+  # Construct a standard error message.
+  #
+  def standard_message(target)
+    args_inspect = [target, *@criteria].map{ |o| o.inspect }
+
+    if args_inspect.any?{ |o| o.size > SIZE_LIMIT }
+      args_pattern = [].inject('a'){ |a,c| a << c; c = c.succ; a }
+
+      msg = ''   
+      msg << "a.#{self.class.operator}(" + args_pattern[1..-1].join(',') + ")\n"
+      msg << args_inspect.join("\n")
+      msg
+    else
+      arges_inspect.first + ".#{@operator}(" + args_inspect[1..-1].join(', ') + ")"
+    end
+  end
+
+end
+
+
+
+
+=begin
 
   ##
-  #def pass_message(*arguments)
+  #def pass_message(*criteria)
   #  return @mesg if @mesg
-  #  message(*arguments)
+  #  message(*criteria)
   #end
 
   #
-  #def fail_message(*arguments)
-  #  msg = @mesg ? @mesg : pass_message(*arguments)
+  #def fail_message(*criteria)
+  #  msg = @mesg ? @mesg : pass_message(*criteria)
   #  if msg.index('should')
   #    msg.sub('should', 'should NOT')
   #  else
@@ -233,9 +391,9 @@ class Assertion < Exception
   class Matcher
 
     #
-    def initialize(assertion, *arguments, &block)
+    def initialize(assertion, *criteria, &block)
       @assertion = assertion
-      @arguments = arguments
+      @criteria = criteria
       @block     = block
     end
 
@@ -247,36 +405,36 @@ class Assertion < Exception
     #
     def pass?(target)
       if Proc === target && @block.nil?
-        @assertion.pass?(*@arguments, &target)
+        @assertion.pass?(*@criteria, &target)
       else
-        @assertion.pass?(*complete_arguments(target), &@block)
+        @assertion.pass?(*complete_criteria(target), &@block)
       end
     end
 
     #
     def fail?(target)
       if Proc === target && @block.nil?
-        @assertion.fail?(*@arguments, &target)
+        @assertion.fail?(*@criteria, &target)
       else
-        @assertion.fail?(*complete_arguments(target), &@block)
+        @assertion.fail?(*complete_criteria(target), &@block)
       end
     end
 
     #
     def pass!(target)
       if Proc === target && @block.nil?
-        @assertion.pass!(*@arguments, &target)
+        @assertion.pass!(*@criteria, &target)
       else
-        @assertion.pass!(*complete_arguments(target), &@block)
+        @assertion.pass!(*complete_criteria(target), &@block)
       end
     end
 
     #
     def fail!(target)
       if Proc === target && @block.nil?
-        @assertion.fail!(*@arguments, &target)
+        @assertion.fail!(*@criteria, &target)
       else
-        @assertion.fail!(*complete_arguments(target), &@block)
+        @assertion.fail!(*complete_criteria(target), &@block)
       end
     end
 
@@ -290,12 +448,12 @@ class Assertion < Exception
 
     #
     def pass_message(target)
-      @assertion.pass_message(*complete_arguments(target))
+      @assertion.pass_message(*complete_criteria(target))
     end
 
     #
     def fail_message(target)
-      @assertion.fail_message(*complete_arguments(target))
+      @assertion.fail_message(*complete_criteria(target))
     end
 
     # For RSpec matcher compatability.
@@ -314,7 +472,7 @@ class Assertion < Exception
     ## Returns Exception instance.
     ##
     #def exception(target, msg=nil)
-    #  @assertion.new(msg || message, target, *@arguments, &@block)     
+    #  @assertion.new(msg || message, target, *@criteria, &@block)     
     #  #  :negated   => options[:negated],
     #  #  :backtrace => options[:backtrace] || caller,
     #end
@@ -342,11 +500,11 @@ class Assertion < Exception
 
   private
 
-    def complete_arguments(target)
-      if i = @arguments.index(__)
-        @arguments[0...i] + [target] + @arguments[i+1..-1]
+    def complete_criteria(target)
+      if i = @criteria.index(__)
+        @criteria[0...i] + [target] + @criteria[i+1..-1]
       else
-        [target] +  @arguments
+        [target] +  @criteria
       end
     end
 
@@ -377,4 +535,5 @@ class Assertion < Exception
 
   end
 
-end
+=end
+

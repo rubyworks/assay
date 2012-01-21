@@ -14,43 +14,48 @@ class EqualityAssay < CompareAssay
     :equal
   end
 
+  #
   # Check assertion.
+  #
   def self.pass?(act, exp)
     exp == act
   end
 
-  # Check negated assertion.
+  #
+  # Check negated condition.
+  #
   def self.fail?(act, exp)
     exp != act
   end
 
   #
-  def self.pass_message(act, exp)
-    oper = "=="
-    iact = act.inspect
-    iexp = exp.inspect
+  def pass_message(target)
+    op = "=="
+
+    t = target.inspect
+    c = criteria.first.inspect
   
-    if iexp.size > SIZE_LIMIT or iact.size > SIZE_LIMIT
-      diff = ANSI::Diff.new(iact, iexp)
-      "a #{oper} b\na) #{diff.diff1}\nb) #{diff.diff2}"
+    if t.size > SIZE_LIMIT or c.size > SIZE_LIMIT
+      diff = ANSI::Diff.new(c, t)
+      "a #{op} b\na) #{diff.diff1}\nb) #{diff.diff2}"
     else
-      "#{iact} #{oper} #{iexp}"
+      "#{c} #{op} #{t}"
     end
   end
 
   #
-  def self.fail_message(act, exp)
-    oper = "!="
-    iact = act.inspect
-    iexp = exp.inspect
-  
-    if iexp.size > SIZE_LIMIT or iact.size > SIZE_LIMIT
-      diff = ANSI::Diff.new(iact, iexp)
-      "a #{oper} b\na) #{diff.diff1}\nb) #{diff.diff2}"
-    else
-      "#{iact} #{oper} #{iexp}"
-    end
+  def fail_message(target)
+    op = "!="
 
+    t = target.inspect
+    c = criteria.first.inspect
+  
+    if t.size > SIZE_LIMIT or c.size > SIZE_LIMIT
+      diff = ANSI::Diff.new(c, t)
+      "a #{op} b\na) #{diff.diff1}\nb) #{diff.diff2}"
+    else
+      "#{c} #{op} #{t}"
+    end
   end
 
 end

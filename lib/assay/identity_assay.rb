@@ -6,7 +6,7 @@ require_relative 'compare_assay'
 #
 class IdentityAssay < CompareAssay
 
-  #
+  # TODO: I reall think this should be identical?
   def self.operator
     :equal?
   end
@@ -24,9 +24,11 @@ class IdentityAssay < CompareAssay
   end
 
   #
-  def self.pass_message(actual, criterion)
-    actual    = actual.inspect
-    criterion = criterion.inspect
+  #
+  #
+  def pass_message(target)
+    actual    = target.inspect
+    criterion = criteria.first.inspect
 
     if actual.size > SIZE_LIMIT or criterion.size > SIZE_LIMIT
       "a.object_id == b.object.id\na) #{criterion}\nb) #{actual}"
@@ -36,9 +38,11 @@ class IdentityAssay < CompareAssay
   end
 
   #
-  def self.fail_message(actual, criterion)
-    actual    = actual.inspect
-    criterion = criterion.inspect
+  #
+  #
+  def fail_message(target)
+    actual    = target.inspect
+    criterion = criteria.first.inspect
 
     if actual.size > SIZE_LIMIT or criterion.size > SIZE_LIMIT
       "a.object_id != b.object.id\na) #{criterion}\nb) #{actual}"

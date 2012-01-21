@@ -6,16 +6,8 @@ require_relative 'compare_assay'
 class WithinAssay < CompareAssay
 
   #
-  def self.operator
-    :within?
-  end
-
-  #
-  def self.assertive_name
-    :within
-  end
-
   # Check assertion.
+  #
   def self.pass?(actual, criterion, delta)
     case delta
     when Numeric
@@ -26,10 +18,10 @@ class WithinAssay < CompareAssay
   end
 
   #
-  def self.pass_message(actual, criterion, delta)
-    actual    = actual.inspect
-    criterion = criterion.inspect
-    delta     = delta.inspect
+  def pass_message(target)
+    actual    = target.inspect
+    criterion = criteria[0].inspect
+    delta     = criteria[1].inspect
 
     if actual.size > SIZE_LIMIT or criterion.size > SIZE_LIMIT
       "b - #{delta} <  a  < b + #{delta}\na) #{actual}\nb) #{criterion}"
@@ -39,9 +31,9 @@ class WithinAssay < CompareAssay
   end
 
   #
-  def self.fail_message(actual, criterion, delta)
-    "! " + pass_message(actual, criterion, delta)
-  end
+  #def self.fail_message(actual, criterion, delta)
+  #  "! " + pass_message(actual, criterion, delta)
+  #end
 
 end
 

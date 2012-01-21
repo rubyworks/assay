@@ -13,6 +13,7 @@ class RaiseAssay < ExecutionAssay
     :raised
   end
 
+=begin
   #
   #
   #
@@ -62,10 +63,12 @@ class RaiseAssay < ExecutionAssay
       fail self, message, backtrace
     end
   end
+=end
+
+  # Note: This is not used by the #assert method. (or is it?)
 
   # Check assertion.
   #
-  # Note: This is not used by the #assert method.
   def self.pass?(*exp)
     begin
       yield
@@ -75,9 +78,10 @@ class RaiseAssay < ExecutionAssay
     end
   end
 
+  # Note: This is not used by the #assert! method.
+
   # Check negated assertion.
   #
-  # Note: This is not used by the #assert! method.
   def self.fail?(*exp)
     begin
       yield
@@ -88,17 +92,17 @@ class RaiseAssay < ExecutionAssay
   end
 
   #
-  def self.pass_message(*arguments)
-    exp = arguments.map{ |e| e.inspect }.join(' or ')
+  def pass_message(target)
+    exp = criteria.map{ |e| e.inspect }.join(' or ')
 
     "raise #{exp}" #, but was #{err} instead."
   end
 
   # TODO: how to add `but got class` instead.
-  def self.fail_message(*arguments)
-    exp = arguments.map{ |e| e.inspect }.join(' or ')
+  def fail_message(target)
+    exp = criteria.map{ |e| e.inspect }.join(' or ')
 
-    "raise #{exp}" #, but was #{err} instead."
+    "! raise #{exp}" #, but was #{err} instead."
   end
 
 end

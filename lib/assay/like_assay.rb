@@ -4,16 +4,6 @@ require_relative 'compare_assay'
 #
 class LikeAssay < CompareAssay
 
-  #
-  def self.operator
-    :like?
-  end
-
-  #
-  def self.assertive_name
-    :like
-  end
-
   # Test assertion.
   def self.pass?(actual, criterion)
     criterion.equal?(actual) ||
@@ -22,22 +12,22 @@ class LikeAssay < CompareAssay
     criterion.===(actual)
   end
 
+  ##
+  #def pass_message(actual, criterion)
+  #  actual    = actual.inspect
+  #  criterion = criterion.inspect
   #
-  def self.pass_message(actual, criterion)
-    actual    = actual.inspect
-    criterion = criterion.inspect
-
-    if actual.size > SIZE_LIMIT or criterion.size > SIZE_LIMIT
-      "a.like? b\na) #{criterion}\nb) #{actual}"
-    else
-      "#{criterion}.like? #{actual}"
-    end
-  end
+  #  if actual.size > SIZE_LIMIT or criterion.size > SIZE_LIMIT
+  #    "a.like? b\na) #{criterion}\nb) #{actual}"
+  #  else
+  #    "#{criterion}.like? #{actual}"
+  #  end
+  #end
 
   #
-  def self.fail_message(actual, criterion)
-    "! " + pass_message(actual, criterion)
-  end
+  #def self.fail_message(actual, criterion)
+  #  "! " + pass_message(actual, criterion)
+  #end
 
 end
 

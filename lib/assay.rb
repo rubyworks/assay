@@ -41,7 +41,47 @@ module Assay
   # @deprecated Use `Assertion.by_operator(operator)` instead.
   #
   def self.lookup(operator)
-    Assertion.by_operator[operator.to_sym]
+    lookup_by_operator[operator.to_sym]
+  end
+
+  #
+  # If operator is not given, returns a hash table of assertion classes
+  # indexed by operator.
+  #
+  def self.lookup_by_operator(operator=nil)
+    operator = operator.to_sym if operator
+
+    @by_operator ||= (
+      hash = {}
+      Assertion.subclasses.each do |c|
+        if op = c.operator
+          hash[op.to_sym] = c
+        end
+      end
+      hash
+    )
+
+    operator ? @by_operator[operator.to_sym] : @by_operator
+  end
+
+  #
+  # If operator is not given, returns a hash table of assertion classes
+  # indexed by assertive name.
+  #
+  def self.lookup_by_name(name=nil)
+    name = name.to_sym if name
+
+    @by_name ||= (
+      hash = {}
+      Assertion.subclasses.each do |c|
+        if op = c.assertive_name
+          hash[op.to_sym] = c
+        end
+      end
+      hash
+    )
+
+    name ? @by_name[name.to_sym] : @by_name
   end
 
   #

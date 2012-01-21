@@ -14,23 +14,20 @@ class TrueAssay < CompareAssay
   end
 
   #
-  def self.operator
-    :true?
-  end
-
   # Check assertion.
-  def self.pass?(actual)
-    TrueClass === actual
+  #
+  def self.pass?(target)
+    TrueClass === target
   end
 
   #
-  def self.pass_message(actual)
-    "true == #{actual.inspect}"
-  end
+  #def self.pass_message(actual)
+  #  "true == #{actual.inspect}"
+  #end
 
   #
-  def self.fail_message(actual)
-    "true != #{actual.inspect}"
-  end
+  #def self.fail_message(actual)
+  #  "true != #{actual.inspect}"
+  #end
 
 end
