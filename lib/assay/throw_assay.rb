@@ -57,8 +57,8 @@ class ThrowAssay < ExecutionAssay
   end
 
   #
-  def pass_message(sym, &block)
-    s = sym.inspect
+  def pass_message(symbol)
+    s = symbol.inspect
     "throw #{s}"
   end
 

@@ -2,9 +2,7 @@ require_relative 'assertion'
 
 # Does an object #respond_to? a method call.
 #
-# TODO: Rename to `RespondAssay`?
-#
-class ResponseAssay < Assertion
+class RespondAssay < Assertion
 
   #
   def self.operator

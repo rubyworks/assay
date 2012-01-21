@@ -1,14 +1,16 @@
-require_relative 'compare_assay'
+require_relative 'assertion'
 
-# TODO: Should equal? and identical be different?
+# TODO: Note that Ruby defines #equal? to mean #identical? but I believe
+# this to be a misnomer, at the very least. So we use the term #identical
+# instead.
 
-# Check that two objects are the very same.
+# Check that two objects are one and the same object.
 #
-class IdentityAssay < CompareAssay
+class IdentityAssay < Assertion
 
-  # TODO: I reall think this should be identical?
+  #
   def self.operator
-    :equal?
+    :identical?
   end
 
   #
@@ -37,19 +39,19 @@ class IdentityAssay < CompareAssay
     end
   end
 
-  #
-  #
-  #
-  def fail_message(target)
-    actual    = target.inspect
-    criterion = criteria.first.inspect
-
-    if actual.size > SIZE_LIMIT or criterion.size > SIZE_LIMIT
-      "a.object_id != b.object.id\na) #{criterion}\nb) #{actual}"
-    else
-      "#{criterion}.object_id != #{actual}.object.id"
-    end
-  end
+#  #
+#  #
+#  #
+#  def fail_message(target)
+#    actual    = target.inspect
+#    criterion = criteria.first.inspect
+#
+#    if actual.size > SIZE_LIMIT or criterion.size > SIZE_LIMIT
+#      "a.object_id != b.object.id\na) #{criterion}\nb) #{actual}"
+#    else
+#      "#{criterion}.object_id != #{actual}.object.id"
+#    end
+#  end
 
 end
 

@@ -10,8 +10,10 @@ class CompareAssay < Assertion
 
   #
   def self.operator
-    :cmp?
+    :<=>
   end
+
+  # TODO: What about #cmp alias?
 
   #
   def self.assertive_name

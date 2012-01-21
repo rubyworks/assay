@@ -11,9 +11,17 @@ class WithinAssay < CompareAssay
   def self.pass?(actual, criterion, delta)
     case delta
     when Numeric
-      (criterion.to_f - actual.to_f).abs <= delta.to_f
+      a = actual.to_f
+      c = criterion.to_f
+      d = delta.to_f
+
+      (c - d) <= a && (c + d) >= a
     else
-      criterion - actual <= delta
+      a = actual
+      c = criterion
+      d = delta
+
+      (c - d) <= a && (c + d) >= a
     end
   end
 
@@ -24,9 +32,9 @@ class WithinAssay < CompareAssay
     delta     = criteria[1].inspect
 
     if actual.size > SIZE_LIMIT or criterion.size > SIZE_LIMIT
-      "b - #{delta} <  a  < b + #{delta}\na) #{actual}\nb) #{criterion}"
+      "y - d <= x <= y + d\nx) #{actual}\ny) #{criterion}\nd) #{delta}"
     else
-      "#{criterion} - #{delta} < #{actual} < #{criterion} + #{delta}"
+      "#{criterion} - #{delta} <= #{actual} <= #{criterion} + #{delta}"
     end
   end
 

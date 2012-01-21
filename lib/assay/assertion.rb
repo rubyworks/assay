@@ -15,122 +15,131 @@ class Assertion < Exception
   #
   SIZE_LIMIT = 13
 
-  #
-  # If the assertion coresponds to a regular method, particular a symbolic
-  # operator (hence the name of this method) then it should be specified via
-  # this interface. Otherwise, it should be given a fitting "make believe"
-  # method name and specified here. If not overridden it will be assumed
-  # to be the same as the `assertion_name` appended by `?`.
-  #
-  def self.operator
-    (assertive_name.to_s + '?').to_sym
-  end
+  class << self
 
-  #
-  # The assertive name is used for the construction of assertive nomenclatures
-  # such as `assert_equal`.
-  # 
-  def self.assertive_name
-    @assertive_name ||= name.split('::').last.chomp('Assay').downcase
-  end
+    #
+    # If the assertion coresponds to a regular method, particular a symbolic
+    # operator (hence the name of this method) then it should be specified via
+    # this interface. Otherwise, it should be given a fitting "make believe"
+    # method name and specified here. If not overridden it will be assumed
+    # to be the same as the `assertion_name` appended by `?`.
+    #
+    def operator
+      (assertive_name.to_s + '?').to_sym
+    end
 
-  #
-  # Returns Matcher for the failure class.
-  #
-  #def self.matcher(*args, &blk)
-  #  if args.include?(NA)
-  #    new(nil, *args, &blk)
-  #  else
-  #    new(nil, NA, *args, &blk)
-  #  end
-  #end
+    #
+    # The assertive name is used for the construction of assertive nomenclatures
+    # such as `assert_equal`.
+    # 
+    def assertive_name
+      @assertive_name ||= name.split('::').last.chomp('Assay').downcase
+    end
 
-  #
-  # Alias for #new.
-  #
-  def self.[](*args, &blk)
-    new(*args, &blk)
-  end
-
-  #
-  def self.pass?(target, *criteria, &block)
-    raise NotImplementedError
-  end
-
-  #
-  def self.fail?(target, *criteria, &block)
-    ! pass?(target, *criteria, &block)
-  end
-
-  #
-  def self.pass!(target, *criteria, &block)
-    #if ! pass?(target, *criteria, &block)
-      new(nil, *criteria, &block).pass!(target)
+    #
+    # Returns Matcher for the failure class.
+    #
+    #def matcher(*args, &blk)
+    #  if args.include?(NA)
+    #    new(nil, *args, &blk)
+    #  else
+    #    new(nil, NA, *args, &blk)
+    #  end
     #end
-  end
 
-  #
-  def self.fail!(target, *criteria, &block)
-    #if ! fail?(target, *criteria, &block)
-      new(nil, *criteria, &block).fail!(target)
-    #end
-  end
+    #
+    # Alias for #new.
+    #
+    def [](*args, &blk)
+      new(*args, &blk)
+    end
 
-  #
-  # When Assertion is inherited, a table is kept index by assertion operator.
-  # This can be used to assertions frameworks with dynamic implementations.
-  #
-  def self.inherited(base)
-    @@by_operator = nil
-    @@by_name     = nil
-    subclasses << base
-  end
+    #
+    def pass?(target, *criteria, &block)
+      raise NotImplementedError
+    end
 
-  #
-  # List of all subclasses of Assertion.
-  #
-  def self.subclasses
-    @@subclasses ||= []
-  end
+    #
+    def fail?(target, *criteria, &block)
+      ! pass?(target, *criteria, &block)
+    end
 
-  #
-  # If operator is not given, returns a hash table of assertion classes
-  # indexed by operator.
-  #
-  def self.by_operator(operator=nil)
-    operator = operator.to_sym if operator
+    #
+    def pass!(target, *criteria, &block)
+      #if ! pass?(target, *criteria, &block)
+        new(nil, *criteria, &block).pass!(target)
+      #end
+    end
 
-    @@by_operator ||= (
-      hash = {}
-      subclasses.each do |c|
-        if op = c.operator
-          hash[op.to_sym] = c
+    #
+    alias_method :assert!, :pass!
+
+    #
+    def fail!(target, *criteria, &block)
+      #if ! fail?(target, *criteria, &block)
+        new(nil, *criteria, &block).fail!(target)
+      #end
+    end
+
+    alias_method :refute!, :fail!
+
+    #
+    # When Assertion is inherited, a table is kept index by assertion operator.
+    # This can be used to assertions frameworks with dynamic implementations.
+    #
+    def inherited(base)
+      @@by_operator = nil
+      @@by_name     = nil
+      subclasses << base
+    end
+
+    #
+    # List of all subclasses of Assertion.
+    #
+    def subclasses
+      @@subclasses ||= []
+    end
+
+    #
+    # If operator is not given, returns a hash table of assertion classes
+    # indexed by operator.
+    #
+    def by_operator(operator=nil)
+      operator = operator.to_sym if operator
+
+      @@by_operator ||= (
+        hash = {}
+        subclasses.each do |c|
+          if op = c.operator
+            hash[op.to_sym] = c
+          end
         end
-      end
-      hash
-    )
+        hash
+      )
 
-    operator ? @@by_operator[operator.to_sym] : @@by_operator
-  end
+      operator ? @@by_operator[operator.to_sym] : @@by_operator
+    end
 
-  #
-  # If operator is not given, returns a hash table of assertion classes
-  # indexed by assertive name.
-  #
-  def self.by_name(name=nil)
-    name = name.to_sym if name
+    #
+    # If operator is not given, returns a hash table of assertion classes
+    # indexed by assertive name.
+    #
+    def by_name(name=nil)
+      name = name.to_sym if name
 
-    @@by_name ||= (
-      hash = {}
-      subclasses.each do |c|
-        if op = c.assertive_name
-          hash[op.to_sym] = c
+      @@by_name ||= (
+        hash = {}
+        subclasses.each do |c|
+          if op = c.assertive_name
+            hash[op.to_sym] = c
+          end
         end
-      end
-      hash
-    )
+        hash
+      )
 
-    name ? @@by_name[name.to_sym] : @@by_name
+      name ? @@by_name[name.to_sym] : @@by_name
+    end
+
   end
 
   #
@@ -336,7 +345,7 @@ private
       msg << args_inspect.join("\n")
       msg
     else
-      arges_inspect.first + ".#{@operator}(" + args_inspect[1..-1].join(', ') + ")"
+      args_inspect.first + ".#{@operator}(" + args_inspect[1..-1].join(', ') + ")"
     end
   end
 

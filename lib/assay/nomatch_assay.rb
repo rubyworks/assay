@@ -1,23 +1,23 @@
 require_relative 'compare_assay'
 
-#
-# TODO: assertive_name just doesn't cut it.
+# Ruby 1.9+ allows #!~ to redfined as it's own method, so a corresponding
+# assay is required to cover it.
 # 
-class MatchAssay < CompareAssay
+class NoMatchAssay < CompareAssay
 
   #
   def self.operator
-    :=~
+    :!~
   end
 
   #
   def self.assertive_name
-    :match
+    :nomatch
   end
 
   # Check assertion.
   def self.pass?(actual, criterion)
-    criterion =~ actual
+    criterion !~ actual
   end
 
   #
@@ -26,9 +26,9 @@ class MatchAssay < CompareAssay
     c = criteria.first.inspect
 
     if a.size > SIZE_LIMIT or c.size > SIZE_LIMIT
-      "a =~ b\na) #{c}\nb) #{a}"
+      "a !~ b\na) #{c}\nb) #{a}"
     else
-      "#{c} =~ #{a}"
+      "#{c} !~ #{a}"
     end
   end
 

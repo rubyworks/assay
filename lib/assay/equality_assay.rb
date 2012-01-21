@@ -1,61 +1,29 @@
-require_relative 'compare_assay'
+require_relative 'assertion'
 
-# Equality assertion compares actual to expected with `#==` operator.
+# EqualityAssay defines the assertion for the `#eql?`, the strict equality
+# method.
 #
-class EqualityAssay < CompareAssay
+# The `EqualityAssay` class also acts as the base class for other forms of 
+# equality such as {EqualAssay} class, {UnequalAssay} and {CaseAssay}
+# classes.
+#
+class EqualityAssay < Assertion
 
   #
   def self.operator
-    :==
+    :eql?
   end
 
   #
   def self.assertive_name
-    :equal
+    :eql
   end
 
   #
-  # Check assertion.
+  # Check assertion via `#eql?` method.
   #
-  def self.pass?(act, exp)
-    exp == act
-  end
-
-  #
-  # Check negated condition.
-  #
-  def self.fail?(act, exp)
-    exp != act
-  end
-
-  #
-  def pass_message(target)
-    op = "=="
-
-    t = target.inspect
-    c = criteria.first.inspect
-  
-    if t.size > SIZE_LIMIT or c.size > SIZE_LIMIT
-      diff = ANSI::Diff.new(c, t)
-      "a #{op} b\na) #{diff.diff1}\nb) #{diff.diff2}"
-    else
-      "#{c} #{op} #{t}"
-    end
-  end
-
-  #
-  def fail_message(target)
-    op = "!="
-
-    t = target.inspect
-    c = criteria.first.inspect
-  
-    if t.size > SIZE_LIMIT or c.size > SIZE_LIMIT
-      diff = ANSI::Diff.new(c, t)
-      "a #{op} b\na) #{diff.diff1}\nb) #{diff.diff2}"
-    else
-      "#{c} #{op} #{t}"
-    end
+  def self.pass?(target, criterion)
+    criterion.eql?(target)
   end
 
 end

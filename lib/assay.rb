@@ -11,7 +11,7 @@ module Assay
   #
   # Returns Hash table of project metadata.
   #
-  def self.meta
+  def self.metadata
     @spec ||= (
       require 'yaml'
       YAML.load(File.new(File.dirname(__FILE__) + '/assay.yml'))
@@ -22,7 +22,7 @@ module Assay
   # Check metadata for missing constants.
   #
   def self.const_missing(name)
-    meta[name.to_s.downcase] || super(name)
+    metadata[name.to_s.downcase] || super(name)
   end
 
   #
@@ -36,12 +36,10 @@ module Assay
   end
 
   #
-  # Lookup failure class by operator.
+  # Lookup assay class by operator or name.
   #
-  # @deprecated Use `Assertion.by_operator(operator)` instead.
-  #
-  def self.lookup(operator)
-    lookup_by_operator[operator.to_sym]
+  def self.lookup(symbol)
+    lookup_by_operator[symbol.to_sym] || lookup_by_name[symbol.to_sym]
   end
 
   #
