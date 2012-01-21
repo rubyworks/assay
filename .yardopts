@@ -1,0 +1,7 @@
+--title "Assay"
+--readme README.rdoc
+--protected
+--private
+lib
+-
+[A-Z]*.*

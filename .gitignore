@@ -1,8 +1,10 @@
 .reap/digest
 .yardoc
+doc
 log
 pkg
 site
 tmp
 web
 work/trash
+QED.rdoc
