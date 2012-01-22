@@ -13,8 +13,8 @@ class TrueAssay < CompareAssay
   #
   # Check assertion.
   #
-  def self.pass?(target)
-    TrueClass === target
+  def self.pass?(subject)
+    subject.true?  #TrueClass === subject
   end
 
   #

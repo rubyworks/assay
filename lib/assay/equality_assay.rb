@@ -10,8 +10,8 @@ class EqualityAssay < EqualAssay
   #
   # Check assertion via `#eql?` method.
   #
-  def self.pass?(target, criterion)
-    criterion.eql?(target)
+  def self.pass?(subject, criterion)
+    subject.eql?(criterion)
   end
 
 end

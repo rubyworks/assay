@@ -61,12 +61,13 @@ class RaiseAssay < ExecutionAssay
 
   # Check assertion.
   #
-  def self.pass?(*exp)
+  def self.pass?(*exceptions)
+    exceptions = [Exception] if exceptions.empty?
     begin
       yield
       false
     rescue Exception => e
-      exp.any?{ |x| x === e }
+      exceptions.any?{ |x| x === e }
     end
   end
 
@@ -74,24 +75,25 @@ class RaiseAssay < ExecutionAssay
 
   # Check negated assertion.
   #
-  def self.fail?(*exp)
+  def self.fail?(*exceptions)
+    exceptions = [Exception] if exceptions.empty?
     begin
       yield
       true
     rescue Exception => e
-      !exp.any?{ |x| x === e }
+      !exceptions.any?{ |x| x === e }
     end
   end
 
   #
-  def pass_message(target)
+  def pass_message(subject)
     exp = criteria.map{ |e| e.inspect }.join(' or ')
 
     "raise #{exp}" #, but was #{err} instead."
   end
 
   # TODO: how to add `but got class` instead.
-  def fail_message(target)
+  def fail_message(subject)
     exp = criteria.map{ |e| e.inspect }.join(' or ')
 
     "! raise #{exp}" #, but was #{err} instead."

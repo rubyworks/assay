@@ -6,8 +6,8 @@ testcase CompareAssay do
 
     test do
       assert CompareAssay.pass?(1, 1,  0)
-      assert CompareAssay.pass?(1, 2,  1)
-      assert CompareAssay.pass?(2, 1, -1)
+      assert CompareAssay.pass?(1, 2, -1)
+      assert CompareAssay.pass?(2, 1,  1)
 
       refute CompareAssay.pass?(1, 1,  1)
       refute CompareAssay.pass?(1, 1, -1)
@@ -18,12 +18,12 @@ testcase CompareAssay do
   class_method :fail? do
 
     test do
-      refute CompareAssay.fail?(1, 1,  0)
-      refute CompareAssay.fail?(1, 2,  1)
-      refute CompareAssay.fail?(2, 1, -1)
-
       assert CompareAssay.fail?(1, 1,  1)
       assert CompareAssay.fail?(1, 1, -1)
+
+      refute CompareAssay.fail?(1, 1,  0)
+      refute CompareAssay.fail?(1, 2, -1)
+      refute CompareAssay.fail?(2, 1,  1)
     end
 
   end

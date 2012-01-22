@@ -7,8 +7,8 @@ class FalseAssay < CompareAssay
   #
   # Check assertion.
   #
-  def self.pass?(target)
-    FalseClass === target  #.false?
+  def self.pass?(subject)
+    subject.false?  #FalseClass === subject
   end
 
   #

@@ -114,41 +114,44 @@ class Assertion < Exception
     # Alias for #new.
     #
     def [](*args, &blk)
-      new(*args, &blk)
+      new(nil, *args, &blk)
     end
 
     #
-    def pass?(target, *criteria, &block)
+    def pass?(subject, *criteria, &block)
       raise NotImplementedError
     end
 
     #
-    def fail?(target, *criteria, &block)
-      ! pass?(target, *criteria, &block)
+    def fail?(subject, *criteria, &block)
+      ! pass?(subject, *criteria, &block)
     end
 
     #
-    def assert!(target, *criteria, &block)
+    def assert!(subject, *criteria, &block)
       options = (Hash === criteria.last ? criteria.pop : {})
 
-      msg = options[:message]
-      bt  = options[:backtrace] || caller
+      #msg = options[:message]
+      #bt  = options[:backtrace] || caller
 
-      #if ! pass?(target, *criteria, &block)
-        assay = new(msg, *criteria, &block)
-        assay.set_backtrace(bt)
-        assay.assert!(target)
-      #end
+      assay = new(nil, *criteria, &block)
+      #assay.set_backtrace(bt)
+      assay.assert!(subject, options)
     end
 
     # @deprecated
     alias_method :pass!, :assert!
 
     #
-    def refute!(target, *criteria, &block)
-      #if ! fail?(target, *criteria, &block)
-        new(nil, *criteria, &block).fail!(target)
-      #end
+    def refute!(subject, *criteria, &block)
+      options = (Hash === criteria.last ? criteria.pop : {})
+
+      #msg = options[:message]
+      #bt  = options[:backtrace] || caller
+
+      assay = new(nil, *criteria, &block)
+      #assay.set_backtrace(bt)
+      assay.refute!(subject, options)
     end
 
     # @deprecated
@@ -180,25 +183,26 @@ class Assertion < Exception
   #
   # Check the assertion, return `true` if passing, `false` otherwise.
   #
-  def pass?(target)
-    if Proc === target && @block.nil?
+  def pass?(subject)
+    if Proc === subject && @block.nil?
       args = criteria
-      blk  = target
+      blk  = subject
     else
-      args = complete_criteria(target)
+      args = complete_criteria(subject)
       blk  = @block
     end
+
     @not ^ self.class.pass?(*args, &blk)
   end
 
   #
   # Test the assertion, raising the exception if failing.
   #
-  def pass!(target, options={})
+  def assert!(subject, options={})
     backtrace = options[:backtrace] || caller
-    message   = options[:message]   || get_message(target)
+    message   = options[:message]   || get_message(subject)
 
-    if pass?(target)
+    if pass?(subject)
       increment(:pass)
     else
       increment(:fail)
@@ -207,21 +211,21 @@ class Assertion < Exception
   end
 
   #
-  # Alias for `#pass!`.
+  # Alias for `#assert!`.
   #
-  def assert(target, options={})
-    pass!(target, options={})
+  def pass!(subject, options={})
+    assert!(subject, options={})
   end
 
   #
   # Check the assertion, return `true` if failing, `false` otherwise.
   #
-  def fail?(target)
-    if Proc === target && @block.nil?
+  def fail?(subject)
+    if Proc === subject && @block.nil?
       args = criteria
-      blk  = target
+      blk  = subject
     else
-      args = complete_criteria(target)
+      args = complete_criteria(subject)
       blk  = @block
     end
 
@@ -233,11 +237,11 @@ class Assertion < Exception
   #
   # Test the inverse assertion, raising the exception if not failing.
   #
-  def fail!(target, options={})
+  def refute!(subject, options={})
     backtrace = options[:backtrace] || caller
-    message   = options[:message]   || get_message(target, true)
+    message   = options[:message]   || get_message(subject, true)
 
-    if fail?(target)
+    if fail?(subject)
       increment(:pass)
     else
       increment(:fail)
@@ -246,32 +250,32 @@ class Assertion < Exception
   end
 
   #
-  # Alias for `#fail!`.
+  # Alias for `#refute!`.
   #
-  def refute(target, options={})
-    fail!(target, options={})
+  def fail!(subject, options={})
+    refute!(subject, options={})
   end
 
   #
   #
   #
-  def get_message(target, fail=false)
+  def get_message(subject, fail=false)
     return @mesg if @mesg  # custom message
-    @not ^ fail ? fail_message(target) : pass_message(target)
+    @not ^ fail ? fail_message(subject) : pass_message(subject)
   end
 
   #
   #
   #
-  def pass_message(target)
-    standard_message(target)
+  def pass_message(subject)
+    standard_message(subject)
   end
 
   #
   #
   #
-  def fail_message(target)
-    "! " + pass_message(target)
+  def fail_message(subject)
+    "! " + pass_message(subject)
   end
 
   alias_method :==, :pass?
@@ -337,29 +341,31 @@ private
   #
   #
   #
-  def complete_criteria(target)
+  def complete_criteria(subject)
     if i = @criteria.index(NA)
-      @criteria[0...i] + [target] + @criteria[i+1..-1]
+      @criteria[0...i] + [subject] + @criteria[i+1..-1]
     else
-      [target] + @criteria
+      [subject] + @criteria
     end
   end
 
   #
   # Construct a standard error message.
   #
-  def standard_message(target)
-    args_inspect = [target, *@criteria].map{ |o| o.inspect }
+  def standard_message(subject)
+    args_inspect = [subject, *@criteria].map{ |o| o.inspect }
+
+    op = self.class.operator
 
     if args_inspect.any?{ |o| o.size > SIZE_LIMIT }
       args_pattern = [].inject('a'){ |a,c| a << c; c = c.succ; a }
 
       msg = ''   
-      msg << "a.#{self.class.operator}(" + args_pattern[1..-1].join(',') + ")\n"
+      msg << "a.#{op}(" + args_pattern[1..-1].join(',') + ")\n"
       msg << args_inspect.join("\n")
       msg
     else
-      args_inspect.first + ".#{@operator}(" + args_inspect[1..-1].join(', ') + ")"
+      args_inspect.first + ".#{op}(" + args_inspect[1..-1].join(', ') + ")"
     end
   end
 
@@ -408,8 +414,8 @@ end
   #
   # TODO: Better name for this class ?
   #
-  # TODO: Don't care for Proc === target conditional code, but not
-  # sure how else to deal with lambda targets.
+  # TODO: Don't care for Proc === subject conditional code, but not
+  # sure how else to deal with lambda subjects.
   #
   class Matcher
 
@@ -426,38 +432,38 @@ end
     end
 
     #
-    def pass?(target)
-      if Proc === target && @block.nil?
-        @assertion.pass?(*@criteria, &target)
+    def pass?(subject)
+      if Proc === subject && @block.nil?
+        @assertion.pass?(*@criteria, &subject)
       else
-        @assertion.pass?(*complete_criteria(target), &@block)
+        @assertion.pass?(*complete_criteria(subject), &@block)
       end
     end
 
     #
-    def fail?(target)
-      if Proc === target && @block.nil?
-        @assertion.fail?(*@criteria, &target)
+    def fail?(subject)
+      if Proc === subject && @block.nil?
+        @assertion.fail?(*@criteria, &subject)
       else
-        @assertion.fail?(*complete_criteria(target), &@block)
+        @assertion.fail?(*complete_criteria(subject), &@block)
       end
     end
 
     #
-    def pass!(target)
-      if Proc === target && @block.nil?
-        @assertion.pass!(*@criteria, &target)
+    def pass!(subject)
+      if Proc === subject && @block.nil?
+        @assertion.pass!(*@criteria, &subject)
       else
-        @assertion.pass!(*complete_criteria(target), &@block)
+        @assertion.pass!(*complete_criteria(subject), &@block)
       end
     end
 
     #
-    def fail!(target)
-      if Proc === target && @block.nil?
-        @assertion.fail!(*@criteria, &target)
+    def fail!(subject)
+      if Proc === subject && @block.nil?
+        @assertion.fail!(*@criteria, &subject)
       else
-        @assertion.fail!(*complete_criteria(target), &@block)
+        @assertion.fail!(*complete_criteria(subject), &@block)
       end
     end
 
@@ -470,13 +476,13 @@ end
     alias_method :===, :pass!
 
     #
-    def pass_message(target)
-      @assertion.pass_message(*complete_criteria(target))
+    def pass_message(subject)
+      @assertion.pass_message(*complete_criteria(subject))
     end
 
     #
-    def fail_message(target)
-      @assertion.fail_message(*complete_criteria(target))
+    def fail_message(subject)
+      @assertion.fail_message(*complete_criteria(subject))
     end
 
     # For RSpec matcher compatability.
@@ -494,8 +500,8 @@ end
     ##
     ## Returns Exception instance.
     ##
-    #def exception(target, msg=nil)
-    #  @assertion.new(msg || message, target, *@criteria, &@block)     
+    #def exception(subject, msg=nil)
+    #  @assertion.new(msg || message, subject, *@criteria, &@block)     
     #  #  :negated   => options[:negated],
     #  #  :backtrace => options[:backtrace] || caller,
     #end
@@ -523,11 +529,11 @@ end
 
   private
 
-    def complete_criteria(target)
+    def complete_criteria(subject)
       if i = @criteria.index(__)
-        @criteria[0...i] + [target] + @criteria[i+1..-1]
+        @criteria[0...i] + [subject] + @criteria[i+1..-1]
       else
-        [target] +  @criteria
+        [subject] +  @criteria
       end
     end
 

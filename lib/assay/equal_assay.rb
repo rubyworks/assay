@@ -9,22 +9,22 @@ class EqualAssay < LikeAssay
   #
   # Check assertion.
   #
-  def self.pass?(act, exp)
-    exp == act
+  def self.pass?(subject, criterion)
+    subject == criterion
   end
 
   #
-  def pass_message(target)
-    op = "=="
-
-    t = target.inspect
-    c = criteria.first.inspect
+  #
+  #
+  def pass_message(subject)
+    a = subject.inspect
+    b = criteria.first.inspect
   
-    if t.size > SIZE_LIMIT or c.size > SIZE_LIMIT
-      diff = ANSI::Diff.new(c, t)
+    if a.size > SIZE_LIMIT or b.size > SIZE_LIMIT
+      diff = ANSI::Diff.new(a, b)
       "a == b\na) #{diff.diff1}\nb) #{diff.diff2}"
     else
-      "#{c} == #{t}"
+      "#{a} == #{b}"
     end
   end
 

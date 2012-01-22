@@ -10,16 +10,16 @@ class WithinAssay < CompareAssay
   #
   # Check assertion.
   #
-  def self.pass?(actual, criterion, delta)
+  def self.pass?(subject, criterion, delta)
     case delta
     when Numeric
-      a = actual.to_f
+      a = subject.to_f
       c = criterion.to_f
       d = delta.to_f
 
       (c - d) <= a && (c + d) >= a
     else
-      a = actual
+      a = subject
       c = criterion
       d = delta
 
@@ -28,21 +28,21 @@ class WithinAssay < CompareAssay
   end
 
   #
-  def pass_message(target)
-    actual    = target.inspect
-    criterion = criteria[0].inspect
-    delta     = criteria[1].inspect
+  def pass_message(subject)
+    x = subject.inspect
+    y = criteria[0].inspect
+    d = criteria[1].inspect
 
-    if actual.size > SIZE_LIMIT or criterion.size > SIZE_LIMIT
-      "y - d <= x <= y + d\nx) #{actual}\ny) #{criterion}\nd) #{delta}"
+    if [x, y, d].any?{ |e| e.size > SIZE_LIMIT }
+      "y - d <= x <= y + d\nx) #{x}\ny) #{y}\nd) #{d}"
     else
-      "#{criterion} - #{delta} <= #{actual} <= #{criterion} + #{delta}"
+      "#{y} - #{d} <= #{x} <= #{x} + #{d}"
     end
   end
 
   #
-  #def self.fail_message(actual, criterion, delta)
-  #  "! " + pass_message(actual, criterion, delta)
+  #def self.fail_message(subject, criterion, delta)
+  #  "! " + pass_message(subject, criterion, delta)
   #end
 
 end

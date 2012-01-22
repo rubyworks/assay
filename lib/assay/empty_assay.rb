@@ -7,8 +7,8 @@ class EmptyAssay < IncludeAssay
   register :empty
 
   # Check assertion.
-  def self.pass?(target)
-    target.empty?
+  def self.pass?(subject)
+    subject.empty?
   end
 
 end

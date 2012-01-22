@@ -7,20 +7,24 @@ class MatchAssay < LikeAssay
 
   register :=~, :match
 
-  # Check assertion.
-  def self.pass?(actual, criterion)
-    criterion =~ actual
+  #
+  # Check assertion for `#=~` method.
+  #
+  def self.pass?(matcher, matchee)
+    matcher =~ matchee
   end
 
   #
-  def pass_message(actual)
-    a = actual.inspect
-    c = criteria.first.inspect
+  #
+  #
+  def pass_message(matcher)
+    a = matcher.inspect
+    b = criteria.first.inspect  # matchee
 
-    if a.size > SIZE_LIMIT or c.size > SIZE_LIMIT
-      "a =~ b\na) #{c}\nb) #{a}"
+    if a.size > SIZE_LIMIT or b.size > SIZE_LIMIT
+      "a =~ b\na) #{a}\nb) #{b}"
     else
-      "#{c} =~ #{a}"
+      "#{a} =~ #{b}"
     end
   end
 

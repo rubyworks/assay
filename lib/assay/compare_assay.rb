@@ -15,20 +15,20 @@ class CompareAssay < Assertion
   #
   # Check assertion.
   #
-  def self.pass?(target, criterion, result=0)
-    (criterion <=> target) == result
+  def self.pass?(subject, criterion, result=0)
+    (subject <=> criterion) == result
   end
 
   #
-  def pass_message(target)
-    t  = target.inspect
-    c  = criteria[0].inspect
+  def pass_message(subject)
+    a  = subject.inspect
+    b  = criteria[0].inspect
     r  = criteria[1].inspect
 
-    if t.size > SIZE_LIMIT or c.size > SIZE_LIMIT
-      "a <=> b == #{r}\na) #{c}\nb) #{t}"
+    if a.size > SIZE_LIMIT or b.size > SIZE_LIMIT
+      "a <=> b == #{r}\na) #{a}\nb) #{b}"
     else
-      "#{c} <=> #{t} == #{r}"
+      "#{a} <=> #{b} == #{r}"
     end
   end
 

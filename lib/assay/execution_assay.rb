@@ -41,7 +41,7 @@ class ExecutionAssay < Assertion
   #
   #
   #
-  def pass_message(target)
+  def pass_message(subject)
     block = @block.inspect
     "#{block}.call(*#{criteria.inspect})"
   end

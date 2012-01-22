@@ -10,21 +10,21 @@ class MoreAssay < CompareAssay
   #
   # Check assertion.
   #
-  def self.pass?(target, criterion)
-    target > criterion
+  def self.pass?(subject, criterion)
+    subject > criterion
   end
 
   #
   #
   #
-  def pass_message(target)
-    t  = target.inspect
-    c  = criteria[0].inspect
+  def pass_message(subject)
+    a  = subject.inspect
+    b  = criteria[0].inspect
 
-    if t.size > SIZE_LIMIT or c.size > SIZE_LIMIT
-      "a > b\na) #{t}\nb) #{c}"
+    if a.size > SIZE_LIMIT or b.size > SIZE_LIMIT
+      "a > b\na) #{a}\nb) #{b}"
     else
-      "#{t} > #{c}"
+      "#{a} > #{b}"
     end
   end
 

@@ -9,8 +9,8 @@ class CaseAssay < EqualityAssay
   #
   # Check assertion via `#===` method.
   #
-  def self.pass?(target, criterion)
-    criterion === target
+  def self.pass?(subject, criterion)
+    subject === criterion
   end
 
 end

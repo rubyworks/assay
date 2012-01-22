@@ -7,10 +7,10 @@ class LikeAssay < Assertion
   register :like
 
   #
-  # Test assertion for #like?
+  # Test assertion for `#like?`.
   #
-  def self.pass?(actual, criterion)
-    criterion.like?(actual)
+  def self.pass?(subject, criterion)
+    subject.like?(criterion)
   end
 
   ##

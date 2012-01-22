@@ -1,19 +1,25 @@
-= Lookup
+= Asay Lookup
 
-Assertion classes can be looked-up by associated opearator name.
+Assay classes are indexed by both name and associated operation, so they
+can be looked-up by either. The indexes are stored as class attributes of
+the Assertion base class.
 
-  require 'assay'
+Let's lookup the class for `==` equality.
 
-Let's lookup assertion class for equality.
+  Assertion.by_operator(:==)      #=> ::EqualAssay
 
-  Assertion.by_operator(:==)  #=> ::EqualityAssay
-
-Let's lookup the assertion class for empty.
+Let's lookup the assertion class for `#empty?`.
 
   Assertion.by_operator(:empty?)  #=> ::EmptyAssay
 
-Deprecated approach is to use the `Assay.lookup` module method.
+If we wish to lookup by assertive name instead of operator, we can use
+the `by_name` method instead.
 
-  Assay.lookup(:==)      #=> ::EqualityAssay
+  Assertion.by_name(:empty)       #=> ::EmptyAssay
+
+We can also use the `Assay.lookup` module method, which will lookup an assay
+class by either assertion name or associated operator.
+
+  Assay.lookup(:==)      #=> ::EqualAssay
   Assay.lookup(:empty?)  #=> ::EmptyAssay
 

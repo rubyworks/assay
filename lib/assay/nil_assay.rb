@@ -7,8 +7,8 @@ class NilAssay < CompareAssay
   #
   # Check assertion.
   #
-  def self.pass?(actual)
-    actual.nil?
+  def self.pass?(subject)
+    subject.nil?
   end
 
   #
