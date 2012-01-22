@@ -6,6 +6,7 @@ method.
     assert CaseAssay.pass?(1, 1)
     assert CaseAssay.pass?(1, 1.0)
     assert CaseAssay.pass?(/a/, 'a')
+    assert CaseAssay.pass?(String, 'foo')
 
     refute CaseAssay.pass?(1, 2)
     refute CaseAssay.pass?(1, 'foo')
@@ -18,4 +19,4 @@ And conversely,
     refute CaseAssay.fail?(1, 1)
     refute CaseAssay.fail?(1, 1.0)
     refute CaseAssay.fail?(/a/, 'a')
-
+    refute CaseAssay.fail?(String, 'foo')
