@@ -26,7 +26,17 @@ TestUnit, MiniTest, RSpec and other test frameworks.
 * Can be used with almost any test framework. 
 
 
-== USAGE
+== INSTALLATION
+
+To install with RubyGems simply open a console and type:
+
+  $ gem install assay
+
+Site installation with the tarball can be done with Ruby Setup
+(gem install setup). See http://rubyworks.github.com/setup.
+
+
+== UTILIZATION
 
 === Assay Classes
 
@@ -38,48 +48,47 @@ used to make assertions.
 Consider the +EqualityAssay+ class. It defines methods for asserting equality
 via the `#==` method.
 
-  EqualityAssay.pass!(1,1)
-
-Or equivalently,
-
-  EqualityAssay.assert(1,1)
+  EqualityAssay.assert!(1,1)
 
 Additionally, we can check the assertion's test without actually raising the
 assertion if it fails using the query method.
 
-  EqualityAssay.pass?(1,1)  #=> true
+  EqualityAssay.pass?(1,1)    #=> true
 
-Assays also provide the opposite method `#fail!` and alias `#refute`.
+Assays also provide the opposite method `#refute!` along with `#fail?`.
 
-  EqualityAssay.fail!(1,2)
+  EqualityAssay.refute!(1,2)
 
-Finally, assay's can produce matchers using the `#to_matcher` method, or more
-conveniently using `#[]`.
+  EqualityAssay.fail?(1,2)    #=> true
+
+Assay instances are test matchers, which can be conveniently defined with `#[]`.
 
   EqualityAssay[1] =~ 1
 
 Notice in the example we have used `#=~` to apply the matcher which makes
-the `#pass!` call to the Assay class. Likewise `#!~` can be used to
-call `#fail!` instead. Also note that `#===` is an alias for `#=~`.
+the `#assert!` call to the Assay object. Likewise `#!~` can be used to
+call `#refute!` instead. And note that `#===` is also an alias for `#=~`.
 
   EqualityAssay[1] === 1
 
-This means assay matchers can be used in case statments.
+Which means assay matchers can be used in case statments.
 
   case 10
   when InstanceAssay[Fixnum]
   when EqualityAssay[10.0]
   end
 
+Pretty neat.
+
 === Framework Adapters
 
 Assay follows a standard practice of defining assertion error classes with
 an `#assertion?` method that returns +true+. This can be used by any test 
-framework to easily detect when a raise error is an assertion rather than
-an ordinary error. To add support for this to common frameworks Assay
+framework to easily detect when a raised error is an assertion rather than
+an ordinary error. To add support for this to common test frameworks Assay
 provides adapters.
 
-For example, to use assay with MiniTest framework add to your test help
+For example, to use assay with MiniTest framework add to your test helper
 script:
 
   require 'assay/adapter/minitest'
@@ -90,17 +99,17 @@ Likewise for TestUnit.
 
 An RSpec adadpter is in the works, and should be out with the next release.
 
-Note that even without the adapter, you can use Assay with other these test
-frameworks. They will count Assay's assertions in with errors.
+Note that even without the adapter, you can still use Assay with other test
+frameworks. They will simply count Assay's assertions as regular errors.
 
 === Customized Grammars
 
-Of course the classes are interesting and make an obviously sound 
-foundation, but in the end we want to write assertions more easily and
-concisely. For this we turn to separate "grammar" projects that depend
-on Assay's classes. The first of these, created as a spin-off project
-to demonstrate Assay's prowess, is {Fluidity}[http://rubyworks.github.com/fluidity].
-Here is a quick taste of that gem's functionality.
+Of course the classes are interesting and clearly make for a sound foundation,
+but in the end we want to write assertions more easily and concisely. For this
+we turn to separate "grammar" projects that depend on Assay's classes. The
+first of these, created as a spin-off project to demonstrate Assay's prowess,
+is {Fluidity}[http://rubyworks.github.com/fluidity]. Here is a quick taste of
+that gem's functionality.
 
   require 'fluidity'
 
@@ -114,17 +123,17 @@ And to satisfy all those technical aficionados (like yours truly) there is `asse
 
   10.assert.kind_of(Integer)
 
-Thre are a few additional grammer project spun-off from Assay that provide
-compatability modes for legacy test frameworks which can server as transitions to Assay from these other
-frameworks. Follow the links below for each:
+Thre are also compatibility grammar projects available, spun-off from Assay, that
+provide compatability with legacy test frameworks which can serve as transition
+to Assay from these other frameworks. Follow the links below for each:
 
-* {TestUnit}[http://github.com/rubyworks/assay-testunit]
-* {MiniTest}[http://github.com/rubyworks/assay-minitest]
-* {RSpec}[http://github.com/rubyworks/assay-rspec]
+* {Assay TestUnit}[http://github.com/rubyworks/assay-testunit]
+* {Assay MiniTest}[http://github.com/rubyworks/assay-minitest]
+* {Assay RSpec}[http://github.com/rubyworks/assay-rspec]
 
 Usage is essentially the same for any one of them. For example,
 
-  require 'assay-rspec'
+  require 'assay/rspec'
 
   include Assay::Matchers
 
@@ -136,25 +145,17 @@ will become more so in time.
 
 These are just a few possible grammars. There is no reason not to build
 your own grammar on top of Assay's classes if you have another approach in mind.
-Indeed, please do so! That, after all, is the main purpose of having such
+Indeed, please do! That, after all, is the main purpose of having such
 a set of reusable assertion classes!
 
 === Learning More
 
-There's plently more learn about Assay, mainly the variety of assay classes
-available, but also other bits of functionality not comvered here. To learn
-about these check out the {QED documentation}[http://github.com/rubyworks/assay],
-as well as the {API documentation}[http://rubydoc.info/gems/asasy].
-
-
-== INSTALLATION
-
-To install with RubyGems simply open a console and type:
-
-  $ gem install assay
-
-Site installation with the tarball can be done with Ruby Setup
-(gem install setup). See http://rubyworks.github.com/setup.
+There's more learn about Assay, mainly the variety of assay classes available,
+but also a few other bits of functionality not comvered here. To learn
+about these check out the {QED documentation}[http://github.com/rubyworks/assay]
+which provides an overiew of functionality with working examples, and the
+the {API documentation}[http://rubydoc.info/gems/asasy] for a more in depth look
+under the hood.
 
 
 == COPYRIGHTS
