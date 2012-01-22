@@ -5,6 +5,8 @@ require_relative 'compare_assay'
 #
 class WithinAssay < CompareAssay
 
+  register :within
+
   #
   # Check assertion.
   #

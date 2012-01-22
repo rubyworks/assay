@@ -4,6 +4,8 @@ require_relative 'assertion'
 #
 class LikeAssay < Assertion
 
+  register :like
+
   #
   # Test assertion for #like?
   #

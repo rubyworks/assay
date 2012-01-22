@@ -3,13 +3,7 @@ require_relative 'execution_assay'
 #
 class ThrowAssay < ExecutionAssay
 
-  #def self.operator
-  #  :throw?
-  #end
-
-  #def self.assertive_name
-  #  :throw
-  #end
+  register :throw
 
   # Passes if the block throws expected_symbol
   #

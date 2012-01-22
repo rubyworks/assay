@@ -4,6 +4,8 @@ require_relative 'assertion'
 #
 class PathAssay < Assertion
 
+  register :path
+
   #
   # Check assertion using `File.exist?` method.
   #

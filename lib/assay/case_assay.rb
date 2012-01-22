@@ -4,15 +4,7 @@ require_relative 'equality_assay'
 #
 class CaseAssay < EqualityAssay
 
-  #
-  def self.operator
-    :===
-  end
-
-  #
-  def self.assertive_name
-    :case
-  end
+  register :===, :case
 
   #
   # Check assertion via `#===` method.

@@ -8,15 +8,7 @@ require_relative 'equality_assay'
 #
 class IdentityAssay < EqualityAssay
 
-  #
-  def self.operator
-    :identical?
-  end
-
-  #
-  def self.assertive_name
-    :identical
-  end
+  register :identical
 
   #
   # Check assertion using `object_id == object_id`.

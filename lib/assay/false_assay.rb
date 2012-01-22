@@ -2,15 +2,7 @@ require_relative 'compare_assay'
 
 class FalseAssay < CompareAssay
 
-  #
-  #def self.operator
-  #  :false?
-  #end
-
-  #
-  def self.assertive_name
-    :false
-  end
+  register :false
 
   #
   # Check assertion.

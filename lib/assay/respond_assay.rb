@@ -4,15 +4,7 @@ require_relative 'assertion'
 #
 class RespondAssay < Assertion
 
-  #
-  def self.operator
-    :respond_to?
-  end
-
-  #
-  def self.assertive_name
-    :respond_to
-  end
+  register :respond_to
 
   # Check assertion.
   def self.pass?(reciever, method_name)

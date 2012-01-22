@@ -19,74 +19,27 @@ class Assertion < Exception
   class << self
 
     #
-    # If the assertion coresponds to a regular method, particular a symbolic
-    # operator (hence the name of this method) then it should be specified via
-    # this interface. Otherwise, it should be given a fitting "make believe"
-    # method name and specified here. If not overridden it will be assumed
-    # to be the same as the `assertion_name` appended by `?`.
+    # Each new subclass must call the +register+ method. This is not an option!
+    # The method must be called in order to add the class to the Assertion
+    # name and operator indicies, so they might be looked-up efficiently by
+    # other libraries.
     #
-    def operator
-      (assertive_name.to_s + '?').to_sym
+    def register(op, name=nil)
+      case op.to_s
+      when /\W/
+        @operator = op.to_sym
+        @assertion_name = name.to_sym if name
+      else
+        @operator = (op.to_s + '?').to_sym
+        @assertion_name = op.to_sym
+      end
+
+      operator_index[operator]   = self
+      name_index[assertive_name] = self
     end
 
     #
-    # The assertive name is used for the construction of assertive nomenclatures
-    # such as `assert_equal`.
-    # 
-    def assertive_name
-      @assertive_name ||= name.split('::').last.chomp('Assay').downcase
-    end
-
-    #
-    # Returns Matcher for the failure class.
-    #
-    #def matcher(*args, &blk)
-    #  if args.include?(NA)
-    #    new(nil, *args, &blk)
-    #  else
-    #    new(nil, NA, *args, &blk)
-    #  end
-    #end
-
-    #
-    # Alias for #new.
-    #
-    def [](*args, &blk)
-      new(*args, &blk)
-    end
-
-    #
-    def pass?(target, *criteria, &block)
-      raise NotImplementedError
-    end
-
-    #
-    def fail?(target, *criteria, &block)
-      ! pass?(target, *criteria, &block)
-    end
-
-    #
-    def assert!(target, *criteria, &block)
-      #if ! pass?(target, *criteria, &block)
-        new(nil, *criteria, &block).pass!(target)
-      #end
-    end
-
-    # @deprecated
-    alias_method :pass!, :assert!
-
-    #
-    def refute!(target, *criteria, &block)
-      #if ! fail?(target, *criteria, &block)
-        new(nil, *criteria, &block).fail!(target)
-      #end
-    end
-
-    # @deprecated
-    alias_method :fail!, :refute!
-
-    #
-    # When Assertion is inherited, a table is kept index by assertion operator.
+    # When Assertion is inherited, a list of all Assertion subclasses is kept.
     # This can be used to assertions frameworks with dynamic implementations.
     #
     def inherited(base)
@@ -107,19 +60,8 @@ class Assertion < Exception
     # indexed by operator.
     #
     def by_operator(operator=nil)
-      operator = operator.to_sym if operator
-
-      @@by_operator ||= (
-        hash = {}
-        subclasses.each do |c|
-          if op = c.operator
-            hash[op.to_sym] = c
-          end
-        end
-        hash
-      )
-
-      operator ? @@by_operator[operator.to_sym] : @@by_operator
+      return operator_index.dup unless operator
+      operator_index[operator.to_sym]
     end
 
     #
@@ -127,20 +69,90 @@ class Assertion < Exception
     # indexed by assertive name.
     #
     def by_name(name=nil)
-      name = name.to_sym if name
-
-      @@by_name ||= (
-        hash = {}
-        subclasses.each do |c|
-          if op = c.assertive_name
-            hash[op.to_sym] = c
-          end
-        end
-        hash
-      )
-
-      name ? @@by_name[name.to_sym] : @@by_name
+      return name_index.dup unless name
+      name_index[name.to_sym]
     end
+
+   private
+
+    def operator_index
+      @@operator_index ||= {}
+    end
+
+    def name_index
+      @@name_index ||= {}
+    end
+
+   public
+
+    #
+    # If the assertion coresponds to a regular method, particular a symbolic
+    # operator (hence the name of this method) then it should be specified via
+    # this interface. Otherwise, it should be given a fitting "make believe"
+    # method name and specified here. If not overridden it will be assumed
+    # to be the same as the `assertion_name` appended by `?`.
+    #
+    def operator
+      @operator ||= (name.split('::').last.chomp('Assay').downcase + '?').to_sym
+    end
+
+    #
+    # The assertive name is used for the construction of assertive nomenclatures
+    # such as `assert_equal`.
+    # 
+    def assertive_name
+      @assertion_name ||= (
+        if operator.to_s.end_with?('?')
+          operator.to_s.chomp('?').to_sym
+        else
+          name.split('::').last.chomp('Assay').downcase.to_sym
+        end
+      )
+    end
+
+    #
+    # Alias for #new.
+    #
+    def [](*args, &blk)
+      new(*args, &blk)
+    end
+
+    #
+    def pass?(target, *criteria, &block)
+      raise NotImplementedError
+    end
+
+    #
+    def fail?(target, *criteria, &block)
+      ! pass?(target, *criteria, &block)
+    end
+
+    #
+    def assert!(target, *criteria, &block)
+      options = (Hash === criteria.last ? criteria.pop : {})
+
+      msg = options[:message]
+      bt  = options[:backtrace] || caller
+
+      #if ! pass?(target, *criteria, &block)
+        assay = new(msg, *criteria, &block)
+        assay.set_backtrace(bt)
+        assay.assert!(target)
+      #end
+    end
+
+    # @deprecated
+    alias_method :pass!, :assert!
+
+    #
+    def refute!(target, *criteria, &block)
+      #if ! fail?(target, *criteria, &block)
+        new(nil, *criteria, &block).fail!(target)
+      #end
+    end
+
+    # @deprecated
+    alias_method :fail!, :refute!
 
   end
 

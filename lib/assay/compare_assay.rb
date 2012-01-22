@@ -8,17 +8,9 @@ require_relative 'assertion'
 #
 class CompareAssay < Assertion
 
-  #
-  def self.operator
-    :<=>
-  end
-
   # TODO: What about #cmp alias?
 
-  #
-  def self.assertive_name
-    :compare
-  end
+  register :<=>, :compare
 
   #
   # Check assertion.

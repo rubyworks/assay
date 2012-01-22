@@ -4,6 +4,8 @@ require_relative 'assertion'
 #
 class IncludeAssay < Assertion
 
+  register :include
+
   #
   # Check assertion using `#include?` method.
   #

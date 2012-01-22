@@ -1,16 +1,10 @@
-require_relative 'assertion'
+require_relative 'include_assay'
 
 # Empty assertion tests an object with `#empty?` method.
 #
-class EmptyAssay < Assertion
+class EmptyAssay < IncludeAssay
 
-  #
-  #operator :empty?
-
-  #
-  #def self.assertive_name
-  #  :empty
-  #end
+  register :empty
 
   # Check assertion.
   def self.pass?(target)

@@ -6,15 +6,7 @@ require_relative 'equal_assay'
 #
 class UnequalAssay < EqualAssay
 
-  #
-  def self.operator
-    :!=
-  end
-
-  #
-  def self.assertive_name
-    :unequal
-  end
+  register :!=, :unequal
 
   #
   # Check assertion.

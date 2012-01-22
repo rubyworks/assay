@@ -5,15 +5,7 @@ require_relative 'equal_assay'
 #
 class EqualityAssay < EqualAssay
 
-  #
-  def self.operator
-    :eql?
-  end
-
-  #
-  def self.assertive_name
-    :eql
-  end
+  register :eql
 
   #
   # Check assertion via `#eql?` method.

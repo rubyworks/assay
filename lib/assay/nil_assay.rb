@@ -2,10 +2,7 @@ require_relative 'compare_assay'
 
 class NilAssay < CompareAssay
 
-  #
-  def self.assertive_name
-    :nil
-  end
+  register :nil
 
   #
   # Check assertion.

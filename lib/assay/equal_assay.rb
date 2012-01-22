@@ -4,15 +4,7 @@ require_relative 'like_assay'
 #
 class EqualAssay < LikeAssay
 
-  #
-  def self.operator
-    :==
-  end
-
-  #
-  def self.assertive_name
-    :equal
-  end
+  register :==, :equal
 
   #
   # Check assertion.

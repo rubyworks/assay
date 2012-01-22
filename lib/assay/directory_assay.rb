@@ -4,6 +4,8 @@ require_relative 'path_assay'
 #
 class DirectoryAssay < PathAssay
 
+  register :directory
+
   #
   # Check assertion using `File.file?` method.
   #

@@ -5,15 +5,7 @@ require_relative 'like_assay'
 # 
 class MatchAssay < LikeAssay
 
-  #
-  def self.operator
-    :=~
-  end
-
-  #
-  def self.assertive_name
-    :match
-  end
+  register :=~, :match
 
   # Check assertion.
   def self.pass?(actual, criterion)

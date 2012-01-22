@@ -14,15 +14,7 @@ require_relative 'assertion'
 #
 class ExecutionAssay < Assertion
 
-  #
-  def self.operator
-    :executes?
-  end
-
-  #
-  def self.assertive_name
-    :executes
-  end
+  register :executes
 
   #
   # Check assertion.

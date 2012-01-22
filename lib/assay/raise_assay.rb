@@ -3,15 +3,7 @@ require_relative 'execution_assay'
 #
 class RaiseAssay < ExecutionAssay
 
-  #
-  def self.operator
-    :raised?
-  end
-
-  #
-  def self.assertive_name
-    :raised
-  end
+  register :raised
 
 =begin
   #

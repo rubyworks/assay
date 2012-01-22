@@ -7,15 +7,7 @@ require_relative 'assertion'
 #
 class KindAssay < Assertion
 
-  #
-  def self.operator
-    :kind_of?
-  end
-
-  #
-  def self.assertive_name
-    :kind_of
-  end
+  register :kind_of
 
   # Check assertion.
   def self.pass?(object, class_type)

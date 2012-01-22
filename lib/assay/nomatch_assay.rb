@@ -5,15 +5,7 @@ require_relative 'match_assay'
 # 
 class NoMatchAssay < MatchAssay
 
-  #
-  def self.operator
-    :!~
-  end
-
-  #
-  def self.assertive_name
-    :nomatch
-  end
+  register :!~, :nomatch
 
   # Check assertion.
   def self.pass?(actual, criterion)

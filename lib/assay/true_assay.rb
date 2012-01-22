@@ -8,10 +8,7 @@ require_relative 'compare_assay'
 #
 class TrueAssay < CompareAssay
 
-  #
-  def self.assertive_name
-    :true
-  end
+  register :true
 
   #
   # Check assertion.

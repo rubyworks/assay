@@ -4,15 +4,7 @@ require_relative 'kind_assay'
 #
 class InstanceAssay < KindAssay
 
-  #
-  def self.operator
-    :instance_of?
-  end
-
-  #
-  def self.assertive_name
-    :instance
-  end
+  register :instance_of
 
   #
   # Check assertion.
