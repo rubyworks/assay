@@ -1,15 +1,14 @@
-require_relative 'compare_assay'
+require_relative 'assertion'
 
 #
 #
-class LikeAssay < CompareAssay
+class LikeAssay < Assertion
 
-  # Test assertion.
+  #
+  # Test assertion for #like?
+  #
   def self.pass?(actual, criterion)
-    criterion.equal?(actual) ||
-    criterion.eql?(actual)   ||
-    criterion.==(actual)     ||
-    criterion.===(actual)
+    criterion.like?(actual)
   end
 
   ##

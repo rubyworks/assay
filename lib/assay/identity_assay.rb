@@ -1,12 +1,12 @@
-require_relative 'assertion'
-
-# TODO: Note that Ruby defines #equal? to mean #identical? but I believe
-# this to be a misnomer, at the very least. So we use the term #identical
-# instead.
+require_relative 'equality_assay'
 
 # Check that two objects are one and the same object.
 #
-class IdentityAssay < Assertion
+# NOTE: Ruby defines #equal? to mean #identical? but I believe
+# this to be a misnomer, at the very least. So we use the term
+# `identical` instead.
+#
+class IdentityAssay < EqualityAssay
 
   #
   def self.operator
@@ -21,8 +21,8 @@ class IdentityAssay < Assertion
   #
   # Check assertion using `object_id == object_id`.
   #
-  def self.pass?(act, exp)
-    exp.object_id == act.object_id
+  def self.pass?(target, criterion)
+    criterion.object_id == target.object_id
   end
 
   #

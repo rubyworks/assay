@@ -1,9 +1,9 @@
-require_relative 'compare_assay'
+require_relative 'match_assay'
 
 # Ruby 1.9+ allows #!~ to redfined as it's own method, so a corresponding
 # assay is required to cover it.
 # 
-class NoMatchAssay < CompareAssay
+class NoMatchAssay < MatchAssay
 
   #
   def self.operator

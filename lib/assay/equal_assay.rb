@@ -1,8 +1,8 @@
-require_relative 'equality_assay'
+require_relative 'like_assay'
 
 # EqualAssay coers the assertion comparing two objects with `#==` operator.
 #
-class EqualAssay < EqualityAssay
+class EqualAssay < LikeAssay
 
   #
   def self.operator

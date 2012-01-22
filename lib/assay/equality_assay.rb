@@ -1,13 +1,9 @@
-require_relative 'assertion'
+require_relative 'equal_assay'
 
 # EqualityAssay defines the assertion for the `#eql?`, the strict equality
 # method.
 #
-# The `EqualityAssay` class also acts as the base class for other forms of 
-# equality such as {EqualAssay} class, {UnequalAssay} and {CaseAssay}
-# classes.
-#
-class EqualityAssay < Assertion
+class EqualityAssay < EqualAssay
 
   #
   def self.operator

@@ -1,8 +1,8 @@
-require_relative 'compare_assay'
+require_relative 'kind_assay'
 
 # Assert that an object is an instance of a class.
 #
-class InstanceAssay < CompareAssay
+class InstanceAssay < KindAssay
 
   #
   def self.operator

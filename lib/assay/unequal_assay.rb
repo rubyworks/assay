@@ -1,10 +1,10 @@
-require_relative 'equality_assay'
+require_relative 'equal_assay'
 
 # UnequalAssay compares objects with `#!=` operator. Yes, as of Ruby 1.9
-# the `!=` is a redefinable method in Ruby, and as such, we need a separate
+# the `!=` is a redefinable method, and as such, we need a separate
 # assay to cover it.
 #
-class UnequalAssay < EqualityAssay
+class UnequalAssay < EqualAssay
 
   #
   def self.operator

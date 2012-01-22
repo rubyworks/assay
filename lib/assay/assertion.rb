@@ -2,6 +2,7 @@ require 'ansi/diff'  # ANSI color output support
 
 require_relative 'core_ext/na'
 require_relative 'core_ext/exception'
+require_relative 'core_ext/kernel'
 
 #
 class Assertion < Exception

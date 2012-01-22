@@ -1,11 +1,11 @@
-require_relative 'compare_assay'
+require_relative 'assertion'
 
 # Comparison assertion for #kind_of?
 #
 #   KindAssay.pass?(1, Integer)  #=> true
 #   KindAssay.fail?(1, String)   #=> true
 #
-class KindAssay < CompareAssay
+class KindAssay < Assertion
 
   #
   def self.operator

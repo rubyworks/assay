@@ -1,9 +1,9 @@
-require_relative 'compare_assay'
+require_relative 'like_assay'
 
 #
-# TODO: assertive_name just doesn't cut it.
+#
 # 
-class MatchAssay < CompareAssay
+class MatchAssay < LikeAssay
 
   #
   def self.operator
