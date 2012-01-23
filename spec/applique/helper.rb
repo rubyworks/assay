@@ -16,11 +16,14 @@ def refute(truth)
 end
 
 def expect(error)
+  counts = $ASSERTION_COUNTS.dup
   begin
     yield
+    $ASSERTION_COUNTS = counts
     increment_counts(:fail)
     raise Assertion, "#{error} not raised.", caller
   rescue error
+    $ASSERTION_COUNTS = counts
     increment_counts(:pass)
   end
 end
