@@ -139,219 +139,99 @@
 
     <div id="content">
       
-<h1>Assay</h1>
+<h1>Asay Lookup</h1>
 
+<p>Assay classes are indexed by both name and associated operation, so they
+can be looked-up by either. The indexes are stored as class attributes of
+the Assertion base class.</p>
 
-<h1>Assertion Classes</h1>
+<p>Let’s lookup the class for `==` equality.</p>
 
-<pre>require 'assay'</pre>
+<pre>Assertion.by_operator(:==)      #=&gt; ::EqualAssay</pre>
 
-<h2>EqualityAssay</h2>
-
-<pre>assert EqualityAssay.pass?(1,1)
-refute EqualityAssay.pass?(1,2)</pre>
-
-<h2>TrueAssay</h2>
-
-<pre>assert TrueAssay.pass?(true)
-refute TrueAssay.pass?(false)</pre>
-
-<h2>FalseAssay</h2>
-
-<pre>assert FalseAssay.pass?(false)
-refute FalseAssay.pass?(true)</pre>
-
-<h2>NilAssay</h2>
-
-<pre>assert NilAssay.pass?(nil)
-refute NilAssay.pass?(true)
-refute NilAssay.pass?(false)</pre>
-
-<h2>WithinAssay</h2>
-
-<pre>assert WithinAssay.pass?(1, 1.5, 2)
-refute WithinAssay.pass?(1, 2.5, 1)</pre>
-
-<h2>MatchAssay</h2>
-
-<pre>assert MatchAssay.pass?(/a/, &quot;abc&quot;)
-refute MatchAssay.pass?(/x/, &quot;abc&quot;)</pre>
-
-<h2>SameAssay</h2>
-
-<pre>assert SameAssay.pass?(1, 1)
-refute SameAssay.pass?(1, 1.0)</pre>
-
-<h2>IdentityAssay</h2>
-
-<pre>assert IdentityAssay.pass?(:a, :a)
-refute IdentityAssay.pass?(&quot;a&quot;, &quot;a&quot;)</pre>
-
-<h2>IncludeAssay</h2>
-
-<pre>assert IncludeAssay.pass?([1,2,3], 2)
-refute IncludeAssay.pass?([1,2,3], 4)</pre>
-
-<h2>InstanceAssay</h2>
-
-<pre>assert InstanceAssay.pass?(1, Fixnum)
-refute InstanceAssay.pass?(1, String)</pre>
-
-<h2>KindAssay</h2>
-
-<pre>assert KindAssay.pass?(1, Integer)
-refute KindAssay.pass?(1, String)</pre>
-
-<h2>LikeAssay</h2>
-
-<pre>assert LikeAssay.pass?(1, 1)
-assert LikeAssay.pass?(1, 1.0)
-assert LikeAssay.pass?(&quot;1&quot;, /\d/)
-
-refute LikeAssay.pass?(1, &quot;1&quot;)
-refute LikeAssay.pass?(&quot;1&quot;, /\D/)
-
-assert LikeAssay.fail?(1, &quot;1&quot;)
-assert LikeAssay.fail?(&quot;1&quot;, /\D/)</pre>
-
-<h2>RaiseAssay</h2>
-
-<pre>assert RaiseAssay.pass?(ArgumentError){ raise ArgumentError }
-refute RaiseAssay.pass?(ArgumentError){ raise TypeError }
-
-assert RaiseAssay.fail?(ArgumentError){ raise TypeError }
-refute RaiseAssay.fail?(ArgumentError){ raise ArgumentError }</pre>
-
-<h2>ResponseAssay</h2>
-
-<pre>assert ResponseAssay.pass?(&quot;string&quot;, :upcase)
-refute ResponseAssay.pass?(&quot;string&quot;, :not_a_method)</pre>
-
-<h2>ExecutionAssay</h2>
-
-<pre>assert ExecutionAssay.pass?(){ true }
-refute ExecutionAssay.pass?(){ nil }
-refute ExecutionAssay.pass?(){ false }
-refute ExecutionAssay.pass?(){ raise }
-
-refute ExecutionAssay.fail?(){ true }
-assert ExecutionAssay.fail?(){ nil }
-assert ExecutionAssay.fail?(){ false }
-assert ExecutionAssay.fail?(){ raise }</pre>
-
-<h2>ThrowAssay</h2>
-
-<pre>assert ThrowAssay.pass?(:foo){ throw :foo }
-refute ThrowAssay.pass?(:foo){ throw :bar }</pre>
-
-
-<h1>Lookup</h1>
-
-<p>Assertion classes can be looked-up by associated opearator name.</p>
-
-<pre>require 'assay'</pre>
-
-<p>Let’s lookup assertion class for equality.</p>
-
-<pre>Assertion.by_operator(:==)  #=&gt; ::EqualityAssay</pre>
-
-<p>Let’s lookup the assertion class for empty.</p>
+<p>Let’s lookup the assertion class for `#empty?`.</p>
 
 <pre>Assertion.by_operator(:empty?)  #=&gt; ::EmptyAssay</pre>
 
-<p>Deprecated approach is to use the `Assay.lookup` module method.</p>
+<p>If we wish to lookup by assertive name instead of operator, we can use the
+`by_name` method instead.</p>
 
-<pre>Assay.lookup(:==)      #=&gt; ::EqualityAssay
+<pre>Assertion.by_name(:empty)       #=&gt; ::EmptyAssay</pre>
+
+<p>We can also use the `Assay.lookup` module method, which will lookup an
+assay class by either assertion name or associated operator.</p>
+
+<pre>Assay.lookup(:==)      #=&gt; ::EqualAssay
 Assay.lookup(:empty?)  #=&gt; ::EmptyAssay</pre>
 
 
-<h1>Assertion::Matcher</h1>
+<p># Assay as Matcher</p>
 
-<p>We need to load the library, of course.</p>
+<p>Assay classes are <b>matchers</b>. They can be initialized with criteria
+and applied to target objects.</p>
 
-<pre>require 'assay'</pre>
+<p>## Standard Target Matching</p>
 
-<h2>Partial Arguments</h2>
+<pre>matcher = EqualAssay[1]
 
-<pre>matcher = EqualityAssay[__,1]</pre>
+matcher.assert!(1)</pre>
+
+<p>## Partial Arguments</p>
+
+<pre>matcher = LessAssay[1,__]</pre>
 
 <p>We can apply the matcher using the `#pass!` method.</p>
 
-<pre>matcher.pass!(1)</pre>
+<pre>matcher.assert!(2)</pre>
 
 <p>Likewise we can assert the negated expression using `#fail!`.</p>
 
-<pre>matcher.fail!(2)</pre>
-
-<p>The `#===` method is an alias for `#pass!`.</p>
-
-<pre>matcher === 1</pre>
+<pre>matcher.refute!(0)</pre>
 
 <p>Assay partial a very versile because they allow any argument to become the
 target of a matcher.</p>
 
 <pre>matcher = CompareAssay[2,1,__]
 
-matcher.pass!(:&lt;)
-matcher.fail!(:&gt;)</pre>
+matcher.assert!(1)
+matcher.refute!(0)</pre>
 
-<h2>Negated Matchers</h2>
+<p>## Match Method</p>
+
+<p>The `#=~` method is an alias for `#assert!`.</p>
+
+<pre>matcher = EqualAssay[1]
+
+matcher =~ 1</pre>
+
+<p>Conversely, `#!~` method is an alias for `#refute!`.</p>
+
+<pre>matcher !~ 2</pre>
+
+<p>## Case Method</p>
+
+<p>The `#===` method is also an alias for `#assert!`.</p>
+
+<pre>matcher === 1</pre>
+
+<p>This allows the `case` statement to be used in an intersting way.</p>
+
+<pre>case 10
+when KindAssay[Numeric]
+when EqualAssay[10.0]
+end</pre>
+
+<p>## Negated Matchers</p>
 
 <p>Matchers can be negated so that pass and fail methods swap behaviors.</p>
 
 <pre>matcher = EqualityAssay[__,1]
-
-matcher.negated.assert.is_a?(Assertion::Matcher::Negated)
 
 matcher.negated === 2</pre>
 
 <p>For conveience we can also negate the matcher using the `~` unary operator.</p>
 
 <pre>~matcher === 2</pre>
-
-
-<h1>Grammer</h1>
-
-<pre>require 'assay/grammer/should'</pre>
-
-<p>Now we have a fluent notation with which to make assertions.</p>
-
-<pre>true.should.be.true
-false.should.be.false
-
-(5 + 5).should.equal 10
-
-[1,2,3].should.include(2)</pre>
-
-<p>We can also use the associated operator (Ruby’s built-in query method
-name).</p>
-
-<pre>false.should.be.false?
-true.should.be.true?
-
-(5 + 5).should == 10</pre>
-
-<p>Indefinite article `a` and `an` are suppored.</p>
-
-<pre>12.should.be.a.kind_of?(Integer)</pre>
-
-<p>As is `not` for negation.</p>
-
-<pre>12.should.not.equal(20)</pre>
-
-<p>We should also make sure such assertions can fail.</p>
-
-<pre>expect ::IncludeAssay do
-  [1,2,3].should.include(4)
-end
-
-expect ::FalseAssay do
-  true.should.be.false
-end
-
-expect ::EqualityAssay do
-  (5 + 5).should == 11
-end</pre>
 
 
     </div>
