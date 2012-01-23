@@ -1,7 +1,7 @@
-require_relative 'execution_assay'
+require_relative 'raise_kind_assay'
 
 #
-class RaiseAssay < ExecutionAssay
+class RaiseAssay < RaiseKindAssay
 
   register :raised
 
@@ -57,8 +57,7 @@ class RaiseAssay < ExecutionAssay
   end
 =end
 
-  # Note: This is not used by the #assert method. (or is it?)
-
+  #
   # Check assertion.
   #
   def self.pass?(*exceptions)
@@ -67,12 +66,13 @@ class RaiseAssay < ExecutionAssay
       yield
       false
     rescue Exception => e
-      exceptions.any?{ |x| x === e }
+      exceptions.any? do |x|
+        Module === x ? x === e : x == e.class
+      end
     end
   end
 
-  # Note: This is not used by the #assert! method.
-
+  #
   # Check negated assertion.
   #
   def self.fail?(*exceptions)
@@ -81,7 +81,9 @@ class RaiseAssay < ExecutionAssay
       yield
       true
     rescue Exception => e
-      !exceptions.any?{ |x| x === e }
+      !exceptions.any? do |x|
+        Module === x ? x === e : x == e.class
+      end
     end
   end
 
