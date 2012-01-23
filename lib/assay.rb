@@ -26,20 +26,33 @@ module Assay
   end
 
   #
-  # Returns a Hash table of failure classes indexed by
-  # asserton operator.
+  # Returns a list of Assertion subclasses.
   #
-  # @deprecated Use `Assertion.by_operator` instead.
+  def self.assertions
+    Assertion.subclasses
+  end
+
   #
-  def self.assertions_by_operator
-    Assertion.by_operator
+  # Set ANSI color mode. Default is false, so set to `true` to get ANSI color
+  # in some error messages.
+  #
+  # @example
+  #   Assay.color = true
+  #
+  def self.color=(boolean)
+    if boolean
+      require 'ansi/diff'
+      $ansi = true
+    else
+      $ansi = false
+    end 
   end
 
   #
   # Lookup assay class by operator or name.
   #
   def self.lookup(symbol)
-    lookup_by_operator[symbol.to_sym] || lookup_by_name[symbol.to_sym]
+    lookup_by_operator(symbol) || lookup_by_name(symbol)
   end
 
   #
@@ -47,19 +60,7 @@ module Assay
   # indexed by operator.
   #
   def self.lookup_by_operator(operator=nil)
-    operator = operator.to_sym if operator
-
-    @by_operator ||= (
-      hash = {}
-      Assertion.subclasses.each do |c|
-        if op = c.operator
-          hash[op.to_sym] = c
-        end
-      end
-      hash
-    )
-
-    operator ? @by_operator[operator.to_sym] : @by_operator
+    Assertion.by_operator(operator)
   end
 
   #
@@ -67,27 +68,7 @@ module Assay
   # indexed by assertive name.
   #
   def self.lookup_by_name(name=nil)
-    name = name.to_sym if name
-
-    @by_name ||= (
-      hash = {}
-      Assertion.subclasses.each do |c|
-        if op = c.assertive_name
-          hash[op.to_sym] = c
-        end
-      end
-      hash
-    )
-
-    name ? @by_name[name.to_sym] : @by_name
-  end
-
-  #
-  # Set ANSI color mode. Default is true, so if you need to force ANSI color
-  # code to omitted from output message you can set `Assay.color = false`.
-  #
-  def self.color=(boolean)
-    $ansi = boolean ? true : false
+    Assertion.by_name(name)
   end
 
   # This module serves as the primary container for traditonal style assertion
