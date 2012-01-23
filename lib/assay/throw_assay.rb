@@ -9,47 +9,70 @@ class ThrowAssay < ExecutionAssay
   # TODO: Is it possible to catch _any_ type of throw? If so make the
   #       argument optional for that.
 
-  # Passes if the block throws expected_symbol
+  # Passes if the block throws given symbol.
   #
   #   ThrowAssay.pass? :done do
   #     throw :done
   #   end
   #
-  def self.pass?(symbol, &block)
+  # If no symbol is given than passes if any is thrown.
+  # But note that in `#assert!`, the symbol must be `nil`
+  # rather than not given.
+  #
+  def self.pass?(symbol=nil) #:yield:
     pass = true
-    catch(symbol) do
+    if symbol
+      catch(symbol) do
+        begin
+          yield
+        rescue ArgumentError => err     # 1.9 exception
+          #msg += ", not #{err.message.split(/ /).last}"
+        rescue NameError => err         # 1.8 exception
+          #msg += ", not #{err.name.inspect}"
+        end
+        pass = false
+      end
+    else
       begin
-        block.call
-      rescue ArgumentError => err     # 1.9 exception
-        #msg += ", not #{err.message.split(/ /).last}"
+        yield
         pass = false
-      rescue NameError => err         # 1.8 exception
-        #msg += ", not #{err.name.inspect}"
-        pass = false
+      rescue ArgumentError => error
+        pass = false if /\Auncaught throw (.+)\z/ !~ error.message
       end
     end
     pass
   end
 
-  # FIXME: Is this correct?
-
-  # Passes if the block throws expected_symbol
+  # Passes if the block does not throw given +symbol+.
   #
-  #   assert_not_thrown :done do
+  #   ThrowAssay.fail? :done do
   #     throw :chimp
   #   end
   #
-  def self.fail?(symbol, &block)
-    pass = false
-    catch(symbol) do
+  # If no symbol is given then passes if nothing is thrown.
+  # But note that in `#refute!`, the symbol must be `nil`
+  # rather than not given.
+  #
+  def self.fail?(symbol=nil) #:yield:
+    if symbol
+      pass = false
+      catch(symbol) do
+        begin
+          yield
+        rescue ArgumentError => err     # 1.9 exception
+          #msg += ", not #{err.message.split(/ /).last}"
+        rescue NameError => err         # 1.8 exception
+          #msg += ", not #{err.name.inspect}"
+        end
+        pass = true
+      end
+    else
+      pass = false
       begin
-        block.call
-      rescue ArgumentError => err     # 1.9 exception
-        #msg += ", not #{err.message.split(/ /).last}"
+        yield
         pass = true
-      rescue NameError => err         # 1.8 exception
-        #msg += ", not #{err.name.inspect}"
-        pass = true
+      rescue ArgumentError => error
+        pass = true if /\Auncaught throw (.+)\z/ !~ error.message
       end
     end
     pass
