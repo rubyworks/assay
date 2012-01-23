@@ -1,9 +1,12 @@
-require 'ansi/diff'  # ANSI color output support
-
 require_relative 'core_ext/na'
 require_relative 'core_ext/exception'
 require_relative 'core_ext/kernel'
 
+# TODO: Don't care for Proc === subject conditional code, but not
+# sure how else to deal with lambda subjects.
+
+# Base class for all Assay classes. This class defines all the logic
+# for assertions as exception classes as well as test assertion matchers.
 #
 class Assertion < Exception
 
@@ -119,7 +122,8 @@ class Assertion < Exception
 
     #
     def pass?(subject, *criteria, &block)
-      raise NotImplementedError
+      #raise NotImplementedError
+      subject 
     end
 
     #
@@ -160,24 +164,30 @@ class Assertion < Exception
   end
 
   #
-  #
+  # Setup new Assertion object.
   #
   def initialize(msg=nil, *criteria, &block)
     super(msg)
 
-    @criteria = criteria
-    @block    = block
-    @not      = false
+    @criteria  = criteria
+    @block     = block
+    @not       = false
+
+    @assertion = true
 
     #options = (Hash === criteria.last ? criteria.pop : {})
     #set_backtrace(options[:backtrace]) if options[:backtrace]
     #set_negative(options[:negated])    if options[:negated]
   end
 
-  # criteria
+  #
+  # Assertion criteria passed in via the initializer.
+  #
   attr :criteria
 
-  # block
+  #
+  # Block criteria passed in via the initialize method.
+  #
   attr :block
 
   #
@@ -281,10 +291,10 @@ class Assertion < Exception
   alias_method :==, :pass?
   alias_method :!=, :fail?
 
-  alias_method :=~, :pass!
-  alias_method :!~, :fail!
+  alias_method :=~, :assert!
+  alias_method :!~, :refute!
 
-  alias_method :===, :pass!
+  alias_method :===, :assert!
 
   #
   # Create a negated form of the matcher.
@@ -358,10 +368,12 @@ private
     op = self.class.operator
 
     if args_inspect.any?{ |o| o.size > SIZE_LIMIT }
-      args_pattern = [].inject('a'){ |a,c| a << c; c = c.succ; a }
+      vars = ['b']
+      t = args_inspect.size - 2
+      t.times{ vars << vars.last.succ }
 
       msg = ''   
-      msg << "a.#{op}(" + args_pattern[1..-1].join(',') + ")\n"
+      msg << "a.#{op}(" + vars.join(',') + ")\n"
       msg << args_inspect.join("\n")
       msg
     else
@@ -413,9 +425,6 @@ end
   # Matcher class.
   #
   # TODO: Better name for this class ?
-  #
-  # TODO: Don't care for Proc === subject conditional code, but not
-  # sure how else to deal with lambda subjects.
   #
   class Matcher
 
