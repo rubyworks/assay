@@ -164,5 +164,5 @@ Copyright (c) 2009 Rubyworks
 
 This program is ditributed under the terms of the *BSD-2-Cluase* license.
 
-See LICENSE.rdoc file for details.
+See COPYING.rdoc file for details.
 
