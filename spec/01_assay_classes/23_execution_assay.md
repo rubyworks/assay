@@ -22,3 +22,19 @@ And conversely,
     refute ExecutionAssay.fail?{ true }
     refute ExecutionAssay.fail?{ :foo }
 
+Making assertions,
+
+    assert ExecutionAssay.assert!{ true }
+
+    expect ::ExecutionAssay do
+      assert ExecutionAssay.assert!{ false }
+    end
+
+And refutations,
+
+    assert ExecutionAssay.refute!{ false }
+
+    expect ::ExecutionAssay do
+      assert ExecutionAssay.refute!{ true }
+    end
+

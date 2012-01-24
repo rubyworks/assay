@@ -1,4 +1,4 @@
-require_relative 'compare_assay'
+require_relative 'boolean_assay'
 
 # Comparison assertion for TrueClass.
 #
@@ -6,25 +6,15 @@ require_relative 'compare_assay'
 #   TrueAssay.fail?(true) #=> false
 #   TrueAssay.pass?(1)    #=> false
 #
-class TrueAssay < CompareAssay
+class TrueAssay < BooleanAssay
 
   register :true
 
   #
-  # Check assertion.
+  # Check assertion using `#true?` method.
   #
   def self.pass?(subject)
     subject.true?  #TrueClass === subject
   end
-
-  #
-  #def self.pass_message(actual)
-  #  "true == #{actual.inspect}"
-  #end
-
-  #
-  #def self.fail_message(actual)
-  #  "true != #{actual.inspect}"
-  #end
 
 end

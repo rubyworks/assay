@@ -18,3 +18,19 @@ And conversely,
     refute RaiseAssay.fail?(StandardError){ raise }
     refute RaiseAssay.fail?(ArgumentError){ raise ArgumentError }
 
+Making assertions,
+
+    assert RaiseAssay.assert!(StandardError){ raise }
+
+    expect ::RaiseAssay do
+      RaiseAssay.assert!(StandardError){ nil }
+    end
+
+And refutations,
+
+    assert RaiseAssay.refute!(StandardError){ nil }
+
+    expect ::RaiseAssay do
+      RaiseAssay.refute!(StandardError){ raise }
+    end
+

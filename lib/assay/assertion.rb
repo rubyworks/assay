@@ -143,9 +143,6 @@ class Assertion < Exception
       assay.assert!(subject, options)
     end
 
-    # @deprecated
-    alias_method :pass!, :assert!
-
     #
     def refute!(subject, *criteria, &block)
       options = (Hash === criteria.last ? criteria.pop : {})
@@ -157,9 +154,6 @@ class Assertion < Exception
       #assay.set_backtrace(bt)
       assay.refute!(subject, options)
     end
-
-    # @deprecated
-    alias_method :fail!, :refute!
 
   end
 
@@ -194,13 +188,13 @@ class Assertion < Exception
   # Check the assertion, return `true` if passing, `false` otherwise.
   #
   def pass?(subject)
-    if Proc === subject && @block.nil?
-      args = criteria
-      blk  = subject
-    else
+    #if Proc === subject && @block.nil?
+    #  args = criteria
+    #  blk  = subject
+    #else
       args = complete_criteria(subject)
       blk  = @block
-    end
+    #end
 
     @not ^ self.class.pass?(*args, &blk)
   end
@@ -223,6 +217,8 @@ class Assertion < Exception
   #
   # Alias for `#assert!`.
   #
+  # @deprecated
+  #
   def pass!(subject, options={})
     assert!(subject, options={})
   end
@@ -231,13 +227,13 @@ class Assertion < Exception
   # Check the assertion, return `true` if failing, `false` otherwise.
   #
   def fail?(subject)
-    if Proc === subject && @block.nil?
-      args = criteria
-      blk  = subject
-    else
+    #if Proc === subject && @block.nil?
+    #  args = criteria
+    #  blk  = subject
+    #else
       args = complete_criteria(subject)
       blk  = @block
-    end
+    #end
 
     @not ^ self.class.fail?(*args, &blk)
   end
@@ -261,6 +257,8 @@ class Assertion < Exception
 
   #
   # Alias for `#refute!`.
+  #
+  # @deprecated
   #
   def fail!(subject, options={})
     refute!(subject, options={})
@@ -365,7 +363,8 @@ private
   def standard_message(subject)
     args_inspect = [subject, *@criteria].map{ |o| o.inspect }
 
-    op = self.class.operator
+    op = self.class.operator.to_s
+    op = (/\w/ =~ op) ? ".#{op} " : " #{op} "
 
     if args_inspect.any?{ |o| o.size > SIZE_LIMIT }
       vars = ['b']
@@ -373,11 +372,11 @@ private
       t.times{ vars << vars.last.succ }
 
       msg = ''   
-      msg << "a.#{op}(" + vars.join(',') + ")\n"
+      msg << "a#{op} " + vars.join(',') + "\n"
       msg << args_inspect.join("\n")
       msg
     else
-      args_inspect.first + ".#{op}(" + args_inspect[1..-1].join(', ') + ")"
+      args_inspect.first + "#{op}" + args_inspect[1..-1].join(', ') + ""
     end
   end
 

@@ -32,16 +32,30 @@ class ExecutionAssay < Assertion
   #
   def self.fail?(*args, &block)
     begin
-      !block.call(*args)
+      ! block.call(*args)
     rescue Exception
       true
     end
   end
 
   #
+  def self.assert!(*criteria, &block)
+    options = (Hash === criteria.last ? criteria.pop : {})
+    assay = new(nil, *criteria) #, &block)
+    assay.assert!(options, &block)
+  end
+
+  #
+  def self.refute!(*criteria, &block)
+    options = (Hash === criteria.last ? criteria.pop : {})
+    assay = new(nil, *criteria) #, &block)
+    assay.refute!(options, &block)
+  end
+
   #
   #
-  def pass_message(subject)
+  #
+  def pass_message(*args)
     block = @block.inspect
     "#{block}.call(*#{criteria.inspect})"
   end

@@ -88,12 +88,16 @@ class RaiseAssay < RaiseKindAssay
   end
 
   #
+  #
+  #
   def pass_message(subject)
     exp = criteria.map{ |e| e.inspect }.join(' or ')
 
     "raise #{exp}" #, but was #{err} instead."
   end
 
+  #
+  #
   # TODO: how to add `but got class` instead.
   def fail_message(subject)
     exp = criteria.map{ |e| e.inspect }.join(' or ')

@@ -17,3 +17,19 @@ And conversely,
     refute UnequalAssay.fail?(1, 2)
     refute UnequalAssay.fail?(1, 'foo')
 
+Making assertions,
+
+    assert UnequalAssay.assert!(10, 20)
+
+    expect ::UnequalAssay do
+      UnequalAssay.assert!(10, 10)
+    end
+
+And refutations,
+
+    assert UnequalAssay.refute!(10, 10)
+
+    expect ::UnequalAssay do
+      UnequalAssay.refute!(10, 20)
+    end
+

@@ -30,7 +30,7 @@ class IdentityAssay < EqualityAssay
 #      "#{criterion}.object_id == #{actual}.object.id"
 #    end
 #  end
-
+#
 #  #
 #  #
 #  #

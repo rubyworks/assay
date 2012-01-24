@@ -1,6 +1,6 @@
-require_relative 'compare_assay'
+require_relative 'boolean_assay'
 
-class FalseAssay < CompareAssay
+class FalseAssay < BooleanAssay
 
   register :false
 
@@ -10,16 +10,6 @@ class FalseAssay < CompareAssay
   def self.pass?(subject)
     subject.false?  #FalseClass === subject
   end
-
-  #
-  #def pass_message(actual)
-  #  "false == #{actual.inspect}"
-  #end
-
-  #
-  #def fail_message(actual)
-  #  "e != #{actual.inspect}"
-  #end
 
 end
 

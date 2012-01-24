@@ -1,6 +1,6 @@
 require_relative 'assertion'
 
-#
+# LikeAssay defines an assertion for broad equality.
 #
 class LikeAssay < Assertion
 
@@ -23,11 +23,6 @@ class LikeAssay < Assertion
   #  else
   #    "#{criterion}.like? #{actual}"
   #  end
-  #end
-
-  #
-  #def self.fail_message(actual, criterion)
-  #  "! " + pass_message(actual, criterion)
   #end
 
 end

@@ -13,12 +13,14 @@ class CompareAssay < Assertion
   register :<=>, :compare
 
   #
-  # Check assertion.
+  # Check assertion using `<=>`.
   #
   def self.pass?(subject, criterion, result=0)
     (subject <=> criterion) == result
   end
 
+  #
+  # Error message for campare assertion.
   #
   def pass_message(subject)
     a  = subject.inspect

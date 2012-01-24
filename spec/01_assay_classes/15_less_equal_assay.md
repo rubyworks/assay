@@ -27,3 +27,4 @@ This applies to any type of object that defines `#<=`, not just numbers.
     assert LessEqualAssay.fail?('b', 'a')
     refute LessEqualAssay.fail?('a', 'b')
 
+

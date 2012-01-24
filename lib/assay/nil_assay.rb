@@ -1,6 +1,6 @@
-require_relative 'compare_assay'
+require_relative 'assertion'
 
-class NilAssay < CompareAssay
+class NilAssay < Assertion
 
   register :nil
 
@@ -10,16 +10,6 @@ class NilAssay < CompareAssay
   def self.pass?(subject)
     subject.nil?
   end
-
-  #
-  #def self.pass_message(actual)
-  #  "nil == #{actual.inspect}"
-  #end
-
-  #
-  #def self.pass_message(actual)
-  #  "nil != #{actual.inspect}"
-  #end
 
 end
 

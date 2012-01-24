@@ -17,4 +17,19 @@ And conversely,
 
     refute NilAssay.fail?(nil)
 
+Making assertions,
+
+    assert NilAssay.assert!(nil)
+
+    expect ::NilAssay do
+      NilAssay.assert!(true)
+    end
+
+And refutations,
+
+    assert NilAssay.refute!(true)
+
+    expect ::NilAssay do
+      NilAssay.refute!(nil)
+    end
 

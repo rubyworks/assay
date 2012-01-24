@@ -14,18 +14,18 @@ class MatchAssay < LikeAssay
     matcher =~ matchee
   end
 
-  #
-  #
-  #
-  def pass_message(matcher)
-    a = matcher.inspect
-    b = criteria.first.inspect  # matchee
-
-    if a.size > SIZE_LIMIT or b.size > SIZE_LIMIT
-      "a =~ b\na) #{a}\nb) #{b}"
-    else
-      "#{a} =~ #{b}"
-    end
-  end
+#  #
+#  #
+#  #
+#  def pass_message(matcher)
+#    a = matcher.inspect
+#    b = criteria.first.inspect  # matchee
+#
+#    if a.size > SIZE_LIMIT or b.size > SIZE_LIMIT
+#      "a =~ b\na) #{a}\nb) #{b}"
+#    else
+#      "#{a} =~ #{b}"
+#    end
+#  end
 
 end
