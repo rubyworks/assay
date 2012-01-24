@@ -46,9 +46,11 @@ module Assay
     end
 
     #
-    # Alias for #assertor.
+    # Alias for `#assertor`.
     #
-    alias :[] :assertor
+    def [](*criteria, &block)
+      assertor(*criteria, &block)
+    end
 
     #
     # Check the assertion, return `true` if passing, `false` otherwise.

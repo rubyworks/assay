@@ -8,45 +8,60 @@ module Assay
 
     #
     #
-    def initialize(assay_class, *criteria)
+    def initialize(assay_class, *criteria, &block)
       @assay    = assay_class
       @criteria = criteria
+      @block    = block
       @not      = false
     end
 
     #
     #
-    def pass?(subject)
-      arguments = complete_criteria(subject)
-      @not ^ @assay.pass?(*arguments)
+    def pass?(subject, &block)
+      arguments, block = complete_criteria(subject, &block)
+      @not ^ @assay.pass?(*arguments, &block)
     end
 
     #
     #
-    def fail?(subject)
-      arguments = complete_criteria(subject)
-      @not ^ @assay.fail?(*arguments)
+    def fail?(subject, &block)
+      arguments, block = complete_criteria(subject, &block)
+      @not ^ @assay.fail?(*arguments, &block)
     end
 
     #
     #
-    def assert!(subject)
-      arguments = complete_criteria(subject)
+    def assert!(subject, &block)
+      # technically this needs to be controlled by the assay class
+      if block.nil? && Proc === subject
+        block   = subject
+        subject = NA
+      end
+
+      arguments, block = complete_criteria(subject, &block)
+
       if @not
-        @assay.refute!(*arguments)
+        @assay.refute!(*arguments, &block)
       else
-        @assay.assert!(*arguments)
+        @assay.assert!(*arguments, &block)
       end
     end
 
     #
     #
-    def refute!(subject)
-      arguments = complete_criteria(subject)
+    def refute!(subject, &block)
+      # technically this needs to be controlled by the assay class
+      if block.nil? && Proc === subject
+        block   = subject
+        subject = NA
+      end
+
+      arguments, block = complete_criteria(subject, &block)
+
       if @not
-        @assay.assert!(*arguments)
+        @assay.assert!(*arguments, &block)
       else
-        @assay.refute!(*arguments)
+        @assay.refute!(*arguments, &block)
       end
     end
 
@@ -77,12 +92,16 @@ module Assay
     end
 
     #
-    def assert_message(subject)
+    #
+    #
+    def assert_message(subject, &block)
       @assay.assert_message(subject, *criteria, &block)
     end
 
     #
-    def refute_message(subject)
+    #
+    #
+    def refute_message(subject, &block)
       @assay.refute_message(subject, *criteria, &block)
     end
 
@@ -115,12 +134,18 @@ module Assay
     #
     #
     #
-    def complete_criteria(subject)
+    def complete_criteria(subject, &block)
+      block = block || @block
+
+      return @criteria, block if subject == NA
+
       if i = @criteria.index(NA)
-        @criteria[0...i] + [subject] + @criteria[i+1..-1]
+        args = @criteria[0...i] + [subject] + @criteria[i+1..-1]
       else
-        [subject] + @criteria
+        args = [subject] + @criteria
       end
+
+      return args, block
     end
 
   end
