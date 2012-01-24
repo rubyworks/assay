@@ -19,9 +19,9 @@ class ExecutionAssay < Assertion
   #
   # Check assertion.
   #
-  def self.pass?(*args, &block)
+  def self.pass?(*arguments, &block)
     begin
-      block.call(*args)
+      block.call(*arguments)
     rescue Exception
       false
     end
@@ -30,34 +30,33 @@ class ExecutionAssay < Assertion
   #
   # Check negated assertion.
   #
-  def self.fail?(*args, &block)
+  def self.fail?(*arguments, &block)
     begin
-      ! block.call(*args)
+      ! block.call(*arguments)
     rescue Exception
       true
     end
   end
 
   #
-  def self.assert!(*criteria, &block)
-    options = (Hash === criteria.last ? criteria.pop : {})
-    assay = new(nil, *criteria) #, &block)
-    assay.assert!(options, &block)
-  end
+  #def self.assert!(*criteria, &block)
+  #  options = (Hash === criteria.last ? criteria.pop : {})
+  #  assay = new(nil, *criteria) #, &block)
+  #  assay.assert!(options, &block)
+  #end
 
   #
-  def self.refute!(*criteria, &block)
-    options = (Hash === criteria.last ? criteria.pop : {})
-    assay = new(nil, *criteria) #, &block)
-    assay.refute!(options, &block)
-  end
+  #def self.refute!(*criteria, &block)
+  #  options = (Hash === criteria.last ? criteria.pop : {})
+  #  assay = new(nil, *criteria) #, &block)
+  #  assay.refute!(options, &block)
+  #end
 
   #
   #
   #
-  def pass_message(*args)
-    block = @block.inspect
-    "#{block}.call(*#{criteria.inspect})"
+  def self.assert_message(*arguments, &block)
+    "#{block}.call(*#{arguments.inspect})"
   end
 
 end

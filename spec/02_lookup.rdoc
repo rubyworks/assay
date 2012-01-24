@@ -20,6 +20,6 @@ the `by_name` method instead.
 We can also use the `Assay.lookup` module method, which will lookup an assay
 class by either assertion name or associated operator.
 
-  Assay.lookup(:==)      #=> ::EqualAssay
-  Assay.lookup(:empty?)  #=> ::EmptyAssay
+  Assay.lookup(:==)               #=> ::EqualAssay
+  Assay.lookup(:empty?)           #=> ::EmptyAssay
 
