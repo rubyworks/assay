@@ -33,10 +33,10 @@ class Assertion < Exception
     case op.to_s
     when /\W/
       @operator = op.to_sym
-      @assertion_name = name.to_sym if name
+      @assertive_name = name.to_sym if name
     else
       @operator = (op.to_s + '?').to_sym
-      @assertion_name = op.to_sym
+      @assertive_name = op.to_sym
     end
 
     operator_index[operator]   = self
