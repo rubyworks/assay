@@ -1,5 +1,6 @@
+require 'brass'
+
 require_relative 'core_ext/na'
-require_relative 'core_ext/exception'
 require_relative 'core_ext/kernel'
 
 require_relative 'assertor'

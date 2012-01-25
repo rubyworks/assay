@@ -75,12 +75,16 @@ module Assay
       backtrace = options[:backtrace] || caller
       message   = options[:message]   || assert_message(*arguments, &block)
 
-      if pass?(*arguments, &block)
-        increment(:pass)
-      else
-        increment(:fail)
-        fail self, message, backtrace
-      end
+      pass = pass?(*arguments, &block)
+
+      assert pass, self, message, backtrace
+
+      #if pass?(*arguments, &block)
+      #  increment(:pass)
+      #else
+      #  increment(:fail)
+      #  fail self, message, backtrace
+      #end
     end
 
     #
@@ -94,12 +98,16 @@ module Assay
       backtrace = options[:backtrace] || caller
       message   = options[:message]   || refute_message(*arguments, &block)
 
-      if fail?(*arguments, &block)
-        increment(:pass)
-      else
-        increment(:fail)
-        fail self, message, backtrace
-      end
+      fail = fail?(*arguments, &block)
+
+      assert fail, self, message, backtrace
+
+      #if fail?(*arguments, &block)
+      #  increment(:pass)
+      #else
+      #  increment(:fail)
+      #  fail self, message, backtrace
+      #end
     end
 
     #
@@ -125,13 +133,13 @@ module Assay
 
   private
 
-    #
-    # Increment global `$ASSERTION_COUNTS` variable.
-    #
-    def increment(which)
-      $ASSERTION_COUNTS[:total] += 1
-      $ASSERTION_COUNTS[which.to_sym] += 1
-    end
+    ##
+    ## Increment global `$ASSERTION_COUNTS` variable.
+    ##
+    #def increment(which)
+    #  $ASSERTION_COUNTS[:total] += 1
+    #  $ASSERTION_COUNTS[which.to_sym] += 1
+    #end
 
     #
     # Construct a standard error message.
