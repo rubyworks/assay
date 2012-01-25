@@ -17,6 +17,13 @@ class Assertion < Exception
   extend Assay::Assertable
 
   #
+  # When displaying errors, use this as a rule of thumb
+  # for determining when the inspected object will be too
+  # big for a single line message.
+  #
+  SIZE_LIMIT = 13
+
+  #
   # Each new subclass must call the +register+ method. This is not an option!
   # The method must be called in order to add the class to the Assertion
   # name and operator indicies, so they might be looked-up efficiently by

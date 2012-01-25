@@ -22,10 +22,10 @@ class CompareAssay < Assertion
   #
   # Error message for campare assertion.
   #
-  def self.assert_message(subject)
+  def self.assert_message(subject, criterion, result=0)
     a  = subject.inspect
-    b  = criteria[0].inspect
-    r  = criteria[1].inspect
+    b  = criterion.inspect
+    r  = result.inspect
 
     if a.size > SIZE_LIMIT or b.size > SIZE_LIMIT
       "a <=> b == #{r}\na) #{a}\nb) #{b}"

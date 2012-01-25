@@ -41,18 +41,16 @@ class RaiseAssay < RescueAssay
   #
   #
   #
-  def self.assert_message(subject)
-    exp = criteria.map{ |e| e.inspect }.join(' or ')
-
+  def self.assert_message(*exceptions)
+    exp = exceptions.map{ |e| e.inspect }.join(' or ')
     "raise #{exp}" #, but was #{err} instead."
   end
 
   #
   #
   #
-  def self.refute_message(subject)
-    exp = criteria.map{ |e| e.inspect }.join(' or ')
-
+  def self.refute_message(*exceptions)
+    exp = exceptions.map{ |e| e.inspect }.join(' or ')
     "! raise #{exp}" #, but was #{err} instead."
   end
 

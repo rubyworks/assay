@@ -25,10 +25,10 @@ class WithinAssay < CompareAssay
   #
   # Failed assertion message.
   #
-  def self.assert_message(subject)
+  def self.assert_message(subject, criterion, delta)
     x = subject.inspect
-    y = criteria[0].inspect
-    d = criteria[1].inspect
+    y = criterion.inspect
+    d = delta.inspect
 
     if [x, y, d].any?{ |e| e.size > SIZE_LIMIT }
       "y - d <= x <= y + d\nx) #{x}\ny) #{y}\nd) #{d}"
