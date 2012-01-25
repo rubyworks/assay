@@ -1,9 +1,9 @@
-require_relative 'execution_assay'
+require_relative 'assertion'
 
 # Assert that a kind of exception class is rescued
 # from the execution of a block.
 #
-class RescueAssay < ExecutionAssay
+class RescueAssay < Assertion
 
   register :rescue
 
