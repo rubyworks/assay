@@ -13,6 +13,11 @@ module Assay
     #
     SIZE_LIMIT = 13
 
+    # TODO: There's really no point to the defaults for #operator and
+    #       assertive name b/c `register` is now reauired which set them.
+    #       But that's in Assertion not Assertable, so something's not quite
+    #       right in that regard.
+
     #
     # If the assertion coresponds to a regular method, particular a symbolic
     # operator (hence the name of this method) then it should be specified via
@@ -29,7 +34,7 @@ module Assay
     # such as `assert_equal`.
     # 
     def assertive_name
-      @assertion_name ||= (
+      @assertive_name ||= (
         if operator.to_s.end_with?('?')
           operator.to_s.chomp('?').to_sym
         else
@@ -110,12 +115,12 @@ module Assay
       #end
     end
 
-    #
-    #
-    #
-    def get_message(subject, fail=false)
-      @not ^ fail ? refute_message(subject) : assert_message(subject)
-    end
+    ##
+    ##
+    ##
+    #def get_message(subject, fail=false)
+    #  @not ^ fail ? refute_message(subject) : assert_message(subject)
+    #end
 
     #
     #
