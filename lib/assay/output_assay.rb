@@ -29,5 +29,24 @@ class OutputAssay < Assertion
     match === newout.string.chomp("\n") || match === newerr.string.chomp("\n")
   end
 
+  #
+  # The fail test for this assertion must be defined separately becuase
+  # the `or` condition needs to be an `and` when testing the inverse.
+  #
+  def self.fail?(match, &block)
+    require 'stringio'
+
+    begin
+      stdout, stderr = $stdout, $stderr
+      newout, newerr = StringIO.new, StringIO.new
+      $stdout, $stderr = newout, newerr
+      yield  
+    ensure
+      $stdout, $stderr = stdout, stderr
+    end
+
+    !(match === newout.string.chomp("\n") && match === newerr.string.chomp("\n"))
+  end
+
 end
 
