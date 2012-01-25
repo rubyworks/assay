@@ -1,61 +1,9 @@
-require_relative 'raise_kind_assay'
+require_relative 'rescue_assay'
 
 #
-class RaiseAssay < RaiseKindAssay
+class RaiseAssay < RescueAssay
 
   register :raised
-
-=begin
-  #
-  #
-  #
-  def self.pass!(*exp) #:yeild:
-    options = (Hash === exp.last ? exp.pop : {})
-
-    exp = exp.first
-
-    begin
-      yield
-      test      = false
-      arguments = [exp]
-    rescue Exception => err
-      test      = (exp === err)
-      arguments = [exp, err]
-    end
-
-    message   = options[:message]   || pass_message(*arguments)
-    backtrace = options[:backtrace] || caller
-
-    if !test
-      fail self, message, backtrace
-    end
-  end
-
-  #
-  #
-  #
-  def self.fail!(*exp) #:yield:
-    options = (Hash === exp.last ? exp.pop : {})
-
-    #exp = exp.first
-
-    begin
-      yield
-      test      = true
-      arguments = exp
-    rescue Exception => err
-      test      = !exp.any?{ |e| e === err }
-      arguments = exp #+ [err]
-    end
-
-    message   = options[:message]   || fail_message(*arguments)
-    backtrace = options[:backtrace] || caller
-
-    if !test
-      fail self, message, backtrace
-    end
-  end
-=end
 
   #
   # Check assertion.
@@ -87,10 +35,13 @@ class RaiseAssay < RaiseKindAssay
     end
   end
 
+  # TODO: How to add `but got class` to message?
+  #       May have to override `#assert!` and `#refute!`.
+
   #
   #
   #
-  def pass_message(subject)
+  def self.assert_message(subject)
     exp = criteria.map{ |e| e.inspect }.join(' or ')
 
     "raise #{exp}" #, but was #{err} instead."
@@ -98,11 +49,63 @@ class RaiseAssay < RaiseKindAssay
 
   #
   #
-  # TODO: how to add `but got class` instead.
-  def fail_message(subject)
+  #
+  def self.refute_message(subject)
     exp = criteria.map{ |e| e.inspect }.join(' or ')
 
     "! raise #{exp}" #, but was #{err} instead."
   end
+
+=begin
+  #
+  #
+  #
+  def self.assert!(*exp) #:yeild:
+    options = (Hash === exp.last ? exp.pop : {})
+
+    exp = exp.first
+
+    begin
+      yield
+      test      = false
+      arguments = [exp]
+    rescue Exception => err
+      test      = (exp === err)
+      arguments = [exp, err]
+    end
+
+    message   = options[:message]   || pass_message(*arguments)
+    backtrace = options[:backtrace] || caller
+
+    if !test
+      fail self, message, backtrace
+    end
+  end
+
+  #
+  #
+  #
+  def self.refute!(*exp) #:yield:
+    options = (Hash === exp.last ? exp.pop : {})
+
+    #exp = exp.first
+
+    begin
+      yield
+      test      = true
+      arguments = exp
+    rescue Exception => err
+      test      = !exp.any?{ |e| e === err }
+      arguments = exp #+ [err]
+    end
+
+    message   = options[:message]   || fail_message(*arguments)
+    backtrace = options[:backtrace] || caller
+
+    if !test
+      fail self, message, backtrace
+    end
+  end
+=end
 
 end

@@ -1,9 +1,11 @@
 require_relative 'execution_assay'
 
+# Assert that a kind of exception class is rescued
+# from the execution of a block.
 #
-class RaiseKindAssay < ExecutionAssay
+class RescueAssay < ExecutionAssay
 
-  register :raise_kind
+  register :rescue
 
   #
   # Check assertion.
@@ -35,17 +37,18 @@ class RaiseKindAssay < ExecutionAssay
     end
   end
 
-  # TODO: how to add `but got class` message to error ?
+  # TODO: How to add `but got class` message to error?
+  #       May have to override #assert! and #refute! method.
 
   #
-  def pass_message(subject)
+  def self.assert_message(subject)
     exp = criteria.map{ |e| e.inspect }.join(' or ')
 
     "raise #{exp}" #, but was #{err} instead."
   end
 
   #
-  def fail_message(subject)
+  def self.refute_message(subject)
     exp = criteria.map{ |e| e.inspect }.join(' or ')
 
     "! raise #{exp}" #, but was #{err} instead."
