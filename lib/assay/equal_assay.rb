@@ -16,9 +16,9 @@ class EqualAssay < LikeAssay
   #
   # Error message for equal assertion.
   #
-  def pass_message(subject)
+  def self.assert_message(subject, criterion)
     a = subject.inspect
-    b = criteria.first.inspect
+    b = criterion.inspect
   
     if a.size > SIZE_LIMIT or b.size > SIZE_LIMIT
       if $ansi
