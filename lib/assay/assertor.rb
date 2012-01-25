@@ -100,7 +100,7 @@ module Assay
     #
     # @todo Should this be @! method instead?
     #
-    def ~@
+    def !@
       dup.negate!
     end
 
