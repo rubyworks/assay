@@ -20,10 +20,10 @@ email:
     - rubyworks-mailinglist@googlegroups.com
 
 qed:
-  files: spec/*.rdoc
+  files: spec/
 
 qedoc:
-  files: spec/*.rdoc
+  files: spec/
   output:
     - QED.rdoc
     - web/demos.html
