@@ -44,4 +44,9 @@ module Kernel
     FalseClass === self
   end
 
+  #
+  def boolean?
+    true? || false?
+  end
+
 end
