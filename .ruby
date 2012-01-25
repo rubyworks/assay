@@ -6,13 +6,12 @@ authors:
   email: transfire@gmail.com
 copyrights:
 - holder: Thomas Sawyer
-  year: '2007'
+  year: '2009'
   license: BSD-2-Clause
 replacements: []
 alternatives: []
 requirements:
 - name: ansi
-  version: ! '>=1.2.5'
 - name: detroit
   groups:
   - build
@@ -39,11 +38,11 @@ revision: 0
 created: '2009-08-21'
 summary: Class-based Assertions Framework
 title: Assay
+version: 0.3.0
 name: assay
 description: ! 'The Assay project defines Assertions in the same way that Ruby defines
   Exceptions.
 
   An asserition then simply becomes an extension to an Exception class.'
 organization: Rubyworks
-version: ''
-date: '2012-01-14'
+date: '2012-01-25'

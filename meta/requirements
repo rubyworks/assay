@@ -1,4 +1,4 @@
 ---
-- ansi >=1.2.5
+- ansi
 - detroit (build)
 - qed     (test)
