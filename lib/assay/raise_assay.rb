@@ -9,13 +9,13 @@ class RaiseAssay < RescueAssay
   # Check assertion.
   #
   def self.pass?(*exceptions)
-    exceptions = [Exception] if exceptions.empty?
+    exceptions = [RuntimeError] if exceptions.empty?
     begin
       yield
       false
     rescue Exception => e
       exceptions.any? do |x|
-        Module === x ? x === e : x == e.class
+        x.instance_of?(Module) ? x === e : e.class == x
       end
     end
   end
@@ -24,13 +24,13 @@ class RaiseAssay < RescueAssay
   # Check negated assertion.
   #
   def self.fail?(*exceptions)
-    exceptions = [Exception] if exceptions.empty?
+    exceptions = [RuntimeError] if exceptions.empty?
     begin
       yield
       true
     rescue Exception => e
       !exceptions.any? do |x|
-        Module === x ? x === e : x == e.class
+        x.instance_of?(Module) ? x === e : e.class == x
       end
     end
   end

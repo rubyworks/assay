@@ -11,7 +11,7 @@ class RescueAssay < Assertion
   # Check assertion.
   #
   def self.pass?(*exceptions)
-    exceptions = [Exception] if exceptions.empty?
+    exceptions = [RuntimeError] if exceptions.empty?
     begin
       yield
       false
@@ -26,7 +26,7 @@ class RescueAssay < Assertion
   # Check negated assertion.
   #
   def self.fail?(*exceptions)
-    exceptions = [Exception] if exceptions.empty?
+    exceptions = [RuntimeError] if exceptions.empty?
     begin
       yield
       true
