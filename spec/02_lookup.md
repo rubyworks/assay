@@ -1,4 +1,4 @@
-= Asay Lookup
+# Asay Lookup
 
 Assay classes are indexed by both name and associated operation, so they
 can be looked-up by either. The indexes are stored as class attributes of
