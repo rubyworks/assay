@@ -26,6 +26,11 @@ TestUnit, MiniTest, RSpec and other test frameworks.
 * Can be used with almost any test framework. 
 
 
+== LIMITATIONS
+
+* Assay is Ruby 1.9+ only!
+
+
 == INSTALLATION
 
 To install with RubyGems simply open a console and type:
