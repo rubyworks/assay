@@ -12,6 +12,7 @@ replacements: []
 alternatives: []
 requirements:
 - name: ansi
+- name: brass
 - name: detroit
   groups:
   - build
