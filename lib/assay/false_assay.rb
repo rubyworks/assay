@@ -1,5 +1,7 @@
 require_relative 'boolean_assay'
 
+# Assert and object if strictly `false`.
+#
 class FalseAssay < BooleanAssay
 
   register :false

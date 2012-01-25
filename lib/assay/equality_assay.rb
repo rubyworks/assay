@@ -1,7 +1,7 @@
 require_relative 'equal_assay'
 
-# EqualityAssay defines the assertion for the `#eql?`, the strict equality
-# method.
+# EqualityAssay defines the assertion for the `#eql?`, the strict
+# equality method.
 #
 class EqualityAssay < EqualAssay
 

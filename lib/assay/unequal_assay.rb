@@ -16,9 +16,9 @@ class UnequalAssay < EqualAssay
   end
 
   #
+  # Failed assertion message.
   #
-  #
-  def pass_message(subject)
+  def self.assert_message(subject)
     a = subject.inspect
     b = criteria.first.inspect
   

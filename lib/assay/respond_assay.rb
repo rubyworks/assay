@@ -13,17 +13,5 @@ class RespondAssay < Assertion
     reciever.respond_to?(method_name)
   end
 
-#  #
-#  def pass_message(receiver)
-#    r = receiver.inspect
-#    m = criteria.first.inspect  # method_name
-#
-#    if r.size > SIZE_LIMIT
-#      "a.respond_to? b\na) (#{receiver.class}) #{r}\nb) ##{m}"
-#    else
-#      "(#{receiver.class}) #{r}.respond_to? ##{m}"
-#    end
-#  end
-
 end
 

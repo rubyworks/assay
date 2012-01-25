@@ -81,7 +81,7 @@ class ThrowAssay < ExecutionAssay
   #
   #
   #
-  def pass_message(symbol)
+  def self.assert_message(symbol)
     s = symbol.inspect
     "throw #{s}"
   end

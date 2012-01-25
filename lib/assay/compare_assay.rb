@@ -22,7 +22,7 @@ class CompareAssay < Assertion
   #
   # Error message for campare assertion.
   #
-  def pass_message(subject)
+  def self.assert_message(subject)
     a  = subject.inspect
     b  = criteria[0].inspect
     r  = criteria[1].inspect

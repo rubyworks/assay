@@ -6,7 +6,9 @@ class EmptyAssay < IncludeAssay
 
   register :empty
 
-  # Check assertion.
+  #
+  # Check assertion with `#empty?`.
+  #
   def self.pass?(subject)
     subject.empty?
   end

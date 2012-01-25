@@ -23,9 +23,9 @@ class WithinAssay < CompareAssay
   end
 
   #
+  # Failed assertion message.
   #
-  #
-  def pass_message(subject)
+  def self.assert_message(subject)
     x = subject.inspect
     y = criteria[0].inspect
     d = criteria[1].inspect

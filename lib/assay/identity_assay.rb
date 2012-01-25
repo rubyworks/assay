@@ -20,7 +20,7 @@ class IdentityAssay < EqualityAssay
 #  #
 #  #
 #  #
-#  def pass_message(subject)
+#  def assert_message(subject)
 #    a = subject.inspect
 #    b = criteria.first.inspect
 #
@@ -34,7 +34,7 @@ class IdentityAssay < EqualityAssay
 #  #
 #  #
 #  #
-#  def fail_message(subject)
+#  def refute_message(subject)
 #    actual    = subject.inspect
 #    criterion = criteria.first.inspect
 #
