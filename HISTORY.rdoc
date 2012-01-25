@@ -1,5 +1,22 @@
 = HISTORY
 
+== 0.4.0 | 1012-01-25
+
+Version 0.4 is very polished partial rewrite of the Assay project.
+This release sheds all ancillary code to separate projects. The 
+compatibility layers are now `assay-testunit`, `assay-minitest` and
+`assay-rspec`. The built-in grammar is now the `fluidity` project.
+All assertion classes now end with `Assay` suffix, instead of `Failure`,
+and they are defined at the toplevel.
+
+Changes:
+
+* Spin-off all ancillary code, leaving only core functionality.
+* Polish and semi-rewrite code.
+* Renamed all Assertion subclasses form xxxFailure to xxxAssay.
+* Add many new Assertion subclasses.
+
+
 == 0.3.0 | 2011-05-07
 
 This release fix the interface of the assertive methods so they accept
@@ -17,7 +34,7 @@ This release of Assay is in good working order and can now be used
 by other frameworks such as A.E. The only caveats at this point
 are the Matcher API, which is still a bit unstable as the names of
 some of its methods may yet change, and the error messages
-for the vairous Failure classes still need improvement.
+for the various Failure classes still need improvement.
 
 Changes:
 

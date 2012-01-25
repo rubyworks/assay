@@ -39,7 +39,7 @@ revision: 0
 created: '2009-08-21'
 summary: Class-based Assertions Framework
 title: Assay
-version: 0.3.0
+version: 0.4.0
 name: assay
 description: ! 'The Assay project defines Assertions in the same way that Ruby defines
   Exceptions.
