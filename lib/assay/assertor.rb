@@ -109,7 +109,7 @@ module Assay
     #
     # @todo Best name for this method?
     #
-    def negated
+    def not
       dup.negate!
     end
 

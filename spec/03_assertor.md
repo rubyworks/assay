@@ -39,7 +39,6 @@ the target of a assertor.
 The `#=~` method is an alias for `#assert!`.
 
     assertor = EqualAssay[1]
-
     assertor =~ 1
 
 Conversely, `#!~` method is an alias for `#refute!`.
@@ -59,14 +58,14 @@ This allows the `case` statement to be used in an intersting way.
     when EqualAssay[10.0]
     end
 
-## Negated Matchers
+## Negated Assertors
 
-Matchers can be negated so that pass and fail methods swap behaviors.
+Assertors can also be negated so that pass and fail methods swap behaviors.
 
-    assertor = EqualityAssay[__,1]
+    assertor = EqualityAssay[1]
 
-    assertor.negated =~ 2
-    assertor.negated !~ 1
+    assertor.not =~ 2
+    assertor.not !~ 1
 
 For conveience we can also negate the assertor using the `~` unary operator.
 
