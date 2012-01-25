@@ -23,7 +23,7 @@ class StdoutAssay < OutputAssay
       $stdout = stdout
     end
 
-    match === newout.string
+    match === newout.string.chomp("\n")
   end
 
 end

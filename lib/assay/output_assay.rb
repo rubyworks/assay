@@ -9,7 +9,10 @@ class OutputAssay < Assertion
   register :output
 
   #
-  # Check assertion via `#===` method.
+  # Compare +match+ against $stdout and $stderr via `#===` method.
+  # 
+  # Note that $stdout and $stderr are temporarily reouted to StringIO
+  # objects and the results have any trailing newline chomped off.
   #
   def self.pass?(match, &block)
     require 'stringio'
@@ -23,7 +26,7 @@ class OutputAssay < Assertion
       $stdout, $stderr = stdout, stderr
     end
 
-    match === newout.string || match === newerr.string
+    match === newout.string.chomp("\n") || match === newerr.string.chomp("\n")
   end
 
 end

@@ -4,7 +4,7 @@ require_relative 'output_assay'
 #
 #   StderrAssay.pass?(/foo/){ $stderr.puts 'foo!' }  #=> true
 #
-class StderrAssay < OuputAssay
+class StderrAssay < OutputAssay
 
   register :stderr
 
@@ -23,7 +23,7 @@ class StderrAssay < OuputAssay
       $stderr = stderr
     end
 
-    match === newerr.string
+    match === newerr.string.chomp("\n")
   end
 
 end
