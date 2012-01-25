@@ -69,7 +69,7 @@ Assertors can also be negated so that pass and fail methods swap behaviors.
 
 For conveience we can also negate the assertor using the `~` unary operator.
 
-    ~assertor === 2
+    !assertor === 2
 
 ## Just Cheking
 
