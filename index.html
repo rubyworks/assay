@@ -9,7 +9,7 @@
     });
   </script>
   <style>
-    body { font-family: sans-serif; margin: 0; padding: 0; background: url(assets/assay.jpg) -50px 270px no-repeat #00a263;}
+    body { font-family: courier; margin: 0; padding: 0; background: url(assets/assay.jpg) -50px 70px no-repeat #00a263; color: #000; }
     img { border: none; }
     li p { margin: 2px; }
     h1 { font-size: 4em; padding: 0; }
@@ -18,14 +18,20 @@
     a { text-decoration: none; }
     a:hover { text-decoration: underline; }
 
-    #nav { text-align: right; padding: 10px 30px; color: #333; font-weight: bold; }
-    #nav a { font-size: 0.9em; color: #333; font-weight: bold; }
-    #nav a:hover { color: yellow; }
+    #nav { text-align: right; padding: 15px 10px 10px 30px; color: #333; font-weight: bold; }
+    #nav a { font-size: 0.9em; color: yellow; font-weight: bold; }
+    #nav a:hover { color: blue; }
+
     #main { margin: 0 auto; max-width: 760px; }
-    #readme { padding: 0.5em 2.5em 2em 2.5em; line-height: 1.6em; font-size: 1.2em; color: white; }
+
+    #header { text-shadow: 1px 1px 3px #eef; }
+    #header h1 { margin-bottom: 0; padding-bottom: 10px; font-size: 64px; }
+    #header h2 { margin: 10px 0 30px 0; padding-bottom: 10px; font-size: 22px; color: #ada; font-style: italic; }
+
+    #readme { padding: 0.5em 2.5em 2em 2.5em; line-height: 1.5em; font-size: 1.3em; color: #fff; font-weight: normal;
+              opacity: 0.8; background: #000; border: 1px solid #373; border-radius: 10px; text-shadow: 1px 1px 2px #eef; }
     #readme p { text-align: justify; padding: 0.25em; }
-    #readme h1 { margin-bottom: 0; padding-bottom: 10px; font-size: 64px; }
-    #readme h2 { margin: 10px 0 30px 0; padding-bottom: 10px; font-size: 22px; color: #555; font-style: italic; }
+
     #footer { margin-top: 0; padding: 30px 0; text-align: center; }
 
     #rubyworks{ position: fixed; bottom: 0; right: 3px; padding: 0; opacity: 0.2; }
@@ -43,21 +49,33 @@
     <a href="http://github.com/rubyworks/assay">Code</a> &nbsp;
   </div>
 
-  <div id="readme">
-    <h1>A S S A Y</h1>
-    <h2>Build Solid Assertion Frameworks</h2>
- 
-    <p>Assay defines a set of reusable assertion classes in the same way that <a href="http://ruby-lang.org">Ruby</a>
-       defines exceptions.</p>
-    <p>Indeed, the Assertion base class is a subclass of Exception itself.</p>
-    <p>Assay provides a complete set of these assertion classes for the most common assertion needs.</p>
-    <p>Assertion nomenclatures can use Assay to provide a solid foundation for their assertion methods.</p>
-    <p>Assay can be used with TestUnit, MiniTest, RSpec and almost any other test harness.</p>
+  <div id="readme"> 
+    <div id="header">
+      <h1>A S S A Y</h1>
+      <h2>Build Solid Assertion Frameworks</h2>
+    </div>
 
-    <p>Learn more by reading the <a href="http://rubydoc.info/gems/assay/frames">API</a>
-       and <a href="demos.html">QED</a> documentation.
+    <p>RESARCH STUDY #A-0-4-0</p>
+
+    <p><i>Hypothesis</i>: All know Ruby test frameworks utilize a subclass of
+       Execption to represent failed assertion. We postulate that all assertions
+       can be most effectively modeled by exception subclasses.</p>
+
+    <p><i>Apparatus</i>: Project defines set of reusable assertion classes mimicking the design of
+       <a href="http://ruby-lang.org">Ruby</a> exception heirarchy. The Assertion
+       class serves as base class for all other <i>assays</i> and is subclass of Exception.
+       A complete set of assay assertion classes are defined for common assertion needs.</p>
+
+    <p><i>Implementation Note</i>: Standard desgin is based on <a href="http://rubyworks.github.com/brass">BRASS</a>
+       project, allowing use with any compliant test harness. Included adapters provide tighter integration
+       with common test frameworks: TestUnit, MiniTest and RSpec.</p>
+
+    <p><i>Prime Corollary</i>: Third-party <i>assertion grammars</i> can use Assay as
+       solid foundation for own assertion domains.</p>
+
+    <p>Details of Study available at <a href="http://rubydoc.info/gems/assay/frames">API</a>
+       and <a href="demos.html">QED</a> documentation sites.
     </p>
-    <p>And whatever you do be sure to, "Test! Test! Test!"</p>
   </div>
 
   <div id="footer">

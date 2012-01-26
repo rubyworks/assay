@@ -138,100 +138,1183 @@
     </div>
 
     <div id="content">
-      
+      <p>Assay is an foundational assertion framework.</p>
+
+<h1>Assay Classes</h1>
+
+<h2>NilAssay</h2>
+
+<p>The <code>NilAssay</code> asserts that an object reference is <code>nil</code>.
+Reference to any other object will fail.</p>
+
+<pre><code>assert NilAssay.pass?(nil)
+
+refute NilAssay.pass?(true)
+refute NilAssay.pass?(false)
+refute NilAssay.pass?("foo")
+</code></pre>
+
+<p>And conversely,</p>
+
+<pre><code>assert NilAssay.fail?(true)
+assert NilAssay.fail?(false)
+assert NilAssay.fail?("foo")
+
+refute NilAssay.fail?(nil)
+</code></pre>
+
+<p>Making assertions,</p>
+
+<pre><code>assert NilAssay.assert!(nil)
+
+expect ::NilAssay do
+  NilAssay.assert!(true)
+end
+</code></pre>
+
+<p>And refutations,</p>
+
+<pre><code>assert NilAssay.refute!(true)
+
+expect ::NilAssay do
+  NilAssay.refute!(nil)
+end
+</code></pre>
+
+<h2>BooleanAssay</h2>
+
+<p>The <code>BooleanAssay</code> asserts that an object reference is <code>nil</code>.
+Reference to any other object will fail.</p>
+
+<pre><code>assert BooleanAssay.pass?(true)
+assert BooleanAssay.pass?(false)
+
+refute BooleanAssay.pass?(nil)
+refute BooleanAssay.pass?("foo")
+</code></pre>
+
+<p>And conversely,</p>
+
+<pre><code>assert BooleanAssay.fail?(nil)
+assert BooleanAssay.fail?("foo")
+
+refute BooleanAssay.fail?(true)
+refute BooleanAssay.fail?(false)
+</code></pre>
+
+<p>Making assertions,</p>
+
+<pre><code>assert BooleanAssay.assert!(true)
+
+expect ::BooleanAssay do
+  BooleanAssay.assert!(nil)
+end
+</code></pre>
+
+<p>And refutations,</p>
+
+<pre><code>assert BooleanAssay.refute!(nil)
+
+expect ::BooleanAssay do
+  BooleanAssay.refute!(true)
+end
+</code></pre>
+
+<h2>FalseAssay</h2>
+
+<p>The <code>FalseAssay</code> class asserts that an object is `false.
+Reference to any other object will fail.</p>
+
+<pre><code>assert FalseAssay.pass?(false)
+
+refute FalseAssay.pass?(true)
+refute FalseAssay.pass?(nil)
+refute FalseAssay.pass?('foo')
+</code></pre>
+
+<p>And conversely,</p>
+
+<pre><code>assert FalseAssay.fail?(true)
+assert FalseAssay.fail?(nil)
+assert FalseAssay.fail?('foo')
+
+refute FalseAssay.fail?(false)
+</code></pre>
+
+<h2>TrueAssay</h2>
+
+<p>The <code>TrueAssay</code> class asserts that an object is <code>true</code>.
+Reference to any other object will fail.</p>
+
+<pre><code>assert TrueAssay.pass?(true)
+
+refute TrueAssay.pass?(false)
+refute TrueAssay.pass?(nil)
+refute TrueAssay.pass?('foo')
+</code></pre>
+
+<p>And conversely,</p>
+
+<pre><code>assert TrueAssay.fail?(false)
+assert TrueAssay.fail?(nil)
+assert TrueAssay.fail?('foo')
+
+refute TrueAssay.fail?(true)
+</code></pre>
+
+<h2>LikeAssay</h2>
+
+<p>The <code>LikeAssay</code> is a very ... assertion. It is a comparison that
+evaluates to true for any of Ruby's many "equal" operators, <code>equal?</code>
+(same as <code>identical?</code>), <code>eql?</code>, <code>==</code>, <code>===</code> and <code>=~</code>. If any one
+of these evaluates to true, than two objects can be said to be alike.</p>
+
+<pre><code>assert LikeAssay.pass?(1, 1)
+assert LikeAssay.pass?(1, 1.0)
+assert LikeAssay.pass?("1", /\d/)
+
+refute LikeAssay.pass?(1, "1")
+refute LikeAssay.pass?("1", /\D/)
+</code></pre>
+
+<p>And conversely,</p>
+
+<pre><code>assert LikeAssay.fail?(1, "1")
+assert LikeAssay.fail?("1", /\D/)
+</code></pre>
+
+<h2>EqualAssay</h2>
+
+<p>The <code>EqualAssay</code> class defines an assertion for equality based on the <code>==</code> method.</p>
+
+<pre><code>assert EqualAssay.pass?(1, 1)
+assert EqualAssay.pass?(1, 1.0)
+
+refute EqualAssay.pass?(1, 2)
+refute EqualAssay.pass?(1, 'foo')
+</code></pre>
+
+<p>And conversely,</p>
+
+<pre><code>assert EqualAssay.fail?(1, 2)
+assert EqualAssay.fail?(1, 'foo')
+
+refute EqualAssay.fail?(1, 1)
+refute EqualAssay.fail?(1, 1.0)
+</code></pre>
+
+<h2>UnequalAssay</h2>
+
+<p>The <code>UnequalAssay</code> class defines an assertion for equality based on the <code>!=</code>
+method, which in Ruby 1.8 is a redefinable method all it's own.</p>
+
+<pre><code>assert UnequalAssay.pass?(1, 2)
+assert UnequalAssay.pass?(1, 'foo')
+
+refute UnequalAssay.pass?(1, 1)
+refute UnequalAssay.pass?(1, 1.0)
+</code></pre>
+
+<p>And conversely,</p>
+
+<pre><code>assert UnequalAssay.fail?(1, 1)
+assert UnequalAssay.fail?(1, 1.0)
+
+refute UnequalAssay.fail?(1, 2)
+refute UnequalAssay.fail?(1, 'foo')
+</code></pre>
+
+<p>Making assertions,</p>
+
+<pre><code>assert UnequalAssay.assert!(10, 20)
+
+expect ::UnequalAssay do
+  UnequalAssay.assert!(10, 10)
+end
+</code></pre>
+
+<p>And refutations,</p>
+
+<pre><code>assert UnequalAssay.refute!(10, 10)
+
+expect ::UnequalAssay do
+  UnequalAssay.refute!(10, 20)
+end
+</code></pre>
+
+<h2>EqualityAssay</h2>
+
+<p>The <code>EqualityAssay</code> class defines an assertion for strict equality via
+the <code>eql?</code> method.</p>
+
+<pre><code>assert EqualityAssay.pass?(1, 1)
+
+refute EqualityAssay.pass?(1, 1.0)
+refute EqualityAssay.pass?(1, 2)
+refute EqualityAssay.pass?(1, 'foo')
+</code></pre>
+
+<p>And conversely,</p>
+
+<pre><code>assert EqualityAssay.fail?(1, 2)
+assert EqualityAssay.fail?(1, 1.0)
+assert EqualityAssay.fail?(1, 'foo')
+
+refute EqualityAssay.fail?(1, 1)
+</code></pre>
+
+<h2>IdentityAssay</h2>
+
+<p>The <code>IdentityAssay</code> class defines an assertion for identity comparison via
+the <code>#identical?</code> method, which is an alias for the <code>#equal?</code> method.
+We have choosen not to use the term <code>equal</code> to avoid confusion with the
+ordinary <code>==</code> type of equality.</p>
+
+<pre><code>assert IdentityAssay.pass?(1, 1)
+assert IdentityAssay.pass?(:a, :a)
+
+refute IdentityAssay.pass?('a', 'a')
+refute IdentityAssay.pass?(1, 1.0)
+refute IdentityAssay.pass?(1, 2)
+refute IdentityAssay.pass?(1, 'foo')
+</code></pre>
+
+<p>And conversely,</p>
+
+<pre><code>assert IdentityAssay.fail?(1, 2)
+assert IdentityAssay.fail?(1, 1.0)
+assert IdentityAssay.fail?(1, 'foo')
+assert IdentityAssay.fail?('a', 'a')
+
+refute IdentityAssay.fail?(1, 1)
+refute IdentityAssay.fail?(:a, :a)
+</code></pre>
+
+<h2>CaseAssay</h2>
+
+<p>The <code>CaseAssay</code> class defines an assertion for case equality using the <code>#===</code>
+method.</p>
+
+<pre><code>assert CaseAssay.pass?(1, 1)
+assert CaseAssay.pass?(1, 1.0)
+assert CaseAssay.pass?(/a/, 'a')
+assert CaseAssay.pass?(String, 'foo')
+
+refute CaseAssay.pass?(1, 2)
+refute CaseAssay.pass?(1, 'foo')
+</code></pre>
+
+<p>And conversely,</p>
+
+<pre><code>assert CaseAssay.fail?(1, 2)
+assert CaseAssay.fail?(1, 'foo')
+
+refute CaseAssay.fail?(1, 1)
+refute CaseAssay.fail?(1, 1.0)
+refute CaseAssay.fail?(/a/, 'a')
+refute CaseAssay.fail?(String, 'foo')
+</code></pre>
+
+<h2>MatchAssay</h2>
+
+<p>The <code>MatchAssay</code> class defines an assertion for matching using the <code>#=~</code>
+method.</p>
+
+<pre><code>assert MatchAssay.pass?('a', /a/)
+
+refute MatchAssay.pass?('a', /b/)
+</code></pre>
+
+<p>And conversely,</p>
+
+<pre><code>assert MatchAssay.fail?('a', /b/)
+
+refute MatchAssay.fail?('a', /a/)
+</code></pre>
+
+<h2>NoMatchAssay</h2>
+
+<p>The <code>NoMatchAssay</code> class defines an assertion for matching using the <code>#!~</code>
+method. As of Ruby 1.9, the <code>#!~</code> method is redefinable independent of <code>#=~</code>,
+so a separate assertion class is needed to cover it.</p>
+
+<pre><code>assert NoMatchAssay.pass?('a', /b/)
+
+refute NoMatchAssay.pass?('a', /a/)
+</code></pre>
+
+<p>And conversely,</p>
+
+<pre><code>assert NoMatchAssay.fail?('a', /a/)
+
+refute NoMatchAssay.fail?('a', /b/)
+</code></pre>
+
+<h2>CompareAssay</h2>
+
+<p>The <code>CompareAssay</code> class defines an assertion of comparison around the <code>#&lt;=&gt;</code>
+method. Since <code>#&lt;=&gt;</code> can return either a <code>1</code>, <code>0</code> or <code>-1</code>, an extra criterion
+is needed when making testing the assertion.</p>
+
+<pre><code>assert CompareAssay.pass?(1, 1,  0)
+assert CompareAssay.pass?(1, 2, -1)
+assert CompareAssay.pass?(2, 1,  1)
+
+refute CompareAssay.pass?(1, 1,  1)
+refute CompareAssay.pass?(1, 1, -1)
+
+refute CompareAssay.pass?(1, 'foo', 0)
+</code></pre>
+
+<p>And conversely,</p>
+
+<pre><code>assert CompareAssay.fail?(1, 1,  1)
+assert CompareAssay.fail?(1, 1, -1)
+
+refute CompareAssay.fail?(1, 1,  0)
+refute CompareAssay.fail?(1, 2, -1)
+refute CompareAssay.fail?(2, 1,  1)
+</code></pre>
+
+<h2>LessAssay</h2>
+
+<p>The <code>LessAssay</code> class defines an assertion of comparison around the <code>#&lt;</code>
+method. This method usually depends on the <code>#&lt;=&gt;</code> method via Ruby's Comparable
+mixin, so <code>LessAssay</code> is a subclass of <code>ComapreAssay</code>, though techincally
+the <code>#&lt;</code> method can be defined independently.</p>
+
+<pre><code>assert LessAssay.pass?( 1, 2)
+assert LessAssay.pass?(-1, 0)
+
+refute LessAssay.pass?(1, 1)
+refute LessAssay.pass?(1, 0)
+</code></pre>
+
+<p>And conversely,</p>
+
+<pre><code>assert LessAssay.fail?(1, 1)
+assert LessAssay.fail?(1, 0)
+
+refute LessAssay.fail?( 1, 2)
+refute LessAssay.fail?(-1, 0)
+</code></pre>
+
+<p>This applies to any type of object that defines <code>#&lt;=</code>, not just numbers.</p>
+
+<pre><code>assert LessAssay.pass?('a', 'b')
+refute LessAssay.pass?('b', 'a')
+
+assert LessAssay.fail?('b', 'a')
+refute LessAssay.fail?('a', 'b')
+</code></pre>
+
+<h2>MoreAssay</h2>
+
+<p>The <code>MoreAssay</code> class defines an assertion of comparison around the <code>#&gt;</code>
+method. This method usually depends on the <code>#&lt;=&gt;</code> method via Ruby's Comparable
+mixin, so <code>MoreAssay</code> is a subclass of <code>ComapreAssay</code>, though techincally
+the <code>#&gt;</code> method can be defined indenpendently.</p>
+
+<pre><code>assert MoreAssay.pass?(2,  1)
+assert MoreAssay.pass?(0, -1)
+assert MoreAssay.pass?(1,  0)
+
+refute MoreAssay.pass?(1, 1)
+refute MoreAssay.pass?(1, 2)
+</code></pre>
+
+<p>And conversely,</p>
+
+<pre><code>assert MoreAssay.fail?(1, 1)
+assert MoreAssay.fail?(0, 1)
+
+refute MoreAssay.fail?(2,  1)
+refute MoreAssay.fail?(0, -1)
+</code></pre>
+
+<p>This applies to any type of object that defines <code>#&gt;</code>, not just numbers.</p>
+
+<pre><code>assert MoreAssay.pass?('b', 'a')
+refute MoreAssay.pass?('a', 'b')
+
+assert MoreAssay.fail?('a', 'b')
+refute MoreAssay.fail?('b', 'a')
+</code></pre>
+
+<h2>LessEqualAssay</h2>
+
+<p>The <code>LessEqualAssay</code> class defines an assertion of comparison around the <code>#&lt;=</code>
+method. This method usually depends on the <code>#&lt;=&gt;</code> method via Ruby's Comparable
+mixin, so <code>LessEqualAssay</code> is a subclass of <code>ComapreAssay</code>, though techincally
+the <code>#&lt;=</code> method can be defined indenpendently.</p>
+
+<pre><code>assert LessEqualAssay.pass?( 1, 2)
+assert LessEqualAssay.pass?(-1, 0)
+assert LessEqualAssay.pass?( 1, 1)
+
+refute LessEqualAssay.pass?(1, 0)
+</code></pre>
+
+<p>And conversely,</p>
+
+<pre><code>assert LessEqualAssay.fail?(1, 0)
+
+refute LessEqualAssay.fail?( 1, 1)
+refute LessEqualAssay.fail?( 1, 2)
+refute LessEqualAssay.fail?(-1, 0)
+</code></pre>
+
+<p>This applies to any type of object that defines <code>#&lt;=</code>, not just numbers.</p>
+
+<pre><code>assert LessEqualAssay.pass?('a', 'b')
+refute LessEqualAssay.pass?('b', 'a')
+
+assert LessEqualAssay.fail?('b', 'a')
+refute LessEqualAssay.fail?('a', 'b')
+</code></pre>
+
+<h2>MoreEqualAssay</h2>
+
+<p>The <code>MoreEqualAssay</code> class defines an assertion of comparison around the <code>#&gt;=</code>
+method. This method usually depends on the <code>#&lt;=&gt;</code> method via Ruby's Comparable
+mixin, so <code>MoreEqualAssay</code> is a subclass of <code>ComapreAssay</code>, though techincally
+the <code>#&gt;=</code> method can be defined indenpendently.</p>
+
+<pre><code>assert MoreEqualAssay.pass?(2,  1)
+assert MoreEqualAssay.pass?(0, -1)
+assert MoreEqualAssay.pass?(1,  1)
+
+refute MoreEqualAssay.pass?(0, 1)
+</code></pre>
+
+<p>And conversely,</p>
+
+<pre><code>assert MoreEqualAssay.fail?(0, 1)
+
+refute MoreEqualAssay.fail?( 1, 1)
+refute MoreEqualAssay.fail?( 2, 1)
+refute MoreEqualAssay.fail?( 0, -1)
+</code></pre>
+
+<p>This applies to any type of object that defines <code>#&lt;=</code>, not just numbers.</p>
+
+<pre><code>assert MoreEqualAssay.pass?('b', 'a')
+refute MoreEqualAssay.pass?('a', 'b')
+
+assert MoreEqualAssay.fail?('a', 'b')
+refute MoreEqualAssay.fail?('b', 'a')
+</code></pre>
+
+<h2>WithinAssay</h2>
+
+<p>The <code>WithinAssay</code> class defines an assertion for matching that two values
+lie with a range.</p>
+
+<pre><code>assert WithinAssay.pass?(1, 1,   0)
+assert WithinAssay.pass?(1, 1.1, 0.1)
+
+refute WithinAssay.pass?(1, 2,   0)
+refute WithinAssay.pass?(1, 1.2, 0.1)
+</code></pre>
+
+<p>And conversely,</p>
+
+<pre><code>assert WithinAssay.fail?(1, 2,   0)
+assert WithinAssay.fail?(1, 1.2, 0.1)
+
+refute WithinAssay.fail?(1, 1,   0)
+refute WithinAssay.fail?(1, 1.1, 0.1)
+</code></pre>
+
+<p>The object do not have to be numbers necessaity, just so long as they
+are comparable and subtractable.</p>
+
+<pre><code>time = Time.now
+
+assert WithinAssay.pass?(time, time+1, 2)
+</code></pre>
+
+<p>Making assertions,</p>
+
+<pre><code>assert WithinAssay.assert!(10, 11, 1)
+
+expect ::WithinAssay do
+  WithinAssay.assert!(10, 15, 2)
+end
+</code></pre>
+
+<p>And refutations,</p>
+
+<pre><code>assert WithinAssay.refute!(10, 11, 0.1)
+
+expect ::WithinAssay do
+  WithinAssay.refute!(10, 11, 1)
+end
+</code></pre>
+
+<h2>KindAssay</h2>
+
+<p>The <code>KindAssay</code> asserts that an object is a class or any ancestor
+of that class.</p>
+
+<pre><code>assert KindAssay.pass?(1, Fixnum)
+assert KindAssay.pass?(1, Numeric)
+
+refute KindAssay.pass?(1, String)
+</code></pre>
+
+<p>And conversely,</p>
+
+<pre><code>assert KindAssay.fail?(1, String)
+
+refute KindAssay.fail?(1, Fixnum)
+refute KindAssay.fail?(1, Numeric)
+</code></pre>
+
+<h2>InstanceAssay</h2>
+
+<p>The <code>InstanceAssay</code> asserts that an object is an instance of a specific class.</p>
+
+<pre><code>assert InstanceAssay.pass?(1, Fixnum)
+
+refute InstanceAssay.pass?(1, Numeric)
+refute InstanceAssay.pass?(1, String)
+</code></pre>
+
+<p>And conversely,</p>
+
+<pre><code>assert InstanceAssay.fail?(1, String)
+assert InstanceAssay.fail?(1, Numeric)
+
+refute InstanceAssay.fail?(1, Fixnum)
+</code></pre>
+
+<h2>IncludeAssay</h2>
+
+<p>The <code>IncludeAssay</code> asserts that a collection includes a specific member, using
+the <code>#include?</code> method.</p>
+
+<pre><code>assert IncludeAssay.pass?([1], 1)
+
+refute IncludeAssay.pass?([],  1)
+refute IncludeAssay.pass?([2], 1)
+</code></pre>
+
+<p>And conversely,</p>
+
+<pre><code>assert IncludeAssay.fail?([],  1)
+assert IncludeAssay.fail?([2], 1)
+
+refute IncludeAssay.fail?([1], 1)
+</code></pre>
+
+<h2>EmptyAssay</h2>
+
+<p>The <code>EmptyAssay</code> asserts that a collection includes no members, using the
+<code>#empty?</code> method.</p>
+
+<pre><code>assert EmptyAssay.pass?([])
+
+refute EmptyAssay.pass?([1])
+</code></pre>
+
+<p>And conversely,</p>
+
+<pre><code>assert EmptyAssay.fail?([1])
+
+refute EmptyAssay.fail?([])
+</code></pre>
+
+<h2>RespondAssay</h2>
+
+<p>The <code>RespondAssay</code> asserts if a an object responds to a message using
+then <code>#respond_to?</code> method.</p>
+
+<pre><code>assert RespondAssay.pass?('a', :to_s)
+
+refute RespondAssay.pass?('a', :foo)
+</code></pre>
+
+<p>And conversely,</p>
+
+<pre><code>assert RespondAssay.fail?('a', :foo)
+
+refute RespondAssay.fail?('a', :to_s)
+</code></pre>
+
+<h2>ExecutionAssay</h2>
+
+<p>The <code>ExecutionAssay</code> asserts that a procedure runs without error and returns
+a result other than <code>false</code> or <code>nil</code>. It is not particularly useful, because
+what it does is effectively what testing in itself does. So it is rather
+redundant. However, it serves as the base class for the more specific
+<code>ReturnAssay</code>.</p>
+
+<pre><code>assert ExecutionAssay.pass?{ true }
+assert ExecutionAssay.pass?{ :foo }
+
+refute ExecutionAssay.pass?{ nil }
+refute ExecutionAssay.pass?{ false }
+refute ExecutionAssay.pass?{ raise }
+</code></pre>
+
+<p>And conversely,</p>
+
+<pre><code>assert ExecutionAssay.fail?{ raise }
+assert ExecutionAssay.fail?{ nil }
+assert ExecutionAssay.fail?{ false }
+
+refute ExecutionAssay.fail?{ true }
+refute ExecutionAssay.fail?{ :foo }
+</code></pre>
+
+<p>Making assertions,</p>
+
+<pre><code>assert ExecutionAssay.assert!{ true }
+
+expect ::ExecutionAssay do
+  assert ExecutionAssay.assert!{ false }
+end
+</code></pre>
+
+<p>And refutations,</p>
+
+<pre><code>assert ExecutionAssay.refute!{ false }
+
+expect ::ExecutionAssay do
+  assert ExecutionAssay.refute!{ true }
+end
+</code></pre>
+
+<h2>ReturnAssay</h2>
+
+<p>The <code>ReturnAssay</code> asserts that a procedure runs without error and returns
+a specified result.</p>
+
+<pre><code>assert ReturnAssay.pass?(:foo){ :foo }
+assert ReturnAssay.pass?(true){ true }
+
+refute ReturnAssay.pass?(:foo){ :bar }
+refute ReturnAssay.pass?(:foo){ true }
+refute ReturnAssay.pass?(:foo){ raise }
+</code></pre>
+
+<p>And conversely,</p>
+
+<pre><code>assert ReturnAssay.fail?(:foo){ :bar }
+assert ReturnAssay.fail?(:foo){ true }
+assert ReturnAssay.fail?(:foo){ raise }
+
+refute ReturnAssay.fail?(:foo){ :foo }
+refute ReturnAssay.fail?(true){ true }
+</code></pre>
+
+<p>Making assertions,</p>
+
+<pre><code>assert ReturnAssay.assert!(true){ true }
+
+expect ::ReturnAssay do
+  assert ReturnAssay.assert!(:foo){ :bar }
+end
+</code></pre>
+
+<p>And refutations,</p>
+
+<pre><code>assert ReturnAssay.refute!(:foo){ :bar }
+
+expect ::ReturnAssay do
+  assert ReturnAssay.refute!(:foo){ :foo }
+end
+</code></pre>
+
+<h2>RescueAssay</h2>
+
+<p>The <code>RescueAssay</code> asserts that a procedure will raise a specific error.</p>
+
+<pre><code>assert RescueAssay.pass?{ raise }
+assert RescueAssay.pass?(RuntimeError){ raise }
+assert RescueAssay.pass?(ArgumentError){ raise ArgumentError }
+assert RescueAssay.pass?(Exception){ raise ArgumentError }
+
+refute RescueAssay.pass?{ raise Exception }
+refute RescueAssay.pass?(RuntimeError){ nil }
+refute RescueAssay.pass?(ArgumentError){ raise }
+</code></pre>
+
+<p>And conversely,</p>
+
+<pre><code>assert RescueAssay.fail?{ raise Exception }
+assert RescueAssay.fail?(RuntimeError){ nil }
+assert RescueAssay.fail?(ArgumentError){ raise }
+
+refute RescueAssay.fail?{ raise }
+refute RescueAssay.fail?(RuntimeError){ raise }
+refute RescueAssay.fail?(ArgumentError){ raise ArgumentError }
+refute RescueAssay.fail?(Exception){ raise ArgumentError }
+</code></pre>
+
+<p>Making assertions,</p>
+
+<pre><code>assert RescueAssay.assert!(RuntimeError){ raise }
+
+expect ::RescueAssay do
+  RaiseAssay.assert!(RuntimeError){ nil }
+end
+</code></pre>
+
+<p>And refutations,</p>
+
+<pre><code>assert RescueAssay.refute!(RuntimeError){ nil }
+
+expect ::RescueAssay do
+  RaiseAssay.refute!(RuntimeError){ raise }
+end
+</code></pre>
+
+<h2>RaiseAssay</h2>
+
+<p>The <code>RaiseAssay</code> asserts that a procedure will raise a specific error.</p>
+
+<pre><code>assert RaiseAssay.pass?{ raise }
+assert RaiseAssay.pass?(RuntimeError){ raise }
+assert RaiseAssay.pass?(ArgumentError){ raise ArgumentError }
+
+refute RaiseAssay.pass?{ raise Exception }
+refute RaiseAssay.pass?(Exception){ raise ArgumentError }
+refute RaiseAssay.pass?(StandardError){ nil }
+refute RaiseAssay.pass?(ArgumentError){ raise }
+</code></pre>
+
+<p>And conversely,</p>
+
+<pre><code>assert RaiseAssay.fail?{ raise Exception }
+assert RaiseAssay.fail?(RuntimeError){ nil }
+assert RaiseAssay.fail?(ArgumentError){ raise }
+assert RaiseAssay.fail?(Exception){ raise ArgumentError }
+
+refute RaiseAssay.fail?{ raise }
+refute RaiseAssay.fail?(RuntimeError){ raise }
+refute RaiseAssay.fail?(ArgumentError){ raise ArgumentError }
+</code></pre>
+
+<p>Making assertions,</p>
+
+<pre><code>assert RaiseAssay.assert!(RuntimeError){ raise }
+
+expect ::RaiseAssay do
+  RaiseAssay.assert!(RuntimeError){ nil }
+end
+</code></pre>
+
+<p>And refutations,</p>
+
+<pre><code>assert RaiseAssay.refute!(RuntimeError){ nil }
+
+expect ::RaiseAssay do
+  RaiseAssay.refute!(RuntimeError){ raise }
+end
+</code></pre>
+
+<h2>ThrowAssay</h2>
+
+<p>The <code>ThrowAssay</code> asserts that a procedure will call <code>throw</code> and optionally
+of a specific type.</p>
+
+<pre><code>assert ThrowAssay.pass?(:foo){ throw :foo }
+refute ThrowAssay.pass?(:foo){ throw :bar }
+</code></pre>
+
+<p>And conversely,</p>
+
+<pre><code>assert ThrowAssay.fail?(:foo){ throw :bar }
+refute ThrowAssay.fail?(:foo){ throw :foo }
+</code></pre>
+
+<p>In addition <code>ThrowAssay</code> can assert that there is a throw, regardless
+of tag.</p>
+
+<pre><code>assert ThrowAssay.pass?{ throw :foo }
+refute ThrowAssay.pass?{ nil }
+</code></pre>
+
+<p>And converselry,</p>
+
+<pre><code>assert ThrowAssay.fail?{ nil }
+refute ThrowAssay.fail?{ throw :bar }
+</code></pre>
+
+<p>Making assertions, notice that the <code>#assert!</code> method requires a <code>nil</code>
+argument in order to test for any throw. This is not needed on the
+<code>#pass?</code> method because the <code>#pass</code> method can't take aditional options
+for setting the message or backtrace.</p>
+
+<pre><code>assert ThrowAssay.assert!(nil){ throw :foo }
+
+assert ThrowAssay.assert!(nil, :message=&gt;"optional message"){
+  throw :foo
+}
+
+expect ThrowAssay do
+  ThrowAssay.assert!(nil){ 'nothing' }
+end
+</code></pre>
+
+<p>And refutations,</p>
+
+<pre><code>assert ThrowAssay.refute!(:foo){ throw :bar }
+
+expect ThrowAssay do
+  ThrowAssay.refute!(:foo){ throw :foo }
+end
+</code></pre>
+
+<h2>PathAssay</h2>
+
+<p>The <code>PathAssay</code> asserts that a file-system path exists.</p>
+
+<pre><code>file = __FILE__
+dir  = File.dirname(file)
+dne  = __FILE__ + '~'
+
+assert PathAssay.pass?(file)
+assert PathAssay.pass?(dir)
+
+refute PathAssay.pass?(dne)
+</code></pre>
+
+<p>And conversely,</p>
+
+<pre><code>assert PathAssay.fail?(dne)
+
+refute PathAssay.fail?(file)
+refute PathAssay.fail?(dir)
+</code></pre>
+
+<h2>DirectoryAssay</h2>
+
+<p>The <code>DirectoryAssay</code> asserts that a file-system path exists
+and it is a directory.</p>
+
+<pre><code>file = __FILE__
+dir  = File.dirname(file)
+dne  = __FILE__ + '~'
+
+assert DirectoryAssay.pass?(dir)
+
+refute DirectoryAssay.pass?(file)
+refute DirectoryAssay.pass?(dne)
+</code></pre>
+
+<p>And conversely,</p>
+
+<pre><code>assert DirectoryAssay.fail?(file)
+assert DirectoryAssay.fail?(dne)
+
+refute DirectoryAssay.fail?(dir)
+</code></pre>
+
+<h2>FileAssay</h2>
+
+<p>The <code>FileAssay</code> asserts that a file-system path exists and it is a file.</p>
+
+<pre><code>file = __FILE__
+dir  = File.dirname(file)
+dne  = __FILE__ + '~'
+
+assert FileAssay.pass?(file)
+
+refute FileAssay.pass?(dir)
+refute FileAssay.pass?(dne)
+</code></pre>
+
+<p>And conversely,</p>
+
+<pre><code>assert FileAssay.fail?(dir)
+assert FileAssay.fail?(dne)
+
+refute FileAssay.fail?(file)
+</code></pre>
+
+<h2>OutputAssay</h2>
+
+<p>The <code>OutputAssay</code> asserts that a output is sent to either <code>$stdout</code> or <code>$stderr</code>.</p>
+
+<p>Let's do the simple stdout case first.</p>
+
+<pre><code>assert OutputAssay.pass?('foo'){ puts 'foo' }
+
+refute OutputAssay.pass?('foo'){ nil }
+refute OutputAssay.pass?('foo'){ puts 'bar' }
+</code></pre>
+
+<p>And conversely,</p>
+
+<pre><code>refute OutputAssay.fail?('foo'){ puts 'foo' }
+
+assert OutputAssay.fail?('foo'){ nil }
+assert OutputAssay.fail?('foo'){ puts 'bar' }
+</code></pre>
+
+<p>Now the same for <code>$stderr</code>.</p>
+
+<pre><code>assert OutputAssay.pass?('foo'){ $stderr.puts 'foo' }
+
+refute OutputAssay.pass?('foo'){ nil }
+refute OutputAssay.pass?('foo'){ $stderr.puts 'bar' }
+</code></pre>
+
+<p>And conversely,</p>
+
+<pre><code>refute OutputAssay.fail?('foo'){ $stderr.puts 'foo' }
+
+assert OutputAssay.fail?('foo'){ nil }
+assert OutputAssay.fail?('foo'){ $stderr.puts 'bar' }
+</code></pre>
+
+<p>The OutputAssay uses <code>#===</code> to test the match so we can also
+match against a regular expression.</p>
+
+<pre><code>assert OutputAssay.pass?(/f/){ puts 'foo' }
+
+assert OutputAssay.pass?(/f/){ $stderr.puts 'foo' }
+</code></pre>
+
+<h2>StdoutAssay</h2>
+
+<p>The <code>StdoutAssay</code> asserts that a output is sent to <code>$stdout</code>.</p>
+
+<pre><code>assert StdoutAssay.pass?('foo'){ puts 'foo' }
+
+refute StdoutAssay.pass?('foo'){ nil }
+refute StdoutAssay.pass?('foo'){ puts 'bar' }
+</code></pre>
+
+<p>And conversely,</p>
+
+<pre><code>refute StdoutAssay.fail?('foo'){ puts 'foo' }
+
+assert StdoutAssay.fail?('foo'){ nil }
+assert StdoutAssay.fail?('foo'){ puts 'bar' }
+</code></pre>
+
+<p>The StdoutAssay uses <code>#===</code> to test the match so we can also
+match against a regular expression.</p>
+
+<pre><code>assert StdoutAssay.pass?(/f/){ puts 'foo' }
+</code></pre>
+
+<h2>StderrAssay</h2>
+
+<p>The <code>StderrAssay</code> asserts that a output is sent to <code>$stderr</code>.</p>
+
+<pre><code>assert StderrAssay.pass?('foo'){ $stderr.puts 'foo' }
+
+refute StderrAssay.pass?('foo'){ nil }
+refute StderrAssay.pass?('foo'){ $stderr.puts 'bar' }
+</code></pre>
+
+<p>And conversely,</p>
+
+<pre><code>refute StderrAssay.fail?('foo'){ $stderr.puts 'foo' }
+
+assert StderrAssay.fail?('foo'){ nil }
+assert StderrAssay.fail?('foo'){ $stderr.puts 'bar' }
+</code></pre>
+
+<p>The StderrAssay uses <code>#===</code> to test the match so we can also
+match against a regular expression.</p>
+
+<pre><code>assert StderrAssay.pass?(/f/){ $stderr.puts 'foo' }
+</code></pre>
+
 <h1>Asay Lookup</h1>
 
 <p>Assay classes are indexed by both name and associated operation, so they
 can be looked-up by either. The indexes are stored as class attributes of
 the Assertion base class.</p>
 
-<p>Let’s lookup the class for `==` equality.</p>
+<p>Let's lookup the class for <code>==</code> equality.</p>
 
-<pre>Assertion.by_operator(:==)      #=&gt; ::EqualAssay</pre>
+<p>  Assertion.by_operator(:==)      #=> ::EqualAssay</p>
 
-<p>Let’s lookup the assertion class for `#empty?`.</p>
+<p>Let's lookup the assertion class for <code>#empty?</code>.</p>
 
-<pre>Assertion.by_operator(:empty?)  #=&gt; ::EmptyAssay</pre>
+<p>  Assertion.by_operator(:empty?)  #=> ::EmptyAssay</p>
 
-<p>If we wish to lookup by assertive name instead of operator, we can use the
-`by_name` method instead.</p>
+<p>If we wish to lookup by assertive name instead of operator, we can use
+the <code>by_name</code> method instead.</p>
 
-<pre>Assertion.by_name(:empty)       #=&gt; ::EmptyAssay</pre>
+<p>  Assertion.by_name(:empty)       #=> ::EmptyAssay</p>
 
-<p>We can also use the `Assay.lookup` module method, which will lookup an
-assay class by either assertion name or associated operator.</p>
+<p>We can also use the <code>Assay.lookup</code> module method, which will lookup an assay
+class by either assertion name or associated operator.</p>
 
-<pre>Assay.lookup(:==)      #=&gt; ::EqualAssay
-Assay.lookup(:empty?)  #=&gt; ::EmptyAssay</pre>
+<p>  Assay.lookup(:==)               #=> ::EqualAssay
+  Assay.lookup(:empty?)           #=> ::EmptyAssay</p>
 
+<h1>Assay as Assertor</h1>
 
-<p># Assay as Matcher</p>
+<p>Assay classes can be converted to assertors, otherwise known as <em>matchers</em> in
+RSpec circles. The idea behind Assertors is that they can be initialized with
+pre-set criteria and then applied to target subjects.</p>
 
-<p>Assay classes are <b>matchers</b>. They can be initialized with criteria
-and applied to target objects.</p>
+<h2>Standard Target Matching</h2>
 
-<p>## Standard Target Matching</p>
+<pre><code>assertor = EqualAssay[1]
 
-<pre>matcher = EqualAssay[1]
+assertor.assert!(1)
 
-matcher.assert!(1)</pre>
+expect EqualAssay do
+  assertor.assert!(2)
+end
+</code></pre>
 
-<p>## Partial Arguments</p>
+<h2>Partial Arguments</h2>
 
-<pre>matcher = LessAssay[1,__]</pre>
+<pre><code>assertor = LessAssay[1,__]
+</code></pre>
 
-<p>We can apply the matcher using the `#pass!` method.</p>
+<p>We can apply the assertor using the <code>#pass!</code> method.</p>
 
-<pre>matcher.assert!(2)</pre>
+<pre><code>assertor.assert!(2)
+</code></pre>
 
-<p>Likewise we can assert the negated expression using `#fail!`.</p>
+<p>Likewise we can assert the negated expression using <code>#fail!</code>.</p>
 
-<pre>matcher.refute!(0)</pre>
+<pre><code>assertor.refute!(0)
+</code></pre>
 
-<p>Assay partial a very versile because they allow any argument to become the
-target of a matcher.</p>
+<p>Assay partial a very versile because they allow any argument to become
+the target of a assertor.</p>
 
-<pre>matcher = CompareAssay[2,1,__]
+<pre><code>assertor = CompareAssay[2,1,__]
 
-matcher.assert!(1)
-matcher.refute!(0)</pre>
+assertor.assert!(1)
+assertor.refute!(0)
+</code></pre>
 
-<p>## Match Method</p>
+<h2>Match Operator</h2>
 
-<p>The `#=~` method is an alias for `#assert!`.</p>
+<p>The <code>#=~</code> method is an alias for <code>#assert!</code>.</p>
 
-<pre>matcher = EqualAssay[1]
+<pre><code>assertor = EqualAssay[1]
+assertor =~ 1
+</code></pre>
 
-matcher =~ 1</pre>
+<p>Conversely, <code>#!~</code> method is an alias for <code>#refute!</code>.</p>
 
-<p>Conversely, `#!~` method is an alias for `#refute!`.</p>
+<pre><code>assertor !~ 2
+</code></pre>
 
-<pre>matcher !~ 2</pre>
+<h2>Case Operator</h2>
 
-<p>## Case Method</p>
+<p>The <code>#===</code> method is also an alias for <code>#assert!</code>.</p>
 
-<p>The `#===` method is also an alias for `#assert!`.</p>
+<pre><code>assertor === 1
+</code></pre>
 
-<pre>matcher === 1</pre>
+<p>This allows the <code>case</code> statement to be used in an intersting way.</p>
 
-<p>This allows the `case` statement to be used in an intersting way.</p>
-
-<pre>case 10
+<pre><code>case 10
 when KindAssay[Numeric]
 when EqualAssay[10.0]
-end</pre>
+end
+</code></pre>
 
-<p>## Negated Matchers</p>
+<h2>Negated Assertors</h2>
 
-<p>Matchers can be negated so that pass and fail methods swap behaviors.</p>
+<p>Assertors can also be negated so that pass and fail methods swap behaviors.</p>
 
-<pre>matcher = EqualityAssay[__,1]
+<pre><code>assertor = EqualityAssay[1]
 
-matcher.negated === 2</pre>
+assertor.not =~ 2
+assertor.not !~ 1
+</code></pre>
 
-<p>For conveience we can also negate the matcher using the `~` unary operator.</p>
+<p>For conveience we can also negate the assertor using the <code>~</code> unary operator.</p>
 
-<pre>~matcher === 2</pre>
+<pre><code>!assertor === 2
+</code></pre>
+
+<h2>Just Cheking</h2>
+
+<p>Assertors can also be used just to test the assertion without actually
+raising the associated exception.</p>
+
+<pre><code>assertor = EqualityAssay[__,1]
+
+assertor.pass?(1)
+assertor.fail?(2)
+</code></pre>
+
+<h2>RSpec Compatability</h2>
+
+<p>RSpec compatibality is provided via neccessary method alias, in particular
+<code>#matches?</code> and <code>#does_not_match?</code>.</p>
+
+<pre><code>assertor = EqualityAssay[__,1]
+
+assert assertor.matches?(1)
+assert assertor.does_not_match?(2)
+</code></pre>
+
+<p>Error messages are handle by RSpec by <code>#failure_message_for_should</code> and
+<code>#failure_message_for_should_not</code>.</p>
+
+<pre><code>assertor.failure_message_for_should(1)
+assertor.failure_message_for_should_not(2)
+</code></pre>
+
+<h1>Assay Class Methods</h1>
+
+<h2>Metadata</h2>
+
+<p>Assay support full project metadata access thanks to the <code>.ruby</code>
+standard.</p>
+
+<pre><code>Assay.metadata['name']  #=&gt; 'assay'
+</code></pre>
+
+<p>The metadata also dynamically translates into constants, so we
+can work with this information in the traditional fashion.</p>
+
+<pre><code>Assay::NAME  #=&gt; 'assay'
+</code></pre>
+
+<h2>Color Messages</h2>
+
+<p>We can have some Assay error messages use ANSI color output by
+setting the <code>Assay.color</code> setting to <code>true</code>.</p>
+
+<pre><code>Assay.color = true
+</code></pre>
+
+<p>Keep in mind that this requires the <code>ansi</code> library.</p>
+
+<p>In particular it is the equality related assertions that utilize color
+output when the objects compared are large. This helps the developer
+pinpint the differences quickly.</p>
+
+<pre><code>expect EqualAssay do
+  EqualAssay['really long string'] === 'other string'
+end
+</code></pre>
+
+<h2>Lookup Assay Classes</h2>
+
+<p>Assay tracks all created Assay classes by both associated operation
+and assertive name.</p>
+
+<pre><code>Assay.lookup_by_operator(:==)  #=&gt; EqualAssay
+
+Assay.lookup_by_name(:equal)   #=&gt; EqualAssay
+</code></pre>
+
+<p>We can look for either with just <code>lookup</code>.</p>
+
+<pre><code>Assay.lookup(:==)      #=&gt; EqualAssay
+Assay.lookup(:equal)   #=&gt; EqualAssay
+</code></pre>
 
 
     </div>
