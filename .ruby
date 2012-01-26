@@ -28,9 +28,10 @@ repositories:
   scm: git
   name: upstream
 resources:
-  home: http://rubydoc.info/gems/assay
-  docs: http://rubydoc.info/gems/assay
+  home: http://rubyworks.github.com/assay
+  docs: http://rubydoc.info/gems/assay/frames
   code: http://github.com/rubyworks/assay
+  bugs: http://github.com/rubyworks/assay/issues
   mail: http://groups.google.com/groups/rubyworks-mailinglist
 extra: {}
 load_path:
@@ -41,9 +42,10 @@ summary: Class-based Assertions Framework
 title: Assay
 version: 0.4.0
 name: assay
-description: ! 'The Assay project defines Assertions in the same way that Ruby defines
-  Exceptions.
+description: ! 'Assay defines assertions in the same way that Ruby defines exceptions.
 
-  An asserition then simply becomes an extension to an Exception class.'
+  Each type of asserition, called an assay, is then a child of the base
+
+  Assertion class, which itself is a subclass of the Exception class.'
 organization: Rubyworks
 date: '2012-01-25'
