@@ -9,7 +9,7 @@
     });
   </script>
   <style>
-    body { font-family: courier; margin: 0; padding: 0; background: url(assets/assay.jpg) -50px 70px no-repeat #00a263; color: #000; }
+    body { font-family: times; margin: 0; padding: 0; background: url(assets/assay.jpg) -60px 0px repeat-y #fff; color: #000; }
     img { border: none; }
     li p { margin: 2px; }
     h1 { font-size: 4em; padding: 0; }
@@ -19,18 +19,19 @@
     a:hover { text-decoration: underline; }
 
     #nav { text-align: right; padding: 15px 10px 10px 30px; color: #333; font-weight: bold; }
-    #nav a { font-size: 0.9em; color: yellow; font-weight: bold; }
+    #nav a { font-size: 0.9em; color: green; font-weight: bold; }
     #nav a:hover { color: blue; }
 
-    #main { margin: 0 auto; max-width: 760px; }
+    #main { margin: 0 auto; max-width: 800px; }
 
     #header { text-shadow: 1px 1px 3px #eef; }
     #header h1 { margin-bottom: 0; padding-bottom: 10px; font-size: 64px; }
-    #header h2 { margin: 10px 0 30px 0; padding-bottom: 10px; font-size: 22px; color: #ada; font-style: italic; }
+    #header h2 { margin: 10px 0 16px 0; padding-bottom: 10px; font-size: 22px; color: #ada; font-style: italic; }
 
-    #readme { padding: 0.5em 2.5em 2em 2.5em; line-height: 1.5em; font-size: 1.3em; color: #fff; font-weight: normal;
-              opacity: 0.8; background: #000; border: 1px solid #373; border-radius: 10px; text-shadow: 1px 1px 2px #eef; }
-    #readme p { text-align: justify; padding: 0.25em; }
+    #readme { padding: 0.5em 2.5em 2em 3.5em; line-height: 2.1em; font-size: 1.2em; color: #002; font-weight: normal;
+              text-shadow: 1px 1px 2px #eef; border: 1px solid #ccc;
+              background: #fff; repeat-y; }
+    #readme p { text-align: justify; padding: 0.6em; }
 
     #footer { margin-top: 0; padding: 30px 0; text-align: center; }
 
@@ -55,25 +56,27 @@
       <h2>Build Solid Assertion Frameworks</h2>
     </div>
 
-    <p>RESEARCH STUDY #A-0-4-0</p>
+    <p><i>Premise</i>: All known Ruby test frameworks utilize a subclass of
+       Exception to represent a failed assertion. Ruby organizaes exceptions 
+       in a hierarchy of related purpose, one class to each error type. Therefore
+       it is reasonable to postulate that assertions can be effectively organized
+       in the same manner modeled as exception subclasses, one for each type of
+       assertion.</p>
 
-    <p><i>Hypothesis</i>: All known Ruby test frameworks utilize a subclass of
-       Exception to represent failed assertion. We postulate that all assertions
-       can be most effectively modeled by exception subclasses.</p>
+    <p><i>Apparatus</i>: The Assay project defines a set of reusable assertion
+       classes mimicking the design of <a href="http://ruby-lang.org">Ruby</a>
+       exception hierarchy. The Assertion class serves as base class for all
+       other <i>assays</i> and is subclass of Exception. A complete set of assay
+       assertion classes are defined for all common assertion needs.</p>
 
-    <p><i>Apparatus</i>: Project defines set of reusable assertion classes mimicking the design of
-       <a href="http://ruby-lang.org">Ruby</a> exception hierarchy. The Assertion
-       class serves as base class for all other <i>assays</i> and is subclass of Exception.
-       A complete set of assay assertion classes are defined for all common assertion needs.</p>
+    <p><i>Implementation</i>: Underlying code harnesses <a href="http://rubyworks.github.com/brass">BRASS</a>,
+       assertion standards allowing reuse with all compliant test systems. In addition, included 
+       adapters provide tighter integration with common legacy test frameworks: TestUnit, MiniTest and RSpec.</p>
 
-    <p><i>Implementation Note</i>: Standard design is based on <a href="http://rubyworks.github.com/brass">BRASS</a>
-       project, allowing use with any compliant test system. Included adapters provide integration
-       with common legacy test frameworks: TestUnit, MiniTest and RSpec.</p>
+    <p><i>Corollary</i>: Third-party <i>assertion grammars</i> can use Assay as
+       solid foundation for own assertion domain languages.</p>
 
-    <p><i>Prime Corollary</i>: Third-party <i>assertion grammars</i> can use Assay as
-       solid foundation for own assertion domains.</p>
-
-    <p>Details of Study available at <a href="http://rubydoc.info/gems/assay/frames">API</a>
+    <p>Details of project available at <a href="http://rubydoc.info/gems/assay/frames">API</a>
        and <a href="demos.html">QED</a> documentation sites.
     </p>
   </div>
