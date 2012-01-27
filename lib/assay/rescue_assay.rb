@@ -5,7 +5,7 @@ require_relative 'assertion'
 #
 class RescueAssay < Assertion
 
-  register :rescue
+  register :rescued
 
   #
   # Check assertion.
