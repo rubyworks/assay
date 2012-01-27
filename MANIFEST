@@ -7,6 +7,7 @@ lib/assay/assertion.rb
 lib/assay/assertor.rb
 lib/assay/boolean_assay.rb
 lib/assay/case_assay.rb
+lib/assay/close_assay.rb
 lib/assay/compare_assay.rb
 lib/assay/core_ext/kernel.rb
 lib/assay/core_ext/na.rb
