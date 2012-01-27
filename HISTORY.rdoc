@@ -1,6 +1,17 @@
 = HISTORY
 
-== 0.4.0 | 1012-01-25
+== 0.4.1 | 2012-01-27
+
+This release adds CloseAssay for relative approxmation assertions on values,
+where as the WithinAssay handles absolute difference.
+
+Changes:
+
+* Add CloseAssay for relative approximation.
+* Use past tense for RescueAssay's assertive name, i.e. :rescued.
+
+
+== 0.4.0 | 2012-01-25
 
 Version 0.4 is a very polished partial rewrite of the Assay project.
 This release sheds all ancillary code to separate projects. The 

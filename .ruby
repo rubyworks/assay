@@ -40,7 +40,7 @@ revision: 0
 created: '2009-08-21'
 summary: Class-based Assertions Framework
 title: Assay
-version: 0.4.0
+version: 0.4.1
 name: assay
 description: ! 'Assay defines assertions in the same way that Ruby defines exceptions.
 
@@ -48,4 +48,4 @@ description: ! 'Assay defines assertions in the same way that Ruby defines excep
 
   Assertion class, which itself is a subclass of the Exception class.'
 organization: Rubyworks
-date: '2012-01-25'
+date: '2012-01-27'
