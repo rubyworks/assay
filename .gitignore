@@ -1,4 +1,4 @@
-.reap/digest
+.fire/digest
 .yardoc
 doc
 log
@@ -8,4 +8,4 @@ tmp
 web
 wiki
 work/trash
-QED.rdoc
+DEMO.rdoc
