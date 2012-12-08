@@ -1,0 +1,58 @@
+---
+type: ruby
+revision: 2013
+sources:
+- METADATA.yml
+authors:
+- name: Thomas Sawyer
+  email: transfire@gmail.com
+organizations:
+- name: Rubyworks
+requirements:
+- name: ansi
+- name: brass
+- groups:
+  - build
+  development: true
+  name: detroit
+- groups:
+  - test
+  development: true
+  name: qed
+conflicts: []
+alternatives: []
+resources:
+- type: home
+  uri: http://rubyworks.github.com/assay
+  label: Homepage
+- type: docs
+  uri: http://rubydoc.info/gems/assay/frames
+  label: Documentation
+- type: code
+  uri: http://github.com/rubyworks/assay
+  label: Source Code
+- type: bugs
+  uri: http://github.com/rubyworks/assay/issues
+  label: Issue Tracker
+- type: mail
+  uri: http://groups.google.com/groups/rubyworks-mailinglist
+  label: Mailing List
+repositories: []
+categories: []
+load_path:
+- lib
+copyrights:
+- holder: Thomas Sawyer
+  year: '2009'
+  license: BSD-2-Clause
+name: assay
+title: Assay
+version: 0.4.1
+summary: Class-based Assertions Framework
+description: Assay defines assertions in the same way that Ruby defines exceptions.
+  Each type of asserition, called an assay, is then a child of the base Assertion
+  class, which itself is a subclass of the Exception class.
+respositories:
+  upstream: git@github.com:rubyworks/assay.git
+created: '2009-08-21'
+date: '2012-12-08'

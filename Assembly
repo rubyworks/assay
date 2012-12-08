@@ -25,7 +25,7 @@ qed:
 qedoc:
   files: demo/
   output:
-    - DEMO.rdoc
+    - DEMO.md
     - web/demos.html
 
 # OMG! Look at this old thing!

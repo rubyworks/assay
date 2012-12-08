@@ -1,12 +1,12 @@
-= Assay
+# Assay
 
-{Website}[http://rubyworks.github.com/assay] /
-{Report Issue}[http://github.com/rubyworks/assay/issues] /
-{Source Code}[http://github.com/rubyworks/assay] /
-{Mailing List}[http://groups.google.com/group/rubyworks-mailinglist]
+[Website](http://rubyworks.github.com/assay) /
+[Report Issue](http://github.com/rubyworks/assay/issues) /
+[Source Code](http://github.com/rubyworks/assay) /
+[Mailing List](http://groups.google.com/group/rubyworks-mailinglist)
 
 
-== DESCRIPTION
+## DESCRIPTION
 
 Assay defines assertions in the same way that Ruby defines
 exceptions. An assertion then is nothing more that an
@@ -18,7 +18,7 @@ for use in your preferred test harness. Assay is compatible with
 TestUnit, MiniTest, RSpec and other test frameworks.
 
 
-== FEATURES
+## FEATURES
 
 * Patterned after the Ruby exception system.
 * Allows assertions specialized error messages.
@@ -26,12 +26,12 @@ TestUnit, MiniTest, RSpec and other test frameworks.
 * Can be used with almost any test framework. 
 
 
-== LIMITATIONS
+## LIMITATIONS
 
 * Assay is Ruby 1.9+ only!
 
 
-== INSTALLATION
+## INSTALLATION
 
 To install with RubyGems simply open a console and type:
 
@@ -41,9 +41,9 @@ Site installation with the tarball can be done with Ruby Setup
 (gem install setup). See http://rubyworks.github.com/setup.
 
 
-== UTILIZATION
+## UTILIZATION
 
-=== Assay Classes
+### Assay Classes
 
 Assay consists of a set of Assertion subclasses known as *assays*. They
 are akin to Ruby's Exception subclasses, indeed the +Assertion+ base class
@@ -85,7 +85,7 @@ Which means assay matchers can be used in case statments.
 
 Pretty neat.
 
-=== Framework Adapters
+### Framework Adapters
 
 Assay follows a standard practice of defining assertion error classes with
 an `#assertion?` method that returns +true+. This can be used by any test 
@@ -107,7 +107,7 @@ An RSpec adadpter is in the works, and should be out with the next release.
 Note that even without the adapter, you can still use Assay with other test
 frameworks. They will simply count Assay's assertions as regular errors.
 
-=== Customized Grammars
+### Customized Grammars
 
 Of course the classes are interesting and clearly make for a sound foundation,
 but in the end we want to write assertions more easily and concisely. For this
@@ -153,7 +153,7 @@ your own grammar on top of Assay's classes if you have another approach in mind.
 Indeed, please do! That, after all, is the main purpose of having such
 a set of reusable assertion classes!
 
-=== Learning More
+### Learning More
 
 There's more learn about Assay, mainly the variety of assay classes available,
 but also a few other bits of functionality not comvered here. To learn
@@ -163,11 +163,11 @@ the {API documentation}[http://rubydoc.info/gems/asasy] for a more in depth look
 under the hood.
 
 
-== COPYRIGHTS
+## COPYRIGHTS
 
 Copyright (c) 2009 Rubyworks
 
 This program is ditributed under the terms of the *BSD-2-Cluase* license.
 
-See COPYING.rdoc file for details.
+See LICENSE.txtfile for details.
 
