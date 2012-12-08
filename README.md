@@ -132,9 +132,9 @@ Thre are also compatibility grammar projects available, spun-off from Assay, tha
 provide compatability with legacy test frameworks which can serve as transition
 to Assay from these other frameworks. Follow the links below for each:
 
-* {Assay TestUnit}[http://github.com/rubyworks/assay-testunit]
-* {Assay MiniTest}[http://github.com/rubyworks/assay-minitest]
-* {Assay RSpec}[http://github.com/rubyworks/assay-rspec]
+* [Assay TestUnit](http://github.com/rubyworks/assay-testunit)
+* [Assay MiniTest](http://github.com/rubyworks/assay-minitest)
+* [RSpectacles](http://github.com/rubyworks/rspectacles)
 
 Usage is essentially the same for any one of them. For example,
 
