@@ -35,7 +35,7 @@ TestUnit, MiniTest, RSpec and other test frameworks.
 
 To install with RubyGems simply open a console and type:
 
-  $ gem install assay
+    $ gem install assay
 
 Site installation with the tarball can be done with Ruby Setup
 (gem install setup). See http://rubyworks.github.com/setup.
@@ -53,35 +53,35 @@ used to make assertions.
 Consider the +EqualityAssay+ class. It defines methods for asserting equality
 via the `#==` method.
 
-  EqualityAssay.assert!(1,1)
+    EqualityAssay.assert!(1,1)
 
 Additionally, we can check the assertion's test without actually raising the
 assertion if it fails using the query method.
 
-  EqualityAssay.pass?(1,1)    #=> true
+    EqualityAssay.pass?(1,1)    #=> true
 
 Assays also provide the opposite method `#refute!` along with `#fail?`.
 
-  EqualityAssay.refute!(1,2)
+    EqualityAssay.refute!(1,2)
 
-  EqualityAssay.fail?(1,2)    #=> true
+    EqualityAssay.fail?(1,2)    #=> true
 
 Assay instances are test matchers, which can be conveniently defined with `#[]`.
 
-  EqualityAssay[1] =~ 1
+    EqualityAssay[1] =~ 1
 
 Notice in the example we have used `#=~` to apply the matcher which makes
 the `#assert!` call to the Assay object. Likewise `#!~` can be used to
 call `#refute!` instead. And note that `#===` is also an alias for `#=~`.
 
-  EqualityAssay[1] === 1
+    EqualityAssay[1] === 1
 
 Which means assay matchers can be used in case statments.
 
-  case 10
-  when InstanceAssay[Fixnum]
-  when EqualityAssay[10.0]
-  end
+    case 10
+    when InstanceAssay[Fixnum]
+    when EqualityAssay[10.0]
+    end
 
 Pretty neat.
 
@@ -96,11 +96,11 @@ provides adapters.
 For example, to use assay with MiniTest framework add to your test helper
 script:
 
-  require 'assay/adapter/minitest'
+    require 'assay/adapter/minitest'
 
 Likewise for TestUnit.
 
-  require 'assay/adapter/testunit'
+    require 'assay/adapter/testunit'
 
 An RSpec adadpter is in the works, and should be out with the next release.
 
@@ -116,17 +116,17 @@ first of these, created as a spin-off project to demonstrate Assay's prowess,
 is {Fluidity}[http://rubyworks.github.com/fluidity]. Here is a quick taste of
 that gem's functionality.
 
-  require 'fluidity'
+    require 'fluidity'
 
-  10.should.be.kind_of(Integer)
+    10.should.be.kind_of(Integer)
 
 But is you are acustom to MiniTest's spec methods, you might prefer `must`.
 
-  10.must.be.kind_of(Integer)
+    10.must.be.kind_of(Integer)
 
 And to satisfy all those technical aficionados (like yours truly) there is `assert`.
 
-  10.assert.kind_of(Integer)
+    10.assert.kind_of(Integer)
 
 Thre are also compatibility grammar projects available, spun-off from Assay, that
 provide compatability with legacy test frameworks which can serve as transition
@@ -138,11 +138,11 @@ to Assay from these other frameworks. Follow the links below for each:
 
 Usage is essentially the same for any one of them. For example,
 
-  require 'assay/rspec'
+    require 'assay/rspec'
 
-  include Assay::Matchers
+    include Assay::Matchers
 
-  10.should be_kind_of(Integer)
+    10.should be_kind_of(Integer)
 
 Note that the compatibility modules are not yet 100% compatable, lacking some
 of the more esoteric and complex features. But they are very nearly so, and
@@ -163,7 +163,7 @@ the {API documentation}[http://rubydoc.info/gems/asasy] for a more in depth look
 under the hood.
 
 
-## COPYRIGHTS
+## LICENSE & COPYRIGHT
 
 Copyright (c) 2009 Rubyworks
 
