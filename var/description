@@ -1,0 +1,3 @@
+Assay defines assertions in the same way that Ruby defines exceptions.
+Each type of asserition, called an assay, is then a child of the base
+Assertion class, which itself is a subclass of the Exception class.

@@ -3,7 +3,7 @@
 #
 # Setup QED to create coverage report.
 #
-config :qed, :profile=>:cov do
+QED.configure 'cov' do
   require 'simplecov'
   SimpleCov.start do
     coverage_dir 'log/coverage'

@@ -1,9 +1,13 @@
 # Assay
 
 [Website](http://rubyworks.github.com/assay) /
+[Documentation](http://rubydoc.info/gems/assay) /
 [Report Issue](http://github.com/rubyworks/assay/issues) /
-[Source Code](http://github.com/rubyworks/assay) /
-[Mailing List](http://groups.google.com/group/rubyworks-mailinglist)
+[Source Code](http://github.com/rubyworks/assay)
+
+[![Gem Version](https://badge.fury.io/rb/assay.png)](http://badge.fury.io/rb/assay)
+[![Build Status](https://secure.travis-ci.org/rubyworks/assay.png)](http://travis-ci.org/rubyworks/assay) &nbsp; &nbsp;
+[![Flattr Me](http://api.flattr.com/button/flattr-badge-large.png)](http://flattr.com/thing/324911/Rubyworks-Ruby-Development-Fund)
 
 
 ## DESCRIPTION
@@ -165,7 +169,7 @@ under the hood.
 
 ## LICENSE & COPYRIGHT
 
-Copyright (c) 2009 Rubyworks
+Copyright (c) 2010 Rubyworks
 
 This program is ditributed under the terms of the *BSD-2-Cluase* license.
 
