@@ -138,7 +138,7 @@ to Assay from these other frameworks. Follow the links below for each:
 
 * [Assay TestUnit](http://github.com/rubyworks/assay-testunit)
 * [Assay MiniTest](http://github.com/rubyworks/assay-minitest)
-* [RSpectacles](http://github.com/rubyworks/rspectacles)
+* [RSpecial](http://github.com/rubyworks/rspecial)
 
 Usage is essentially the same for any one of them. For example,
 
