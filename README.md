@@ -1,48 +1,50 @@
 # Assay
 
-[Website](http://rubyworks.github.com/assay) /
-[Documentation](http://rubydoc.info/gems/assay) /
-[Report Issue](http://github.com/rubyworks/assay/issues) /
-[Source Code](http://github.com/rubyworks/assay)
+[Documentation](https://rubydoc.info/gems/assay) /
+[Report Issue](https://github.com/rubyworks/assay/issues) /
+[Source Code](https://github.com/rubyworks/assay)
 
-[![Gem Version](https://badge.fury.io/rb/assay.png)](http://badge.fury.io/rb/assay)
-[![Build Status](https://secure.travis-ci.org/rubyworks/assay.png)](http://travis-ci.org/rubyworks/assay) &nbsp; &nbsp;
-[![Flattr Me](http://api.flattr.com/button/flattr-badge-large.png)](http://flattr.com/thing/324911/Rubyworks-Ruby-Development-Fund)
+[![Gem Version](https://badge.fury.io/rb/assay.svg)](https://badge.fury.io/rb/assay)
+[![CI](https://github.com/rubyworks/assay/actions/workflows/ci.yml/badge.svg)](https://github.com/rubyworks/assay/actions/workflows/ci.yml)
 
 
 ## DESCRIPTION
 
 Assay defines assertions in the same way that Ruby defines
-exceptions. An assertion then is nothing more that an
-extended Exception class. Assay provides a complete set
-of these assertion classes for the most common assertion types.
-It also provides both TestUnit-style assertion methods and
-RSpec-compatiable matchers built from these assertion classes
-for use in your preferred test harness. Assay is compatible with
-TestUnit, MiniTest, RSpec and other test frameworks.
+exceptions. Each kind of assertion is a class: it knows how to test,
+how to explain a failure, and it is the exception raised when the
+assertion fails. Assay provides a complete set of these classes for
+the common kinds of assertion.
+
+On top of the classes Assay provides a choice of notations for writing
+assertions, each loaded on its own:
+
+| Require | Notation |
+|---|---|
+| `assay/minitest` | Minitest's `assert_equal` and `must_equal` |
+| `assay/testunit` | Test::Unit's `assert_equal` |
+| `assay/rspec` | RSpec's `should eq` and `expect(x).to eq` |
+| `assay/fluidity` | Assay's own: `x.should.equal y`, `x.assert == y` |
+
+Whichever you choose, a failure is an instance of the same assay class,
+and any test framework that follows the
+[BRASS](https://github.com/rubyworks/brass) standard counts it as a
+failed assertion.
 
 
 ## FEATURES
 
 * Patterned after the Ruby exception system.
-* Allows assertions specialized error messages.
-* Supports any variety of assertion "grammers".
-* Can be used with almost any test framework. 
-
-
-## LIMITATIONS
-
-* Assay is Ruby 1.9+ only!
+* A failed assertion has a type, and an error message to suit it.
+* Supports any variety of assertion notation.
+* Can be used with almost any test framework.
 
 
 ## INSTALLATION
 
-To install with RubyGems simply open a console and type:
-
     $ gem install assay
 
-Site installation with the tarball can be done with Ruby Setup
-(gem install setup). See http://rubyworks.github.com/setup.
+Assay needs Ruby 2.7 or newer.
 
 
 ## UTILIZATION
@@ -50,97 +52,74 @@ Site installation with the tarball can be done with Ruby Setup
 ### Assay Classes
 
 Assay consists of a set of Assertion subclasses known as *assays*. They
-are akin to Ruby's Exception subclasses, indeed the +Assertion+ base class
+are akin to Ruby's Exception subclasses, indeed the `Assertion` base class
 is a subclass of Exception. But assays have special class methods that are
 used to make assertions.
 
-Consider the +EqualityAssay+ class. It defines methods for asserting equality
+Consider the `EqualAssay` class. It defines methods for asserting equality
 via the `#==` method.
 
-    EqualityAssay.assert!(1,1)
+    EqualAssay.assert!(1,1)
 
 Additionally, we can check the assertion's test without actually raising the
 assertion if it fails using the query method.
 
-    EqualityAssay.pass?(1,1)    #=> true
+    EqualAssay.pass?(1,1)    #=> true
 
 Assays also provide the opposite method `#refute!` along with `#fail?`.
 
-    EqualityAssay.refute!(1,2)
+    EqualAssay.refute!(1,2)
 
-    EqualityAssay.fail?(1,2)    #=> true
+    EqualAssay.fail?(1,2)    #=> true
 
 Assay instances are test matchers, which can be conveniently defined with `#[]`.
 
-    EqualityAssay[1] =~ 1
+    EqualAssay[1] =~ 1
 
 Notice in the example we have used `#=~` to apply the matcher which makes
 the `#assert!` call to the Assay object. Likewise `#!~` can be used to
 call `#refute!` instead. And note that `#===` is also an alias for `#=~`.
 
-    EqualityAssay[1] === 1
+    EqualAssay[1] === 1
 
-Which means assay matchers can be used in case statments.
+Which means assay matchers can be used in case statements.
 
     case 10
-    when InstanceAssay[Fixnum]
-    when EqualityAssay[10.0]
+    when InstanceAssay[Integer]
+    when EqualAssay[10.0]
     end
 
 Pretty neat.
 
-### Framework Adapters
+### Notations
 
-Assay follows a standard practice of defining assertion error classes with
-an `#assertion?` method that returns +true+. This can be used by any test 
-framework to easily detect when a raised error is an assertion rather than
-an ordinary error. To add support for this to common test frameworks Assay
-provides adapters.
+The classes make a sound foundation, but in the end we want to write
+assertions easily and concisely. Each notation is a thin layer over the
+assay classes, and is loaded only when asked for.
 
-For example, to use assay with MiniTest framework add to your test helper
-script:
+#### Fluidity
 
-    require 'assay/adapter/minitest'
+Assay's own notation reads as a chain of words off the object under test.
 
-Likewise for TestUnit.
-
-    require 'assay/adapter/testunit'
-
-An RSpec adadpter is in the works, and should be out with the next release.
-
-Note that even without the adapter, you can still use Assay with other test
-frameworks. They will simply count Assay's assertions as regular errors.
-
-### Customized Grammars
-
-Of course the classes are interesting and clearly make for a sound foundation,
-but in the end we want to write assertions more easily and concisely. For this
-we turn to separate "grammar" projects that depend on Assay's classes. The
-first of these, created as a spin-off project to demonstrate Assay's prowess,
-is {Fluidity}[http://rubyworks.github.com/fluidity]. Here is a quick taste of
-that gem's functionality.
-
-    require 'fluidity'
+    require 'assay/fluidity'
 
     10.should.be.kind_of(Integer)
+    10.should_not.equal(20)
 
-But is you are acustom to MiniTest's spec methods, you might prefer `must`.
+If you are accustomed to Minitest's spec methods, you might prefer `must`.
 
     10.must.be.kind_of(Integer)
 
-And to satisfy all those technical aficionados (like yours truly) there is `assert`.
+And to satisfy the technical aficionados there is `assert`.
 
     10.assert.kind_of(Integer)
+    10.assert == 10
 
-Thre are also compatibility grammar projects available, spun-off from Assay, that
-provide compatability with legacy test frameworks which can serve as transition
-to Assay from these other frameworks. Follow the links below for each:
+`assay/fluidity` loads `should`, `must` and `assert`. Each can be loaded
+alone (`assay/fluidity/should`), and `is` and `will` are available the
+same way (`assay/fluidity/is`, `assay/fluidity/will`).
 
-* [Assay TestUnit](http://github.com/rubyworks/assay-testunit)
-* [Assay MiniTest](http://github.com/rubyworks/assay-minitest)
-* [RSpecial](http://github.com/rubyworks/rspecial)
-
-Usage is essentially the same for any one of them. For example,
+#### RSpec
 
     require 'assay/rspec'
 
@@ -148,30 +127,92 @@ Usage is essentially the same for any one of them. For example,
 
     10.should be_kind_of(Integer)
 
-Note that the compatibility modules are not yet 100% compatable, lacking some
-of the more esoteric and complex features. But they are very nearly so, and
-will become more so in time.
+    expect(10).to eq(10)
+    expect{ raise ArgumentError }.to raise_error(ArgumentError)
 
-These are just a few possible grammars. There is no reason not to build
-your own grammar on top of Assay's classes if you have another approach in mind.
-Indeed, please do! That, after all, is the main purpose of having such
-a set of reusable assertion classes!
+#### Minitest
+
+    require 'assay/minitest'
+
+    include Assay::Assertions
+
+    assert_equal 10, 5 + 5
+    assert_kind_of Integer, 10
+
+    10.must_equal 5 + 5
+
+#### Test::Unit
+
+    require 'assay/testunit'
+
+    include Assay::Assertions
+
+    assert_equal 10, 5 + 5
+    assert_not_equal 10, 6 + 5
+
+The three compatibility notations make it possible to move tests to
+another framework without rewriting their assertions. They cover the
+commonly used parts of each framework's API, not all of it.
+
+These are just a few possible notations. There is no reason not to build
+your own on top of Assay's classes if you have another approach in mind.
+That, after all, is the purpose of having a set of reusable assertion
+classes. Assay classes can be looked up by operator or by name, which
+makes this easy:
+
+    Assay.lookup(:==)       #=> EqualAssay
+    Assay.lookup(:empty?)   #=> EmptyAssay
+
+### Framework Adapters
+
+Assay follows the BRASS standard: its assertion classes have an
+`#assertion?` method that returns `true`, by which a test framework can
+tell a failed assertion from an ordinary error.
+[Rubytest](https://github.com/rubyworks/rubytest) and the frameworks
+built on it do this already. For Minitest and Test::Unit, which don't,
+Assay provides adapters. Add one to your test helper:
+
+    require 'assay/adapter/minitest'
+
+or
+
+    require 'assay/adapter/testunit'
+
+Without the adapter you can still use Assay with these frameworks. They
+will count Assay's failed assertions as errors rather than failures.
+
+RSpec has no adapter. It reports any exception raised in an example as
+a failure of that example, so Assay works in it as is.
+
+### Upgrading from 0.4
+
+Since version 0.5 the notations are part of Assay again. The separate
+gems are retired:
+
+| Before | Now |
+|---|---|
+| gem `fluidity`, `require 'fluidity'` | `require 'assay/fluidity'` |
+| gem `rspecial`, `require 'rspecial'` | `require 'assay/rspec'` |
+| gem `assay-minitest` | `require 'assay/minitest'` |
+| gem `assay-testunit` | `require 'assay/testunit'` |
+
+`Fluidity` is now `Assay::Fluidity`, and `RSpecial` is `Assay::RSpec`.
+`Assay::Assertions`, `Assay::Matchers` and `Assay::Extensions` are as
+they were.
 
 ### Learning More
 
-There's more learn about Assay, mainly the variety of assay classes available,
-but also a few other bits of functionality not comvered here. To learn
-about these check out the {QED documentation}[http://github.com/rubyworks/assay]
-which provides an overiew of functionality with working examples, and the
-the {API documentation}[http://rubydoc.info/gems/asasy] for a more in depth look
-under the hood.
+There is more to learn about Assay, mainly the variety of assay classes
+available. The [demos](https://github.com/rubyworks/assay/tree/master/demo)
+give an overview with working examples: they are run as tests with
+[QED](https://github.com/rubyworks/qed). The
+[API documentation](https://rubydoc.info/gems/assay) has the rest.
 
 
 ## LICENSE & COPYRIGHT
 
 Copyright (c) 2010 Rubyworks
 
-This program is ditributed under the terms of the *BSD-2-Cluase* license.
+This program is distributed under the terms of the *BSD-2-Clause* license.
 
-See LICENSE.txtfile for details.
-
+See LICENSE.txt file for details.

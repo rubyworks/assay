@@ -23,7 +23,7 @@ testcase KindAssay do
   class_method :assert! do
 
     test do
-      KindAssay.assert!(1,Fixnum)
+      KindAssay.assert!(1,Integer)
     end
 
     test do

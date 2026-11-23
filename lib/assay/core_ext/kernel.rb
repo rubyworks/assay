@@ -10,11 +10,9 @@ module Kernel
     object_id == other.object_id
   end
 
-  # Ascertain likeness, returns true if any of `equal?`, `eql?`, `==`,
-  # `===` or `=~` evaluate truthfully, either with `self` as the receiver
-  # or `other` as the receiver.
-  #
-  # @todo Should `#=~` be apart of this comparison?
+  # Ascertain likeness, returns true if any of `equal?`, `eql?`, `==` or
+  # `===` evaluate truthfully, either with `self` as the receiver or
+  # `other` as the receiver.
   #
   # @param [Object] other
   #   Any object reference.
@@ -26,12 +24,10 @@ module Kernel
     self.eql?(other)   ||
     self.==(other)     ||
     self.===(other)    ||
-    self.=~(other)     ||
     other.equal?(self) ||
     other.eql?(self)   ||
     other.==(self)     ||
-    other.===(self)    ||
-    other.=~(self)
+    other.===(self)    ? true : false
   end
 
   #

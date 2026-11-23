@@ -82,7 +82,7 @@ module Assay
 
       pass = pass?(*arguments, &block)
 
-      assert pass, self, message, backtrace
+      ::Kernel.assert pass, self, message, backtrace
 
       #if pass?(*arguments, &block)
       #  increment(:pass)
@@ -105,7 +105,7 @@ module Assay
 
       fail = fail?(*arguments, &block)
 
-      assert fail, self, message, backtrace
+      ::Kernel.assert fail, self, message, backtrace
 
       #if fail?(*arguments, &block)
       #  increment(:pass)
@@ -161,7 +161,7 @@ module Assay
         t.times{ vars << vars.last.succ }
 
         msg = ''   
-        msg << "a#{op} " + vars.join(',') + "\n"
+        msg << "a#{op}" + vars.join(', ') + "\n"
         msg << args_inspect.join("\n")
         msg
       else

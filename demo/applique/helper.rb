@@ -28,6 +28,8 @@ def expect(error)
   end
 end
 
+alias assert_raises expect
+
 def increment_counts(which)
   case which
   when :pass

@@ -5,7 +5,7 @@ testcase RaiseAssay do
   class_method :pass? do
 
     test do
-      assert RaiseAssay.pass?(StandardError){ raise }
+      assert RaiseAssay.pass?(StandardError){ raise StandardError }
       refute RaiseAssay.pass?(ArgumentError){ raise }
     end
 
@@ -14,7 +14,7 @@ testcase RaiseAssay do
   class_method :fail? do
 
     test do
-      refute RaiseAssay.fail?(StandardError){ raise }
+      refute RaiseAssay.fail?(StandardError){ raise StandardError }
       assert RaiseAssay.fail?(ArgumentError){ raise }
     end
 
@@ -23,7 +23,7 @@ testcase RaiseAssay do
   class_method :assert! do
 
     test do
-      RaiseAssay.assert!(StandardError){ raise }
+      RaiseAssay.assert!(StandardError){ raise StandardError }
     end
 
     test do
@@ -42,7 +42,7 @@ testcase RaiseAssay do
 
     test do
       expect RaiseAssay do
-        RaiseAssay.refute!(StandardError){ raise }
+        RaiseAssay.refute!(StandardError){ raise StandardError }
       end
     end
 

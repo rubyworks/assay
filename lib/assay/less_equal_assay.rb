@@ -21,5 +21,11 @@ class LessEqualAssay < CompareAssay
     subject <= criterion
   end
 
-end
+  #
+  # Error message, e.g. `5 <= 3`.
+  #
+  def self.assert_message(subject, criterion)
+    standard_message(subject, criterion)
+  end
 
+end
