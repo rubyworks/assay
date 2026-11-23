@@ -27,6 +27,13 @@ Changes:
 * Fix `assert(false)` passing silently once `assay/fluidity/assert` was
   loaded. Worse, Assay itself called that `assert`, so no assay could
   fail either.
+* Fix fluent assertions that used a method every object has, such as
+  `x.should.be.kind_of?(String)`, `x.assert.nil?` or `x.assert != y`.
+  The grammar object answered them itself, so they never failed. This
+  goes back to the Fluidity gem. Likewise `expect(x).to.kind_of?(String)`
+  in the RSpec notation, which is now a NoMethodError.
+* The fluent notation passes keyword arguments on to an object's own
+  query method.
 * Fix the fluent fallback to an object's own query method ignoring
   negation: `x.should_not.be.no` now fails when `x.no?` is true.
 * Fix `will_not` and `wont`. They were never defined, and loading the

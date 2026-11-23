@@ -5,7 +5,14 @@ module Assay::Fluidity
 
   module Grammar
 
-    class Base
+    # The grammar classes are built on BasicObject, so that a method every
+    # object has, such as `kind_of?`, `nil?` or `eql?`, makes an assertion
+    # about the target rather than being answered by the grammar object.
+    class Base < ::BasicObject
+
+      # BasicObject has a few public methods of its own. Making them private
+      # sends them through #method_missing like any other.
+      private :!, :equal?, :instance_eval, :instance_exec
 
       def initialize(target, negate=false)
         @target = target
@@ -15,32 +22,42 @@ module Assay::Fluidity
       # Have to override the ususal `#==` method to support this.
       def ==(other)
         if @negate
-          ::EqualAssay.refute!(@target, other, :backtrace=>caller)
+          ::EqualAssay.refute!(@target, other, :backtrace=>::Kernel.caller)
         else
-          ::EqualAssay.assert!(@target, other, :backtrace=>caller)
+          ::EqualAssay.assert!(@target, other, :backtrace=>::Kernel.caller)
         end
       end
 
-    #private
+      # Likewise for `#!=`.
+      def !=(other)
+        if @negate
+          ::UnequalAssay.refute!(@target, other, :backtrace=>::Kernel.caller)
+        else
+          ::UnequalAssay.assert!(@target, other, :backtrace=>::Kernel.caller)
+        end
+      end
 
-      def method_missing(s, *a, &b)
+      def method_missing(s, *a, **kw, &b)
         if assay = (::Assertion.by_name(s) || ::Assertion.by_operator(s))
+          a << kw unless kw.empty?
           if @negate
-            assay.refute!(@target, *a, {:backtrace=>caller}, &b)
+            assay.refute!(@target, *a, {:backtrace=>::Kernel.caller}, &b)
           else
-            assay.assert!(@target, *a, {:backtrace=>caller}, &b)
+            assay.assert!(@target, *a, {:backtrace=>::Kernel.caller}, &b)
           end
         else
           q = (s.to_s.end_with?('?') ? s : (s.to_s+'?'))
           if @target.respond_to?(q)
-            truth = @target.send(q, *a, &b)
+            truth = @target.__send__(q, *a, **kw, &b)
+            args  = (a.map{ |x| x.inspect } + kw.map{ |k,v| "#{k}: #{v.inspect}" }).join(', ')
+            call  = "#{@target.inspect}.#{q}" + (args.empty? ? '' : "(#{args})")
             if @negate
-              ::Kernel.assert(!truth, ::Assertion, "! #{@target.inspect}.#{q}", caller)
+              ::Kernel.assert(!truth, ::Assertion, "! #{call}", ::Kernel.caller)
             else
-              ::Kernel.assert(truth, ::Assertion, "#{@target.inspect}.#{q}", caller)
+              ::Kernel.assert(truth, ::Assertion, call, ::Kernel.caller)
             end
           else
-            super(s, *a, &b)
+            super
           end
         end
       end
