@@ -25,6 +25,7 @@ assertions, each loaded on its own:
 | `assay/testunit` | Test::Unit's `assert_equal` |
 | `assay/rspec` | RSpec's `should eq` and `expect(x).to eq` |
 | `assay/fluidity` | Assay's own: `x.should.equal y`, `x.assert == y` |
+| `assay/ae` | AE's functor: `x.assert == y`, `a.assert.include?(e)` |
 | `assay/bang` | Query methods as assertions: `x.equal!(y)`, `x.empty!` |
 
 Whichever you choose, a failure is an instance of the same assay class,
@@ -119,6 +120,42 @@ And to satisfy the technical aficionados there is `assert`.
 `assay/fluidity` loads `should`, `must` and `assert`. Each can be loaded
 alone (`assay/fluidity/should`), and `is` and `will` are available the
 same way (`assay/fluidity/is`, `assay/fluidity/will`).
+
+#### AE
+
+The AE notation, from the [AE](https://github.com/rubyworks/ae) gem,
+needs no vocabulary of its own: call any method of the object under
+test through `assert`, and its result is asserted.
+
+    require 'assay/ae'
+
+    x.assert == y
+    a.assert.include?(e)
+    x.refute.nil?
+    "Daffy Duck".assert.start_with?("Daffy")
+
+Where Assay has a class for the method, as it does for the first three,
+that class is the failure raised; otherwise it is a plain `Assertion`.
+`assert` still takes a truth value, or a block, as it does in Test::Unit.
+
+    assert(x > 3, "too small")
+    assert{ x > 3 }
+
+`expect` tests a block's result by case equality, or that it raises.
+
+    expect ArgumentError do
+      Integer("x")
+    end
+
+The subjunctive verbs and the `ok`/`no` checks are loaded separately.
+
+    require 'assay/ae/should'   # x.should == y, x.should.be.a String
+    require 'assay/ae/must'     # x.must == y
+    require 'assay/ae/check'    # check{ |a, b| a == b }; ok 1, 1
+
+AE and Fluidity both define `assert`, `should` and `must` on every
+object, so load one or the other. Likewise load `assay/ae` or the AE
+gem, not both: the gem stands on its own and raises only `Assertion`.
 
 #### Bang
 
@@ -226,6 +263,11 @@ Bang's failures are now assay classes where there is one, not
 `equal_to?` and `raises?`) are gone.
 `Assay::Assertions`, `Assay::Matchers` and `Assay::Extensions` are as
 they were.
+
+The AE gem is not retired. `assay/ae` is the same notation built on
+Assay's classes, under `Assay::AE` rather than `AE`. It leaves out
+`ae/legacy` (use `assay/testunit`), `ae/pry` and AE's framework
+adapters (Assay has its own, above).
 
 ### Learning More
 

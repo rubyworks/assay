@@ -2,7 +2,10 @@ module Assay::RSpec
 
   # Operatics delegates operator based assertions for execpt.rb.
   #
-  class Operatics < Object
+  # It is built on BasicObject, so that a word method such as `kind_of?`
+  # is an error rather than being answered by this object.
+  #
+  class Operatics < ::BasicObject
     instance_methods.each{ |m| undef_method m if m.to_s =~ /^\W/ }
 
     #
@@ -26,19 +29,19 @@ module Assay::RSpec
 
     #
     def assert!(op, *a, &b)
-      if assay = Assertion.by_operator(op)
-        return assay.assert!(@target, *a, {:backtrace=>caller}, &b)
+      if assay = ::Assertion.by_operator(op)
+        return assay.assert!(@target, *a, {:backtrace=>::Kernel.caller}, &b)
       else
-        ::Kernel.assert(@target.__send__(op, *a, &b), ::Assertion, "#{@target.inspect} #{op} #{a.map{ |x| x.inspect }.join(', ')}", caller)
+        ::Kernel.assert(@target.__send__(op, *a, &b), ::Assertion, "#{@target.inspect} #{op} #{a.map{ |x| x.inspect }.join(', ')}", ::Kernel.caller)
       end
     end
 
     #
     def refute!(op, *a, &b)
-      if assay = Assertion.by_operator(op)
-        return assay.refute!(@target, *a, {:backtrace=>caller}, &b)
+      if assay = ::Assertion.by_operator(op)
+        return assay.refute!(@target, *a, {:backtrace=>::Kernel.caller}, &b)
       else
-        ::Kernel.refute(@target.__send__(op, *a, &b), ::Assertion, "! #{@target.inspect} #{op} #{a.map{ |x| x.inspect }.join(', ')}", caller)
+        ::Kernel.refute(@target.__send__(op, *a, &b), ::Assertion, "! #{@target.inspect} #{op} #{a.map{ |x| x.inspect }.join(', ')}", ::Kernel.caller)
       end
     end
 

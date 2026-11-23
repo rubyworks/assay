@@ -4,7 +4,7 @@
 
 Assay is one library again. The notations that were spun off as separate
 gems in 0.4 (Fluidity, RSpecial, Assay MiniTest and Assay TestUnit) are
-back, each loaded on its own, and Bang joins them. Assay needs Ruby 2.7 or newer.
+back, each loaded on its own, and Bang and AE join them. Assay needs Ruby 2.7 or newer.
 
 Changes:
 
@@ -17,6 +17,11 @@ Changes:
 * Add `assay/bang`, from the Bang gem, rebuilt on Assay's classes:
   `x.equal!(y)` fails with an `EqualAssay`. A query method Assay has
   no class for still works (`10.even!`) and fails with an `Assertion`.
+* Add `assay/ae`, the notation of the AE gem (`x.assert == y`,
+  `expect`, and optionally `should`, `must` and `ok`/`no`), built on
+  Assay's classes: a failure is of the Assay class for the method
+  where there is one. Its module is `Assay::AE`. The AE gem itself
+  carries on unchanged.
 * Fix a Hash under test being taken for options, which made comparing
   two hashes raise ArgumentError in every notation. Only a trailing
   Hash whose keys are all `:message` or `:backtrace` is options now.
@@ -27,6 +32,13 @@ Changes:
 * Fix `assert(false)` passing silently once `assay/fluidity/assert` was
   loaded. Worse, Assay itself called that `assert`, so no assay could
   fail either.
+* Fix fluent assertions that used a method every object has, such as
+  `x.should.be.kind_of?(String)`, `x.assert.nil?` or `x.assert != y`.
+  The grammar object answered them itself, so they never failed. This
+  goes back to the Fluidity gem. Likewise `expect(x).to.kind_of?(String)`
+  in the RSpec notation, which is now a NoMethodError.
+* The fluent notation passes keyword arguments on to an object's own
+  query method.
 * Fix the fluent fallback to an object's own query method ignoring
   negation: `x.should_not.be.no` now fails when `x.no?` is true.
 * Fix `will_not` and `wont`. They were never defined, and loading the

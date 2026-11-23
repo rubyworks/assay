@@ -28,6 +28,13 @@ Any other operator is sent to the object, and has to come back true.
       expect(10).to <= 5
     end
 
+Only operators are delegated. A named method is an error, because
+the RSpec notation has matchers for those.
+
+    assert_raises NoMethodError do
+      expect(10).to.kind_of?(String)
+    end
+
 ### blocks
 
 Given a block instead of a value, `expect` passes the block to the
