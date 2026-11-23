@@ -97,3 +97,21 @@ Error messages are handle by RSpec by `#failure_message_for_should` and
     assertor.failure_message_for_should(1)
     assertor.failure_message_for_should_not(2)
 
+
+## Hashes
+
+A Hash under test is not mistaken for options. Only a trailing Hash
+whose keys are all `:message` or `:backtrace` is taken as options.
+
+    EqualAssay.assert!({:a=>1}, {:a=>1})
+    EqualAssay.assert!({}, {})
+
+    expect ::EqualAssay do
+      EqualAssay.assert!({:a=>1}, {:a=>2})
+    end
+
+    EqualAssay[{:a=>1}] =~ {:a=>1}
+
+    expect ::EqualAssay do
+      EqualAssay.assert!(1, 2, :message=>"my message")
+    end

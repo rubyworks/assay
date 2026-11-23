@@ -26,9 +26,9 @@ module Assay::Fluidity
       def method_missing(s, *a, &b)
         if assay = (::Assertion.by_name(s) || ::Assertion.by_operator(s))
           if @negate
-            assay.refute!(@target, *a, &b)
+            assay.refute!(@target, *a, {:backtrace=>caller}, &b)
           else
-            assay.assert!(@target, *a, &b)
+            assay.assert!(@target, *a, {:backtrace=>caller}, &b)
           end
         else
           q = (s.to_s.end_with?('?') ? s : (s.to_s+'?'))

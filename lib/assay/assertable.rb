@@ -75,7 +75,7 @@ module Assay
     # Test the assertion, raising the exception if failing.
     #
     def assert!(*arguments, &block)
-      options = (Hash === arguments.last ? arguments.pop : {})
+      options = extract_options(arguments)
 
       backtrace = options[:backtrace] || caller
       message   = options[:message]   || assert_message(*arguments, &block)
@@ -98,7 +98,7 @@ module Assay
     # Test the inverse assertion, raising the exception if not failing.
     #
     def refute!(*arguments, &block)
-      options = (Hash === arguments.last ? arguments.pop : {})
+      options = extract_options(arguments)
 
       backtrace = options[:backtrace] || caller
       message   = options[:message]   || refute_message(*arguments, &block)
@@ -137,6 +137,22 @@ module Assay
     end
 
   private
+
+    #
+    # Take the options off the end of an argument list, if there are any.
+    # A trailing Hash counts as options only if every key is `:message` or
+    # `:backtrace`, so that a Hash under test isn't mistaken for them.
+    # To be certain, pass options explicitly, even if empty of use:
+    # `EqualAssay.assert!(a, b, :backtrace=>caller)`.
+    #
+    def extract_options(arguments)
+      last = arguments.last
+      if Hash === last && !last.empty? && last.keys.all?{ |k| k == :message || k == :backtrace }
+        arguments.pop
+      else
+        {}
+      end
+    end
 
     ##
     ## Increment global `$ASSERTION_COUNTS` variable.

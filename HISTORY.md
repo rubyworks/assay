@@ -4,7 +4,7 @@
 
 Assay is one library again. The notations that were spun off as separate
 gems in 0.4 (Fluidity, RSpecial, Assay MiniTest and Assay TestUnit) are
-back, each loaded on its own. Assay needs Ruby 2.7 or newer.
+back, each loaded on its own, and Bang joins them. Assay needs Ruby 2.7 or newer.
 
 Changes:
 
@@ -14,6 +14,12 @@ Changes:
   gem. Its module is `Assay::RSpec`.
 * Add `assay/minitest` and `assay/testunit`, the assertion methods of
   those frameworks, from the Assay MiniTest and Assay TestUnit gems.
+* Add `assay/bang`, from the Bang gem, rebuilt on Assay's classes:
+  `x.equal!(y)` fails with an `EqualAssay`. A query method Assay has
+  no class for still works (`10.even!`) and fails with an `Assertion`.
+* Fix a Hash under test being taken for options, which made comparing
+  two hashes raise ArgumentError in every notation. Only a trailing
+  Hash whose keys are all `:message` or `:backtrace` is options now.
 * Rewrite the Minitest and Test::Unit adapters for Minitest 5 and 6 and
   for test-unit 3. The old ones patched classes those frameworks no
   longer have.

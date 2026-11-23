@@ -25,6 +25,7 @@ assertions, each loaded on its own:
 | `assay/testunit` | Test::Unit's `assert_equal` |
 | `assay/rspec` | RSpec's `should eq` and `expect(x).to eq` |
 | `assay/fluidity` | Assay's own: `x.should.equal y`, `x.assert == y` |
+| `assay/bang` | Query methods as assertions: `x.equal!(y)`, `x.empty!` |
 
 Whichever you choose, a failure is an instance of the same assay class,
 and any test framework that follows the
@@ -119,6 +120,28 @@ And to satisfy the technical aficionados there is `assert`.
 alone (`assay/fluidity/should`), and `is` and `will` are available the
 same way (`assay/fluidity/is`, `assay/fluidity/will`).
 
+#### Bang
+
+Bang turns a query method into an assertion: call it with `!` in place
+of `?`, and prefix `not_` to negate it.
+
+    require 'assay/bang'
+
+    10.kind_of!(Integer)
+    10.equal!(5 + 5)
+    10.not_equal!(20)
+
+Where Assay has a class for the assertion, as it does for these, that
+class is the failure raised. Any other query method an object has works
+too, and fails with a plain `Assertion`.
+
+    10.even!
+    10.between!(1, 20)
+
+For a procedure there are `raises!`, `rescues!` and `throws!`.
+
+    lambda{ raise ArgumentError }.raises!(ArgumentError)
+
 #### RSpec
 
     require 'assay/rspec'
@@ -195,8 +218,12 @@ gems are retired:
 | gem `rspecial`, `require 'rspecial'` | `require 'assay/rspec'` |
 | gem `assay-minitest` | `require 'assay/minitest'` |
 | gem `assay-testunit` | `require 'assay/testunit'` |
+| gem `bang`, `require 'bang'` | `require 'assay/bang'` |
 
 `Fluidity` is now `Assay::Fluidity`, and `RSpecial` is `Assay::RSpec`.
+Bang's failures are now assay classes where there is one, not
+`Bang::Assertion`, and the query methods it added to Object (such as
+`equal_to?` and `raises?`) are gone.
 `Assay::Assertions`, `Assay::Matchers` and `Assay::Extensions` are as
 they were.
 

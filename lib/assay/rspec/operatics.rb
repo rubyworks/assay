@@ -27,7 +27,7 @@ module Assay::RSpec
     #
     def assert!(op, *a, &b)
       if assay = Assertion.by_operator(op)
-        return assay.assert!(@target, *a, &b)
+        return assay.assert!(@target, *a, {:backtrace=>caller}, &b)
       else
         ::Kernel.assert(@target.__send__(op, *a, &b), ::Assertion, "#{@target.inspect} #{op} #{a.map{ |x| x.inspect }.join(', ')}", caller)
       end
@@ -36,7 +36,7 @@ module Assay::RSpec
     #
     def refute!(op, *a, &b)
       if assay = Assertion.by_operator(op)
-        return assay.refute!(@target, *a, &b)
+        return assay.refute!(@target, *a, {:backtrace=>caller}, &b)
       else
         ::Kernel.refute(@target.__send__(op, *a, &b), ::Assertion, "! #{@target.inspect} #{op} #{a.map{ |x| x.inspect }.join(', ')}", caller)
       end
