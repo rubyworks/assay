@@ -1,29 +1,15 @@
+# Assay (https://github.com/rubyworks/assay)
+# Copyright (c) 2010 Rubyworks. License (spdx) BSD-2-Clause.
+
+require_relative 'assay/version'
+
 # Load Assay's assertion classes.
 require_relative 'assay/assertion'
-dir = File.dirname(__FILE__) + '/assay'
-Dir.entries(dir).each do |file|
-  next if File.extname(file) != '.rb'
-  require_relative 'assay/' + file
+Dir[File.join(__dir__, 'assay', '*_assay.rb')].sort.each do |file|
+  require_relative 'assay/' + File.basename(file, '.rb')
 end
 
 module Assay
-
-  #
-  # Returns Hash table of project metadata.
-  #
-  def self.metadata
-    @spec ||= (
-      require 'yaml'
-      YAML.load(File.new(File.dirname(__FILE__) + '/assay.yml'))
-    )
-  end
-
-  #
-  # Check metadata for missing constants.
-  #
-  def self.const_missing(name)
-    metadata[name.to_s.downcase] || super(name)
-  end
 
   #
   # Returns a list of Assertion subclasses.

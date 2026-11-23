@@ -1,5 +1,5 @@
 --title "Assay"
---readme README.rdoc
+--readme README.md
 --protected
 --private
 lib

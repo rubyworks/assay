@@ -18,7 +18,7 @@ class CloseAssay < CompareAssay
 
     #(a - b).abs / [a.abs, b.abs].max <= e
     
-    d = b * e   # [a.abs,b.abs].max * e
+    d = (b * e).abs
 
     (b - d) <= a && (b + d) >= a
   end
@@ -32,7 +32,7 @@ class CloseAssay < CompareAssay
     e = delta.inspect
 
     if [a, b, e].any?{ |e| e.to_s.size > SIZE_LIMIT }
-      "b(1 - e) <= a <= b(1 + e)\na) #{a}\nb) #{b}\nd) #{d}"
+      "b(1 - e) <= a <= b(1 + e)\na) #{a}\nb) #{b}\ne) #{e}"
     else
       "#{b}(1 - #{e}) <= #{a} <= #{b}(1 + #{e})"
     end

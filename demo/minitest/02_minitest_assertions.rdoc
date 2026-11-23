@@ -1,0 +1,250 @@
+= Assertion Methods
+
+  require 'assay/minitest'
+
+  include ::Assay::Assertions
+
+== assert
+
+  assert(true, "yep it is so")
+
+  expect ::Assertion do
+    assert(false, "yep it is so")
+  end
+
+  refute(false, "not on you life")
+
+== assert_boolean
+
+  assert_boolean(true)
+  assert_boolean(false)
+
+  refute_boolean(nil)
+  refute_boolean(:foo)
+
+== assert_equal
+
+  assert_equal(1,1)
+
+  expect ::EqualAssay do
+    assert_equal(1,2)
+  end
+
+  refute_equal(1,2)
+
+== assert_true
+
+  assert_true(true)
+
+  expect ::TrueAssay do
+    assert_true(false)
+  end
+
+  refute_true(false)
+
+== assert_false
+
+  assert_false(false)
+
+  expect ::FalseAssay do
+    assert_false(true)
+  end
+
+  refute_false(true)
+
+== assert_nil
+
+  assert_nil(nil)
+
+  expect ::NilAssay do
+    assert_nil(true)
+  end
+
+  refute_nil(true)
+  refute_nil(false)
+
+== assert_in_delta
+
+  assert_in_delta(1, 1.5, 0.5)
+
+  expect ::WithinAssay do
+    assert_in_delta(1, 2.5, 1)
+  end
+
+  refute_in_delta(1, 2.5, 1)
+
+== assert_in_epsilon
+
+  assert_in_epsilon(1, 1.5, 2)
+
+  expect ::CloseAssay do
+    assert_in_epsilon(1, 2.5, 1)
+  end
+
+  refute_in_epsilon(1, 2.5, 1)
+
+== assert_match
+
+  assert_match(/a/, "abc")
+
+  expect ::MatchAssay do
+    assert_match(/x/, "abc")
+  end
+
+  refute_match(/a/, "bcd")
+
+== assert_no_match
+
+  assert_no_match(/a/, "bcd")
+
+  expect ::MatchAssay do
+    assert_no_match(/a/, "abc")
+  end
+
+== assert_operator
+
+  assert_operator(3, :<, 4)
+
+  expect ::ExecutionAssay do
+    assert_operator(4, :<, 3)
+  end
+
+  refute_operator(4, :<, 3)
+
+== assert_equivalent
+
+  assert_equivalent(1, 1)
+
+  expect ::EqualityAssay do
+    assert_equivalent(1, 1.0)
+  end
+
+  refute_equivalent(1, 1.0)
+
+== assert_empty
+
+  assert_empty([])
+
+  expect ::EmptyAssay do
+    assert_empty([1,2,3])
+  end
+
+  refute_empty([1,2,3])
+
+== assert_include
+
+  assert_includes([1,2,3], 1)
+
+  expect ::IncludeAssay do
+    assert_includes([1,2,3], 4)
+  end
+
+  refute_includes([1,2,3], 4)
+
+== assert_same
+
+  assert_same(:a, :a)
+
+  expect ::IdentityAssay do
+    assert_same("a", "a")
+  end
+
+  refute_same(:a, :b)
+
+== assert_instance_of
+
+  assert_instance_of(Integer, 1)
+
+  expect ::InstanceAssay do
+    assert_instance_of(String, 1)
+  end
+
+  refute_instance_of(String, 1)
+
+== assert_kind_of
+
+  assert_kind_of(Integer, 1)
+
+  expect ::KindAssay do
+    assert_kind_of(String, 1)
+  end
+
+  refute_kind_of(String, 1)
+
+== assert_raises
+
+  assert_raises(ArgumentError){ raise ArgumentError }
+
+  expect ::RaiseAssay do
+    assert_raises(ArgumentError){ raise TypeError }
+  end
+
+  refute_raises(ArgumentError){ raise TypeError }
+
+== assert_nothing_raised
+
+  assert_nothing_raised{ 'good' }
+
+  expect ::RescueAssay do
+    assert_nothing_raised{ raise }
+  end
+
+  refute_nothing_raised{ raise }
+
+== assert_respond_to
+
+  assert_respond_to("string", :upcase)
+
+  expect ::RespondAssay do
+    assert_respond_to("string", :not_a_method)
+  end
+
+  refute_respond_to("string", :not_a_method)
+
+== assert_block
+
+  assert_block{ :ok }
+
+  expect ::ExecutionAssay do
+    assert_block{ raise }
+  end
+
+== assert_throws
+
+  assert_throws(:foo){ throw :foo }
+
+  expect ::ThrowAssay do
+    assert_throws(:foo){ throw :bar }
+  end
+
+  refute_throws(:foo){ throw :bar }
+
+== assert_predicate
+
+  assert_predicate(10, :even?)
+
+  refute_predicate(10, :odd?)
+
+== assert_output
+
+  assert_output('this'){ puts 'this' }
+
+  refute_output('this'){ puts 'that' }
+
+== assert_silent
+
+  assert_silent{ nil }
+
+  refute_silent{ puts 'that' }
+
+== assert_alike
+
+  assert_alike(1,1)
+  assert_alike(1,1.0)
+
+  expect ::LikeAssay do
+    assert_alike(1,"1")
+  end
+
+  refute_alike(1,"1")
+

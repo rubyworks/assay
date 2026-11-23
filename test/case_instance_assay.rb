@@ -5,8 +5,8 @@ testcase InstanceAssay do
   class_method :pass? do
 
     test do
-      assert InstanceAssay.pass?(1,Fixnum)
-      refute InstanceAssay.pass?(1,Integer)
+      assert InstanceAssay.pass?(1,Integer)
+      refute InstanceAssay.pass?(1,Numeric)
     end
 
   end
@@ -14,7 +14,7 @@ testcase InstanceAssay do
   class_method :fail? do
 
     test do
-      refute InstanceAssay.fail?(1,Fixnum)
+      refute InstanceAssay.fail?(1,Integer)
       assert InstanceAssay.fail?(1,String)
     end
 
@@ -23,7 +23,7 @@ testcase InstanceAssay do
   class_method :assert! do
 
     test do
-      InstanceAssay.assert!(1,Fixnum)
+      InstanceAssay.assert!(1,Integer)
     end
 
     test do
@@ -42,7 +42,7 @@ testcase InstanceAssay do
 
     test do
       expect InstanceAssay do
-        InstanceAssay.refute!(1,Fixnum)
+        InstanceAssay.refute!(1,Integer)
       end
     end
 

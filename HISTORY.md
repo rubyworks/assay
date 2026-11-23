@@ -1,5 +1,50 @@
 # HISTORY
 
+## Unreleased
+
+Assay is one library again. The notations that were spun off as separate
+gems in 0.4 (Fluidity, RSpecial, Assay MiniTest and Assay TestUnit) are
+back, each loaded on its own. Assay needs Ruby 2.7 or newer.
+
+Changes:
+
+* Add `assay/fluidity`, the fluent notation (`x.should.equal y`), from
+  the Fluidity gem. Its module is `Assay::Fluidity`.
+* Add `assay/rspec`, RSpec-style matchers and `expect`, from the RSpecial
+  gem. Its module is `Assay::RSpec`.
+* Add `assay/minitest` and `assay/testunit`, the assertion methods of
+  those frameworks, from the Assay MiniTest and Assay TestUnit gems.
+* Rewrite the Minitest and Test::Unit adapters for Minitest 5 and 6 and
+  for test-unit 3. The old ones patched classes those frameworks no
+  longer have.
+* `expect` takes a block: `expect{ ... }.to raise_error(ArgumentError)`.
+* Fix `assert(false)` passing silently once `assay/fluidity/assert` was
+  loaded. Worse, Assay itself called that `assert`, so no assay could
+  fail either.
+* Fix the fluent fallback to an object's own query method ignoring
+  negation: `x.should_not.be.no` now fails when `x.no?` is true.
+* Fix `will_not` and `wont`. They were never defined, and loading the
+  `will` notation raised NameError.
+* Fix `assert_in_epsilon` and `assert_not_in_epsilon` in the Test::Unit
+  notation, which raised NameError.
+* Fix `CloseAssay` for a negative criterion, and its message for long
+  values.
+* Give `LessAssay`, `LessEqualAssay`, `MoreAssay` and `MoreEqualAssay`
+  messages of their own (`5 <= 3`). They said `5 <=> 3 == 0`.
+* `Kernel#like?` no longer tries `=~`, which Ruby 3.2 removed from
+  Object. It is now the same as Facets' `like?`.
+* An operator with no assay of its own, used with `expect(x).to`, is
+  sent to the object and fails with an Assertion. It raised an
+  unrelated error.
+* Assay's failures no longer depend on which `assert` method is in
+  scope: it calls BRASS's directly.
+* `Assay::VERSION` gives the version. `Assay.metadata`, and the
+  constants made from it, are gone.
+* Replace the old packaging (`.index`, `.gemspec`, `Assembly`,
+  `MANIFEST`) with a plain `assay.gemspec`, and Travis with GitHub
+  Actions, testing Ruby 2.7 to 4.0.
+
+
 ## 0.4.1 | 2012-01-27
 
 This release adds CloseAssay for relative approxmation assertions on values,

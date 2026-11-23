@@ -1,42 +1,35 @@
-module Test #:nodoc:
-  module Unit #:nodoc:
-    class TestCase #:nodoc:
-      # Runs the individual test method represented by this
-      # instance of the fixture, collecting statistics, failures
-      # and errors in result.
-      def run(result)
-        yield(STARTED, name)
-        @_result = result
-        begin
-          setup
-          __send__(@method_name)
-        rescue AssertionFailedError => e
-          add_failure(e.message, e.backtrace)
-        rescue Exception => e
-          if e.respond_to?(:assertion?) && e.assertion?
-            add_failure(e.message, e.backtrace)
-          else
-            raise if PASSTHROUGH_EXCEPTIONS.include? $!.class
-            add_error($!)
-          end
-        ensure
-          begin
-            teardown
-          rescue AssertionFailedError => e
-            add_failure(e.message, e.backtrace)
-          rescue Exception => e
-            if e.respond_to?(:assertion?) && e.assertion?
-              add_failure(e.message, e.backtrace)
-            else
-              raise if PASSTHROUGH_EXCEPTIONS.include? $!.class
-              add_error($!)
-            end
-          end
-        end
-        result.add_run
-        yield(FINISHED, name)
-      end 
+require 'test/unit'
+
+module Assay
+  module Adapter
+
+    # Teaches Test::Unit that any exception answering true to `assertion?`
+    # (the BRASS standard) is a failed assertion, not an error. Without
+    # this Test::Unit still runs tests that use Assay, but counts their
+    # failures as errors.
+    #
+    # Loaded with `require 'assay/adapter/testunit'`. Needs the test-unit
+    # gem, version 3 or newer.
+    #
+    module TestUnit
+
+      def self.included(base)
+        base.exception_handler(:handle_brass_assertion)
+      end
+
+      private
+
+      def handle_brass_assertion(exception)
+        return false if exception.is_a?(::Test::Unit::AssertionFailedError)
+        return false unless exception.respond_to?(:assertion?) && exception.assertion?
+        problem_occurred
+        add_failure(exception.message, exception.backtrace)
+        true
+      end
+
     end
+
   end
 end
 
+Test::Unit::TestCase.send(:include, Assay::Adapter::TestUnit)
