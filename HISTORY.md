@@ -1,6 +1,6 @@
 # HISTORY
 
-## Unreleased
+## 0.5.0 | 2026-11-23
 
 Assay is one library again. The notations that were spun off as separate
 gems in 0.4 (Fluidity, RSpecial, Assay MiniTest and Assay TestUnit) are
