@@ -63,9 +63,9 @@ module Assay
       arguments, block = complete_criteria(subject, &block)
 
       if @not
-        @assay.refute!(*arguments, &block)
+        @assay.refute!(*arguments, {:backtrace=>caller}, &block)
       else
-        @assay.assert!(*arguments, &block)
+        @assay.assert!(*arguments, {:backtrace=>caller}, &block)
       end
     end
 
@@ -81,9 +81,9 @@ module Assay
       arguments, block = complete_criteria(subject, &block)
 
       if @not
-        @assay.assert!(*arguments, &block)
+        @assay.assert!(*arguments, {:backtrace=>caller}, &block)
       else
-        @assay.refute!(*arguments, &block)
+        @assay.refute!(*arguments, {:backtrace=>caller}, &block)
       end
     end
 

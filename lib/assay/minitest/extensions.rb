@@ -347,7 +347,7 @@ module Assay::MiniTest
     # @raise RaiseAssay
     #
     def must_raise(exp, msg=nil, call=nil)
-      RaiseAssay.assert!(exp, msg=nil, call=nil, &self)
+      RaiseAssay.assert!(exp, :message=>msg, :backtrace=>(call || caller), &self)
     end
 
     #
@@ -358,7 +358,7 @@ module Assay::MiniTest
     # @raise RaiseAssay
     #
     def wont_raise(exp, msg=nil, call=nil)
-      RaiseAssay.refute!(exp, msg, call, &self)
+      RaiseAssay.refute!(exp, :message=>msg, :backtrace=>(call || caller), &self)
     end
 
     #

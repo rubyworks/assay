@@ -28,14 +28,14 @@ module Assay::RSpec
     #
     # 
     def should=(value)
-      EqualAssay.assert!(self, value)
+      EqualAssay.assert!(self, value, :backtrace=>caller)
     end
 
     #
     #
     #
     def should_not=(value)
-      EqualAssay.refute!(self, value)
+      EqualAssay.refute!(self, value, :backtrace=>caller)
     end
 
   end

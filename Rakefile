@@ -9,7 +9,7 @@ end
 
 # Each notation extends Object in its own way, so each set of demos runs
 # in a process of its own.
-DEMOS = %w[core minitest testunit rspec fluidity]
+DEMOS = %w[core minitest testunit rspec fluidity bang]
 
 desc "Run the QED demos"
 task :demo do
