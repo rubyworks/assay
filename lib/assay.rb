@@ -35,6 +35,20 @@ module Assay
   end
 
   #
+  # Two inspected values with the differences between them colored, for
+  # failure messages when color is on. Color can be turned on from
+  # outside Assay (the ANSI gem sets `$ansi` when it loads), so the diff
+  # library is loaded here, where it is used.
+  #
+  # @return [Array<String>] the two values, colored
+  #
+  def self.color_diff(a, b)
+    require 'ansi/diff'
+    diff = ::ANSI::Diff.new(a, b)
+    return diff.diff1, diff.diff2
+  end
+
+  #
   # Lookup assay class by operator or name.
   #
   def self.lookup(symbol)

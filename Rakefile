@@ -28,4 +28,9 @@ task :adapters do
   sh 'bundle exec ruby -Ilib test/adapters.rb'
 end
 
-task :default => [:demo, :test, :adapters]
+desc "Check failure messages when color is turned on from outside"
+task :color do
+  sh 'bundle exec ruby -Ilib test/color.rb'
+end
+
+task :default => [:demo, :test, :adapters, :color]

@@ -417,9 +417,7 @@ module Assay::AE
       operator = COMPARISON_OPERATORS[operator] if @negated
       if a.size > 13 or b.size > 13
         if defined?($ansi) && $ansi && a.size * b.size <= DIFF_LIMIT
-          diff = ::ANSI::Diff.new(a,b)
-          a = diff.diff1
-          b = diff.diff2
+          a, b = ::Assay.color_diff(a, b)
         end
         "a #{operator} b\na) " + a + "\nb) " + b
       else
