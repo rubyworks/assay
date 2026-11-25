@@ -1,6 +1,6 @@
 # HISTORY
 
-## Unreleased (0.5.1)
+## 0.5.1 | 2026-11-24
 
 * Fix a `NameError` (`uninitialized constant ANSI::Diff`) raised in
   place of a failed comparison when the values are long and color is
