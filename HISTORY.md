@@ -1,5 +1,13 @@
 # HISTORY
 
+## Unreleased (0.5.1)
+
+* Fix a `NameError` (`uninitialized constant ANSI::Diff`) raised in
+  place of a failed comparison when the values are long and color is
+  on but was not turned on with `Assay.color = true`. That is the usual
+  case under Rubytest, since the ANSI gem turns color on when it loads.
+  It affected `EqualAssay`, `UnequalAssay` and the AE notation.
+
 ## 0.5.0 | 2026-11-23
 
 Assay is one library again. The notations that were spun off as separate

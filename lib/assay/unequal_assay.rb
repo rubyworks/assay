@@ -24,8 +24,7 @@ class UnequalAssay < EqualAssay
   
     if a.size > SIZE_LIMIT or b.size > SIZE_LIMIT
       if $ansi
-        d = ANSI::Diff.new(a, b)
-        a, b = d.diff1, d.diff2  # *d.to_a
+        a, b = Assay.color_diff(a, b)
       end
       "a != b\na) #{a}\nb) #{b}"
     else
